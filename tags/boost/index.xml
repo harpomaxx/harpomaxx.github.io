@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>boost on Notes</title>
+		<link>/tags/boost/</link>
+		<description>Recent content in boost on </description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
+		<lastBuildDate>Sun, 26 Jul 2020 00:00:00 +0000</lastBuildDate>
+		
+		<atom:link href="/tags/boost/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>My findings of the Week.</title>
+			<link>/post/tools-of-the-week/</link>
+			<pubDate>Sun, 26 Jul 2020 00:00:00 +0000</pubDate>
+			
+			<guid>/post/tools-of-the-week/</guid>
+			<description>
+				
+				This week during my usual social network journey, I ran into these interesting tools:
+  An Medium article about UMAP, an...
+				
+			</description>
+		</item>
+		
+	</channel>
+</rss>

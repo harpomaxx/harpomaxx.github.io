@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.73.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="boost,dimensional reduction"><meta name="description" content=""><meta property="og:title" content="My findings of the Week." />
+<meta property="og:description" content="This week during my usual social network journey, I ran into these interesting tools:
+  An Medium article about UMAP, an algorithm for dimensionality reduction similar to PCA, but supporting no-linear relations. Unlike T-SNE, UMAP can preseve the logical structure of the data. Packages available for Python and R. Link to the original research paper here.
+  Catboost, a gradient boost decision tree algorithm (similar to XGBoost) claiming a good performance with default parameters." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/tools-of-the-week/" />
+<meta property="article:published_time" content="2020-07-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-26T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="My findings of the Week."/>
+<meta name="twitter:description" content="This week during my usual social network journey, I ran into these interesting tools:
+  An Medium article about UMAP, an algorithm for dimensionality reduction similar to PCA, but supporting no-linear relations. Unlike T-SNE, UMAP can preseve the logical structure of the data. Packages available for Python and R. Link to the original research paper here.
+  Catboost, a gradient boost decision tree algorithm (similar to XGBoost) claiming a good performance with default parameters."/>
+
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/all.css" />
+	<link rel="stylesheet" href="../../css/katex.min.css" crossorigin="anonymous">
+	<script defer src="../../js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="../../js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>My findings of the Week. | Notes</title></head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="../../">
+			<img src="../../img/harpo.jpg" alt="Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="../../">Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">Notes</a> is a simple blog to keep track about IA-related stuff I consider interesting.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="../../index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="../../">Home</a></li>
+				
+				<li><a href="../../post">All Posts</a></li>
+				
+				<li><a href="../../about">About</a></li>
+				
+				<li><a href="../../tags">Tags</a></li>
+				
+				<li><a href="../../categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="author">
+	
+	</div>
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">26</span>
+				<span class="rest">Jul 2020</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">My findings of the Week.</h1>
+		</div>
+	</div>
+	<div class="markdown">
+		<p>This week during  my usual social network journey, I ran into these interesting tools:</p>
+<ol>
+<li>
+<p>An Medium article about <a href="https://towardsdatascience.com/how-exactly-umap-works-13e3040e1668">UMAP</a>, an algorithm for dimensionality reduction similar to PCA, but supporting no-linear relations. Unlike T-SNE, UMAP can preseve the logical structure of the data. Packages available for Python and R. Link to the original research paper <a href="https://arxiv.org/abs/1802.03426">here</a>.</p>
+</li>
+<li>
+<p><a href="https://catboost.ai">Catboost</a>, a gradient boost decision tree algorithm (similar to XGBoost) claiming a good performance with default parameters. I think it could be useful for a first attempt when dealing with tabular data. My personal current approach is the good ol&rsquo; <a href="https://link.springer.com/article/10.1023/A:1010933404324">Random Forest (Breiman, 2001)</a>. Link to the research papers <a href="https://catboost.ai/docs/concepts/educational-materials-papers.html">here</a>.</p>
+</li>
+<li>
+<p>Another Medium article about <a href="https://towardsdatascience.com/explain-your-model-with-the-shap-values-bc36aac4de3d">SHAP Values</a>, an algorithm for dealing with the black-box nature of several machine learning algorithm by analyzing the contributions of features in classification problems. A link to an article with a general description of the method <a href="https://journal.r-project.org/archive/2018/RJ-2018-072/RJ-2018-072.pdf">here</a></p>
+</li>
+</ol>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			<a href="../../categories/algorithms/"> algorithms </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			<a href="../../tags/boost/"> boost </a>
+			
+			
+			
+			
+			
+			<a href="../../tags/dimensional-reduction/"> dimensional-reduction </a>
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+<footer>
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+	
+</footer>
+
+
+</body>
+</html>

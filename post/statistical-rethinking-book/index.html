@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.73.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="Bayesian,R Language,STAN"><meta name="description" content=""><meta property="og:title" content="Statistical Rethinking Book" />
+<meta property="og:description" content="Today Twitter pointed me to a very interesting and practical book about Bayesian Statistics with examples.
+.twitter-tweet { font: 14px/1.45 -apple-system,BlinkMacSystemFont,&#34;Segoe UI&#34;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&#34;Helvetica Neue&#34;,sans-serif; border-left: 4px solid #2b7bb9; padding-left: 1.5em; color: #555; } .twitter-tweet a { color: #2b7bb9; text-decoration: none; } blockquote.twitter-tweet a:hover, blockquote.twitter-tweet a:focus { text-decoration: underline; }  Statistical Rethinking 2nd edition page now lists code conversions for:
+* raw Stan&#43;tidyverse
+* brms&#43;tidyverse
+* PyMC3
+* Tensorflow Probability
+* Julia &amp; Turing" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/statistical-rethinking-book/" />
+<meta property="article:published_time" content="2020-08-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Statistical Rethinking Book"/>
+<meta name="twitter:description" content="Today Twitter pointed me to a very interesting and practical book about Bayesian Statistics with examples.
+.twitter-tweet { font: 14px/1.45 -apple-system,BlinkMacSystemFont,&#34;Segoe UI&#34;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&#34;Helvetica Neue&#34;,sans-serif; border-left: 4px solid #2b7bb9; padding-left: 1.5em; color: #555; } .twitter-tweet a { color: #2b7bb9; text-decoration: none; } blockquote.twitter-tweet a:hover, blockquote.twitter-tweet a:focus { text-decoration: underline; }  Statistical Rethinking 2nd edition page now lists code conversions for:
+* raw Stan&#43;tidyverse
+* brms&#43;tidyverse
+* PyMC3
+* Tensorflow Probability
+* Julia &amp; Turing"/>
+
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/all.css" />
+	<link rel="stylesheet" href="../../css/katex.min.css" crossorigin="anonymous">
+	<script defer src="../../js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="../../js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Statistical Rethinking Book | Notes</title></head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="../../">
+			<img src="../../img/harpo.jpg" alt="Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="../../">Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">Notes</a> is a simple blog to keep track about IA-related stuff I consider interesting.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="../../index.xml"><i title="RSS" class="icons fas fa-rss"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="../../">Home</a></li>
+				
+				<li><a href="../../post">All Posts</a></li>
+				
+				<li><a href="../../about">About</a></li>
+				
+				<li><a href="../../tags">Tags</a></li>
+				
+				<li><a href="../../categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="author">
+	
+	</div>
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">01</span>
+				<span class="rest">Aug 2020</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Statistical Rethinking Book</h1>
+		</div>
+	</div>
+	<div class="markdown">
+		<p>Today Twitter pointed me to  a very interesting and practical  book about Bayesian Statistics with examples.</p>
+
+
+
+
+<style type="text/css">
+  .twitter-tweet {
+  font: 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  border-left: 4px solid #2b7bb9;
+  padding-left: 1.5em;
+  color: #555;
+}
+  .twitter-tweet a {
+  color: #2b7bb9;
+  text-decoration: none;
+}
+  blockquote.twitter-tweet a:hover,
+  blockquote.twitter-tweet a:focus {
+  text-decoration: underline;
+}
+</style>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Statistical Rethinking 2nd edition page now lists code conversions for:<br>* raw Stan+tidyverse<br>* brms+tidyverse<br>* PyMC3<br>* Tensorflow Probability<br>* Julia &amp; Turing<br>I know other conversions in the works. If I have missed something, please let me know. <a href="https://t.co/jyp2mxBKgC">https://t.co/jyp2mxBKgC</a> <a href="https://t.co/fM5ZBj1p29">pic.twitter.com/fM5ZBj1p29</a></p>&mdash; Richard McElreath 🦔 (@rlmcelreath) <a href="https://twitter.com/rlmcelreath/status/1289562397384912896?ref_src=twsrc%5Etfw">August 1, 2020</a></blockquote>
+
+<p>The first two chapters are available free of charge from the book <a href="https://xcelab.net/rm/statistical-rethinking/">homepage</a>. If you want a gentle and practical approach to Bayesian statistics I think this book could be a good first step.
+<!-- raw HTML omitted --></p>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="../../categories/statistics/"> statistics </a>
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			<a href="../../tags/bayesian/"> bayesian </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="../../tags/r-language/"> r-language </a>
+			
+			
+			
+			
+			
+			<a href="../../tags/stan/"> stan </a>
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+<footer>
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+	
+</footer>
+
+
+</body>
+</html>

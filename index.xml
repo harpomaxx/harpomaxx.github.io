@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Notes</title>
-		<link>https://harpomaxx.github.io/</link>
-		<description>Recent content on harpomaxx.github.io</description>
+		<title>Computer Science Notes</title>
+		<link>/</link>
+		<description>Recent content on </description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Sat, 01 Aug 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Graph Neural Networks</title>
-			<link>https://harpomaxx.github.io/post/graph-neural-networks/</link>
+			<link>/post/graph-neural-networks/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/graph-neural-networks/</guid>
+			<guid>/post/graph-neural-networks/</guid>
 			<description>
 				
 				Last week I was looking just a little about the Complex Networks research field, which consists of learning/extracting i...
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Statistical Rethinking Book</title>
-			<link>https://harpomaxx.github.io/post/statistical-rethinking-book/</link>
+			<link>/post/statistical-rethinking-book/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/statistical-rethinking-book/</guid>
+			<guid>/post/statistical-rethinking-book/</guid>
 			<description>
 				
 				Today Twitter pointed me to a very interesting and practical book about Bayesian Statistics with examples.
@@ -38,10 +38,10 @@
 		</item>
 		<item>
 			<title>Tools of the Week.</title>
-			<link>https://harpomaxx.github.io/post/tools-of-the-week/</link>
+			<link>/post/tools-of-the-week/</link>
 			<pubDate>Sun, 26 Jul 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/tools-of-the-week/</guid>
+			<guid>/post/tools-of-the-week/</guid>
 			<description>
 				
 				This week during my usual social network journey, I ran into these interesting tools:
@@ -51,10 +51,10 @@
 		</item>
 		<item>
 			<title>About me</title>
-			<link>https://harpomaxx.github.io/about/</link>
+			<link>/about/</link>
 			<pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/about/</guid>
+			<guid>/about/</guid>
 			<description>
 				
 				
@@ -63,10 +63,10 @@
 		</item>
 		<item>
 			<title>Collaborative Edition</title>
-			<link>https://harpomaxx.github.io/post/colaborative-edition/</link>
+			<link>/post/colaborative-edition/</link>
 			<pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/colaborative-edition/</guid>
+			<guid>/post/colaborative-edition/</guid>
 			<description>
 				
 				This week I run into an interesting article from Nature Magazine about a “partially” open source approach fo...

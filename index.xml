@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Computer Science Notes</title>
-		<link>http://harpomaxx.github.io/</link>
-		<description>Recent content on harpomaxx.github.io</description>
+		<link>/</link>
+		<description>Recent content on </description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Sat, 01 Aug 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="http://harpomaxx.github.io/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Graph Neural Networks</title>
-			<link>http://harpomaxx.github.io/post/graph-neural-networks/</link>
+			<link>/post/graph-neural-networks/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>http://harpomaxx.github.io/post/graph-neural-networks/</guid>
+			<guid>/post/graph-neural-networks/</guid>
 			<description>
 				
 				Graphs meets Deep Learning!
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Statistical Rethinking Book</title>
-			<link>http://harpomaxx.github.io/post/statistical-rethinking-book/</link>
+			<link>/post/statistical-rethinking-book/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>http://harpomaxx.github.io/post/statistical-rethinking-book/</guid>
+			<guid>/post/statistical-rethinking-book/</guid>
 			<description>
 				
 				A book about Bayesian thinking with examples in R and STAN
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>Tools of the Week.</title>
-			<link>http://harpomaxx.github.io/post/tools-of-the-week/</link>
+			<link>/post/tools-of-the-week/</link>
 			<pubDate>Sun, 26 Jul 2020 00:00:00 +0000</pubDate>
 			
-			<guid>http://harpomaxx.github.io/post/tools-of-the-week/</guid>
+			<guid>/post/tools-of-the-week/</guid>
 			<description>
 				
 				UMAP, Shap Values among other links to interesting stuff I run into.
@@ -49,10 +49,10 @@
 		</item>
 		<item>
 			<title>About me</title>
-			<link>http://harpomaxx.github.io/about/</link>
+			<link>/about/</link>
 			<pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
 			
-			<guid>http://harpomaxx.github.io/about/</guid>
+			<guid>/about/</guid>
 			<description>
 				
 				
@@ -61,10 +61,10 @@
 		</item>
 		<item>
 			<title>Collaborative Edition</title>
-			<link>http://harpomaxx.github.io/post/colaborative-edition/</link>
+			<link>/post/colaborative-edition/</link>
 			<pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
 			
-			<guid>http://harpomaxx.github.io/post/colaborative-edition/</guid>
+			<guid>/post/colaborative-edition/</guid>
 			<description>
 				
 				Manubot an Open Source git-based tool.

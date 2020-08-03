@@ -2,59 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/</link>
+		<link>http://harpomaxx.github.io/</link>
 		<description>Recent content on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Sat, 01 Aug 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="http://harpomaxx.github.io/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Graph Neural Networks</title>
-			<link>https://harpomaxx.github.io/post/graph-neural-networks/</link>
+			<link>http://harpomaxx.github.io/post/graph-neural-networks/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/graph-neural-networks/</guid>
+			<guid>http://harpomaxx.github.io/post/graph-neural-networks/</guid>
 			<description>
 				
-				Last week I was looking just a little about the Complex Networks research field, which consists of learning/extracting i...
+				Graphs meets Deep Learning!
 				
 			</description>
 		</item>
 		<item>
 			<title>Statistical Rethinking Book</title>
-			<link>https://harpomaxx.github.io/post/statistical-rethinking-book/</link>
+			<link>http://harpomaxx.github.io/post/statistical-rethinking-book/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/statistical-rethinking-book/</guid>
+			<guid>http://harpomaxx.github.io/post/statistical-rethinking-book/</guid>
 			<description>
 				
-				Today Twitter pointed me to a very interesting and practical book about Bayesian Statistics with examples.
-.twitter-twee...
+				A book about Bayesian thinking with examples in R and STAN
 				
 			</description>
 		</item>
 		<item>
 			<title>Tools of the Week.</title>
-			<link>https://harpomaxx.github.io/post/tools-of-the-week/</link>
+			<link>http://harpomaxx.github.io/post/tools-of-the-week/</link>
 			<pubDate>Sun, 26 Jul 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/tools-of-the-week/</guid>
+			<guid>http://harpomaxx.github.io/post/tools-of-the-week/</guid>
 			<description>
 				
-				This week during my usual social network journey, I ran into these interesting tools:
-  An Medium article about UMAP, an...
+				UMAP, Shap Values among other links to interesting stuff I run into.
 				
 			</description>
 		</item>
 		<item>
 			<title>About me</title>
-			<link>https://harpomaxx.github.io/about/</link>
+			<link>http://harpomaxx.github.io/about/</link>
 			<pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/about/</guid>
+			<guid>http://harpomaxx.github.io/about/</guid>
 			<description>
 				
 				
@@ -63,13 +61,13 @@
 		</item>
 		<item>
 			<title>Collaborative Edition</title>
-			<link>https://harpomaxx.github.io/post/colaborative-edition/</link>
+			<link>http://harpomaxx.github.io/post/colaborative-edition/</link>
 			<pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/colaborative-edition/</guid>
+			<guid>http://harpomaxx.github.io/post/colaborative-edition/</guid>
 			<description>
 				
-				This week I run into an interesting article from Nature Magazine about a “partially” open source approach fo...
+				Manubot an Open Source git-based tool.
 				
 			</description>
 		</item>

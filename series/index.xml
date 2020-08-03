@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Series on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/series/</link>
+		<link>http://harpomaxx.github.io/series/</link>
 		<description>Recent content in Series on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		
-		<atom:link href="https://harpomaxx.github.io/series/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="http://harpomaxx.github.io/series/index.xml" rel="self" type="application/rss+xml" />
 		
 		
 	</channel>

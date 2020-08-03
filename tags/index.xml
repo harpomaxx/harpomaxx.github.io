@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Tags on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/tags/</link>
+		<link>http://harpomaxx.github.io/tags/</link>
 		<description>Recent content in Tags on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Sat, 01 Aug 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="http://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Bayesian</title>
-			<link>https://harpomaxx.github.io/tags/bayesian/</link>
+			<link>http://harpomaxx.github.io/tags/bayesian/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/tags/bayesian/</guid>
+			<guid>http://harpomaxx.github.io/tags/bayesian/</guid>
 			<description>
 				
 				
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>graph networks</title>
-			<link>https://harpomaxx.github.io/tags/graph-networks/</link>
+			<link>http://harpomaxx.github.io/tags/graph-networks/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/tags/graph-networks/</guid>
+			<guid>http://harpomaxx.github.io/tags/graph-networks/</guid>
 			<description>
 				
 				
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>R Language</title>
-			<link>https://harpomaxx.github.io/tags/r-language/</link>
+			<link>http://harpomaxx.github.io/tags/r-language/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/tags/r-language/</guid>
+			<guid>http://harpomaxx.github.io/tags/r-language/</guid>
 			<description>
 				
 				
@@ -49,10 +49,10 @@
 		</item>
 		<item>
 			<title>STAN</title>
-			<link>https://harpomaxx.github.io/tags/stan/</link>
+			<link>http://harpomaxx.github.io/tags/stan/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/tags/stan/</guid>
+			<guid>http://harpomaxx.github.io/tags/stan/</guid>
 			<description>
 				
 				
@@ -61,10 +61,10 @@
 		</item>
 		<item>
 			<title>boost</title>
-			<link>https://harpomaxx.github.io/tags/boost/</link>
+			<link>http://harpomaxx.github.io/tags/boost/</link>
 			<pubDate>Sun, 26 Jul 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/tags/boost/</guid>
+			<guid>http://harpomaxx.github.io/tags/boost/</guid>
 			<description>
 				
 				
@@ -73,10 +73,10 @@
 		</item>
 		<item>
 			<title>dimensional reduction</title>
-			<link>https://harpomaxx.github.io/tags/dimensional-reduction/</link>
+			<link>http://harpomaxx.github.io/tags/dimensional-reduction/</link>
 			<pubDate>Sun, 26 Jul 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/tags/dimensional-reduction/</guid>
+			<guid>http://harpomaxx.github.io/tags/dimensional-reduction/</guid>
 			<description>
 				
 				

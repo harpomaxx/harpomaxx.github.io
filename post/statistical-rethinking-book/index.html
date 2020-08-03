@@ -1,50 +1,38 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 	
-	<meta name="generator" content="Hugo 0.73.0" />
+	<meta name="generator" content="Hugo 0.74.3" />
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="Bayesian,R Language,STAN"><meta name="description" content=""><meta property="og:title" content="Statistical Rethinking Book" />
-<meta property="og:description" content="Today Twitter pointed me to a very interesting and practical book about Bayesian Statistics with examples.
-.twitter-tweet { font: 14px/1.45 -apple-system,BlinkMacSystemFont,&#34;Segoe UI&#34;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&#34;Helvetica Neue&#34;,sans-serif; border-left: 4px solid #2b7bb9; padding-left: 1.5em; color: #555; } .twitter-tweet a { color: #2b7bb9; text-decoration: none; } blockquote.twitter-tweet a:hover, blockquote.twitter-tweet a:focus { text-decoration: underline; }  Statistical Rethinking 2nd edition page now lists code conversions for:
-* raw Stan&#43;tidyverse
-* brms&#43;tidyverse
-* PyMC3
-* Tensorflow Probability
-* Julia &amp; Turing" />
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="Bayesian,R Language,STAN"><meta name="description" content="A book about Bayesian thinking with examples in R and STAN"><meta property="og:title" content="Statistical Rethinking Book" />
+<meta property="og:description" content="A book about Bayesian thinking with examples in R and STAN" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://harpomaxx.github.io/post/statistical-rethinking-book/" />
+<meta property="og:url" content="http://harpomaxx.github.io/post/statistical-rethinking-book/" />
 <meta property="article:published_time" content="2020-08-01T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-08-01T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Statistical Rethinking Book"/>
-<meta name="twitter:description" content="Today Twitter pointed me to a very interesting and practical book about Bayesian Statistics with examples.
-.twitter-tweet { font: 14px/1.45 -apple-system,BlinkMacSystemFont,&#34;Segoe UI&#34;,Roboto,Oxygen-Sans,Ubuntu,Cantarell,&#34;Helvetica Neue&#34;,sans-serif; border-left: 4px solid #2b7bb9; padding-left: 1.5em; color: #555; } .twitter-tweet a { color: #2b7bb9; text-decoration: none; } blockquote.twitter-tweet a:hover, blockquote.twitter-tweet a:focus { text-decoration: underline; }  Statistical Rethinking 2nd edition page now lists code conversions for:
-* raw Stan&#43;tidyverse
-* brms&#43;tidyverse
-* PyMC3
-* Tensorflow Probability
-* Julia &amp; Turing"/>
+<meta name="twitter:description" content="A book about Bayesian thinking with examples in R and STAN"/>
 
-	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
-	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
-	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Statistical Rethinking Book | Computer Science Notes</title></head>
+	<link rel="stylesheet" type="text/css" media="screen" href="http://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="http://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="http://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="http://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="http://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="http://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Statistical Rethinking Book | Computer Science Notes</title></head>
 <body><header>
 	
 	<div id="avatar">
-		<a href="https://harpomaxx.github.io/">
+		<a href="http://harpomaxx.github.io/">
 			<img src="/img/harpo.jpg" alt="Computer Science Notes">
 		</a>
 	</div>
 	
-	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="titletext"><h2 id="title"><a href="http://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
 	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
 			<nav>
-				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpomaxx"><i title="Twitter" class="icons fab fa-twitter"></i></a></li></ul>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li></ul>
 			</nav>
 		</div>
 	</div>
@@ -55,13 +43,13 @@
 				
 				<li><a href="/">Home</a></li>
 				
-				<li><a href="/post">All Posts</a></li>
+				<li><a href="/post/">All Posts</a></li>
 				
-				<li><a href="/about">About</a></li>
+				<li><a href="/about/">About</a></li>
 				
 				<li><a href="/tags">Tags</a></li>
 				
-				<li><a href="/categories">Categories</a></li>
+				<li><a href="/categories/">Categories</a></li>
 				
 			</ul>
 		</nav>
@@ -141,7 +129,7 @@
 			
 			
 			
-			<a href="https://harpomaxx.github.io/categories/statistics/"> statistics </a>
+			<a href="http://harpomaxx.github.io/categories/statistics/"> statistics </a>
 			
 			
 			
@@ -170,7 +158,7 @@
 			
 			
 			
-			<a href="https://harpomaxx.github.io/tags/bayesian/"> bayesian </a>
+			<a href="http://harpomaxx.github.io/tags/bayesian/"> bayesian </a>
 			
 			
 			
@@ -188,13 +176,13 @@
 			
 			
 			
-			<a href="https://harpomaxx.github.io/tags/r-language/"> r-language </a>
+			<a href="http://harpomaxx.github.io/tags/r-language/"> r-language </a>
 			
 			
 			
 			
 			
-			<a href="https://harpomaxx.github.io/tags/stan/"> stan </a>
+			<a href="http://harpomaxx.github.io/tags/stan/"> stan </a>
 			
 			
 			

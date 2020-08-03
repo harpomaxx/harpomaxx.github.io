@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Categories on Computer Science Notes</title>
-		<link>http://harpomaxx.github.io/categories/</link>
+		<link>https://harpomaxx.github.io/categories/</link>
 		<description>Recent content in Categories on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Sat, 01 Aug 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="http://harpomaxx.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Deep Learning</title>
-			<link>http://harpomaxx.github.io/categories/deep-learning/</link>
+			<link>https://harpomaxx.github.io/categories/deep-learning/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>http://harpomaxx.github.io/categories/deep-learning/</guid>
+			<guid>https://harpomaxx.github.io/categories/deep-learning/</guid>
 			<description>
 				
 				
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Statistics</title>
-			<link>http://harpomaxx.github.io/categories/statistics/</link>
+			<link>https://harpomaxx.github.io/categories/statistics/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>http://harpomaxx.github.io/categories/statistics/</guid>
+			<guid>https://harpomaxx.github.io/categories/statistics/</guid>
 			<description>
 				
 				
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>algorithms</title>
-			<link>http://harpomaxx.github.io/categories/algorithms/</link>
+			<link>https://harpomaxx.github.io/categories/algorithms/</link>
 			<pubDate>Sun, 26 Jul 2020 00:00:00 +0000</pubDate>
 			
-			<guid>http://harpomaxx.github.io/categories/algorithms/</guid>
+			<guid>https://harpomaxx.github.io/categories/algorithms/</guid>
 			<description>
 				
 				
@@ -49,10 +49,10 @@
 		</item>
 		<item>
 			<title>writing</title>
-			<link>http://harpomaxx.github.io/categories/writing/</link>
+			<link>https://harpomaxx.github.io/categories/writing/</link>
 			<pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
 			
-			<guid>http://harpomaxx.github.io/categories/writing/</guid>
+			<guid>https://harpomaxx.github.io/categories/writing/</guid>
 			<description>
 				
 				

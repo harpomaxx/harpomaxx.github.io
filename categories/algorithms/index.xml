@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>algorithms on Computer Science Notes</title>
-		<link>/categories/algorithms/</link>
-		<description>Recent content in algorithms on </description>
+		<link>https://harpomaxx.github.io/categories/algorithms/</link>
+		<description>Recent content in algorithms on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Sun, 26 Jul 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/categories/algorithms/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/categories/algorithms/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Tools of the Week.</title>
-			<link>/post/tools-of-the-week/</link>
+			<link>https://harpomaxx.github.io/post/tools-of-the-week/</link>
 			<pubDate>Sun, 26 Jul 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/tools-of-the-week/</guid>
+			<guid>https://harpomaxx.github.io/post/tools-of-the-week/</guid>
 			<description>
 				
 				This week during my usual social network journey, I ran into these interesting tools:

@@ -2,34 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Computer Science Notes</title>
-		<link>/</link>
-		<description>Recent content on </description>
+		<link>https://harpomaxx.github.io/</link>
+		<description>Recent content on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Mon, 03 Aug 2020 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sat, 01 Aug 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/index.xml" rel="self" type="application/rss+xml" />
 		
-		<item>
-			<title>A simple test post</title>
-			<link>/post/a-simple-test-post/</link>
-			<pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
-			
-			<guid>/post/a-simple-test-post/</guid>
-			<description>
-				
-				A simple test post bla bla bla balbbabal balbalba blalba
-
-				
-			</description>
-		</item>
 		<item>
 			<title>Graph Neural Networks</title>
-			<link>/post/graph-neural-networks/</link>
+			<link>https://harpomaxx.github.io/post/graph-neural-networks/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/graph-neural-networks/</guid>
+			<guid>https://harpomaxx.github.io/post/graph-neural-networks/</guid>
 			<description>
 				
 				Last week I was looking just a little about the Complex Networks research field, which consists of learning/extracting i...
@@ -38,10 +25,10 @@
 		</item>
 		<item>
 			<title>Statistical Rethinking Book</title>
-			<link>/post/statistical-rethinking-book/</link>
+			<link>https://harpomaxx.github.io/post/statistical-rethinking-book/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/statistical-rethinking-book/</guid>
+			<guid>https://harpomaxx.github.io/post/statistical-rethinking-book/</guid>
 			<description>
 				
 				Today Twitter pointed me to a very interesting and practical book about Bayesian Statistics with examples.
@@ -51,10 +38,10 @@
 		</item>
 		<item>
 			<title>Tools of the Week.</title>
-			<link>/post/tools-of-the-week/</link>
+			<link>https://harpomaxx.github.io/post/tools-of-the-week/</link>
 			<pubDate>Sun, 26 Jul 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/tools-of-the-week/</guid>
+			<guid>https://harpomaxx.github.io/post/tools-of-the-week/</guid>
 			<description>
 				
 				This week during my usual social network journey, I ran into these interesting tools:
@@ -64,10 +51,10 @@
 		</item>
 		<item>
 			<title>About me</title>
-			<link>/about/</link>
+			<link>https://harpomaxx.github.io/about/</link>
 			<pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/about/</guid>
+			<guid>https://harpomaxx.github.io/about/</guid>
 			<description>
 				
 				
@@ -76,10 +63,10 @@
 		</item>
 		<item>
 			<title>Collaborative Edition</title>
-			<link>/post/colaborative-edition/</link>
+			<link>https://harpomaxx.github.io/post/colaborative-edition/</link>
 			<pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/colaborative-edition/</guid>
+			<guid>https://harpomaxx.github.io/post/colaborative-edition/</guid>
 			<description>
 				
 				This week I run into an interesting article from Nature Magazine about a “partially” open source approach fo...

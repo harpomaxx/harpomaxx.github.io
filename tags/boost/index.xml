@@ -7,10 +7,23 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Sun, 26 Jul 2020 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Mon, 03 Aug 2020 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="/tags/boost/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>A simple test post</title>
+			<link>/post/a-simple-test-post/</link>
+			<pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+			
+			<guid>/post/a-simple-test-post/</guid>
+			<description>
+				
+				A simple test post bla bla bla balbbabal balbalba blalba
+
+				
+			</description>
+		</item>
 		<item>
 			<title>Tools of the Week.</title>
 			<link>/post/tools-of-the-week/</link>

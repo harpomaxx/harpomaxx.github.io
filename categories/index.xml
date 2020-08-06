@@ -7,10 +7,22 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Tue, 04 Aug 2020 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>feature selections</title>
+			<link>https://harpomaxx.github.io/categories/feature-selections/</link>
+			<pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/feature-selections/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>Statistics</title>
 			<link>https://harpomaxx.github.io/categories/statistics/</link>

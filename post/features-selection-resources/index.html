@@ -80,7 +80,7 @@
 		<p>An usual method for feature selection consists of analizing the coefficient of linear regression, another is
 the use of Random Forest variable importance features. Recently, as part of <a href="https://www.synapse.org/#!Synapse:syn15589870/tables/">the Dreams&rsquo; Tumor Deconvolution challenge</a>, our team applied
 Random Forest (<a href="https://link.springer.com/article/10.1023/A:1010933404324">Breiman 2001</a>)
-for feature selection. Despite the simplicity of using variable importance function based on GINI index,  there are some considerations. The fact is that GINI index for feature importance is biased to continuous or high-cardinality categorical variables.</p>
+for feature selection. Despite the simplicity of using variable importance function based on GINI index,  there are some considerations. The fact is that GINI index for feature importance is biased to continuous or high-cardinality categorical variables (unless you use some sort of normalization).</p>
 <p>Here some articles and links about the topic:</p>
 <ol>
 <li>
@@ -200,11 +200,15 @@ of information that I would read. In the article, John explains why Collinearity
 	</div></div>
 
   </main>
+
 <footer>
 	 © Copyright [Harpo MAxx] MIT LICENSE 
 	
 	
 	
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="./img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
 </footer>
 
 

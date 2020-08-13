@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.73.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="hugo,vitae,theme,static"><meta name="description" content="Some useful  resources for playing with epidemic models (Mostly COVID-19 of course). From an explanation of the dificulties behind building an epidemic models to the different approaches followed by researchers and enthusiasts (me) here in my home town, Mendoza City."><meta property="og:title" content="COVID-19 Resources for the Amateur Epidemiologist" />
+<meta property="og:description" content="Some useful  resources for playing with epidemic models (Mostly COVID-19 of course). From an explanation of the dificulties behind building an epidemic models to the different approaches followed by researchers and enthusiasts (me) here in my home town, Mendoza City." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/covid19-time-series-prediction/" />
+<meta property="article:published_time" content="2020-08-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-13T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="COVID-19 Resources for the Amateur Epidemiologist"/>
+<meta name="twitter:description" content="Some useful  resources for playing with epidemic models (Mostly COVID-19 of course). From an explanation of the dificulties behind building an epidemic models to the different approaches followed by researchers and enthusiasts (me) here in my home town, Mendoza City."/>
+<link rel="icon" type="image/png" href="../../favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="../../favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/all.css" />
+	<link rel="stylesheet" href="../../css/katex.min.css" crossorigin="anonymous">
+	<script defer src="../../js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="../../js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>COVID-19 Resources for the Amateur Epidemiologist | Computer Science Notes</title></head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="../../">
+			<img src="../../img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="../../">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="../../">Home</a></li>
+				
+				<li><a href="../../post">All Posts</a></li>
+				
+				<li><a href="../../about">About</a></li>
+				
+				<li><a href="../../tags">Tags</a></li>
+				
+				<li><a href="../../categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="author">
+	
+	</div>
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">13</span>
+				<span class="rest">Aug 2020</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">COVID-19 Resources for the Amateur Epidemiologist</h1>
+		</div>
+	</div>
+	<div class="markdown">
+		<p>From Mars 2020, Argentina government put the whole country under quarantine.
+Nothing  not happened in every other place in the world. War against
+COVID-19 started. Data scientists all over the country (and the world) entered
+the battlefield with their finest algorithms and visualization hoping to
+provide insights not perceived by the most famous epidemiologists in the world ;-).
+Any way, I was not the exception in all that visualization/modelization madness.
+I spent almost a moth learning and writing simple models and visualizations.</p>
+<img src="../../post/2020-08-08-covid19-time-series-prediction.en_files/covid-shiny.png" alt="" width="70%"/>
+<p>I have made a list of some of the most useful resources for having fun with
+epidemic modeling.</p>
+<ol>
+<li>A nice article from fivethirtyeight.com explaining <a href="https://fivethirtyeight.com/features/why-its-so-freaking-hard-to-make-a-good-covid-19-model/">Why It’s So Freaking Hard To Make A Good COVID-19 Model</a></li>
+<li><a href="https://medium.com/data-for-science/epidemic-modeling-101-or-why-your-covid19-exponential-fits-are-wrong-97aa50c55f8">EPIDEMICS MODELS 101</a> A serie of posts on Medium about the basic for modeling epidemic spreads.</li>
+<li><a href="https://timchurches.github.io/blog/">Tim Churches</a> serie of posts about <a href="https://timchurches.github.io/blog/posts/2020-02-18-analysing-covid-19-2019-ncov-outbreak-data-with-r-part-1/">modeling COVID-19 using R language</a>. From simple compartment  (SIR) to log-linear models</li>
+<li>An article from <a href="https://www.medrxiv.org/content/10.1101/2020.02.16.20023465v1">Cheng et al</a>. where the extend a SEIR model for including other compartment such as Exposed, Dead and Quarantine.</li>
+<li>My friend <a href="https://twitter.com/RGonzalez_PhD">Rodralez</a> from <a href="https://frm.utn.edu.ar">UTN Mendoza</a> and me used Cheng et al. model for running our own simulations. You can find all our work <a href="https://github.com/harpomaxx/COVID19">here</a> and <a href="https://github.com/rodralez/covid-19">here</a>. In the repos you will find a Matlab and R implementation of the models, several <a href="https://rpubs.com/harpomaxx/deadsper100k">visualizations</a> and a <a href="https://github.com/harpomaxx/COVID19_shiny">simple shiny app.</a>.</li>
+<li>A <a href="https://github.com/harpomaxx/COVID19/tree/master/dataset">dataset</a> parsed from  the official information provided by the Argentine Ministry of Health.</li>
+<li>Luis Mayorga and his team from <a href="https://www.mendoza.conicet.gov.ar/portal/imbecu/">IMBECU</a> (CONICET ARGENTINA) developed a SEIR model for predicting the ICU beds occupied during the pandemic. The published an <a href="https://www.medrxiv.org/content/10.1101/2020.04.23.20077255v1">original research paper</a> and provide a <a href="https://seir-mdz.herokuapp.com/">running model</a> and a <a href="https://github.com/ihem-institute/SEIR_Mendoza/blob/master/COVID-19_SEIR_Mendoza.ipynb">notebook</a> for playing..</li>
+<li>Leandro Abraham from <a href="http://dharma.frm.utn.edu.ar">DHARMA</a> and Eventbrite write a <a href="https://github.com/leandromaf/covid19-test-prediction/blob/master/notebooks/COVID_Tests_results_prediction_with_Catboost.ipynb">very nice notebook</a> about predicting positive COVID19 patients using clinical information.</li>
+</ol>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			<a href="../../categories/covid19/"> covid19 </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="../../categories/time-series/"> time-series </a>
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+	
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+</footer>
+
+
+</body>
+</html>

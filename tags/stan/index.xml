@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>STAN on Computer Science Notes</title>
-		<link>/tags/stan/</link>
-		<description>Recent content in STAN on </description>
+		<link>https://harpomaxx.github.io/tags/stan/</link>
+		<description>Recent content in STAN on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Tue, 04 Aug 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/tags/stan/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/tags/stan/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Statistical Rethinking Book [and other resources]</title>
-			<link>/post/statistical-rethinking-book/</link>
+			<link>https://harpomaxx.github.io/post/statistical-rethinking-book/</link>
 			<pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/statistical-rethinking-book/</guid>
+			<guid>https://harpomaxx.github.io/post/statistical-rethinking-book/</guid>
 			<description>
 				
 				A book about Bayesian thinking with examples in R and STAN [and other resources]

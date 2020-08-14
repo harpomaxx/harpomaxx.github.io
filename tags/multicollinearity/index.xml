@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>multicollinearity on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/tags/multicollinearity/</link>
-		<description>Recent content in multicollinearity on harpomaxx.github.io</description>
+		<link>/tags/multicollinearity/</link>
+		<description>Recent content in multicollinearity on </description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Thu, 06 Aug 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/tags/multicollinearity/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="/tags/multicollinearity/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Features Selection Resources</title>
-			<link>https://harpomaxx.github.io/post/features-selection-resources/</link>
+			<link>/post/features-selection-resources/</link>
 			<pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/features-selection-resources/</guid>
+			<guid>/post/features-selection-resources/</guid>
 			<description>
 				
 				Beware of Random Forest GINI index for feature importance. Some other resources related with feature selection such as how to use PCA and the problems (or not) behind colinearity.

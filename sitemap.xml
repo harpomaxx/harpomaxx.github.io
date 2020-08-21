@@ -4,12 +4,37 @@
   
   <url>
     <loc>https://harpomaxx.github.io/categories/</loc>
-    <lastmod>2020-08-13T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://harpomaxx.github.io/</loc>
-    <lastmod>2020-08-13T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harpomaxx.github.io/categories/deep-learning/</loc>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harpomaxx.github.io/post/double-descent-in-deep-learning/</loc>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harpomaxx.github.io/tags/overfitting/</loc>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harpomaxx.github.io/post/</loc>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harpomaxx.github.io/tags/</loc>
+    <lastmod>2020-08-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -19,11 +44,6 @@
   
   <url>
     <loc>https://harpomaxx.github.io/categories/covid19/</loc>
-    <lastmod>2020-08-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harpomaxx.github.io/post/</loc>
     <lastmod>2020-08-13T00:00:00+00:00</lastmod>
   </url>
   
@@ -53,11 +73,6 @@
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/</loc>
-    <lastmod>2020-08-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://harpomaxx.github.io/tags/bayesian/</loc>
     <lastmod>2020-08-04T00:00:00+00:00</lastmod>
   </url>
@@ -80,11 +95,6 @@
   <url>
     <loc>https://harpomaxx.github.io/categories/statistics/</loc>
     <lastmod>2020-08-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harpomaxx.github.io/categories/deep-learning/</loc>
-    <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>

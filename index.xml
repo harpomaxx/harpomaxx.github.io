@@ -7,10 +7,22 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Thu, 13 Aug 2020 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Thu, 20 Aug 2020 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Double Descent in Deep Learning</title>
+			<link>https://harpomaxx.github.io/post/double-descent-in-deep-learning/</link>
+			<pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/double-descent-in-deep-learning/</guid>
+			<description>
+				
+				The U-shape observed when measuring model performance on testset as a function of its flexibility does not hold during training deep learning models. (WHAT!!!?????. Is the world going mad?. Not really.)
+				
+			</description>
+		</item>
 		<item>
 			<title>COVID-19 Resources for the Amateur Epidemiologist</title>
 			<link>https://harpomaxx.github.io/post/covid19-time-series-prediction/</link>

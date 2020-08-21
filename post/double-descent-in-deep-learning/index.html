@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.73.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="overfitting"><meta name="description" content="The U-shape observed when measuring model performance on testset as a function of its flexibility does not hold during training deep learning models. (WHAT!!!?????. Is the world going mad?. Not really.)"><meta property="og:title" content="Double Descent in Deep Learning" />
+<meta property="og:description" content="The U-shape observed when measuring model performance on testset as a function of its flexibility does not hold during training deep learning models. (WHAT!!!?????. Is the world going mad?. Not really.)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/double-descent-in-deep-learning/" />
+<meta property="article:published_time" content="2020-08-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-20T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Double Descent in Deep Learning"/>
+<meta name="twitter:description" content="The U-shape observed when measuring model performance on testset as a function of its flexibility does not hold during training deep learning models. (WHAT!!!?????. Is the world going mad?. Not really.)"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Double Descent in Deep Learning | Computer Science Notes</title></head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="author">
+	
+	</div>
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">20</span>
+				<span class="rest">Aug 2020</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Double Descent in Deep Learning</h1>
+		</div>
+	</div>
+	<div class="markdown">
+		<h2 id="introduction">Introduction</h2>
+<p>The classical U-Shape observed when analyzing the performance (usually some loss function) of a model on testset is a fundamental property that holds regardless of the particular data set at hand and regardless of the statistical method being used.</p>
+<img src="/post/2020-08-13-double-descent-in-deep-learning.en_files/u-shape.png" alt="u-shape" width="60%"/>
+<p>As it was beautifully explained in the <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf">ISLR</a> book. This is conditioned by the Bias - Variance Trade off ( see the equation below)</p>
+<img src="/post/2020-08-13-double-descent-in-deep-learning.en_files/varbias.png" alt="var-bias-tradeoff" width="60%" caption="caca"/>
+<p><em>Variance</em> refers to the amount by which the estimated function <em>f</em> would change if we estimated it using a different training data set, while <em>Bias</em> refers to  the error that is introduced by approximating a given problem by a much simpler model. More flexible models tends to have low bias but higher variance, while more rigid models (linear regression for instance) have a higher bias but lower variance. At some point we can associate <em>Bias</em> with underfitting while <em>Variance</em> with overfitting. The U-shape will be influenced by <em>Bias</em> and the <em>Variance</em>, and depending the dataset  used the U-shape can be different, although maintaining their convex property. (See the example below)</p>
+<figure>
+<img src="/post/2020-08-13-double-descent-in-deep-learning.en_files/varbias-by-models.png" alt="u-shape" width="100%"/>
+  <figcaption>
+      <h6>The influence of the variance and bias in three differente datasets when using more flexible models. As a general rule, as we use more flexible methods, the variance will increase and the bias will decrease. The relative rate of change of these two quantities determines whether the test MSE increases or decreases. (ISLR)</h6>
+  </figcaption>
+</figure>
+<h2 id="the-double-descent-problem">The double descent problem</h2>
+<p>However, recently Deep Learning researcher have observed that as they give more flexibility to a (Deep Learning) model (such as the size, epochs, etc.), the performance first gets worse and then gets better (i.e. No convex shape). This phenomenon is denoted as Deep Double Descent, which is somewhat surprising.</p>
+<img src="/post/2020-08-13-double-descent-in-deep-learning.en_files/double-descent-p.jpeg" alt="double-descent" width="60%"/>
+<p>Last weekend, I ran into a lovely explanation from a statistical point of view of the Double descent phenomenon from <a href="https://twitter.com/daniela_witten">@daniela_witten</a> one of the authors of the well-known <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf">ISLR</a> book.</p>
+<h2 id="the-resources">The resources</h2>
+<p>I put here some resources related with the phenomenon:</p>
+<ol>
+<li>An article from <a href="https://openai.com/blog/deep-double-descent/">OPENAI</a> about the observed Double Descent in CNN and RESTnet kind of networks.</li>
+<li>Another <a href="https://medium.com/@LightOnIO/beyond-overfitting-and-beyond-silicon-the-double-descent-curve-18b6d9810e1b">post</a> from Medium that describes de Double Descent phenomenon, with point to a analogy between training neural network and fitting dense repulsive particles within a finite volume.</li>
+<li>One of the <a href="https://arxiv.org/pdf/1912.02292.pdf">research paper</a> describing the Double Descent phenomenon.</li>
+<li>An statistical explanation of the phenomeon from <a href="https://twitter.com/daniela_witten">@daniela_witten</a> in the form of a twitter thread.
+
+
+
+
+<style type="text/css">
+  .twitter-tweet {
+  font: 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  border-left: 4px solid #2b7bb9;
+  padding-left: 1.5em;
+  color: #555;
+}
+  .twitter-tweet a {
+  color: #2b7bb9;
+  text-decoration: none;
+}
+  blockquote.twitter-tweet a:hover,
+  blockquote.twitter-tweet a:focus {
+  text-decoration: underline;
+}
+</style>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">The Bias-Variance Trade-Off &amp; &quot;DOUBLE DESCENT&quot; 🧵<br><br>Remember the bias-variance trade-off? It says that models  perform well for an &quot;intermediate level of flexibility&quot;.  You&#39;ve seen the picture of the U-shape test error curve.<br><br>We try to hit the &quot;sweet spot&quot; of flexibility.<br><br>1/🧵 <a href="https://t.co/HPk05izkZh">pic.twitter.com/HPk05izkZh</a></p>&mdash; Daniela Witten (@daniela_witten) <a href="https://twitter.com/daniela_witten/status/1292293102103748609?ref_src=twsrc%5Etfw">August 9, 2020</a></blockquote>
+</li>
+</ol>
+<h2 id="todo">TODO</h2>
+<p>Find a toy example code and dataset to test different form of double descent.</p>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/deep-learning/"> deep-learning </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/overfitting/"> overfitting </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+</footer>
+
+
+</body>
+</html>

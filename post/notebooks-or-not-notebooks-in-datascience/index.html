@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.73.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="reproducible Research,notebooks"><meta name="description" content="Jupyter and Rstudio notebooks have become the default standard for data science development. However, it is important to know their limitations and detect the moment of moving to a more &#34;powerful&#34; tool. Since in data science a very significant portion of the work is related to  development, it is always important to be aware of the last development tools."><meta property="og:title" content="Notebooks in Data Science Development and other development tools." />
+<meta property="og:description" content="Jupyter and Rstudio notebooks have become the default standard for data science development. However, it is important to know their limitations and detect the moment of moving to a more &#34;powerful&#34; tool. Since in data science a very significant portion of the work is related to  development, it is always important to be aware of the last development tools." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/notebooks-or-not-notebooks-in-datascience/" />
+<meta property="article:published_time" content="2020-08-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-26T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Notebooks in Data Science Development and other development tools."/>
+<meta name="twitter:description" content="Jupyter and Rstudio notebooks have become the default standard for data science development. However, it is important to know their limitations and detect the moment of moving to a more &#34;powerful&#34; tool. Since in data science a very significant portion of the work is related to  development, it is always important to be aware of the last development tools."/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Notebooks in Data Science Development and other development tools. | Computer Science Notes</title></head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="author">
+	
+	</div>
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">26</span>
+				<span class="rest">Aug 2020</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Notebooks in Data Science Development and other development tools.</h1>
+		</div>
+	</div>
+	<div class="markdown">
+		
+
+
+<p>In 2004 Robert Gentleman and Duncan Temple Lang wrote a BioConductor working paper called <a href="https://biostats.bepress.com/bioconductor/paper2/">Statistical Analysis and Reproducible Research</a>. In this paper they argued that one should tightly integrate code, methods, algorithms and narrative as closely as possible to facilitate easy reproduction and extension, this idea match perfectly with the concept of <a href="https://en.wikipedia.org/wiki/Literate_programming">Literate programming</a> produced by the genius mind of Donald Knuth.</p>
+<p><img src="/post/2020-08-26-notebooks-or-not-notebooks-in-datascience.en_files/professor-donald-knuth.jpg" style="width:50.0%" /></p>
+<div id="notebooks" class="section level2">
+<h2>Notebooks</h2>
+<p><a href="https://en.wikipedia.org/wiki/Literate_programming">Literate programming</a> (AKA notebook) has been in the Data Science scene for a while. They have become convenient for testing ideas, exploring the data, and even testing models. However, they have some limitations. As your project gets bigger, you eventually will need to move to plain old scripts. Notebooks were not created for replacing years of software engineering. The whole idea behind literate programming is to include the code for analyzing your data in your research report. The report part is way more important than the code part. In other words, if you put only a simple line of comment above your code, you are missing the literate part in literate programming. I think It would be better for you to use a plain old script and consider a real IDE. IMHO a notebook should follow a research paper’s structure with the benefits of having (hopefully) runnable code.</p>
+<p><img src="/post/2020-08-26-notebooks-or-not-notebooks-in-datascience.en_files/notebooks-example.png" style="width:90.0%" /></p>
+<p>Two interesting article about the notebook vs. scripts topics:</p>
+<ol style="list-style-type: decimal">
+<li>A <a href="https://towardsdatascience.com/5-reasons-why-you-should-switch-from-jupyter-notebook-to-scripts-cb3535ba9c95">Medium</a> article discussing the benefits and limitations of notebooks vs scripts.</li>
+<li>A well-known python <a href="https://towardsdatascience.com/are-you-still-using-jupyterlab-ce1a4339c0a9">IDE</a> is now including notebook support. Something similar to RMarkdown notebooks in Rstudio.</li>
+</ol>
+</div>
+<div id="reproducible-research" class="section level2">
+<h2>Reproducible Research</h2>
+<p>One of the ideas of <a href="https://en.wikipedia.org/wiki/Literate_programming">Literate programming</a> was to provide a way for facilitate research reproducibility. Ideally, you can share your notebook to any of your colleague and she should be able to reproduce your whole experiment. However, that situation is uncommon. A notebook requires also your complete environment (i.e. same interpreter, library, etc.), which not always match with your own instalation. So what are the option for dealing with the situation? These are some of the options I found during the last months/years.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><p><a href="https://dvc.org/">DVC</a> stands for Open-source Version Control System for Machine Learning Projects, and as you probably already realized, it, SVC is a sort of <a href="https://git-scm.com/">git</a> for machine learning projects. It keeps track not only of your code, but also your data and models. I haven’t tried it yet, but it seems very interesting.</p></li>
+<li><p><a href="https://github.com/binder-examples/r">Binder</a> is something new (at least for me). The idea of binder is to provide a mechanism for dealing with all the problems of notebooks environments. It work on Jupyter and Rstudio notebooks. For R, you need put your notebook in your github repo, include the <code>install.R</code> file with all your library dependencies and then call the <a href="https://github.com/binder-examples/r">Binder</a> API via some special badge. More info <a href="https://libanswers.caltech.edu/faq/264015">here</a>.</p></li>
+<li><p><a href="https://www.rplumber.io/">Plumber for R</a> is a package that allow you to create a web API by merely decorating your existing R source code. My personal choice, actually. I use plumber in combination with <a href="https://docker.com">Docker</a> for deploying every new version of my models. For instance, if I submit an article to some conference I usually deploy a version of the model using Plumber. Then I can continue with my usual workflow, and anytime I need to try my model, it is easily accessible from the service.</p></li>
+<li><p><a href="https://www.kdnuggets.com/2019/10/easily-deploy-machine-learning-models-using-flask.html">Flask</a> is basically the same as Plumber but for the Python language.</p></li>
+<li><p><a href="https://rstudio.github.io/renv/articles/renv.html">renv package</a>. The renv package is a new effort to bring project-local R dependency management to your projects. The goal is for renv to be a robust, stable replacement for the <a href="https://rstudio.github.io/packrat/">Packrat package</a>, with fewer surprises and better default behaviors.</p></li>
+</ol>
+</div>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/development/"> development </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/tools/"> tools </a>
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/notebooks/"> notebooks </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/reproducible-research/"> reproducible-research </a>
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+</footer>
+
+
+</body>
+</html>

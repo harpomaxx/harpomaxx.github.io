@@ -7,10 +7,34 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Wed, 26 Aug 2020 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Wed, 02 Sep 2020 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>boost</title>
+			<link>https://harpomaxx.github.io/tags/boost/</link>
+			<pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/boost/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>supervised learning</title>
+			<link>https://harpomaxx.github.io/tags/supervised-learning/</link>
+			<pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/supervised-learning/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>notebooks</title>
 			<link>https://harpomaxx.github.io/tags/notebooks/</link>
@@ -113,18 +137,6 @@
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/graph-networks/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>boost</title>
-			<link>https://harpomaxx.github.io/tags/boost/</link>
-			<pubDate>Sun, 26 Jul 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/boost/</guid>
 			<description>
 				
 				

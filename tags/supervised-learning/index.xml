@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>algorithms on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/categories/algorithms/</link>
-		<description>Recent content in algorithms on harpomaxx.github.io</description>
+		<title>supervised learning on Computer Science Notes</title>
+		<link>https://harpomaxx.github.io/tags/supervised-learning/</link>
+		<description>Recent content in supervised learning on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Wed, 02 Sep 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/categories/algorithms/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/tags/supervised-learning/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Are Boosting Algorithms the new baseline model for your Tabular data? Part 1</title>
@@ -20,18 +20,6 @@
 			<description>
 				
 				Neural networks rule the world of machine learning IIF you have a lot of data and just for a reduced set of problems. The fact is that for heterogenious (numerical and categorical) tabular data, decision trees are still the better choice. Also they have the benefit of being (more) explainable to your customer. Boosting decision trees are one of the most succesful algorithm in data sciene competition, but could they replace replace Random Forest, the absolute leader when you try a first model in your data?
-				
-			</description>
-		</item>
-		<item>
-			<title>Tools of the Week.</title>
-			<link>https://harpomaxx.github.io/post/tools-of-the-week/</link>
-			<pubDate>Sun, 26 Jul 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/post/tools-of-the-week/</guid>
-			<description>
-				
-				UMAP, SHAP Values among other links to interesting stuff I run into.
 				
 			</description>
 		</item>

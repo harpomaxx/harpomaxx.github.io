@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.73.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="cross-validation,resampling,reproducible Research"><meta name="description" content="The usual approach of shuffling the data and split in train and test could not be the best strategy for some cases for getting a good error estimator  of your model. Sometimes Pure random splits do not guarantee the required level of dissimilarity. In adition, all the precacuions to avoid contamination of your test set during your trainset manipulation must be taken for the test fold during cross validation."><meta property="og:title" content="Machine Learning Experimental Design 102" />
+<meta property="og:description" content="The usual approach of shuffling the data and split in train and test could not be the best strategy for some cases for getting a good error estimator  of your model. Sometimes Pure random splits do not guarantee the required level of dissimilarity. In adition, all the precacuions to avoid contamination of your test set during your trainset manipulation must be taken for the test fold during cross validation." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/machine-learning-experimental-design-102/" />
+<meta property="article:published_time" content="2020-09-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-09-21T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Machine Learning Experimental Design 102"/>
+<meta name="twitter:description" content="The usual approach of shuffling the data and split in train and test could not be the best strategy for some cases for getting a good error estimator  of your model. Sometimes Pure random splits do not guarantee the required level of dissimilarity. In adition, all the precacuions to avoid contamination of your test set during your trainset manipulation must be taken for the test fold during cross validation."/>
+<link rel="icon" type="image/png" href="../../favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="../../favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/all.css" />
+	<link rel="stylesheet" href="../../css/katex.min.css" crossorigin="anonymous">
+	<script defer src="../../js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="../../js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Machine Learning Experimental Design 102 | Computer Science Notes</title></head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="../../">
+			<img src="../../img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="../../">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="../../">Home</a></li>
+				
+				<li><a href="../../post">All Posts</a></li>
+				
+				<li><a href="../../about">About</a></li>
+				
+				<li><a href="../../tags">Tags</a></li>
+				
+				<li><a href="../../categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="author">
+	
+	</div>
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">21</span>
+				<span class="rest">Sep 2020</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Machine Learning Experimental Design 102</h1>
+		</div>
+	</div>
+	<div class="markdown">
+		
+
+
+<div id="the-problem-behind-the-split." class="section level3">
+<h3>The problem behind the split.</h3>
+<p>Shuffling your dataset and split in train/test not always is the best approach. Train and test datasets need some degree of similarity (both need to follow the same distribution), otherwise it would impossible for the model to achieve a decent performance on test. But, on the other hand, if the examples are too similar in both datasets, then you could not assure a real generelization of your model.</p>
+<ol style="list-style-type: decimal">
+<li><p>The <a href="https://topepo.github.io/caret/">caret package</a> for <a href="https://www.r-project.org/about.html">R language</a> implements two types of split: the first is to split using the distribution of your target variable (dependent variable). For classification problem, you can have a certain guarantee that all your classes will be present in your testset. However, all the examples present in testset could be very similar to train and their correct class prediction could be straightforward. Alternatively, the second is based on the information provided by [the descriptor variables]((<a href="https://topepo.github.io/caret/data-splitting.html#predictors" class="uri">https://topepo.github.io/caret/data-splitting.html#predictors</a>). For creating sub–samples using a maximum dissimilarity caret implements the approach published in <a href="http://www.liebertonline.com/doi/abs/10.1089/106652799318382">Willett,1999</a>. This split strategy has the problem of not guarantee all the classes are present in your test set. As you can see, both approaches have their pro and cons and you probably will need to implement something in between.</p></li>
+<li><p>An <a href="https://towardsdatascience.com/how-dis-similar-are-my-train-and-test-data-56af3923de9b">interesting and straightforward</a> technique for analyzing the differences between your train and test set is to run a model for predicting whether a given example belongs to train or test sets. If the model shows high accuracy in classifying each example to the its dataset, then we can be sure they are quite different.</p></li>
+<li><p>Another interesting approach used for classification is to do a regression analysis using the labels from training to predict the labels from test (and vice versa). Then you can use the coefficient of determination <span class="math inline">\(R^2\)</span> to analyze the correlation between both datasets.</p></li>
+</ol>
+</div>
+<div id="be-caution-when-using-cv" class="section level3">
+<h3>Be caution when using CV</h3>
+<p>CV provides you with an estimator of your model performance, however to be ….</p>
+<figure>
+<p><img src="../../post/2020-09-14-machine-learning-experimental-design-102.en_files/ml-experimenta-designB.png" alt="experimental design" width="100%"/></p>
+<figcaption>
+<h6>
+Figure 1. Standard experimental design for evaluating the performance of a machine learning model using some kind of data transformation.
+</h6>
+</figcaption>
+</figure>
+<blockquote>
+<p>An obvious, but often ignored, dictum is that $Err_{cval} is more believable if
+the test set is further separated from the training set. “Further” has a clear
+meaning in studies with a time or location factor, but not necessarily in
+general. For J -fold cross-validation, separation is improved by removing
+contiguous blocks of <span class="math inline">\(N/J\)</span> cases for each group, rather than by random
+selection, but the amount of separation is still limited, making <span class="math inline">\(Err_{ccv}\)</span> less
+believable than a suitably constructed $Err_{cval}.</p>
+</blockquote>
+<!-- (https://topepo.github.io/caret/subsampling-for-class-imbalances.html) Problems with upsampling and downsampling (inside resampling) -->
+<!-- https://stats.stackexchange.com/questions/138569/why-is-lambda-within-one-standard-error-from-the-minimum-is-a-recommended-valu/138573 -->
+<div id="links-to-resources" class="section level4">
+<h4>Links to resources:</h4>
+<ol style="list-style-type: decimal">
+<li>A <a href="https://towardsdatascience.com/how-dis-similar-are-my-train-and-test-data-56af3923de9b">simple approach</a>
+to analyze the similarities between train a test set</li>
+<li>Ideally, <a href="https://stats.stackexchange.com/questions/321295/test-and-training-dataset-correlation-while-splitting-the-dataset">train and test should be uncorrelated.</a> Correlation between train and test labels. Using Regression analysis. The idea is to build a regressor using the labels from training as the independent variable and the labels from test as the dependent. The <span class="math inline">\(R^2\)</span> can be used as a correlation factor. Alternatively you can try a simple correlation such as Pearson/Spearman</li>
+<li>Split using predictors using <a href="https://topepo.github.io/caret/data-splitting.html#predictors">Caret package</a></li>
+</ol>
+</div>
+</div>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="../../categories/experimental-design/"> experimental-design </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="../../categories/statistics/"> statistics </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="../../tags/cross-validation/"> cross-validation </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="../../tags/reproducible-research/"> reproducible-research </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="../../tags/resampling/"> resampling </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+</footer>
+
+
+</body>
+</html>

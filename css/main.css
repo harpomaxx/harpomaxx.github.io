@@ -30,6 +30,7 @@
 }
 
 body {
+  text-align: justify;
   font-family: "Roboto Regular", serif;
   font-weight: 400;
   font-size: 18px;
@@ -37,6 +38,7 @@ body {
   line-height: 1.6rem;
   max-width: 800px;
   margin: 20px auto 0 auto;
+
 }
 
 header {

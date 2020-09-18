@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.73.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="cross-validation,resampling,reproducible Research"><meta name="description" content="Experimental Design in Machine learning is well established However, from time to time it is important to revisit the process to analyze the  confidence level you have in your results. Machine learning shares a lot with statistics, but since Machine learning practitioners have a more practical vision, sometimes the experimental design is neglected when applied to real-world problems. This note explains the basic strategy followed in almost any machine learning experimental setup."><meta property="og:title" content="Machine Learning Experimental Design 101" />
+<meta property="og:description" content="Experimental Design in Machine learning is well established However, from time to time it is important to revisit the process to analyze the  confidence level you have in your results. Machine learning shares a lot with statistics, but since Machine learning practitioners have a more practical vision, sometimes the experimental design is neglected when applied to real-world problems. This note explains the basic strategy followed in almost any machine learning experimental setup." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/experimental-design/" />
+<meta property="article:published_time" content="2020-09-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-09-18T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Machine Learning Experimental Design 101"/>
+<meta name="twitter:description" content="Experimental Design in Machine learning is well established However, from time to time it is important to revisit the process to analyze the  confidence level you have in your results. Machine learning shares a lot with statistics, but since Machine learning practitioners have a more practical vision, sometimes the experimental design is neglected when applied to real-world problems. This note explains the basic strategy followed in almost any machine learning experimental setup."/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Machine Learning Experimental Design 101 | Computer Science Notes</title></head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-image">
+		<img src="https://imgs.xkcd.com/comics/machine_learning.png" >
+	</div>
+	
+	<div class="author">
+	
+	</div>
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">18</span>
+				<span class="rest">Sep 2020</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Machine Learning Experimental Design 101</h1>
+		</div>
+	</div>
+	<div class="markdown">
+		
+
+
+<blockquote>
+<p>Thanks to <a href="https://www.twitter.com/gabriel_caffa">Gabriel Caffaratti</a> and <a href="https://www.twitter.com/jgt1988">Jorge Guerra</a> from <a href="https://labsin.org">LABSIN</a> for your help and feedback in writting this note.</p>
+</blockquote>
+<div id="the-standard-workflow" class="section level3">
+<h3>The standard workflow</h3>
+<p>Experimental design is a fundamental skill for any machine learning practitioner. No matter if you work in academy or in the private sector, from time to time you will require to perform some sort of evaluation of your model. At some point you should convince customers or reviewers that your model results have a certain amount of generalization and it is capable of dealing with future (not seen) scenarios reasonably well.</p>
+<p>Fortunately for us, the experimental design for evaluating the performance of a machine learning model is well known. The process is described in Figure 1. There, you basically have a dataset split in training and test (usually a 70/30 ratio). The 30% of the data should be left aside and ideally never touched until you have finished with your model tuning. On the other hand, the 70% of the data could be used for training/validate your model and/or conduct a hyper parameter search for tuning the model. The are several approaches during the validation phase (see chapter five about resampling methods from <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/">ISLR</a> for more info), but using cross validation with k folds is perhaps the most widely used. I personally like to perform <a href="https://sci2s.ugr.es/keel/pdf/algorithm/articulo/dietterich1998.pdf">2x5 resampling</a>, which basically means applying a 5 folds cross validation repeated 2 times.</p>
+<figure>
+<p><img src="/post/2020-09-09-experimental-design.en_files/ml-experimenta-designA.png" alt="experimental design" width="100%"/></p>
+<figcaption>
+<h6>
+Figure 1. Standard experimental design for evaluating the performance of a machine learning model.
+</h6>
+</figcaption>
+</figure>
+<p>When you have finished with your model evaluation you report your results on CrossValidation (CV Report) and on test (Test Report).</p>
+</div>
+<div id="the-cv-report" class="section level3">
+<h3>The CV Report</h3>
+<p>The CV results give you with information about:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Model Variance:</strong>
+No matter if you apply a two folds or a ten folds strategy on your training data, you definitively need some sort of repetition for evaluating the variability observed in your model when using different datasets for training. Here, you will need to report the mean and standard deviation of any of the model configuration you have tried (perhaps in conjunction with some visualization of the error distribution such as <a href="https://www.r-graph-gallery.com/boxplot.html">boxplot</a> or <a href="https://www.r-graph-gallery.com/violin.html">violin</a> charts)<br />
+In any case, CV results will provide you with a better estimator of the generalization error of your model and as stated by <a href="https://sci2s.ugr.es/keel/pdf/algorithm/articulo/dietterich1998.pdf">(Dietterich, 1998)</a> allow you to perform stronger tests (statisticaly-based) to compare different models.</p></li>
+<li><p><strong>Overffiting:</strong>
+Sometimes your model performs extremely well during your CV evaluation but the performance could be considerable worse during test. Therefore, reporting CV results can give you a clue about possible overfitting problems. Ideally, when using CV you reduce the chance of overfitting a model, but that does not mean overfitting can not occur. See article from <a href="https://www.researchgate.net/publication/220320908_On_Over-fitting_in_Model_Selection_and_Subsequent_Selection_Bias_in_Performance_Evaluation">Cawley &amp; Talbot (2010)</a> for a analysis of the overfitting problem selecting your model using CV and the possible way to avoid it. Notice that overfitting <strong>is not</strong> the only explanation behind discrepancies between CV and test reports. This <strong>model performance mismatch</strong> can be explained by simple reasons such as your training data is <strong>not representative of the problem</strong>, or maybe that the sample size is too small. Alternatively, it can be caused by the <strong>stochastic nature of the algorithm used</strong> (e.g. Neural Networks). In both cases the analysis of the sample mean and the standard deviation over several repetitions using training data can help you to differentiate each cause. See this short post about the topic <a href="https://machinelearningmastery.com/the-model-performance-mismatch-problem/">here.</a></p></li>
+</ol>
+<p>From the information provided by the CV report you will finally choose the “best” (more adequate) model for dealing with your machine learning problem. Notice that some time the definition of “best” can not be easily established.</p>
+</div>
+<div id="the-test-report" class="section level3">
+<h3>The Test Report</h3>
+<p>The Test results give you with information about:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Independence:</strong> The main reason for using a test set is that you will have an idea of how well the model is expected to perform in real-life. Since any decision regarding the model generation should have <strong>NOT</strong> been made considering the information provided by the testset, then you would have an unbiased idea of the model performance when deployed in the real world.</li>
+</ol>
+<p>Ideally your result in the test set should be within the range of results observed in <em>CV Results</em>, however, as stated before, such situation not always happens. When analyzing test results, the model performance mismatch can be caused when there is no correlation between train and test sets. In other words, the test set you are using has completely different examples from trainset. If such is the case there is nothing the model can do. This situation is referred as <a href="https://towardsdatascience.com/understanding-dataset-shift-f2a5a262a766#:~:text=Covariate%20shift%20is%20the%20change,spatial%2C%20or%20less%20obvious.%20%E2%80%94">Covariate shift</a>, when predictor variables have different characteristics (distribution) in train and test datasets.</p>
+<blockquote>
+<p><em>A appropriate test set should follow the same predictor variable distribution, <strong>BUT</strong> it should have a certain degree of uncorrelated examples. Moreover, to collect evidence for supporting your estimated model performance , you should evaluate your model on different independent test sets.</em></p>
+</blockquote>
+</div>
+<div id="conclusions" class="section level3">
+<h3>Conclusions:</h3>
+<ol style="list-style-type: decimal">
+<li>No matter the situation, you should <strong>always repeat the evaluation of your model</strong> on different datasets. Resampling techniques are the most common strategy.</li>
+<li><strong>Always report CV and Test results</strong>. Both reports provide you with valuable information for a better estimation of the model overall performance.</li>
+<li>Testset shouldn’t be used for taking any decision about your model. <strong>You should evaluate your model ontestset as little as possible</strong>. (just one time is the ideal)</li>
+</ol>
+</div>
+<div id="list-of-resources" class="section level3">
+<h3>List of Resources:</h3>
+<div id="articles-about-cv-and-overfitting" class="section level4">
+<h4>Articles about CV and overfitting:</h4>
+<ol style="list-style-type: decimal">
+<li><a href="http://www.robotics.stanford.edu/~ang/papers/cv-final.pdf">Preventing Overfitting of Cross-Validation Data. (Ng, 2010)</a></li>
+<li><a href="https://www.researchgate.net/publication/220320908_On_Over-fitting_in_Model_Selection_and_Subsequent_Selection_Bias_in_Performance_Evaluation">On Over-fitting in Model Selection and Subsequent Selection Bias in Performance Evaluation (2010)</a></li>
+<li><a href="https://sci2s.ugr.es/keel/pdf/algorithm/articulo/dietterich1998.pdf">Approximate Statistical Tests for Comparing. Supervised Classification Learning Algorithms.(Dieterich, 1998)</a></li>
+</ol>
+</div>
+<div id="about-model-performance-mismatch-and-covariate-shift" class="section level4">
+<h4>About model performance mismatch and Covariate Shift:</h4>
+<ol style="list-style-type: decimal">
+<li>A very simple and clear series of <a href="(https://machinelearningmastery.com/the-model-performance-mismatch-problem/).">posts</a> about dealing with <a href="https://towardsdatascience.com/understanding-dataset-shift-f2a5a262a766#:~:text=Covariate%20shift%20is%20the%20change,spatial%2C%20or%20less%20obvious.%20%E2%80%94">Covariate Shift</a></li>
+</ol>
+<p>In addition, I have found this very nice book about experimental design for computer sciences: <a href="https://www.amazon.com/Empirical-Methods-Artificial-Intelligence-Cohen/dp/0262534177">Empirical Methods for Artificial Intelligence (MIT Press)</a>. Haven’t read it yet. But it sounds interesting 😉</p>
+</div>
+</div>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/experimental-design/"> experimental-design </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/statistics/"> statistics </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/cross-validation/"> cross-validation </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/reproducible-research/"> reproducible-research </a>
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/resampling/"> resampling </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+</footer>
+
+
+</body>
+</html>

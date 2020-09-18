@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Statistics on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/categories/statistics/</link>
-		<description>Recent content in Statistics on harpomaxx.github.io</description>
+		<title>experimental design on Computer Science Notes</title>
+		<link>https://harpomaxx.github.io/categories/experimental-design/</link>
+		<description>Recent content in experimental design on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Fri, 18 Sep 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/categories/statistics/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/categories/experimental-design/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Machine Learning Experimental Design 101</title>
@@ -20,18 +20,6 @@
 			<description>
 				
 				Experimental Design in Machine learning is well established However, from time to time it is important to revisit the process to analyze the  confidence level you have in your results. Machine learning shares a lot with statistics, but since Machine learning practitioners have a more practical vision, sometimes the experimental design is neglected when applied to real-world problems. This note explains the basic strategy followed in almost any machine learning experimental setup.
-				
-			</description>
-		</item>
-		<item>
-			<title>Statistical Rethinking Book [and other resources]</title>
-			<link>https://harpomaxx.github.io/post/statistical-rethinking-book/</link>
-			<pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/post/statistical-rethinking-book/</guid>
-			<description>
-				
-				A book about Bayesian thinking with examples in R and STAN [and other resources]
 				
 			</description>
 		</item>

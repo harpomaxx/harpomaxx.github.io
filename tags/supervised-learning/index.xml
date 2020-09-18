@@ -19,7 +19,7 @@
 			<guid>https://harpomaxx.github.io/post/are-boosting-algorithms-the-new-baseline-models/</guid>
 			<description>
 				
-				Neural networks rule the world of machine learning IFF, you have a lot of data, and just for a reduced set of problems. The fact is that for heterogeneous (numerical and categorical) tabular data, decision trees are still one of the best options. Also, they have the benefit of being (more) explainable to the customer. Boosting decision trees are among the most successful algorithms in data science competitions, but could they replace Random Forest? The absolute leader, when you try a first model in your data.
+				Neural networks rule the world of machine learning IFF, you have a lot of data, and just for a reduced set of problems. The fact is that for heterogeneous (numerical and categorical) tabular data, decision trees are still one of the best options. Also, they have the benefit of being (more) explainable to the customer. Boosting decision trees are among the most successful algorithms in data science competitions, but could they replace Random Forest? The absolute leader, when you try a first model in your data.[updated]
 				
 			</description>
 		</item>

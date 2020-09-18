@@ -7,10 +7,22 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Sun, 06 Sep 2020 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Fri, 18 Sep 2020 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Machine Learning Experimental Design 101</title>
+			<link>https://harpomaxx.github.io/post/experimental-design/</link>
+			<pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/experimental-design/</guid>
+			<description>
+				
+				Experimental Design in Machine learning is well established However, from time to time it is important to revisit the process to analyze the  confidence level you have in your results. Machine learning shares a lot with statistics, but since Machine learning practitioners have a more practical vision, sometimes the experimental design is neglected when applied to real-world problems. This note explains the basic strategy followed in almost any machine learning experimental setup.
+				
+			</description>
+		</item>
 		<item>
 			<title>Are Boosting Algorithms the new baseline model for your Tabular data? Part 1</title>
 			<link>https://harpomaxx.github.io/post/are-boosting-algorithms-the-new-baseline-models/</link>
@@ -19,7 +31,7 @@
 			<guid>https://harpomaxx.github.io/post/are-boosting-algorithms-the-new-baseline-models/</guid>
 			<description>
 				
-				Neural networks rule the world of machine learning IFF, you have a lot of data, and just for a reduced set of problems. The fact is that for heterogeneous (numerical and categorical) tabular data, decision trees are still one of the best options. Also, they have the benefit of being (more) explainable to the customer. Boosting decision trees are among the most successful algorithms in data science competitions, but could they replace Random Forest? The absolute leader, when you try a first model in your data.
+				Neural networks rule the world of machine learning IFF, you have a lot of data, and just for a reduced set of problems. The fact is that for heterogeneous (numerical and categorical) tabular data, decision trees are still one of the best options. Also, they have the benefit of being (more) explainable to the customer. Boosting decision trees are among the most successful algorithms in data science competitions, but could they replace Random Forest? The absolute leader, when you try a first model in your data.[updated]
 				
 			</description>
 		</item>

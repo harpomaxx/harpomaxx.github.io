@@ -7,10 +7,22 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Fri, 18 Sep 2020 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Tue, 22 Sep 2020 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Machine Learning Experimental Design 102</title>
+			<link>https://harpomaxx.github.io/post/machine-learning-experimental-design-102/</link>
+			<pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/machine-learning-experimental-design-102/</guid>
+			<description>
+				
+				The usual approach of shuffling the data and split in train and test could not be the best strategy for some cases for getting a good error estimator  of your model. Sometimes Pure random splits do not guarantee the required level of dissimilarity. In adition, all the precacuions to avoid contamination of your test set during your trainset manipulation must be taken for the test fold during cross validation. [4min read]
+				
+			</description>
+		</item>
 		<item>
 			<title>Machine Learning Experimental Design 101</title>
 			<link>https://harpomaxx.github.io/post/experimental-design/</link>

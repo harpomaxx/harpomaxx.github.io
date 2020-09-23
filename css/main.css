@@ -408,6 +408,11 @@ table th {
 }
 
 .author {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+.reading{
   font-size: 1.2rem;
   margin-bottom: 10px;
 }

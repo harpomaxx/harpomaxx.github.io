@@ -3,17 +3,57 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/books/</loc>
-    <lastmod>2020-10-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://harpomaxx.github.io/categories/</loc>
-    <lastmod>2020-10-11T00:00:00+00:00</lastmod>
+    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://harpomaxx.github.io/</loc>
+    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harpomaxx.github.io/tags/cross-validation/</loc>
+    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harpomaxx.github.io/tags/dimensional-reduction/</loc>
+    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harpomaxx.github.io/categories/experimental-design/</loc>
+    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harpomaxx.github.io/post/</loc>
+    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harpomaxx.github.io/tags/reproducible-research/</loc>
+    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harpomaxx.github.io/tags/resampling/</loc>
+    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harpomaxx.github.io/tags/</loc>
+    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harpomaxx.github.io/post/comparing-two-sample-distribution/</loc>
+    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harpomaxx.github.io/tags/books/</loc>
     <lastmod>2020-10-11T00:00:00+00:00</lastmod>
   </url>
   
@@ -23,42 +63,12 @@
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/post/</loc>
-    <lastmod>2020-10-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://harpomaxx.github.io/post/introductional-resources-for-machine-learning/</loc>
     <lastmod>2020-10-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/</loc>
-    <lastmod>2020-10-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harpomaxx.github.io/tags/cross-validation/</loc>
-    <lastmod>2020-09-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harpomaxx.github.io/categories/experimental-design/</loc>
-    <lastmod>2020-09-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://harpomaxx.github.io/post/machine-learning-experimental-design-102/</loc>
-    <lastmod>2020-09-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harpomaxx.github.io/tags/reproducible-research/</loc>
-    <lastmod>2020-09-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harpomaxx.github.io/tags/resampling/</loc>
     <lastmod>2020-09-22T00:00:00+00:00</lastmod>
   </url>
   
@@ -190,11 +200,6 @@
   <url>
     <loc>https://harpomaxx.github.io/post/graph-neural-networks/</loc>
     <lastmod>2020-08-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harpomaxx.github.io/tags/dimensional-reduction/</loc>
-    <lastmod>2020-07-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>

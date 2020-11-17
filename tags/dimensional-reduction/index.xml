@@ -7,10 +7,22 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Sun, 26 Jul 2020 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Mon, 16 Nov 2020 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/dimensional-reduction/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Three Commonn Ways for comparing Two Dataset Distributions</title>
+			<link>https://harpomaxx.github.io/post/comparing-two-sample-distribution/</link>
+			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/comparing-two-sample-distribution/</guid>
+			<description>
+				
+				From time to time you will need to compare the distribution of two datasets. There are plenty of information about this topic in statistics books and all over the Internet. In this post I discuss three very practical approaches coming from different perspectives. [3.5 min read]
+				
+			</description>
+		</item>
 		<item>
 			<title>Tools of the Week.</title>
 			<link>https://harpomaxx.github.io/post/tools-of-the-week/</link>

@@ -8,29 +8,29 @@
 	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="overfitting"><meta name="description" content="The U-shape observed when measuring model performance on testset as a function of its flexibility does not hold during training deep learning models. (WHAT!!!?????. Is the world going mad?. Not really.)"><meta property="og:title" content="Double Descent in Deep Learning" />
 <meta property="og:description" content="The U-shape observed when measuring model performance on testset as a function of its flexibility does not hold during training deep learning models. (WHAT!!!?????. Is the world going mad?. Not really.)" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/double-descent-in-deep-learning/" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/double-descent-in-deep-learning/" />
 <meta property="article:published_time" content="2020-08-20T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-08-20T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Double Descent in Deep Learning"/>
 <meta name="twitter:description" content="The U-shape observed when measuring model performance on testset as a function of its flexibility does not hold during training deep learning models. (WHAT!!!?????. Is the world going mad?. Not really.)"/>
-<link rel="icon" type="image/png" href="../../favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="../../favicon-16x16.png" sizes="16x16">
-	<link rel="stylesheet" type="text/css" media="screen" href="../../css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="../../css/main.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="../../css/all.css" />
-	<link rel="stylesheet" href="../../css/katex.min.css" crossorigin="anonymous">
-	<script defer src="../../js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-	<script defer src="../../js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Double Descent in Deep Learning | Computer Science Notes</title></head>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Double Descent in Deep Learning | Computer Science Notes</title></head>
 <body><header>
 	
 	<div id="avatar">
-		<a href="../../">
-			<img src="../../img/harpo-2.jpg" alt="Computer Science Notes">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
 		</a>
 	</div>
 	
-	<div id="titletext"><h2 id="title"><a href="../../">Computer Science Notes</a></h2></div>
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
 	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
 			<nav>
 				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
@@ -42,15 +42,15 @@
 		<nav>
 			<ul>
 				
-				<li><a href="../../">Home</a></li>
+				<li><a href="/">Home</a></li>
 				
-				<li><a href="../../post">All Posts</a></li>
+				<li><a href="/post">All Posts</a></li>
 				
-				<li><a href="../../about">About</a></li>
+				<li><a href="/about">About</a></li>
 				
-				<li><a href="../../tags">Tags</a></li>
+				<li><a href="/tags">Tags</a></li>
 				
-				<li><a href="../../categories">Categories</a></li>
+				<li><a href="/categories">Categories</a></li>
 				
 			</ul>
 		</nav>
@@ -92,19 +92,19 @@
 	<div class="markdown">
 		<h2 id="introduction">Introduction</h2>
 <p>The classical U-Shape observed when analyzing the performance (usually some loss function) of a model on testset is a fundamental property that holds regardless of the particular data set at hand and regardless of the statistical method being used.</p>
-<img src="../../post/2020-08-13-double-descent-in-deep-learning.en_files/u-shape.png" alt="u-shape" width="60%"/>
+<img src="/post/2020-08-13-double-descent-in-deep-learning.en_files/u-shape.png" alt="u-shape" width="60%"/>
 <p>As it was beautifully explained in the <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf">ISLR</a> book. This is conditioned by the Bias - Variance Trade off ( see the equation below)</p>
-<img src="../../post/2020-08-13-double-descent-in-deep-learning.en_files/varbias.png" alt="var-bias-tradeoff" width="60%" caption="caca"/>
+<img src="/post/2020-08-13-double-descent-in-deep-learning.en_files/varbias.png" alt="var-bias-tradeoff" width="60%" caption="caca"/>
 <p><em>Variance</em> refers to the amount by which the estimated function <em>f</em> would change if we estimated it using a different training data set, while <em>Bias</em> refers to  the error that is introduced by approximating a given problem by a much simpler model. More flexible models tends to have low bias but higher variance, while more rigid models (linear regression for instance) have a higher bias but lower variance. At some point we can associate <em>Bias</em> with underfitting while <em>Variance</em> with overfitting. The U-shape will be influenced by <em>Bias</em> and the <em>Variance</em>, and depending the dataset  used the U-shape can be different, although maintaining their convex property. (See the example below)</p>
 <figure>
-<img src="../../post/2020-08-13-double-descent-in-deep-learning.en_files/varbias-by-models.png" alt="u-shape" width="100%"/>
+<img src="/post/2020-08-13-double-descent-in-deep-learning.en_files/varbias-by-models.png" alt="u-shape" width="100%"/>
   <figcaption>
       <h6>The influence of the variance and bias in three different datasets when using more flexible models. As a general rule, as we use more flexible methods, the variance will increase and the bias will decrease. The relative rate of change of these two quantities determines whether the test MSE increases or decreases. (ISLR)</h6>
   </figcaption>
 </figure>
 <h2 id="the-double-descent-problem">The double descent problem</h2>
 <p>However, recently Deep Learning researcher have observed that as they give more flexibility to a (Deep Learning) model (such as the size, epochs, etc.), the performance first gets worse and then gets better (i.e. No convex shape). This phenomenon is denoted as Deep Double Descent, which is somewhat surprising.</p>
-<img src="../../post/2020-08-13-double-descent-in-deep-learning.en_files/double-descent-p.jpeg" alt="double-descent" width="60%"/>
+<img src="/post/2020-08-13-double-descent-in-deep-learning.en_files/double-descent-p.jpeg" alt="double-descent" width="60%"/>
 <p>Last weekend, I ran into a lovely explanation from a statistical point of view of the Double descent phenomenon from <a href="https://twitter.com/daniela_witten">@daniela_witten</a> one of the authors of the well-known <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/ISLR%20Seventh%20Printing.pdf">ISLR</a> book.</p>
 <h2 id="the-resources">The resources</h2>
 <p>I put here some resources related with the phenomenon:</p>
@@ -167,7 +167,7 @@
 			
 			
 			
-			<a href="../../categories/deep-learning/"> deep-learning </a>
+			<a href="https://harpomaxx.github.io/categories/deep-learning/"> deep-learning </a>
 			
 			
 			
@@ -274,7 +274,7 @@
 			
 			
 			
-			<a href="../../tags/overfitting/"> overfitting </a>
+			<a href="https://harpomaxx.github.io/tags/overfitting/"> overfitting </a>
 			
 			
 			

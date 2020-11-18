@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>resampling on Computer Science Notes</title>
-		<link>/tags/resampling/</link>
-		<description>Recent content in resampling on </description>
+		<link>https://harpomaxx.github.io/tags/resampling/</link>
+		<description>Recent content in resampling on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Mon, 16 Nov 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/tags/resampling/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/tags/resampling/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
-			<title>Three Commonn Ways for comparing Two Dataset Distributions</title>
-			<link>/post/comparing-two-sample-distribution/</link>
+			<title>Three Common Ways for Comparing Two Dataset Distributions</title>
+			<link>https://harpomaxx.github.io/post/comparing-two-sample-distribution/</link>
 			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/comparing-two-sample-distribution/</guid>
+			<guid>https://harpomaxx.github.io/post/comparing-two-sample-distribution/</guid>
 			<description>
 				
 				From time to time you will need to compare the distribution of two datasets. There are plenty of information about this topic in statistics books and all over the Internet. In this post I discuss three very practical approaches coming from different perspectives. [3.5 min read]
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Machine Learning Experimental Design 102</title>
-			<link>/post/machine-learning-experimental-design-102/</link>
+			<link>https://harpomaxx.github.io/post/machine-learning-experimental-design-102/</link>
 			<pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/machine-learning-experimental-design-102/</guid>
+			<guid>https://harpomaxx.github.io/post/machine-learning-experimental-design-102/</guid>
 			<description>
 				
 				The usual approach of shuffling the data and split in train and test could not be the best strategy for some cases for getting a good error estimator  of your model. Sometimes pure random splits do not guarantee the required level of dissimilarity. In adition, all the precautions to avoid contamination of your test set during your trainset manipulation must be taken for the test fold during cross validation. [4min read]
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>Machine Learning Experimental Design 101</title>
-			<link>/post/experimental-design/</link>
+			<link>https://harpomaxx.github.io/post/experimental-design/</link>
 			<pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/experimental-design/</guid>
+			<guid>https://harpomaxx.github.io/post/experimental-design/</guid>
 			<description>
 				
 				Experimental Design in Machine learning is well established. However, from time to time it is important to revisit the process to analyze the  confidence level you have in your results. Machine learning shares a lot with statistics, but since Machine learning practitioners have a more practical vision, sometimes the experimental design is neglected when applied to real-world problems. This note explains the basic strategy followed in almost any machine learning experimental setup.

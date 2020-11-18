@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>overfitting on Computer Science Notes</title>
-		<link>/tags/overfitting/</link>
-		<description>Recent content in overfitting on </description>
+		<link>https://harpomaxx.github.io/tags/overfitting/</link>
+		<description>Recent content in overfitting on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Thu, 20 Aug 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/tags/overfitting/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/tags/overfitting/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Double Descent in Deep Learning</title>
-			<link>/post/double-descent-in-deep-learning/</link>
+			<link>https://harpomaxx.github.io/post/double-descent-in-deep-learning/</link>
 			<pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/double-descent-in-deep-learning/</guid>
+			<guid>https://harpomaxx.github.io/post/double-descent-in-deep-learning/</guid>
 			<description>
 				
 				The U-shape observed when measuring model performance on testset as a function of its flexibility does not hold during training deep learning models. (WHAT!!!?????. Is the world going mad?. Not really.)

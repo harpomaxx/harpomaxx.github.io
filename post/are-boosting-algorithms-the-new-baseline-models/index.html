@@ -8,29 +8,29 @@
 	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="boost,supervised learning"><meta name="description" content="Neural networks rule the world of machine learning IFF, you have a lot of data, and just for a reduced set of problems. The fact is that for heterogeneous (numerical and categorical) tabular data, decision trees are still one of the best options. Also, they have the benefit of being (more) explainable to the customer. Boosting decision trees are among the most successful algorithms in data science competitions, but could they replace Random Forest? The absolute leader, when you try a first model in your data.[updated]"><meta property="og:title" content="Are Boosting Algorithms the new baseline model for your Tabular data? Part 1" />
 <meta property="og:description" content="Neural networks rule the world of machine learning IFF, you have a lot of data, and just for a reduced set of problems. The fact is that for heterogeneous (numerical and categorical) tabular data, decision trees are still one of the best options. Also, they have the benefit of being (more) explainable to the customer. Boosting decision trees are among the most successful algorithms in data science competitions, but could they replace Random Forest? The absolute leader, when you try a first model in your data.[updated]" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://harpomaxx.github.io/post/are-boosting-algorithms-the-new-baseline-models/" />
+<meta property="og:url" content="/post/are-boosting-algorithms-the-new-baseline-models/" />
 <meta property="article:published_time" content="2020-09-06T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-09-06T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Are Boosting Algorithms the new baseline model for your Tabular data? Part 1"/>
 <meta name="twitter:description" content="Neural networks rule the world of machine learning IFF, you have a lot of data, and just for a reduced set of problems. The fact is that for heterogeneous (numerical and categorical) tabular data, decision trees are still one of the best options. Also, they have the benefit of being (more) explainable to the customer. Boosting decision trees are among the most successful algorithms in data science competitions, but could they replace Random Forest? The absolute leader, when you try a first model in your data.[updated]"/>
-<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
-	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
-	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Are Boosting Algorithms the new baseline model for your Tabular data? Part 1 | Computer Science Notes</title></head>
+<link rel="icon" type="image/png" href="../../favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="../../favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/all.css" />
+	<link rel="stylesheet" href="../../css/katex.min.css" crossorigin="anonymous">
+	<script defer src="../../js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="../../js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Are Boosting Algorithms the new baseline model for your Tabular data? Part 1 | Computer Science Notes</title></head>
 <body><header>
 	
 	<div id="avatar">
-		<a href="https://harpomaxx.github.io/">
-			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		<a href="../../">
+			<img src="../../img/harpo-2.jpg" alt="Computer Science Notes">
 		</a>
 	</div>
 	
-	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="titletext"><h2 id="title"><a href="../../">Computer Science Notes</a></h2></div>
 	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
 			<nav>
 				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
@@ -42,15 +42,15 @@
 		<nav>
 			<ul>
 				
-				<li><a href="/">Home</a></li>
+				<li><a href="../../">Home</a></li>
 				
-				<li><a href="/post">All Posts</a></li>
+				<li><a href="../../post">All Posts</a></li>
 				
-				<li><a href="/about">About</a></li>
+				<li><a href="../../about">About</a></li>
 				
-				<li><a href="/tags">Tags</a></li>
+				<li><a href="../../tags">Tags</a></li>
 				
-				<li><a href="/categories">Categories</a></li>
+				<li><a href="../../categories">Categories</a></li>
 				
 			</ul>
 		</nav>
@@ -92,7 +92,7 @@
 	<div class="markdown">
 		<p>My usual ally when dealing with tabular data is glorious <a href="https://link.springer.com/article/10.1023/A:1010933404324">Random Forest</a> (RF). You can try it in your data without regret and probably RF will give you a very good baseline solution without spending time tuning the algorithm. (I truly believe <a href="https://en.wikipedia.org/wiki/Leo_Breiman">Leo Breiman</a> is a kind of god at the same level of <a href="https://en.wikipedia.org/wiki/Geoffrey_Hinton">Hinton</a>. Random Forest is a ensemble learning algorithm which uses the <a href="https://en.wikipedia.org/wiki/Bootstrap_aggregating">bagging</a> strategy. In general the idea of RF consist of generating different decision trees on sample subsets of the original dataset. There is, however, an alternative strategy about ensemble learners which is boosting. In boosting decision trees the idea is to &ldquo;concatenate&rdquo; several decision trees generated using residual (or misclassified examples). You can think in a sort of pipe between different trees.</p>
 <figure>
-<img src="/post/2020-09-02-are-boosting-algorithms-the-new-baseline-models.en_files/simple-boost-trees.png" alt="" width="60%"/>
+<img src="../../post/2020-09-02-are-boosting-algorithms-the-new-baseline-models.en_files/simple-boost-trees.png" alt="" width="60%"/>
   <figcaption>
       <h6>Given a classification problem, boost algorithms constructs a decision tree from observed data. Misclassified examples are then used for building a second tree, whose results are added to the first with some weight. The process is iterative and it can continue no improvement is observed.  </h6>
   </figcaption>
@@ -102,13 +102,13 @@
 </blockquote>
 <p>One of the famous  boost algorithm is <a href="https://en.wikipedia.org/wiki/AdaBoost">Adaboost</a> proposed by <a href="https://cseweb.ucsd.edu/~yfreund/papers/IntroToBoosting.pdf">Freund &amp; Schapire</a>. Some boosting algorithms such Adaboost used weights for considering the importance of each tree, while other used the gradient for minimizing the error. <a href="http://www-stat.stanford.edu/~jhf/ftp/stobst.ps">Friedman&rsquo;s</a> article from 2002, proposes an adaptation of boosting algorithms using stochastic gradient descent over the residual information.</p>
 <figure>
-<img src="/post/2020-09-02-are-boosting-algorithms-the-new-baseline-models.en_files/booting-algorithm.png" alt="" width="80%"/>
+<img src="../../post/2020-09-02-are-boosting-algorithms-the-new-baseline-models.en_files/booting-algorithm.png" alt="" width="80%"/>
   <figcaption>
       <h6>Pseudo code of  boosting algorithm as described in ISLR  </h6>
   </figcaption>
 </figure>
 <p>The major inconvenience of boosting algorithms is they are prone to overfitting the data. To avoid the problem, they need a lot of hyper-parametrization, which of course consumes a lot of time. 😒</p>
-<p><img src="/post/2020-09-02-are-boosting-algorithms-the-new-baseline-models.en_files/bostvsrf.png" alt=""></p>
+<p><img src="../../post/2020-09-02-are-boosting-algorithms-the-new-baseline-models.en_files/bostvsrf.png" alt=""></p>
 <p>Several boosting variants have emerged to deal with these inconveniences. A couple of years ago, <a href="https://xgboost.ai/">XGBoost</a> was the top leading boost algorithm . It had a lot of success in several <a href="https://kaggle.com">Kaggle</a> competitions. Now, you can find several other very good alternative such as <a href="https://github.com/microsoft/LightGBM">LightGBM</a> from Microsoft research and more recently <a href="https://catboost.ai">catboost</a> from Yandex, a Russian tech company.</p>
 <p>All these new boosting algorithms have made considerable improvements regarding speed and avoiding overffiting. An interesting aspect is all of then support multiple processors and even the use of GPUs during training process.</p>
 <p>Algorithms such as <a href="https://catboost.ai">catboost</a> have put a lot of effort in helping the user during the hyper-parameters selection. The algorithm starts with a default set of parameters learned from your dataset. In addition <a href="https://catboost.ai">catboost</a> includes several techniques for <a href="https://en.wikipedia.org/wiki/Early_stopping">early stopping</a>. A well known strategy to avoid the overfitting. Catboost as well as XGBoost and LightGDM have packages for <a href="https://catboost.ai/docs/concepts/python-installation.html">python</a> and <a href="https://catboost.ai/docs/concepts/r-installation.html">R</a>. And in the case of Catboost they also provide a CLI version of the algorithm. Another major contribution about catboost if they handling of categorical data. You can pass the index of your categorical variables to the algorithm and catboost will use very efficient transformation in order to improve de execution time.</p>
@@ -161,7 +161,7 @@
 			
 			
 			
-			<a href="https://harpomaxx.github.io/categories/algorithms/"> algorithms </a>
+			<a href="../../categories/algorithms/"> algorithms </a>
 			
 			
 			
@@ -246,7 +246,7 @@
 			
 			
 			
-			<a href="https://harpomaxx.github.io/tags/boost/"> boost </a>
+			<a href="../../tags/boost/"> boost </a>
 			
 			
 			
@@ -314,7 +314,7 @@
 			
 			
 			
-			<a href="https://harpomaxx.github.io/tags/supervised-learning/"> supervised-learning </a>
+			<a href="../../tags/supervised-learning/"> supervised-learning </a>
 			
 			
 			

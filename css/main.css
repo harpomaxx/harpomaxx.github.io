@@ -316,6 +316,7 @@ table th {
 }
 
 .post-header h1.title {
+    text-align: left;
     margin: -10px 0 0 0;
     font-family: "Roboto Slab Regular", serif;
     font-weight: bold;

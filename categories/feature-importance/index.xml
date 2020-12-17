@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>feature importance on Computer Science Notes</title>
-		<link>/categories/feature-importance/</link>
-		<description>Recent content in feature importance on </description>
+		<link>https://harpomaxx.github.io/categories/feature-importance/</link>
+		<description>Recent content in feature importance on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Mon, 14 Dec 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/categories/feature-importance/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/categories/feature-importance/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Feature Selection Strategies</title>
-			<link>/post/feature-selection-strategies/</link>
+			<link>https://harpomaxx.github.io/post/feature-selection-strategies/</link>
 			<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/feature-selection-strategies/</guid>
+			<guid>https://harpomaxx.github.io/post/feature-selection-strategies/</guid>
 			<description>
 				
 				Feature selection is a topic any machine learning practicioner should master. There are plenty strategies for performing feature selection. Some more useful than others. Some with more limitation than benefits.  Here, I mention the most common approaches for feature selection using information collected from articles, books and research papers. [5 min read]

@@ -8,29 +8,29 @@
 	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="cross-validation,resampling,reproducible Research"><meta name="description" content="Experimental Design in Machine learning is well established. However, from time to time it is important to revisit the process to analyze the  confidence level you have in your results. Machine learning shares a lot with statistics, but since Machine learning practitioners have a more practical vision, sometimes the experimental design is neglected when applied to real-world problems. This note explains the basic strategy followed in almost any machine learning experimental setup."><meta property="og:title" content="Machine Learning Experimental Design 101" />
 <meta property="og:description" content="Experimental Design in Machine learning is well established. However, from time to time it is important to revisit the process to analyze the  confidence level you have in your results. Machine learning shares a lot with statistics, but since Machine learning practitioners have a more practical vision, sometimes the experimental design is neglected when applied to real-world problems. This note explains the basic strategy followed in almost any machine learning experimental setup." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/experimental-design/" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/experimental-design/" />
 <meta property="article:published_time" content="2020-09-18T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-09-18T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Machine Learning Experimental Design 101"/>
 <meta name="twitter:description" content="Experimental Design in Machine learning is well established. However, from time to time it is important to revisit the process to analyze the  confidence level you have in your results. Machine learning shares a lot with statistics, but since Machine learning practitioners have a more practical vision, sometimes the experimental design is neglected when applied to real-world problems. This note explains the basic strategy followed in almost any machine learning experimental setup."/>
-<link rel="icon" type="image/png" href="../../favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="../../favicon-16x16.png" sizes="16x16">
-	<link rel="stylesheet" type="text/css" media="screen" href="../../css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="../../css/main.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="../../css/all.css" />
-	<link rel="stylesheet" href="../../css/katex.min.css" crossorigin="anonymous">
-	<script defer src="../../js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-	<script defer src="../../js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Machine Learning Experimental Design 101 | Computer Science Notes</title></head>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Machine Learning Experimental Design 101 | Computer Science Notes</title></head>
 <body><header>
 	
 	<div id="avatar">
-		<a href="../../">
-			<img src="../../img/harpo-2.jpg" alt="Computer Science Notes">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
 		</a>
 	</div>
 	
-	<div id="titletext"><h2 id="title"><a href="../../">Computer Science Notes</a></h2></div>
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
 	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
 			<nav>
 				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
@@ -42,15 +42,15 @@
 		<nav>
 			<ul>
 				
-				<li><a href="../../">Home</a></li>
+				<li><a href="/">Home</a></li>
 				
-				<li><a href="../../post">All Posts</a></li>
+				<li><a href="/post">All Posts</a></li>
 				
-				<li><a href="../../about">About</a></li>
+				<li><a href="/about">About</a></li>
 				
-				<li><a href="../../tags">Tags</a></li>
+				<li><a href="/tags">Tags</a></li>
 				
-				<li><a href="../../categories">Categories</a></li>
+				<li><a href="/categories">Categories</a></li>
 				
 			</ul>
 		</nav>
@@ -106,7 +106,7 @@
 <p>Experimental design is a fundamental skill for any machine learning practitioner. No matter if you work in academy or in the private sector, from time to time you will require to perform some sort of evaluation of your model. At some point you should convince customers or reviewers that your model results have a certain amount of generalization and it is capable of dealing with future (not seen) scenarios reasonably well.</p>
 <p>Fortunately for us, the experimental design for evaluating the performance of a machine learning model is well known. The process is described in Figure 1. There, you basically have a dataset split in training and test (usually a 70/30 ratio). The 30% of the data should be left aside and ideally never touched until you have finished with your model tuning. On the other hand, the 70% of the data could be used for training/validate your model and/or conduct a hyper parameter search for tuning the model. The are several approaches during the validation phase (see chapter five about resampling methods from <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/">ISLR</a> for more info), but using cross validation with k folds is perhaps the most widely used. I personally like to perform <a href="https://sci2s.ugr.es/keel/pdf/algorithm/articulo/dietterich1998.pdf">2x5 resampling</a>, which basically means applying a 5 folds cross validation repeated 2 times.</p>
 <figure>
-<p><img src="../../post/2020-09-09-experimental-design.en_files/ml-experimenta-designA.png" alt="experimental design" width="100%"/></p>
+<p><img src="/post/2020-09-09-experimental-design.en_files/ml-experimenta-designA.png" alt="experimental design" width="100%"/></p>
 <figcaption>
 <h6>
 Figure 1. Standard experimental design for evaluating the performance of a machine learning model.
@@ -210,7 +210,7 @@ Sometimes your model performs extremely well during your CV evaluation but the p
 			
 			
 			
-			<a href="../../categories/experimental-design/"> experimental-design </a>
+			<a href="https://harpomaxx.github.io/categories/experimental-design/"> experimental-design </a>
 			
 			
 			
@@ -230,7 +230,7 @@ Sometimes your model performs extremely well during your CV evaluation but the p
 			
 			
 			
-			<a href="../../categories/statistics/"> statistics </a>
+			<a href="https://harpomaxx.github.io/categories/statistics/"> statistics </a>
 			
 			
 			
@@ -287,7 +287,7 @@ Sometimes your model performs extremely well during your CV evaluation but the p
 			
 			
 			
-			<a href="../../tags/cross-validation/"> cross-validation </a>
+			<a href="https://harpomaxx.github.io/tags/cross-validation/"> cross-validation </a>
 			
 			
 			
@@ -333,7 +333,7 @@ Sometimes your model performs extremely well during your CV evaluation but the p
 			
 			
 			
-			<a href="../../tags/reproducible-research/"> reproducible-research </a>
+			<a href="https://harpomaxx.github.io/tags/reproducible-research/"> reproducible-research </a>
 			
 			
 			
@@ -345,7 +345,7 @@ Sometimes your model performs extremely well during your CV evaluation but the p
 			
 			
 			
-			<a href="../../tags/resampling/"> resampling </a>
+			<a href="https://harpomaxx.github.io/tags/resampling/"> resampling </a>
 			
 			
 			

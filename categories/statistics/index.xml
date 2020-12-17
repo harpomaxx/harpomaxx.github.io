@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Statistics on Computer Science Notes</title>
-		<link>/categories/statistics/</link>
-		<description>Recent content in Statistics on </description>
+		<link>https://harpomaxx.github.io/categories/statistics/</link>
+		<description>Recent content in Statistics on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Tue, 22 Sep 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/categories/statistics/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/categories/statistics/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Machine Learning Experimental Design 102</title>
-			<link>/post/machine-learning-experimental-design-102/</link>
+			<link>https://harpomaxx.github.io/post/machine-learning-experimental-design-102/</link>
 			<pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/machine-learning-experimental-design-102/</guid>
+			<guid>https://harpomaxx.github.io/post/machine-learning-experimental-design-102/</guid>
 			<description>
 				
 				The usual approach of shuffling the data and split in train and test could not be the best strategy for some cases for getting a good error estimator  of your model. Sometimes pure random splits do not guarantee the required level of dissimilarity. In adition, all the precautions to avoid contamination of your test set during your trainset manipulation must be taken for the test fold during cross validation. [4min read]
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Machine Learning Experimental Design 101</title>
-			<link>/post/experimental-design/</link>
+			<link>https://harpomaxx.github.io/post/experimental-design/</link>
 			<pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/experimental-design/</guid>
+			<guid>https://harpomaxx.github.io/post/experimental-design/</guid>
 			<description>
 				
 				Experimental Design in Machine learning is well established. However, from time to time it is important to revisit the process to analyze the  confidence level you have in your results. Machine learning shares a lot with statistics, but since Machine learning practitioners have a more practical vision, sometimes the experimental design is neglected when applied to real-world problems. This note explains the basic strategy followed in almost any machine learning experimental setup.
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>Statistical Rethinking Book [and other resources]</title>
-			<link>/post/statistical-rethinking-book/</link>
+			<link>https://harpomaxx.github.io/post/statistical-rethinking-book/</link>
 			<pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/statistical-rethinking-book/</guid>
+			<guid>https://harpomaxx.github.io/post/statistical-rethinking-book/</guid>
 			<description>
 				
 				A book about Bayesian thinking with examples in R and STAN [and other resources]

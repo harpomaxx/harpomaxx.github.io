@@ -8,29 +8,29 @@
 	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="random forest,lasso"><meta name="description" content="Feature selection is a topic any machine learning practicioner should master. There are plenty strategies for performing feature selection. Some more useful than others. Some with more limitation than benefits.  Here, I mention the most common approaches for feature selection using information collected from articles, books and research papers. [5 min read]"><meta property="og:title" content="Feature Selection Strategies" />
 <meta property="og:description" content="Feature selection is a topic any machine learning practicioner should master. There are plenty strategies for performing feature selection. Some more useful than others. Some with more limitation than benefits.  Here, I mention the most common approaches for feature selection using information collected from articles, books and research papers. [5 min read]" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/feature-selection-strategies/" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/feature-selection-strategies/" />
 <meta property="article:published_time" content="2020-12-14T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-12-14T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Feature Selection Strategies"/>
 <meta name="twitter:description" content="Feature selection is a topic any machine learning practicioner should master. There are plenty strategies for performing feature selection. Some more useful than others. Some with more limitation than benefits.  Here, I mention the most common approaches for feature selection using information collected from articles, books and research papers. [5 min read]"/>
-<link rel="icon" type="image/png" href="../../favicon-32x32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="../../favicon-16x16.png" sizes="16x16">
-	<link rel="stylesheet" type="text/css" media="screen" href="../../css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="../../css/main.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="../../css/all.css" />
-	<link rel="stylesheet" href="../../css/katex.min.css" crossorigin="anonymous">
-	<script defer src="../../js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-	<script defer src="../../js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Feature Selection Strategies | Computer Science Notes</title></head>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Feature Selection Strategies | Computer Science Notes</title></head>
 <body><header>
 	
 	<div id="avatar">
-		<a href="../../">
-			<img src="../../img/harpo-2.jpg" alt="Computer Science Notes">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
 		</a>
 	</div>
 	
-	<div id="titletext"><h2 id="title"><a href="../../">Computer Science Notes</a></h2></div>
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
 	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
 			<nav>
 				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
@@ -42,15 +42,15 @@
 		<nav>
 			<ul>
 				
-				<li><a href="../../">Home</a></li>
+				<li><a href="/">Home</a></li>
 				
-				<li><a href="../../post">All Posts</a></li>
+				<li><a href="/post">All Posts</a></li>
 				
-				<li><a href="../../about">About</a></li>
+				<li><a href="/about">About</a></li>
 				
-				<li><a href="../../tags">Tags</a></li>
+				<li><a href="/tags">Tags</a></li>
 				
-				<li><a href="../../categories">Categories</a></li>
+				<li><a href="/categories">Categories</a></li>
 				
 			</ul>
 		</nav>
@@ -98,7 +98,7 @@
 <div id="filter-based" class="section level2">
 <h2>Filter based</h2>
 <p>In filter based feature selection, we specify some metric and based on that filter features. Two well-known approaches falling under this category are Pearson’s correlation and chi-square.</p>
-<p>When using correlation, we simply filter/remove highly correlated features <a href="https://towardsdatascience.com/feature-selection-in-machine-learning-d5af31f7276">considering their absolute value</a>
+<p>When using correlation, we simply filter/remove highly correlated features <a href="https://towardsdatascience.com/feature-selection-in-machine-learning-d5af31f7276">considering their absolute value</a>.
 Here we can left only one of the correlated features or combine all the correlated features in only one using something like <span class="math inline">\(new\_feature=0.5*corfeat1+0.5*corfeat2+corfeat3*0.5...\)</span>.</p>
 <p>In the case of chi-square, the idea is to <a href="https://towardsdatascience.com/chi-square-test-for-feature-selection-in-machine-learning-206b1f0b8223#:~:text=In%20feature%20selection%2C%20we%20aim,hypothesis%20of%20independence%20is%20incorrect.">apply an
 statistical test to select those features</a> that have the strongest relationship with the output variable (they are highly dependent on the response). The same idea can be applied to any other statistical test. The sckit-learn library provide a wrapper function <a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html#sklearn.feature_selection.SelectKBest">selectKBest</a> that facilitates the use of <a href="https://en.wikipedia.org/wiki/Analysis_of_variance">ANOVA</a>, <a href="https://en.wikipedia.org/wiki/Chi-squared_test">chi-squared</a> tests among others. Notice that this is <a href="https://en.wikipedia.org/wiki/Univariate_analysis">univariate</a> feature selection approach. Consequently, there could be a case where two variables do not show dependence with response when analyzed separately, but when both are present in our data they results in fundamental features for the problem (See <a href="https://www.jmlr.org/papers/volume3/guyon03a/guyon03a.pdf">Guyon et al, 2003</a>). In other words, relation between variables are not considered.</p>
@@ -179,13 +179,13 @@ statistical test to select those features</a> that have the strongest relationsh
 			
 			
 			
-			<a href="../../categories/feature-importance/"> feature-importance </a>
+			<a href="https://harpomaxx.github.io/categories/feature-importance/"> feature-importance </a>
 			
 			
 			
 			
 			
-			<a href="../../categories/feature-selection/"> feature-selection </a>
+			<a href="https://harpomaxx.github.io/categories/feature-selection/"> feature-selection </a>
 			
 			
 			
@@ -266,7 +266,7 @@ statistical test to select those features</a> that have the strongest relationsh
 			
 			
 			
-			<a href="../../tags/lasso/"> lasso </a>
+			<a href="https://harpomaxx.github.io/tags/lasso/"> lasso </a>
 			
 			
 			
@@ -288,7 +288,7 @@ statistical test to select those features</a> that have the strongest relationsh
 			
 			
 			
-			<a href="../../tags/random-forest/"> random-forest </a>
+			<a href="https://harpomaxx.github.io/tags/random-forest/"> random-forest </a>
 			
 			
 			

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>random forest on Computer Science Notes</title>
-		<link>/tags/random-forest/</link>
-		<description>Recent content in random forest on </description>
+		<link>https://harpomaxx.github.io/tags/random-forest/</link>
+		<description>Recent content in random forest on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Mon, 14 Dec 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/tags/random-forest/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/tags/random-forest/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Feature Selection Strategies</title>
-			<link>/post/feature-selection-strategies/</link>
+			<link>https://harpomaxx.github.io/post/feature-selection-strategies/</link>
 			<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/feature-selection-strategies/</guid>
+			<guid>https://harpomaxx.github.io/post/feature-selection-strategies/</guid>
 			<description>
 				
 				Feature selection is a topic any machine learning practicioner should master. There are plenty strategies for performing feature selection. Some more useful than others. Some with more limitation than benefits.  Here, I mention the most common approaches for feature selection using information collected from articles, books and research papers. [5 min read]
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Features Selection Resources</title>
-			<link>/post/features-selection-resources/</link>
+			<link>https://harpomaxx.github.io/post/features-selection-resources/</link>
 			<pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/features-selection-resources/</guid>
+			<guid>https://harpomaxx.github.io/post/features-selection-resources/</guid>
 			<description>
 				
 				Beware of Random Forest GINI index for feature importance. Some other resources related with feature selection such as how to use PCA and the problems (or not) behind colinearity.

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>supervised learning on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/tags/supervised-learning/</link>
-		<description>Recent content in supervised learning on harpomaxx.github.io</description>
+		<link>/tags/supervised-learning/</link>
+		<description>Recent content in supervised learning on </description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Sun, 06 Sep 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/tags/supervised-learning/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="/tags/supervised-learning/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Are Boosting Algorithms the new baseline model for your Tabular data? Part 1</title>
-			<link>https://harpomaxx.github.io/post/are-boosting-algorithms-the-new-baseline-models/</link>
+			<link>/post/are-boosting-algorithms-the-new-baseline-models/</link>
 			<pubDate>Sun, 06 Sep 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/are-boosting-algorithms-the-new-baseline-models/</guid>
+			<guid>/post/are-boosting-algorithms-the-new-baseline-models/</guid>
 			<description>
 				
 				Neural networks rule the world of machine learning IFF, you have a lot of data, and just for a reduced set of problems. The fact is that for heterogeneous (numerical and categorical) tabular data, decision trees are still one of the best options. Also, they have the benefit of being (more) explainable to the customer. Boosting decision trees are among the most successful algorithms in data science competitions, but could they replace Random Forest? The absolute leader, when you try a first model in your data.[updated]

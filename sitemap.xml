@@ -3,227 +3,247 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://harpomaxx.github.io/categories/</loc>
+    <loc>/categories/</loc>
+    <lastmod>2020-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/feature-importance/</loc>
+    <lastmod>2020-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/feature-selection/</loc>
+    <lastmod>2020-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/feature-selection-strategies/</loc>
+    <lastmod>2020-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/lasso/</loc>
+    <lastmod>2020-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/random-forest/</loc>
+    <lastmod>2020-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-12-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/cross-validation/</loc>
     <lastmod>2020-11-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/</loc>
+    <loc>/tags/dimensional-reduction/</loc>
     <lastmod>2020-11-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/cross-validation/</loc>
+    <loc>/categories/experimental-design/</loc>
     <lastmod>2020-11-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/dimensional-reduction/</loc>
+    <loc>/tags/reproducible-research/</loc>
     <lastmod>2020-11-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/categories/experimental-design/</loc>
+    <loc>/tags/resampling/</loc>
     <lastmod>2020-11-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/post/</loc>
+    <loc>/post/comparing-two-sample-distribution/</loc>
     <lastmod>2020-11-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/reproducible-research/</loc>
-    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harpomaxx.github.io/tags/resampling/</loc>
-    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harpomaxx.github.io/tags/</loc>
-    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harpomaxx.github.io/post/comparing-two-sample-distribution/</loc>
-    <lastmod>2020-11-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harpomaxx.github.io/tags/books/</loc>
+    <loc>/tags/books/</loc>
     <lastmod>2020-10-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/categories/documentation/</loc>
+    <loc>/categories/documentation/</loc>
     <lastmod>2020-10-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/post/introductional-resources-for-machine-learning/</loc>
+    <loc>/post/introductional-resources-for-machine-learning/</loc>
     <lastmod>2020-10-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/post/machine-learning-experimental-design-102/</loc>
+    <loc>/post/machine-learning-experimental-design-102/</loc>
     <lastmod>2020-09-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/categories/statistics/</loc>
+    <loc>/categories/statistics/</loc>
     <lastmod>2020-09-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/post/experimental-design/</loc>
+    <loc>/post/experimental-design/</loc>
     <lastmod>2020-09-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/categories/algorithms/</loc>
+    <loc>/categories/algorithms/</loc>
     <lastmod>2020-09-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/post/are-boosting-algorithms-the-new-baseline-models/</loc>
+    <loc>/post/are-boosting-algorithms-the-new-baseline-models/</loc>
     <lastmod>2020-09-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/boost/</loc>
+    <loc>/tags/boost/</loc>
     <lastmod>2020-09-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/supervised-learning/</loc>
+    <loc>/tags/supervised-learning/</loc>
     <lastmod>2020-09-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/categories/development/</loc>
+    <loc>/categories/development/</loc>
     <lastmod>2020-08-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/notebooks/</loc>
+    <loc>/tags/notebooks/</loc>
     <lastmod>2020-08-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/post/notebooks-or-not-notebooks-in-datascience/</loc>
+    <loc>/post/notebooks-or-not-notebooks-in-datascience/</loc>
     <lastmod>2020-08-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/categories/tools/</loc>
+    <loc>/categories/tools/</loc>
     <lastmod>2020-08-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/categories/deep-learning/</loc>
+    <loc>/categories/deep-learning/</loc>
     <lastmod>2020-08-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/post/double-descent-in-deep-learning/</loc>
+    <loc>/post/double-descent-in-deep-learning/</loc>
     <lastmod>2020-08-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/overfitting/</loc>
+    <loc>/tags/overfitting/</loc>
     <lastmod>2020-08-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/post/covid19-time-series-prediction/</loc>
+    <loc>/post/covid19-time-series-prediction/</loc>
     <lastmod>2020-08-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/categories/covid19/</loc>
+    <loc>/categories/covid19/</loc>
     <lastmod>2020-08-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/categories/time-series/</loc>
+    <loc>/categories/time-series/</loc>
     <lastmod>2020-08-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/categories/feature-selections/</loc>
+    <loc>/categories/feature-selections/</loc>
     <lastmod>2020-08-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/post/features-selection-resources/</loc>
+    <loc>/post/features-selection-resources/</loc>
     <lastmod>2020-08-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/multicollinearity/</loc>
+    <loc>/tags/multicollinearity/</loc>
     <lastmod>2020-08-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/random-forest/</loc>
-    <lastmod>2020-08-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harpomaxx.github.io/tags/bayesian/</loc>
+    <loc>/tags/bayesian/</loc>
     <lastmod>2020-08-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/r-language/</loc>
+    <loc>/tags/r-language/</loc>
     <lastmod>2020-08-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/stan/</loc>
+    <loc>/tags/stan/</loc>
     <lastmod>2020-08-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/post/statistical-rethinking-book/</loc>
+    <loc>/post/statistical-rethinking-book/</loc>
     <lastmod>2020-08-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/tags/graph-networks/</loc>
+    <loc>/tags/graph-networks/</loc>
     <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/post/graph-neural-networks/</loc>
+    <loc>/post/graph-neural-networks/</loc>
     <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/post/tools-of-the-week/</loc>
+    <loc>/post/tools-of-the-week/</loc>
     <lastmod>2020-07-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/about/</loc>
+    <loc>/about/</loc>
     <lastmod>2020-06-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/post/colaborative-edition/</loc>
+    <loc>/post/colaborative-edition/</loc>
     <lastmod>2020-06-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/categories/writing/</loc>
+    <loc>/categories/writing/</loc>
     <lastmod>2020-06-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harpomaxx.github.io/series/</loc>
+    <loc>/series/</loc>
   </url>
   
 </urlset>

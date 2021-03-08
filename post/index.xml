@@ -7,10 +7,22 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Mon, 14 Dec 2020 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Thu, 04 Mar 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/post/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Machine Learning in Production</title>
+			<link>https://harpomaxx.github.io/post/machine-learning-in-production/</link>
+			<pubDate>Thu, 04 Mar 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/machine-learning-in-production/</guid>
+			<description>
+				
+				Working with machine learning is not what is use to be. Let&#39;s face it. Now, there is much less time for hacking and much more time for deployment. The situation is not new and certainly not bad at all. That is why you should be prepared for the new roles and positions offered by the market.
+				
+			</description>
+		</item>
 		<item>
 			<title>Feature Selection Strategies</title>
 			<link>https://harpomaxx.github.io/post/feature-selection-strategies/</link>

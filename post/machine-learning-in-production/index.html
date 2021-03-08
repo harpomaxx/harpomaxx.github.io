@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.80.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="hugo,vitae,theme,static"><meta name="description" content="Working with machine learning is not what is use to be. Let&#39;s face it. Now, there is much less time for hacking and much more time for deployment. The situation is not new and certainly not bad at all. That is why you should be prepared for the new roles and positions offered by the market."><meta property="og:title" content="Machine Learning in Production" />
+<meta property="og:description" content="Working with machine learning is not what is use to be. Let&#39;s face it. Now, there is much less time for hacking and much more time for deployment. The situation is not new and certainly not bad at all. That is why you should be prepared for the new roles and positions offered by the market." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/machine-learning-in-production/" />
+<meta property="article:published_time" content="2021-03-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-03-04T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Machine Learning in Production"/>
+<meta name="twitter:description" content="Working with machine learning is not what is use to be. Let&#39;s face it. Now, there is much less time for hacking and much more time for deployment. The situation is not new and certainly not bad at all. That is why you should be prepared for the new roles and positions offered by the market."/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Machine Learning in Production | Computer Science Notes</title></head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">04</span>
+				<span class="rest">Mar 2021</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Machine Learning in Production</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://twitter.com/harpomaxx">Harpo MAxx</a>
+		
+	
+	
+		(5 min read)
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		<blockquote>
+<p><em>Thanks to <a href="http://dharma.frm.utn.edu.ar/en/perfil/sperez">Seba Perez</a> From <a href="http://dharma.frm.utn.edu.ar/en">DHARMA</a> for providing me with valuable resources about the topic.</em></p>
+</blockquote>
+<p>Machine learning  has moved from academia to industry very fast. In fact, machine learning has become  more like a product-oriented than a research task. Far away are those days when you tested your new machine learning model in a well-known dataset with the idea of improving a performance metric. Now, you have to test your models against real life!!!. And perhaps the most important thing is, they have to make money to your company 💰.</p>
+<p>Back in the days, you had to implement your own version of the algorithm or perhaps use one of the very few libraries available. Things such as <strong>scalability</strong>, <strong>reliability</strong>  and <strong>availability</strong> were completely out of the scope for a traditional machine learning researcher.</p>
+<p><em>Developing a microservice? Containerization of your models?</em> Out of the question!! 🤔</p>
+<p><em>Implementing an architecture to support data drift? What about a retraining pipeline?</em> NO WAY!! 😱</p>
+<img src="images/what-on-earth-are-you-talking-about-my-dear.jpg" alt="" width="30%"/>
+<p>The fact is that developing machine learning models now requires expertise in several areas beyond the traditional programming  and statistics/math skills. As a consequence, several new roles (with fancy new names) have emerged in the hot market of machine learning products.</p>
+<p>In 2020, <a href="https://workera.ai/redirect/ai_career_pathways/">WORKERA.AI</a> published a report about Data Science/Machine Learning careers pathways. The report provided some insights about the responsibilities of each (new) role in the development process of a machine learning product. I copied/stole the following chart from the report.</p>
+<figure>
+<img src="images/workera-roles.png" alt="roles" width="90%"/>
+  <figcaption>
+      <h6> Figure 1. Five roles involved in the machine learning production workflow.  </h6>
+  </figcaption>
+</figure>
+<p>The reports recognizes five roles. However, there are some specialists in this new field of developing machine learning products such as <a href="https://huyenchip.com/">Chip Hyeun</a>, who considers that there are some other important roles beyond those mentioned in the report. For instance, roles more oriented to hardware such as multiprocessing or GPU programming are not considered in the report.</p>
+
+
+
+
+<style type="text/css">
+  .twitter-tweet {
+  font: 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  border-left: 4px solid #2b7bb9;
+  padding-left: 1.5em;
+  color: #555;
+}
+  .twitter-tweet a {
+  color: #2b7bb9;
+  text-decoration: none;
+}
+  blockquote.twitter-tweet a:hover,
+  blockquote.twitter-tweet a:focus {
+  text-decoration: underline;
+}
+</style>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Workera recently published a report on AI career pathways. It doesn&#39;t mention hardware. I also don&#39;t see the difference b/w SWE-ML &amp; ML Engineer. But it highlights some important distinctions.<br><br>I also like <a href="https://twitter.com/josh_tobin_?ref_src=twsrc%5Etfw">@josh_tobin_</a>  talk on the structure of AI teams <a href="https://t.co/X6eHv8sskA">https://t.co/X6eHv8sskA</a> <a href="https://t.co/KysDChOjgR">pic.twitter.com/KysDChOjgR</a></p>&mdash; Chip Huyen (@chipro) <a href="https://twitter.com/chipro/status/1215494290882744320?ref_src=twsrc%5Etfw">January 10, 2020</a></blockquote>
+
+<p>To keep this post short I will only focus on the differences between <strong>Data Scientist</strong>, <strong>Machine Learning Engineer</strong> and <strong>Machine Learning Researcher</strong>. Please keep in mind that the following is just a certainly biased and simplified description of the roles.</p>
+<p><strong>Machine Learning Reseacher:</strong> A role focused on the development of new algorithms. Strong math and statistical background are required.  A researcher usually works with a set of benchmarking datasets and is not particularly motivated to do dirty work, such as data cleaning/mangling, etc. You wont find many companies   motivated to support this role, except, of course, those companies with a large research department. (Google, Facebook, Amazon, etc.)</p>
+<p><strong>Data Scientist:</strong> A role focused on the development of business-oriented solutions. When a company hires a data scientist expects to extract valuable information from its data for making big money in the future. Sure you have seen Conway&rsquo;s Venn diagram about Data Science. Programming skills, math and business knowledge are fundamental skills for doing data science.</p>
+<figure>
+<img src="images/conway-ds.jpeg" alt="" width="40%"/>
+  <figcaption>
+      <h6> Figure 2. A very low resolution of Conway’s Venn diagram about Data Science. Search in google for better versions.  </h6>
+  </figcaption>
+</figure>
+<p>Depending your background you will have more programming or more math skills, <strong>but the business knowledge</strong> is something that you will definitively need to acquire at some point. Otherwise, you wont be able to guide the questions during your data analysis. A Data Scientist is not afraid of dealing with messy datasets, building scrapping tools, implementing interactive visualizations and of course generating a machine learning model. But he/she will usually try very well established algorithms provided by third-party libraries. Developing a new machine learning algorithm is definitively out of the scope of the role.</p>
+<p><strong>Machine Learning Engineer:</strong> The two previous roles have been well defined for several years. But the Machine Learning Engineer role is something relatively new. Under this role, not only programming and math skills are required, but also <strong>SOFTWARE ENGINEERING</strong>. Please take a moment for imaging the situation when you, a Data Scientist hired by some company, come out with and brand new and incredible model capable of identifying potential clients for company&rsquo;s main product with 99.99% of accuracy. <em>YOU ARE AMAZING !!!</em> 👓</p>
+<p>But then comes the questions from the management area:</p>
+<ul>
+<li><em>How can I use the model if you are not here?</em></li>
+<li><em>Can be deployed in our cloud service?</em></li>
+<li><em>Can WE retrain the model with new data?</em></li>
+<li><em>Once we detect a performance decrease what we can do?</em></li>
+</ul>
+<p>These certainly valid questions are the cause behind the arisen of the Machine Learning Engineering role. In a traditional Data Science job, you were prepared to implement some interactive dashboards (probably using <a href="https://shiny.rstudio.com/">shiny</a> or some other high level tool) for interacting with the valuable information you found from company&rsquo;s data. But including your model inside the company cloud infrastructure is something completely different. Now, you will need to move from your comfortable <a href="https://jupyter.org/">Jupyter notebooks</a> and implement a <a href="https://en.wikipedia.org/wiki/Microservices">Microservices Architecture</a>  to deploy not only your resulting model but also the complete preprocesing pipeline required for training it. The architecture should scale according to the company expectations. And perhaps in one or two years a complete refactoring will be required. Obviously, the company will want to reuse the source code, so you will need to follow company rules regarding writing code for production.</p>
+<p>These are just some aspects related to machine learning engineering roles that requires a strong background in <a href="https://en.wikipedia.org/wiki/Software_engineering">software engineering</a>. <em>Today, Machine Learning Engineering is the job most demanded by companies in the machine learning scene</em>. You still will see job offers for <strong>DATA SCIENCE</strong> positions but, if you look carefully, you will see they are actually looking for machine learning engineers. Thinking a little bit about it, it makes sense. Companies don&rsquo;t want algorithms researchers or depending of a data scientist for updating the model every time new data is available. They only need a way of extracting valuable knowledge and put that knowledge at the service of their own goals.</p>
+<p><strong>So basically, having a certain degree of software engineering skills is definitively a must for applying to the so-called data science positions.</strong></p>
+<p>The following are just a small set of resources discussing different aspects of the machine learning role.</p>
+<ol>
+<li>
+<p>A <a href="https://towardsdatascience.com/paper-highlights-challenges-in-deploying-machine-learning-a-survey-of-case-studies-cafe61cfd04c">medium post</a> discussing the different challenges when deploying machine learning products. The post is based on a <a href="https://arxiv.org/abs/2011.09926v2">paper from 2020</a> published in <a href="https://arxiv.org">Arxiv</a>. Six fundamental aspects are covered: Model reuse,  Effective collaboration between researchers and engineers, Outlier detection for better predictions, Handling concept drift, End-user trust, Adversarial attacks.</p>
+</li>
+<li>
+<p>This <a href="https://www.kdnuggets.com/2019/06/approaches-deploying-machine-learning-production.html">post</a> also from Medium discusses the different approaches to be considered when deploying machine learning.</p>
+</li>
+<li>
+<p>A <a href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf">white paper from Google</a> discussing the hidden technical debt in machine learning systems. <strong>I personally recommend the anti-patterns sections of the article.</strong></p>
+</li>
+<li>
+<p>Finally, <a href="https://www.goodreads.com/en/book/show/30741739-machine-learning-yearning">a book from Andew Ng</a> that provides a very practical perspective to machine learning. In fact the book deals more with Deep learning than machine learning. The book is very short and easy to read and provides a set of recipes totally oriented to machine learning team. ** Warning: The article don&rsquo;t deal software engineering issues but still is highly recommended!**</p>
+</li>
+</ol>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/engineering/"> engineering </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+</footer>
+
+
+</body>
+</html>

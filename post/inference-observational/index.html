@@ -5,15 +5,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="proportional data,reproducible Research"><meta name="description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework."><meta property="og:title" content="Inference with Observational Data" />
-<meta property="og:description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework." />
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="proportional data,reproducible Research"><meta name="description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework. [5min read]"><meta property="og:title" content="Inference with Observational Data" />
+<meta property="og:description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework. [5min read]" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://harpomaxx.github.io/post/inference-observational/" />
 <meta property="article:published_time" content="2021-03-29T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-03-29T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Inference with Observational Data"/>
-<meta name="twitter:description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework."/>
+<meta name="twitter:description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework. [5min read]"/>
 <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
@@ -109,14 +109,15 @@
 <div id="binomial-model" class="section level3">
 <h3>Binomial model</h3>
 <p>The problem can be modeled using a Binomial distribution. The <a href="https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_Introductory_Statistics_(OpenStax)/04%3A_Discrete_Random_Variables/4.04%3A_Binomial_Distribution">binomial distribution</a> is frequently used to model the number of successes (<span class="math inline">\(p\)</span>) in a sample of size <span class="math inline">\(n\)</span> drawn with replacement from a population of size <span class="math inline">\(N\)</span>. In other words, it can be thought of as simply the probability of a SUCCESS or FAILURE outcome in an experiment that is repeated multiple times. In our case, we are going to consider each eye surgery as an independent experiment.</p>
-<p><em>From 45 observed surgeries only 5 show an outcome=0 and the rest outcome=1</em>. Can we get an idea of the variability of such proportion?</p>
+<p>So for our particular data we can say that <em>From 45 observed surgeries only 5 show an outcome=0 and the rest outcome=1</em>.</p>
+<p>Can we get an idea of the variability of such proportion?</p>
 </div>
 </div>
 <div id="estimating-the-variability-or-precision-of-the-proportion." class="section level2">
 <h2>Estimating the variability or precision of the proportion.</h2>
 <div id="one-proportion-z-test" class="section level3">
 <h3>One proportion z-test</h3>
-<p>Since our random variable <span class="math inline">\(X\)</span> follows a binomial distribution we can estimate the ‘margin of error’ or to use the proper term, <strong>confidence interval</strong> for the observed <span class="math inline">\(p\)</span> using a one-proportion test. Under a one-proportion <span class="math inline">\(z\)</span>-test, the binomial distribution is approximated to a normal distribution (see Figure 1), then we can use this approximation to estimate the confidence intervals.</p>
+<p>Since our random variable <span class="math inline">\(X\)</span> follows a binomial distribution we can estimate the ‘margin of error’ or to use the proper term, <strong>confidence interval</strong> for the observed <span class="math inline">\(p\)</span> using a one-proportion z-test. Under a one-proportion <span class="math inline">\(z\)</span>-test, the binomial distribution is approximated to a normal distribution (see Figure 1), then we can use this approximation to estimate the confidence intervals.</p>
 <figure>
 <img src="images/binomail-normal-dist.png" alt="roles" width="50%"/>
 <figcaption>

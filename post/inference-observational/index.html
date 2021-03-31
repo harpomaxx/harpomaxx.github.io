@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.80.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="proportional data,reproducible Research"><meta name="description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework."><meta property="og:title" content="Inference with Observational Data" />
+<meta property="og:description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/inference-observational/" />
+<meta property="article:published_time" content="2021-03-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-03-29T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Inference with Observational Data"/>
+<meta name="twitter:description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework."/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Inference with Observational Data | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github-gist.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">29</span>
+				<span class="rest">Mar 2021</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Inference with Observational Data</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://twitter.com/harpomaxx">Harpo MAxx</a>
+		
+	
+	
+		(6 min read)
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		
+<script src="https://harpomaxx.github.io/post/inference-observational/index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<blockquote>
+<p><strong>Disclaimer</strong> I’m far from being statistician (Remember I’m just and old geek who forgot how to code), so the following text could be somewhat incorrect.</p>
+</blockquote>
+<p>Recently at <a href="https://labsin.org">LABSIN</a>, we were exposed to a dataset containing information about eye surgeries. The same technique was applied to a number of patients. However the dataset was not the result of a controlled experiment. In other words, there was no control over the different random variables in the dataset (lens type, Gender, age, etc). Despite this unusual situation (from somebody coming from computer science), We were asked about whether it was possible to say something beyond the observed results.</p>
+<p>In particular there was a categorical variable with only two possible outcome that showed a very unusual proportion according to state of the art. We wanted to do some inference: Were these results significant or we were fooled by the data? Also important it was to estimate the variability or precision of the proportion.</p>
+<div id="a-slightly-more-formal-problem-definition" class="section level2">
+<h2>A (slightly more) Formal Problem definition</h2>
+<p>There is one variable <span class="math inline">\(X\)</span> with two possible outcomes <span class="math inline">\(X \in \{0,1\}\)</span>. And after sampling <span class="math inline">\(n\)</span> from the population, we found that <span class="math inline">\(p\)</span> of the times <span class="math inline">\(X=1\)</span></p>
+<p>We have one observation of <span class="math inline">\(p\)</span>, as the result of carrying out a single sample of data We now wish to infer about the future. We would like to know how reliable our observation of <span class="math inline">\(p\)</span> is without further sampling.</p>
+<div id="binomial-model" class="section level3">
+<h3>Binomial model</h3>
+<p>The problem can be modeled using a Binomial distribution. The <a href="https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_Introductory_Statistics_(OpenStax)/04%3A_Discrete_Random_Variables/4.04%3A_Binomial_Distribution">binomial distribution</a> is frequently used to model the number of successes (<span class="math inline">\(p\)</span>) in a sample of size <span class="math inline">\(n\)</span> drawn with replacement from a population of size <span class="math inline">\(N\)</span>. In other words, it can be thought of as simply the probability of a SUCCESS or FAILURE outcome in an experiment that is repeated multiple times. In our case, we are going to consider each eye surgery as an independent experiment.</p>
+<p><em>From 45 observed surgeries only 5 show an outcome=0 and the rest outcome=1</em>. Can we get an idea of the variability of such proportion?</p>
+</div>
+</div>
+<div id="estimating-the-variability-or-precision-of-the-proportion." class="section level2">
+<h2>Estimating the variability or precision of the proportion.</h2>
+<div id="one-proportion-z-test" class="section level3">
+<h3>One proportion z-test</h3>
+<p>Since our random variable <span class="math inline">\(X\)</span> follows a binomial distribution we can estimate the ‘margin of error’ or to use the proper term, <strong>confidence interval</strong> for the observed <span class="math inline">\(p\)</span> using a one-proportion test. Under a one-proportion <span class="math inline">\(z\)</span>-test, the binomial distribution is approximated to a normal distribution (see Figure 1), then we can use this approximation to estimate the confidence intervals.</p>
+<figure>
+<img src="images/binomail-normal-dist.png" alt="roles" width="50%"/>
+<figcaption>
+<h6>
+Figure 1. The Normal approximation
+to the Binomial plotted within the
+probabilistic range p ∈ [0, 1].
+</h6>
+</figcaption>
+</figure>
+<p>We only need to obtain the mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> and then calculate the confidence intervals for a given <span class="math inline">\(\alpha\)</span> (the probability of rejecting the null hypothesis when it is true) using the z statistic.</p>
+<p><span class="math display">\[
+z=\frac{\mu-p}{\sigma}
+\]</span></p>
+<p>In <a href="https://www.r-project.org/about.html">R</a> we can use the function <code>prop.test()</code> that implements the <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/prop.test.html">Z test for proportions</a> using <a href="https://www.tandfonline.com/doi/abs/10.1080/01621459.1927.10502953">Wilson’s</a> ideas about approximating a binomial to normal distribution.</p>
+<pre class="r"><code>n=45 # the total number of surgeries (trials)
+p=40 # the number of surgeries where outcome 1 was observed.
+expected_p=0.1 # the expected probability for observing outcome 1. 
+
+prop.test(p,n,expected_p,correct = FALSE, alternative = &quot;two.sided&quot;)</code></pre>
+<pre><code>## Warning in prop.test(p, n, expected_p, correct = FALSE, alternative =
+## &quot;two.sided&quot;): Chi-squared approximation may be incorrect</code></pre>
+<pre><code>## 
+##  1-sample proportions test without continuity correction
+## 
+## data:  p out of n, null probability expected_p
+## X-squared = 311.17, df = 1, p-value &lt; 2.2e-16
+## alternative hypothesis: true p is not equal to 0.1
+## 95 percent confidence interval:
+##  0.7650090 0.9515953
+## sample estimates:
+##         p 
+## 0.8888889</code></pre>
+<p>So according to the one-proportion <span class="math inline">\(z\)</span>-test test results we can say that surgeries observing outcome 1 will be between 76% and 95% of the times (with 95% confidence level) In other words, if someone repeats this process (i.e. it takes another sample from the population of eyes surgeries using the same technique), there will be 95% of chance that 75 to 96 percent of the surgeries have outcome=1.</p>
+<p>The [<span class="math inline">\(z\)</span>-test for proportions] provides us not only with information about confidence interval but also let us to test different hypothesis. For instance, in the above example we are testing that on average the outcome will be observed 10% of the times. So the null hypothesis is <span class="math inline">\(H_{0}=0.1\)</span> and the alternative hypothesis is <span class="math inline">\(H_{A}!=0.1\)</span>. According to z test p-value can reject the null hypothesis. In other words, if someone else samples another eye surgeries using the same technique, there is 95% chance of not observing the outcome 10% of the time.</p>
+<p>Notice that most of the time we would check if there were 30 data points or more, but for a proportion, we do something slightly different. When data is binary, like we have here, the central limit theorem kicks in slower than usual. The standard thing to check is whether:</p>
+<p><span class="math display">\[n.(p/π)&gt;5 \]</span>
+<span class="math display">\[n.(1−p/n)&gt;5\]</span>
+So if we do:
+<span class="math display">\[ 45 . (40/45) ~= 40 \]</span>
+<span class="math display">\[ 45 . (1-(40/45)) ~= 5\]</span>
+Oops, we have a problem… Actually if we look carefully at <code>prop.test()</code> output we can see a <em>Warning</em> message saying something like <code>Chi-squared approximation may be incorrect</code> So, what we can do?</p>
+</div>
+</div>
+<div id="the-exact-binomial-test" class="section level2">
+<h2>The exact binomial test</h2>
+<p>So far we have employed the Normal <em>approximation</em> to the Binomial distribution. However, it is possible to use an [binomial exact test]((<a href="https://en.wikipedia.org/wiki/Binomial_test" class="uri">https://en.wikipedia.org/wiki/Binomial_test</a>).
+This test should be the standard against which other test statistics are judged. The significance level and power are computed by enumerating the possible values of <span class="math inline">\(p\)</span>, computing the probability of each value, and then computing the corresponding value of the test statistic. In <a href="https://www.r-project.org/about.html">R</a> we can use the function <code>binom.test()</code> that implements the <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/binom.test.html">exact binomial test</a> using <a href="https://academic.oup.com/biomet/article-abstract/26/4/404/291538?redirectedFrom=fulltext">Clopper &amp; Pearson</a> ideas.</p>
+<pre class="r"><code>n=45 # the total number of surgeries (trials)
+p=40 # the number of surgeries where outcome 1 was observed.
+expected_p=0.1 # the expected probability for observing outcome 1. 
+
+binom.test(p,n,expected_p, alternative = &quot;two.sided&quot;)</code></pre>
+<pre><code>## 
+##  Exact binomial test
+## 
+## data:  p and n
+## number of successes = 40, number of trials = 45, p-value &lt; 2.2e-16
+## alternative hypothesis: true probability of success is not equal to 0.1
+## 95 percent confidence interval:
+##  0.7594642 0.9629233
+## sample estimates:
+## probability of success 
+##              0.8888889</code></pre>
+<p>The binomial exact test reports that surgeries observing outcome 1 will be between 76% and 96% of the times (with 95% confidence level) here is a difference in the confidence interval got by the one-proportion z-tes and no error was reporter in this case.</p>
+</div>
+<div id="conclusions" class="section level2">
+<h2>Conclusions</h2>
+<p>Despite the information and selection bias are a major obstacle to drawing valid conclusions from an observational study,
+it is still possible to do inference from observational data. If we apply a binomial model there are several methods to analyze the observed proportion, although these legacy (such as one-proportion z-test) methods are still presented in textbooks, their power and accuracy should be compared against modern exact method before they are adopted for serious research.</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p><a href="https://cran.r-project.org/web/packages/distributions3/vignettes/one-sample-z-test-for-proportion.html">[1]</a> A vignette about Z-test for proportions in R.</p>
+<p><a href="https://journals.lww.com/jbjsjournal/Fulltext/2009/05003/Analysis_of_Observational_Studies__A_Guide_to.9.aspx">[2]</a> <em>“Analysis of Observational Studies: A Guide to Understanding Statistical Methods”</em>. A recommended article about dealing with Observational data. Most of the ideas of this post were stolen from here. 😉</p>
+<p><a href="https://www.ucl.ac.uk/english-usage/staff/sean/resources/binomialpoisson.pdf">[3]</a> <em>“Binomial confidence intervals and contingency tests: mathematical fundamentals and the evaluation of alternative methods.”</em> Another good article discussing the math behind Binomial and Z-test proportional tests.</p>
+<p><a href="https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_Introductory_Statistics_(OpenStax)/04%3A_Discrete_Random_Variables/4.04%3A_Binomial_Distribution">[4]</a> Binomial distribution assumptions.</p>
+</div>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/statistics/"> statistics </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/proportional-data/"> proportional-data </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/reproducible-research/"> reproducible-research </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+</footer>
+
+</body>
+</html>

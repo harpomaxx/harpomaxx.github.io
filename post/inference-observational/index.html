@@ -98,18 +98,18 @@
 
 
 <blockquote>
-<p><strong>Disclaimer</strong> I’m far from being statistician (Remember I’m just and old geek who forgot how to code), so the following text could be somewhat incorrect.</p>
+<p><strong>Disclaimer</strong> I’m far from being a statistician (Remember I’m just and old geek who forgot how to code), so the following text could be somewhat incorrect.</p>
 </blockquote>
 <p>Recently at <a href="https://labsin.org">LABSIN</a>, we were exposed to a dataset containing information about eye surgeries. The same technique was applied to a number of patients. However the dataset was not the result of a controlled experiment. In other words, there was no control over the different random variables in the dataset (lens type, Gender, age, etc). Despite this unusual situation (from somebody coming from computer science), We were asked about whether it was possible to say something beyond the observed results.</p>
 <p>In particular there was a categorical variable with only two possible outcome that showed a very unusual proportion according to state of the art. We wanted to do some inference: Were these results significant or we were fooled by the data? Also important it was to estimate the variability or precision of the proportion.</p>
 <div id="a-slightly-more-formal-problem-definition" class="section level2">
 <h2>A (slightly more) Formal Problem definition</h2>
 <p>There is one variable <span class="math inline">\(X\)</span> with two possible outcomes <span class="math inline">\(X \in \{0,1\}\)</span>. And after sampling <span class="math inline">\(n\)</span> from the population, we found that <span class="math inline">\(p\)</span> of the times <span class="math inline">\(X=1\)</span></p>
-<p>We have one observation of <span class="math inline">\(p\)</span>, as the result of carrying out a single sample of data We now wish to infer about the future. We would like to know how reliable our observation of <span class="math inline">\(p\)</span> is without further sampling.</p>
+<p>We have one observation of <span class="math inline">\(p\)</span>, as the result of carrying out a single sample of data. We now wish to infer about the future. We would like to know how reliable our observation of <span class="math inline">\(p\)</span> is without further sampling.</p>
 <div id="binomial-model" class="section level3">
 <h3>Binomial model</h3>
 <p>The problem can be modeled using a Binomial distribution. The <a href="https://stats.libretexts.org/Bookshelves/Introductory_Statistics/Book%3A_Introductory_Statistics_(OpenStax)/04%3A_Discrete_Random_Variables/4.04%3A_Binomial_Distribution">binomial distribution</a> is frequently used to model the number of successes (<span class="math inline">\(p\)</span>) in a sample of size <span class="math inline">\(n\)</span> drawn with replacement from a population of size <span class="math inline">\(N\)</span>. In other words, it can be thought of as simply the probability of a SUCCESS or FAILURE outcome in an experiment that is repeated multiple times. In our case, we are going to consider each eye surgery as an independent experiment.</p>
-<p>So for our particular data we can say that <em>From 45 observed surgeries only 5 show an outcome=0 and the rest outcome=1</em>.</p>
+<p>So for our particular sample we can say that <em>From 45 observed surgeries only 5 show an outcome=0 and the rest outcome=1</em>.</p>
 <p>Can we get an idea of the variability of such proportion?</p>
 </div>
 </div>
@@ -151,8 +151,8 @@ prop.test(p,n,expected_p,correct = FALSE, alternative = &quot;two.sided&quot;)</
 ## sample estimates:
 ##         p 
 ## 0.8888889</code></pre>
-<p>So according to the one-proportion <span class="math inline">\(z\)</span>-test test results we can say that surgeries observing outcome 1 will be between 76% and 95% of the times (with 95% confidence level) In other words, if someone repeats this process (i.e. it takes another sample from the population of eyes surgeries using the same technique), there will be 95% of chance that 75 to 96 percent of the surgeries have outcome=1.</p>
-<p>The <span class="math inline">\(z\)</span>-test for proportions provides us not only with information about confidence interval but also let us to test different hypothesis. For instance, in the above example we are testing that on average the outcome will be observed 10% of the times. So the null hypothesis is <span class="math inline">\(H_{0}=0.1\)</span> and the alternative hypothesis is <span class="math inline">\(H_{A}!=0.1\)</span>. According to z test p-value can reject the null hypothesis. In other words, if someone else samples another eye surgeries using the same technique, there is 95% chance of not observing the outcome 10% of the time.</p>
+<p>So according to the one-proportion <span class="math inline">\(z\)</span>-test results, we can say that surgeries observing an outcome=1 will be between 76% and 95% of the times (with 95% confidence level) In other words, if someone repeats this process (i.e. it takes another sample from the population of eyes surgeries using the same technique), there will be 95% of chance that 75 to 96 percent of the surgeries have outcome=1.</p>
+<p>The <span class="math inline">\(z\)</span>-test for proportions provides us not only with information about confidence interval but also let us to test different hypothesis. For instance, in the above example we are testing that on average the outcome will be observed 10% of the times. So the null hypothesis is <span class="math inline">\(H_{0}=0.1\)</span> and the alternative hypothesis is <span class="math inline">\(H_{A}!=0.1\)</span>. According to z-test p-value we can reject the null hypothesis. In other words, if someone else samples another eye surgeries using the same technique, there is 95% chance of not observing the outcome 10% of the time.</p>
 <p>Notice that most of the time we would check if there were 30 data points or more, but for a proportion, we do something slightly different. When data is binary, like we have here, the central limit theorem kicks in slower than usual. The standard thing to check is whether:</p>
 <p><span class="math display">\[n.(p/π)&gt;5 \]</span>
 <span class="math display">\[n.(1−p/n)&gt;5\]</span>

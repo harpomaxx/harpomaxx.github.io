@@ -5,15 +5,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="cross-validation,dimensional reduction,reproducible Research,resampling"><meta name="description" content="From time to time you will need to compare the distribution of two datasets. There are plenty of information about this topic in statistics books and all over the Internet. In this post I discuss three very practical approaches coming from different perspectives. [3.5 min read]"><meta property="og:title" content="Three Common Ways for Comparing Two Dataset Distributions" />
-<meta property="og:description" content="From time to time you will need to compare the distribution of two datasets. There are plenty of information about this topic in statistics books and all over the Internet. In this post I discuss three very practical approaches coming from different perspectives. [3.5 min read]" />
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="cross-validation,dimensional reduction,reproducible Research,resampling"><meta name="description" content="From time to time you will need to compare the distribution of two datasets. There are plenty of information about this topic in statistics books and all over the Internet. In this post I discuss three very practical approaches coming from different perspectives. [3.5 min read](updated 01/03/2021)"><meta property="og:title" content="Three Common Ways for Comparing Two Dataset Distributions" />
+<meta property="og:description" content="From time to time you will need to compare the distribution of two datasets. There are plenty of information about this topic in statistics books and all over the Internet. In this post I discuss three very practical approaches coming from different perspectives. [3.5 min read](updated 01/03/2021)" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://harpomaxx.github.io/post/comparing-two-sample-distribution/" />
 <meta property="article:published_time" content="2020-11-16T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-11-16T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Three Common Ways for Comparing Two Dataset Distributions"/>
-<meta name="twitter:description" content="From time to time you will need to compare the distribution of two datasets. There are plenty of information about this topic in statistics books and all over the Internet. In this post I discuss three very practical approaches coming from different perspectives. [3.5 min read]"/>
+<meta name="twitter:description" content="From time to time you will need to compare the distribution of two datasets. There are plenty of information about this topic in statistics books and all over the Internet. In this post I discuss three very practical approaches coming from different perspectives. [3.5 min read](updated 01/03/2021)"/>
 <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
@@ -127,13 +127,50 @@ Figure 1. A 2D projection of two different datasets considering the first 2 prin
 <p>When projecting many predictors into two dimensions such as the case of PCA, intricate predictor relationships could mask regions within the predictor space where the model will inadequately predict new samples. As an alternative you can try the algorithmic described by <a href="https://web.stanford.edu/~hastie/ElemStatLearn/">Hastie et al.</a> to get more detailed information about the similarities between two datasets.
 The general idea is to create a new dataset randomly permuting the predictors from the training set and then, row-wise concatenate to the original dataset set labeling original and permuted samples. You should check categorical variables was not permuted with a numerical one. Also is a good idea to apply some sort of normalization to the dataset before permuting the variables. Then, a classification model is run on the resulting dataset to predict the probability of new data being in the class of the original set. The benefit of this algorithmic approach is that easy to obtain an error number between the two datasets considered.</p>
 <figure>
-<img src="/post/2020-11-17-comparing-two-sample-distribution.en_files/hastie-algorithm.png" alt="sampling" width="100%"/>
+<img src="/post/2020-11-17-comparing-two-sample-distribution.en_files/hastie-algorithm.png" alt="sampling" width="80%"/>
 <figcaption>
 <h6>
 Figure 2. Pseudo code of the algorithm for building a model to get probability of a new data point is being similar of a given dataset. Taken from Max Khun’s Applied Predictive modeling book
 </h6>
 </figcaption>
 </figure>
+<p>Below is a simple <code>R</code> implementation I provide you as-is 😉</p>
+<pre><code>library(randomForest)
+library(tidyr)
+library(dplyr)
+
+efron_simil&lt;-function(train,prec_len){
+  train&lt;-train %&gt;% select(1:prec_len)
+  predictor_order&lt;-sample(1:prec_len,prec_len)
+  train_permuted&lt;-train[,predictor_order]
+  names(train_permuted)&lt;-names(train)
+  train_permuted$dataset&lt;- &quot;random&quot;
+  train$dataset&lt;- &quot;original&quot;
+  train&lt;-rbind(train_permuted,train)
+  train_model&lt;-randomForest::randomForest(x=train[,1:10],
+  y=as.factor(train$dataset))
+}
+
+calculate_efron_simil &lt;- function(df_train, df_test,class) {
+  results &lt;- list()
+  for (i in 1:25) {
+    train &lt;- df_train[[i]]
+    test &lt;- df_test[[i]] 
+    model &lt;- efron_simil(train,ncol(train %&gt;% select(-class)))
+    predictions_prob &lt;- predict(model, test, type = &quot;prob&quot;)
+    predictions &lt;- ifelse(predictions_prob[,2]&gt;0.5,&quot;random&quot;,&quot;original&quot;)
+    results &lt;-
+      rbind(
+        results,
+        table(predictions) %&gt;% as.data.frame() %&gt;% 
+          tibble::add_column(repetition =   i)
+      )
+  }
+  results %&gt;% tidyr::pivot_wider(names_from = predictions, 
+  values_from = Freq) %&gt;%
+    mutate(err = 1-(original / (original + random))) %&gt;% select(err) %&gt;%
+    mutate(mean = mean(err), sd = sd(err))
+}</code></pre>
 </div>
 
 	</div>

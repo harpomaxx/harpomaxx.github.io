@@ -5,15 +5,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="proportional data,reproducible Research"><meta name="description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework. [5min read]"><meta property="og:title" content="Inference with Observational Data" />
-<meta property="og:description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework. [5min read]" />
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="proportional data,reproducible Research"><meta name="description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework. [6min read]"><meta property="og:title" content="Inference with Observational Data" />
+<meta property="og:description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework. [6min read]" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://harpomaxx.github.io/post/inference-observational/" />
 <meta property="article:published_time" content="2021-03-29T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-03-29T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Inference with Observational Data"/>
-<meta name="twitter:description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework. [5min read]"/>
+<meta name="twitter:description" content="Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theorical framework. [6min read]"/>
 <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
@@ -21,7 +21,7 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
 	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
 	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Inference with Observational Data | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/github-gist.min.css">
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Inference with Observational Data | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/atelier-cave-light.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
 </head>
@@ -100,8 +100,8 @@
 <blockquote>
 <p><strong>Disclaimer</strong> I’m far from being a statistician (Remember I’m just and old geek who forgot how to code), so the following text could be somewhat incorrect.</p>
 </blockquote>
-<p>Recently at <a href="https://labsin.org">LABSIN</a>, we were exposed to a dataset containing information about eye surgeries. The same technique was applied to a number of patients. However the dataset was not the result of a controlled experiment. In other words, there was no control over the different random variables in the dataset (lens type, Gender, age, etc). Despite this unusual situation (from somebody coming from computer science), We were asked about whether it was possible to say something beyond the observed results.</p>
-<p>In particular there was a categorical variable with only two possible outcome that showed a very unusual proportion according to state of the art. We wanted to do some inference: Were these results significant or we were fooled by the data? Also important it was to estimate the variability or precision of the proportion.</p>
+<p>Recently at <a href="https://labsin.org">LABSIN</a>, we were exposed to a dataset containing information about eye surgeries. The same technique was applied to a number of patients. However the dataset was not the result of a controlled experiment. In other words, there was no control over the different random variables in the dataset (lens type, Gender, age, etc). In particular there was a categorical variable with only two possible outcome that showed a very unusual proportion according to state of the art. We wanted to do some inference: Were these results significant or we were fooled by the data? Also important it was to estimate the variability or precision of the proportion.</p>
+<p>We were asked about whether it was possible to say something beyond the observed results.</p>
 <div id="a-slightly-more-formal-problem-definition" class="section level2">
 <h2>A (slightly more) Formal Problem definition</h2>
 <p>There is one variable <span class="math inline">\(X\)</span> with two possible outcomes <span class="math inline">\(X \in \{0,1\}\)</span>. And after sampling <span class="math inline">\(n\)</span> from the population, we found that <span class="math inline">\(p\)</span> of the times <span class="math inline">\(X=1\)</span></p>
@@ -266,7 +266,15 @@ it is still possible to do inference from observational data. If we apply a bino
 			
 			
 			
+			
+			
+			
+			
+			
+			
 			<a href="https://harpomaxx.github.io/categories/statistics/"> statistics </a>
+			
+			
 			
 			
 			
@@ -360,6 +368,10 @@ it is still possible to do inference from observational data. If we apply a bino
 			
 			
 			<a href="https://harpomaxx.github.io/tags/proportional-data/"> proportional-data </a>
+			
+			
+			
+			
 			
 			
 			

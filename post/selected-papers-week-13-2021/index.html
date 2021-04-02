@@ -5,15 +5,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="author" content="Harpo Maxx"><meta name="keywords" content="boost,dimensional reduction"><meta name="description" content="UMAP, SHAP Values among other links to interesting stuff I run into."><meta property="og:title" content="Tools of the Week." />
-<meta property="og:description" content="UMAP, SHAP Values among other links to interesting stuff I run into." />
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="hugo,vitae,theme,static"><meta name="description" content="Brief comments about 3 Papers dealing with Generalization and Autodifferentiation  [2min read]"><meta property="og:title" content="Selected Papers for the Week 13/2021" />
+<meta property="og:description" content="Brief comments about 3 Papers dealing with Generalization and Autodifferentiation  [2min read]" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://harpomaxx.github.io/post/tools-of-the-week/" />
-<meta property="article:published_time" content="2020-07-26T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-07-26T00:00:00+00:00" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/selected-papers-week-13-2021/" />
+<meta property="article:published_time" content="2021-04-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-04-02T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Tools of the Week."/>
-<meta name="twitter:description" content="UMAP, SHAP Values among other links to interesting stuff I run into."/>
+<meta name="twitter:title" content="Selected Papers for the Week 13/2021"/>
+<meta name="twitter:description" content="Brief comments about 3 Papers dealing with Generalization and Autodifferentiation  [2min read]"/>
 <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
@@ -21,7 +21,7 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
 	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
 	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Tools of the Week. | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/atelier-cave-light.min.css">
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Selected Papers for the Week 13/2021 | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/atelier-cave-light.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
 </head>
@@ -67,14 +67,14 @@
 		<div class="meta">
 			
 			<div class="date">
-				<span class="day">26</span>
-				<span class="rest">Jul 2020</span>
+				<span class="day">02</span>
+				<span class="rest">Apr 2021</span>
 			</div>
 			
 		</div>
 		
 		<div class="matter">
-			<h1 class="title">Tools of the Week.</h1>
+			<h1 class="title">Selected Papers for the Week 13/2021</h1>
 		</div>
 	</div>
 	<div class="author">
@@ -82,27 +82,29 @@
 	
 		<p>
 		
-		by Harpo Maxx
+		by <a href="https://twitter.com/harpomaxx">Harpo MAxx</a>
 		
 	
+	
+		(2 min read)
 	
 		</p>
 	
 	</div>
 
 	<div class="markdown">
-		<p>This week during  my usual social network journey, I ran into these interesting tools:</p>
-<ol>
+		<p>This week, during my twitter journey, I found three very interesting papers I want to save for future referece. So I decided to do a little post about them.</p>
+<ul>
 <li>
-<p>An Medium article about <a href="https://towardsdatascience.com/how-exactly-umap-works-13e3040e1668">UMAP</a>, an algorithm for dimensionality reduction similar to PCA, but supporting no-linear relations. Unlike T-SNE, UMAP can preseve the logical structure of the data. Packages available for Python and R. Link to the original research paper <a href="https://arxiv.org/abs/1802.03426">here</a>.</p>
+<p><a href="https://cacm.acm.org/magazines/2021/3/250713-understanding-deep-learning-still-requires-rethinking-generalization/fulltext">Understanding Deep Learning (Still) Requires Rethinking Generalization.</a>. THere is a huge interesting about the generalization capabilities of neural networks. The fact is that we used to think that a neural network predicting correctly the 100% of the training data wont generalize very well on unseen examples. However, it seems not to be the case. The more parameters a Neural network has, the better its generalize to new examples. This behavior is related with the <a href="https://harpomaxx.github.io/post/double-descent-in-deep-learning/">double descent</a> situation observer some time ago.</p>
 </li>
 <li>
-<p><a href="https://catboost.ai">Catboost</a>, a gradient boost decision tree algorithm (similar to XGBoost) claiming a good performance with default parameters. I think it could be useful for a first attempt when dealing with tabular data. My personal current approach is the good ol' <a href="https://link.springer.com/article/10.1023/A:1010933404324">Random Forest (Breiman, 2001)</a>. Link to the research papers <a href="https://catboost.ai/docs/concepts/educational-materials-papers.html">here</a>.</p>
+<p><a href="https://arxiv.org/pdf/1502.05767.pdf?">Automatic Differentiation in Machine Learning: a Survey</a>. If you are in the Machine Learning world, You probably have hear about <a href="https://en.wikipedia.org/wiki/Automatic_differentiation">Automatic differentiation</a>(AD). There is a big hype about it. This survey explain in a very detailed way the key concepts behind AD and the differences with manual and numerical differentiation.</p>
 </li>
 <li>
-<p>Another Medium article about <a href="https://towardsdatascience.com/explain-your-model-with-the-shap-values-bc36aac4de3d">SHAP Values</a>, an algorithm for dealing with the black-box nature of several machine learning algorithm by analyzing the contributions of features in classification problems. A link to an article with a general description of the method <a href="https://journal.r-project.org/archive/2018/RJ-2018-072/RJ-2018-072.pdf">here</a></p>
+<p><a href="http://statweb.stanford.edu/~tibs/ftp/NCV.pdf">Cross-validation: what does it estimate and how well does it do it?</a>. This week in twitter <a href="https://statweb.stanford.edu/~tibs/">Rob Tibshinari</a> has published the draft of this very interesting paper discussing the estimation capabilities of Cross-validation methods. This article proves that  Cross-validation estimates the average prediction error of models fit on other unseen training sets drawn from the same population. This seems to be related with the concepts of <a href="https://stats.stackexchange.com/questions/86955/the-meaning-of-conditional-test-error-vs-expected-test-error-in-cross-validatio"><em>Expected</em> and <em>Conditional</em></a> generalization errors discussed in In the <a href="https://web.stanford.edu/~hastie/ElemStatLearn/">ESL</a> book.</p>
 </li>
-</ol>
+</ul>
 
 	</div>
 	
@@ -123,7 +125,6 @@
 			
 			
 			
-			<a href="https://harpomaxx.github.io/categories/algorithms/"> algorithms </a>
 			
 			
 			
@@ -170,6 +171,7 @@
 			
 			
 			
+			<a href="https://harpomaxx.github.io/categories/papers/"> papers </a>
 			
 			
 			
@@ -205,115 +207,6 @@
 	
 		
 	
-	
-	
-	<div class="tags">
-		<div class="taxosfloating_left">
-			<p>Tags</p>
-		</div>
-		<div class="termsfloating_right">
-			<p>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			<a href="https://harpomaxx.github.io/tags/boost/"> boost </a>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			<a href="https://harpomaxx.github.io/tags/dimensional-reduction/"> dimensional-reduction </a>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			</p>
-		</div>
-		<div class="clearit"></div>
-		
-		
-		
 		
 		
 	</div></div>

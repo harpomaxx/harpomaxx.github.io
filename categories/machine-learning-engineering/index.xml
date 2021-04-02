@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>machine learning engineering on Computer Science Notes</title>
+		<link>https://harpomaxx.github.io/categories/machine-learning-engineering/</link>
+		<description>Recent content in machine learning engineering on harpomaxx.github.io</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
+		<lastBuildDate>Thu, 01 Apr 2021 00:00:00 +0000</lastBuildDate>
+		
+		<atom:link href="https://harpomaxx.github.io/categories/machine-learning-engineering/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>deploying a machine learning model with plumber</title>
+			<link>https://harpomaxx.github.io/post/deploying-ml-model/</link>
+			<pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/deploying-ml-model/</guid>
+			<description>
+				
+				  Train a simple model library(randomForest) ## randomForest 4.6-14 ## Type rfNews() to see new features/changes/bug fixes. data(&#34;iris&#34;) data_size&lt;-nrow(iris) data_idx&lt;-sample(data_siz...
+				
+			</description>
+		</item>
+		
+	</channel>
+</rss>

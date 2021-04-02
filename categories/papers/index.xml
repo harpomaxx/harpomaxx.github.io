@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>papers on Computer Science Notes</title>
+		<link>https://harpomaxx.github.io/categories/papers/</link>
+		<description>Recent content in papers on harpomaxx.github.io</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
+		<lastBuildDate>Fri, 02 Apr 2021 00:00:00 +0000</lastBuildDate>
+		
+		<atom:link href="https://harpomaxx.github.io/categories/papers/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Selected Papers for the Week 13/2021</title>
+			<link>https://harpomaxx.github.io/post/selected-papers-week-13-2021/</link>
+			<pubDate>Fri, 02 Apr 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/selected-papers-week-13-2021/</guid>
+			<description>
+				
+				Brief comments about 3 Papers dealing with Generalization and Autodifferentiation  [2min read]
+				
+			</description>
+		</item>
+		
+	</channel>
+</rss>

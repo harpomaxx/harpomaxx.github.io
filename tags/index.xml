@@ -7,10 +7,34 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Mon, 14 Dec 2020 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Mon, 29 Mar 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>proportional data</title>
+			<link>https://harpomaxx.github.io/tags/proportional-data/</link>
+			<pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/proportional-data/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>reproducible Research</title>
+			<link>https://harpomaxx.github.io/tags/reproducible-research/</link>
+			<pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/reproducible-research/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>lasso</title>
 			<link>https://harpomaxx.github.io/tags/lasso/</link>
@@ -53,18 +77,6 @@
 			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/dimensional-reduction/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>reproducible Research</title>
-			<link>https://harpomaxx.github.io/tags/reproducible-research/</link>
-			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/reproducible-research/</guid>
 			<description>
 				
 				

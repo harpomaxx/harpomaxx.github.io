@@ -7,10 +7,34 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Thu, 04 Mar 2021 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Fri, 02 Apr 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/post/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Selected Papers for the Week 13/2021</title>
+			<link>https://harpomaxx.github.io/post/selected-papers-week-13-2021/</link>
+			<pubDate>Fri, 02 Apr 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/selected-papers-week-13-2021/</guid>
+			<description>
+				
+				Brief comments about 3 Papers dealing with Generalization and Autodifferentiation  [2min read]
+				
+			</description>
+		</item>
+		<item>
+			<title>Inference with Observational Data</title>
+			<link>https://harpomaxx.github.io/post/inference-observational/</link>
+			<pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/inference-observational/</guid>
+			<description>
+				
+				Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics come to help us with its strong theoretical framework. [6min read]
+				
+			</description>
+		</item>
 		<item>
 			<title>Machine Learning in Production</title>
 			<link>https://harpomaxx.github.io/post/machine-learning-in-production/</link>

@@ -19,7 +19,7 @@
 			<guid>https://harpomaxx.github.io/post/deploying-ml-model/</guid>
 			<description>
 				
-				  Train a simple model library(randomForest) ## randomForest 4.6-14 ## Type rfNews() to see new features/changes/bug fixes. data(&#34;iris&#34;) data_size&lt;-nrow(iris) data_idx&lt;-sample(data_siz...
+				  Train a simple model library(randomForest) ## randomForest 4.6-14 ## Type rfNews() to see new features/changes/bug fixes. data(&#34;iris&#34;) data_size &lt;- nrow(iris) data_idx &lt;- sample(data...
 				
 			</description>
 		</item>

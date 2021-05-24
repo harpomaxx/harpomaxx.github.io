@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.80.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="cross-validation"><meta name="description" content="The processesesand the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]"><meta property="og:title" content="Thoughts about differences in ML evaluation for Academia and Industry" />
+<meta property="og:description" content="The processesesand the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/" />
+<meta property="article:published_time" content="2021-05-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-14T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Thoughts about differences in ML evaluation for Academia and Industry"/>
+<meta name="twitter:description" content="The processesesand the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Thoughts about differences in ML evaluation for Academia and Industry | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/atelier-cave-light.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">14</span>
+				<span class="rest">May 2021</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Thoughts about differences in ML evaluation for Academia and Industry</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://twitter.com/harpomaxx">Harpo MAxx</a>
+		
+	
+	
+		(4 min read)
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		
+<script src="https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p>How different are the strategies for training and testing a Machine Learning (ML) model for <strong>Academia/Science</strong> vs. <strong>Industry</strong>? Recently I found that the concepts behind the Expected generalization error (<span class="math inline">\(Err\)</span>) and Conditional (generalization error (<span class="math inline">\(Err_{xy}\)</span>) discussed by <a href="https://statweb.stanford.edu/~tibs/">Tibshirani</a> and <a href="">Hastie</a> in the <a href="https://web.stanford.edu/~hastie/ElemStatLearn/">ESL</a> could provide us with a possible explanation about the differences between Academia and Industry when training and evaluating a machine learning model.</p>
+<p>As mentioned in the <a href="https://web.stanford.edu/~hastie/ElemStatLearn/">ESL</a></p>
+<blockquote>
+<p><span class="math inline">\(Err\)</span> is the average generalization error for a model trained with differente datasets coming from the same distribution.</p>
+<p><span class="math inline">\(Err_{xy}\)</span> is the generalization error for a model trained with a particular dataset.</p>
+</blockquote>
+<p><strong>Academia/Science</strong> is usually more interested in knowing how a model would behave on several scenarios other than the one observed. In Science, we are normally interested in knowing how well a particular algorithm would generalize when other datasets are used. When a new algorithm is developed, we want to compare this new algorithm against the state of the art in all the possible scenarios. That is why we use Cross Validation (in all its flavors), bootstrapping, etc. All these resampling techniques provides us with the expected error <span class="math inline">\(Err\)</span>. In this case, the contribution is the proposed algorithm! an the idea is that everyone use it later with his own dataset.</p>
+<p>The <strong>Industry</strong>, on the other hand, we are interested on how a algorithm performs on the specific problem we want to solve. From the available data, we will try to obtain the best possible result for a given algorithm. We care about the problem and how to solved it in the better possibly way with respecting the constrains we have (money, time, etc.). Here, the contribution is a working product. We are not interested in proving that it is the best algorithm.</p>
+<p>That is consistent with the strategy proposed by <a href="https://en.wikipedia.org/wiki/Andrew_Ng">Andrew Ng</a> in his book <a href="https://www.goodreads.com/en/book/show/30741739-machine-learning-yearning">Machine Learning Yearning</a> does not use Crossvalidation to adjust the model. The model is always trained with the same data!. According to Ng, training should done with data from a different distribution to validation and testing (dev and test sets according to Ng). The workflow consists of getting more data (if available) and improving the quality of the labels (adjusting data and retraining until we have an acceptable quality). This is what Ng calls a <strong>data-centric</strong> approach. But the model remains fixed, after a reasonable parameter tuning all the focus in put on improving data quality. I found this workflow is more related with the <span class="math inline">\(Err_{xy}\)</span>. For a particular dataset, what will the the estimated generalization error? That is the question we want to resolve in the Industry.</p>
+<p>Please keep in mind that previous claims do not mean Industry is not interested in the <span class="math inline">\(Err\)</span>. In the first stage of a project, several algorithm could be considered and evaluated using some resampling strategy. But, the the general thought in Industry is that given a good dataset, almost all algorithms work reasonably well 😆.</p>
+<p><img src="https://imgs.xkcd.com/comics/academia_vs_business.png" /></p>
+<p>This practical approach followed by the Industry, could be explained by the difficulty of comparing the performance of different algorithms. The truth is that comparing two algorithm is not that easy. It is simple to visualize differences for several algorithms on a given metric, however if we want to provide some sort of statistical arguments, things turn ugly. If you want to confirm the statistical significant of your results there is no widely accepted methodology for resampling techniques. In resampling techniques such as (Cross validation, Bootstraping, MonteCarlo Cross Validation, etc.), we will have repeated examples. Then, the independence assumption does not hold and most of the statistical framework used wont be adequate 😔 .</p>
+<p>For years I have been using the <a href="https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test">man-withney U test</a> for comparing the performance of two algorithms and unfortunately it is not the best option. The test assumes independence between samples and as I said before, it is not the case for resampling techniques.</p>
+<p>Moreover, the problem of resampling techniques go beyond comparing to algorithms. For a given model, we would like to have an idea of the range of the possible error values the resulting model would obtain in other scenarios (<span class="math inline">\(Err\)</span>). In other word, we want to obtain the interval confidence (IC). Unfortunately, obtaining such intervals suffer from the same problems mentioned when statistical comparing two algorithms.</p>
+<p>The good news are that a lot of very intelligent people is working to provide a solution to the issue. These articles are just a glimpse of the research done on this topic. I strongly recommend reading the first one <a href="(https://sci2s.ugr.es/keel/pdf/algorithm/articulo/dietterich1998.pdf)">(Diettrich 1997)</a>. The article is one of the first in discussing the problem of resampling techniques for estimating the true generalization error.</p>
+<div id="two-classical-articles" class="section level3">
+<h3>Two classical articles:</h3>
+<p><a href="https://sci2s.ugr.es/keel/pdf/algorithm/articulo/dietterich1998.pdf">[1]</a> Approximate statistical tests for comparing supervised classification learning algorithms, (Diettrich 1997)</p>
+<p><a href="https://www.researchgate.net/publication/227049463_Inference_for_the_Generalization_Error">[2]</a> Inference for the Generalization Error, (Bengio 2003)</p>
+</div>
+<div id="more-recent-works" class="section level3">
+<h3>More recent works:</h3>
+<p><a href="https://papers.nips.cc/paper/2020/file/bce9abf229ffd7e570818476ee5d7dde-Paper.pdf">[3]</a> Cross-validation Confidence Intervals for Test Error. NIPS 2020 (Pierre Bayle, 2020)</p>
+<p>I have already mentioned this paper, and I think it worth reading even it is a preprint.</p>
+<p><a href="http://statweb.stanford.edu/~tibs/ftp/NCV.pdf">[4]</a> Cross-validation: what does it estimate and how well does it do it? <em>Preprint</em> (Tibshirani 2021)</p>
+<p>One think is clear, Industry and Academia have different approaches for building ML models. That’s not bad at all. It have always been the same. It seems logical since they pursue different objectives. However, I’m pretty sure Industry takes a look to the things and methods done in Academia, but I’m afraid the opposite is not always true. I recognize it is difficult and not always possible but this is something we try to do at <a href="https://labsin.org">LABSIN</a>.</p>
+</div>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/experimental-design/"> experimental-design </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/papers/"> papers </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/cross-validation/"> cross-validation </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+</footer>
+
+</body>
+</html>

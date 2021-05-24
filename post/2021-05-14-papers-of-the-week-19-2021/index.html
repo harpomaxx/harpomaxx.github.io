@@ -5,18 +5,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="keywords" content="hugo,vitae,theme,static"><meta name="description" content=""><meta property="og:title" content="" />
-<meta property="og:description" content="How different are the strategies for training/testing a Machine Learning (ML) model for Academia/Science and Industry? Recently, I realized that the concepts behind the Expected generalization error (\(Err\)) and Conditional generalization error (\(Err_{xy}\)) discussed by Tibshirani and Hastie in ESL could provide us with a possible explanation about the differences approaches followed by Academia and Industry.
-As mentioned in the ESL:
-\(Err\) is the average generalization error for a model trained with different datasets coming from the same distribution." />
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="cross-validation,tibshirani,hastie"><meta name="description" content="The processesesand the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]"><meta property="og:title" content="Thoughts about differences in ML evaluation for Academia and Industry" />
+<meta property="og:description" content="The processesesand the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/" />
-
+<meta property="article:published_time" content="2021-05-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-14T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="How different are the strategies for training/testing a Machine Learning (ML) model for Academia/Science and Industry? Recently, I realized that the concepts behind the Expected generalization error (\(Err\)) and Conditional generalization error (\(Err_{xy}\)) discussed by Tibshirani and Hastie in ESL could provide us with a possible explanation about the differences approaches followed by Academia and Industry.
-As mentioned in the ESL:
-\(Err\) is the average generalization error for a model trained with different datasets coming from the same distribution."/>
+<meta name="twitter:title" content="Thoughts about differences in ML evaluation for Academia and Industry"/>
+<meta name="twitter:description" content="The processesesand the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]"/>
 <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
@@ -24,7 +21,7 @@ As mentioned in the ESL:
 	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
 	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
 	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title> | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/atelier-cave-light.min.css">
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Thoughts about differences in ML evaluation for Academia and Industry | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/atelier-cave-light.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
 </head>
@@ -67,13 +64,29 @@ As mentioned in the ESL:
 	
 	<div class="post-header">
 	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">14</span>
+				<span class="rest">May 2021</span>
+			</div>
+			
+		</div>
+		
 		<div class="matter">
-			<h1 class="title"></h1>
+			<h1 class="title">Thoughts about differences in ML evaluation for Academia and Industry</h1>
 		</div>
 	</div>
 	<div class="author">
 	
 	
+		<p>
+		
+		by <a href="https://twitter.com/harpomaxx">Harpo MAxx</a>
+		
+	
+	
+		(4 min read)
 	
 		</p>
 	
@@ -84,7 +97,6 @@ As mentioned in the ESL:
 <script src="https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/index.en_files/header-attrs/header-attrs.js"></script>
 
 
-<hr />
 <p>How different are the strategies for training/testing a Machine Learning (ML) model for <strong>Academia/Science</strong> and <strong>Industry</strong>? Recently, I realized that the concepts behind the Expected generalization error (<span class="math inline">\(Err\)</span>) and Conditional generalization error (<span class="math inline">\(Err_{xy}\)</span>) discussed by <a href="https://statweb.stanford.edu/~tibs/">Tibshirani</a> and <a href="https://web.stanford.edu/~hastie/">Hastie</a> in <a href="https://web.stanford.edu/~hastie/ElemStatLearn/">ESL</a> could provide us with a possible explanation about the differences approaches followed by Academia and Industry.</p>
 <p>As mentioned in the <a href="https://web.stanford.edu/~hastie/ElemStatLearn/">ESL</a>:</p>
 <ol style="list-style-type: lower-roman">
@@ -122,10 +134,228 @@ As mentioned in the ESL:
 	
 	
 	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/experimental-design/"> experimental-design </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/papers/"> papers </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
 		
 	
 		
 	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/cross-validation/"> cross-validation </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/hastie/"> hastie </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/tibshirani/"> tibshirani </a>
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
 		
 		
 	</div></div>

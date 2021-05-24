@@ -7,10 +7,46 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Mon, 29 Mar 2021 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Fri, 14 May 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>cross-validation</title>
+			<link>https://harpomaxx.github.io/tags/cross-validation/</link>
+			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/cross-validation/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>hastie</title>
+			<link>https://harpomaxx.github.io/tags/hastie/</link>
+			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/hastie/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>tibshirani</title>
+			<link>https://harpomaxx.github.io/tags/tibshirani/</link>
+			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/tibshirani/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>proportional data</title>
 			<link>https://harpomaxx.github.io/tags/proportional-data/</link>
@@ -53,18 +89,6 @@
 			<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/random-forest/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>cross-validation</title>
-			<link>https://harpomaxx.github.io/tags/cross-validation/</link>
-			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/cross-validation/</guid>
 			<description>
 				
 				

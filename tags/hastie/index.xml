@@ -23,6 +23,30 @@
 				
 			</description>
 		</item>
+		<item>
+			<title>Feature Selection Strategies</title>
+			<link>https://harpomaxx.github.io/post/feature-selection-strategies/</link>
+			<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/feature-selection-strategies/</guid>
+			<description>
+				
+				Feature selection is a topic any machine learning practicioner should master. There are plenty strategies for performing feature selection. Some more useful than others. Some with more limitation than benefits.  Here, I mention the most common approaches for feature selection using information collected from articles, books and research papers. [5 min read]
+				
+			</description>
+		</item>
+		<item>
+			<title>Three Common Ways for Comparing Two Dataset Distributions</title>
+			<link>https://harpomaxx.github.io/post/comparing-two-sample-distribution/</link>
+			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/comparing-two-sample-distribution/</guid>
+			<description>
+				
+				From time to time you will need to compare the distribution of two datasets. There are plenty of information about this topic in statistics books and all over the Internet. In this post I discuss three very practical approaches coming from different perspectives. [3.5 min read](updated 04/01/2021)
+				
+			</description>
+		</item>
 		
 	</channel>
 </rss>

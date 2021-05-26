@@ -105,10 +105,10 @@
 </ol>
 <p><strong>Academia/Science</strong> is usually more interested in knowing how a model would behave on other scenarios than the observed. In Academia, we are normally interested in knowing how well a particular algorithm would generalize when other datasets are used. When a new algorithm is developed, we want to compare this new algorithm against the state of the art in all the possible scenarios. That is why we use resampling techniques such as Cross Validation (in all its flavors), bootstrapping, etc. All these resampling techniques provides us with the expected error <span class="math inline">\(Err\)</span>. In this case, the contribution will be the proposed algorithm and the idea is that everyone use it later with his own dataset.</p>
 <p>The <strong>Industry</strong>, on the other hand, we are interested on how a algorithm performs on the specific problem we want to solve. From the available data, we will try to obtain the best possible result for a given algorithm. Given a particular problem, we aim at solving it in the better possibly way respecting the constrains we have (money, time, etc.). Here, the contribution will be a working product that solve the problem. We are not interested in proving that it is the best algorithm.</p>
-<p>Previous paragraph is consistent with the strategy proposed by <a href="https://en.wikipedia.org/wiki/Andrew_Ng">Andrew Ng</a> in his book <a href="https://www.goodreads.com/en/book/show/30741739-machine-learning-yearning">Machine Learning Yearning</a> where Crossvalidation is not used to adjust the model. The model is always trained with the same data. According to Ng, training should done with data from a different distribution to validation and testing (dev and test sets according to Ng). The workflow consists of getting more data (if available) and improving the quality of the data (adjusting data and retraining until we have an acceptable quality). This is what <a href="https://en.wikipedia.org/wiki/Andrew_Ng">Ng</a> calls a <strong><a href="https://youtu.be/06-AZXmwHjo">data-centric</a></strong> approach. There the model remains <em>fixed</em> and after a reasonable parameter tuning, and all the focus is put on improving data quality. I personally thin that this workflow is more related with the <span class="math inline">\(Err_{xy}\)</span>. For a particular dataset, what will be the estimated generalization error? That is the question we want to resolve in the Industry.</p>
+<p>Previous paragraph is consistent with the strategy proposed by <a href="https://en.wikipedia.org/wiki/Andrew_Ng">Andrew Ng</a> in his book <a href="https://www.goodreads.com/en/book/show/30741739-machine-learning-yearning">Machine Learning Yearning</a> where Crossvalidation is not used to adjust the model. The model is always trained with the same data. According to Ng, training should done with data from a different distribution to validation and testing (dev and test sets according to Ng). The workflow consists of getting more data (if available) and improving the quality of the data (adjusting data and retraining until we have an acceptable quality). This is what <a href="https://en.wikipedia.org/wiki/Andrew_Ng">Ng</a> calls a <a href="https://youtu.be/06-AZXmwHjo"><strong>data-centric</strong></a> approach. There the model remains <em>fixed</em> and after a reasonable parameter tuning, and all the focus is put on improving data quality. I personally thin that this workflow is more related with the <span class="math inline">\(Err_{xy}\)</span>. For a particular dataset, what will be the estimated generalization error? That is the question we want to resolve in the Industry.</p>
 <p>Please keep in mind that previous claims do not mean Industry is not interested in the <span class="math inline">\(Err\)</span>. In the first stage of a project, several algorithms could be considered and evaluated using resampling strategies and analyzing the <span class="math inline">\(Err\)</span> between them. But, to be honest, a general thought in Industry is that given a good dataset, almost all algorithms will work reasonably well 😆.</p>
 <p><img src="https://imgs.xkcd.com/comics/academia_vs_business.png" /></p>
-<p>This practical approach followed by the Industry, could be explained by the difficulty of comparing the performance of different algorithms. The truth is that comparing two algorithm is not that easy. It is simple to visualize differences for several algorithms on a given metric, however if we want to provide some sort of statistical arguments, things turn ugly. If you want to confirm the statistical significant of your results there is no widely accepted methodology when using resampling techniques. In resampling techniques such as (<a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)">K-fold Cross validation</a>, <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">Bootstraping</a>, MonteCarlo Cross Validation, etc.), we will have repeated examples. Then, the independence assumption will not hold and most of the statistical framework used wont be adequate 😔 .</p>
+<p>This practical approach followed by the Industry, could be explained by the difficulty of comparing the performance of different algorithms. The truth is that comparing two algorithm is not that easy. It is simple to visualize differences for several algorithms on a given metric, however if we want to provide some sort of statistical arguments, things turn ugly. If you want to confirm the statistical significant of your results there is no widely accepted methodology when using resampling techniques. In resampling techniques such as (<a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)">K-fold Cross validation</a>, <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">Bootstraping</a>, MonteCarlo Cross Validation, etc.), we will have repeated examples. Then, the independence (between samples) assumption will not hold and most of the statistical frameworks used wont be adequate 😔 .</p>
 <blockquote>
 <h2 id="a-general-thought-in-industry-is-that-given-a-good-dataset-almost-all-algorithms-will-work-reasonably-well" style="color:gray">…a general thought in Industry is that given a good dataset, almost all algorithms will work reasonably well…</h2>
 </blockquote>
@@ -200,6 +200,12 @@
 			<a href="https://harpomaxx.github.io/categories/papers/"> papers </a>
 			
 			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/resampling/"> resampling </a>
 			
 			
 			
@@ -346,7 +352,15 @@
 			
 			
 			
+			
+			
+			
+			
 			<a href="https://harpomaxx.github.io/tags/tibshirani/"> tibshirani </a>
+			
+			
+			
+			
 			
 			
 			

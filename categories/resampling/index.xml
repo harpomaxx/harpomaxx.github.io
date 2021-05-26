@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>resampling on Computer Science Notes</title>
+		<link>https://harpomaxx.github.io/categories/resampling/</link>
+		<description>Recent content in resampling on harpomaxx.github.io</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
+		<lastBuildDate>Fri, 14 May 2021 00:00:00 +0000</lastBuildDate>
+		
+		<atom:link href="https://harpomaxx.github.io/categories/resampling/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Thoughts about differences in ML evaluation for Academia and Industry</title>
+			<link>https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/</link>
+			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/</guid>
+			<description>
+				
+				The processesesand the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]
+				
+			</description>
+		</item>
+		
+	</channel>
+</rss>

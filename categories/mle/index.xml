@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>mle on Computer Science Notes</title>
+		<link>https://harpomaxx.github.io/categories/mle/</link>
+		<description>Recent content in mle on harpomaxx.github.io</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
+		<lastBuildDate>Tue, 29 Jun 2021 00:00:00 +0000</lastBuildDate>
+		
+		<atom:link href="https://harpomaxx.github.io/categories/mle/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Deploying a simple ML model with Plumber 101</title>
+			<link>https://harpomaxx.github.io/post/deploying-ml-model/</link>
+			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/deploying-ml-model/</guid>
+			<description>
+				
+				Sometimes notebooks are not enough and you will need to deploy your machine learning model into company infrastructre. The task involves a lot of Software Ingenieering knowledge, BUT with Plumber package for R you can do the basics with not so much pain 😉. [6 min read]
+				
+			</description>
+		</item>
+		
+	</channel>
+</rss>

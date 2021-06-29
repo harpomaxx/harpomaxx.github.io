@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.80.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="random forest,reproducible Research"><meta name="description" content="Sometimes notebooks are not enough and you will need to deploy your machine learning model into company infrastructre. The task involves a lot of Software Ingenieering knowledge, BUT with Plumber package for R you can do the basics with not so much pain 😉. [6 min read]"><meta property="og:title" content="Deploying a simple ML model with Plumber 101" />
+<meta property="og:description" content="Sometimes notebooks are not enough and you will need to deploy your machine learning model into company infrastructre. The task involves a lot of Software Ingenieering knowledge, BUT with Plumber package for R you can do the basics with not so much pain 😉. [6 min read]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/deploying-ml-model/" />
+<meta property="article:published_time" content="2021-06-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-06-29T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Deploying a simple ML model with Plumber 101"/>
+<meta name="twitter:description" content="Sometimes notebooks are not enough and you will need to deploy your machine learning model into company infrastructre. The task involves a lot of Software Ingenieering knowledge, BUT with Plumber package for R you can do the basics with not so much pain 😉. [6 min read]"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Deploying a simple ML model with Plumber 101 | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">29</span>
+				<span class="rest">Jun 2021</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Deploying a simple ML model with Plumber 101</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://twitter.com/harpomaxx">Harpo MAxx</a>
+		
+	
+	
+		(6 min read)
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		
+<script src="https://harpomaxx.github.io/post/deploying-ml-model/index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p>In <a href="https://harpomaxx.github.io/post/machine-learning-in-production/">a recent post</a>, I have been writing about the different roles in the <strong>Data science</strong> ecosystem. Just a couple of years ago, the data science work consisted in the development of business-oriented solutions. Usually the management would give you access to the data and after doing your ✨ magic ✨, you would provide them with valuable information about the business for making big money 💰💰💰 in the future. (OK, I know it is not that simple. 😉 )</p>
+<p>The fact is that part of the core of the Data Science toolkit is the development of prediction models based on machine learning algorithms. Usual things such as churn prediction, productivity forecasting, sales projections, and a very long etcetera are the objective for machine learning models. The usual data scientist approach for developing such models consisted of using something like <a href="https://colab.research.google.com">google Colab</a>, <a href="https://jupyter.org/">Jupyter notebooks</a> or (if you prefer the <a href="https://www.r-project.org/">rstats</a> environment) <a href="https://rmarkdown.rstudio.com/lesson-10.html">Rstudio notebooks.</a></p>
+<p>The fact is that notebooks are a wonderful tool for almost all the steps in the data science workflow, (Does <a href="https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining">CRISP</a> ring any bells with you?). You can use notebooks during business understanding, data understanding, preparation, and for building and evaluating your models. The problem arises when management asks the infamous questions: <em>How can we use the model if you are not here?</em> This simple question encompasses several technical aspects not usually covered in the data scientist role.</p>
+<blockquote>
+<h2 id="q-how-can-we-use-the-model-if-you-are-not-here-in-many-cases-you-simply-cannot-provide-the-source-code-of-your-notebook." style="color:gray"><em>Q: How can we use the model if you are not here? In many cases you simply cannot provide the source code of your notebook.</em></h2>
+</blockquote>
+<p>A first approach could be to simply provide the source code of your notebook. But no, that is not a suitable solution. A more realistic alternative is to develop a <a href="https://shiny.rstudio.com/">R shiny</a> or python <a href="https://dash.plotly.com/">dash</a> application. There is nothing wrong with that. However, under some scenarios it is necessary to incorporate your model into the toolkit used by the company. In other words, you will need to provide a sort of interface in such a way that someone else could inject new data and obtain the resulting predictions. Today, the most common approach to do it is by using <a href="https://en.wikipedia.org/wiki/Microservices">microservices</a>. There is no established definition about microservices, but as an old-time UNIX user, I like the Wikipedia definition: From a strategy perspective, microservices architecture essentially follows the <a href="https://en.wikipedia.org/wiki/Unix_philosophy" title="Unix philosophy">Unix philosophy</a> of “Do one thing and do it well”.</p>
+<blockquote>
+<h2 id="from-a-strategy-perspective-microservices-architecture-essentially-follows-the-unix-philosophy-of-do-one-thing-and-do-it-well" style="color:gray"><em>From a strategy perspective, microservices architecture essentially follows the Unix philosophy of “Do one thing and do it well”</em></h2>
+</blockquote>
+<p>In particular, the term microservices usually refers to web services using a <strong>RESTful API</strong>. I will not enter into all the details and concepts behind a RESTul API. Just let say that A <strong>RESTful API</strong> is an architectural style for an application program interface (<strong>API</strong>) that uses HTTP (the web protocol) requests to access and use data. That data can be used to GET, PUT, POST and DELETE data types, which refers to the reading, updating, creating and deleting of operations concerning resources. See Figure 1. An important details is that data is usually received in XML or JSON formats. Particularly, JSON stands for JavaScript Object Notation and it is preferred since is a lightweight data-interchange format</p>
+<figure>
+<img src="images/rest.png" alt="roles" width="60%"/>
+  <figcaption>
+      <h6> Figure 1. Restful API for for accesing a particular resource, in this case a database. But it could be any kind of resource. An R function accesing your model for instance.  </h6>
+  </figcaption>
+</figure>
+<p>So, now you have hopefully understand the basics of microservices 😉. So how can you easily transform your notebook code into a microservice? The <a href="https://rplumber.io">Plumber</a> package comes to the rescue.</p>
+<div id="training-a-simple-model" class="section level2">
+<h2>Training a simple model</h2>
+<p>It is time to get your hands dirty with some code. Let’s train a simple random forest for predicting the <em>species</em> of the good ol’ <a href="https://archive.ics.uci.edu/ml/datasets/iris">IRIS dataset</a>. There is nothing special about the code below. The IRIS dataset is split in the usual 70/30 and a simple Random Forest is trained on the using the 70% of the dataset. Some basic metrics such as the <strong>OOB estimate of error</strong> is shown for the resulting model.</p>
+<pre class="r"><code>library(randomForest)</code></pre>
+<pre><code>## randomForest 4.6-14</code></pre>
+<pre><code>## Type rfNews() to see new features/changes/bug fixes.</code></pre>
+<pre class="r"><code>data(&quot;iris&quot;)
+
+data_size &lt;- nrow(iris)
+data_idx &lt;- sample(data_size,(data_size *70)/100)
+data_train &lt;- iris[data_idx,]
+data_test &lt;- iris[-data_idx,]
+
+rf_model &lt;- randomForest(Species~.,data=data_train)
+rf_model</code></pre>
+<pre><code>## 
+## Call:
+##  randomForest(formula = Species ~ ., data = data_train) 
+##                Type of random forest: classification
+##                      Number of trees: 500
+## No. of variables tried at each split: 2
+## 
+##         OOB estimate of  error rate: 4.76%
+## Confusion matrix:
+##            setosa versicolor virginica class.error
+## setosa         33          0         0  0.00000000
+## versicolor      0         34         2  0.05555556
+## virginica       0          3        33  0.08333333</code></pre>
+<p>We are going to save our model using R standard function <code>save()</code> for <a href="https://en.wikipedia.org/wiki/Serialization">serializing</a> objects.</p>
+<pre><code>save(rf_model,file=&quot;rf_model.rda&quot;)</code></pre>
+<p>Now, we want to predict on the remaining 30%. But instead of using the <code>predict()</code> function. We are going to <strong>wrapper</strong> the prediction inside our own function <code>mypredict().</code> I know it could seem unnecessary, but it will be required for building the microservice RESTful API.</p>
+<pre><code>mypredict&lt;-function(s_len,s_width,p_len,p_width){
+ 
+  newdata=data.frame(
+  Sepal.Length=s_len,
+  Sepal.Width=s_width,
+  Petal.Length=p_len,
+  Petal.Width=p_width
+  )
+  
+  prediction&lt;-predict(model,newdata)
+  return(list(class=prediction))
+}</code></pre>
+<p>The function <code>mypredict()</code> is pretty simple. It basically receives the the four features and creates a dataframe for using with <code>predict()</code>. Notice that the idea of using a function is to encapsulate not only the prediction but also all the <em>data preparation</em> required by your model<em>.</em> Of course depending the complexity of your data preparation process you will need to use more functions.</p>
+</div>
+<div id="creating-the-service" class="section level2">
+<h2>Creating the service</h2>
+<p>Now, using the <code>mypredict()</code>function as source, let’s create the service using <a href="https://www.rplumber.io/">Plumber</a>. Plumber allows you to create a RESTful API by merely decorating your existing R source code with <code>roxygen2</code>-like comments. Let’s create a new source file named <code>myservice.R</code> <a href="#source-code">[*]</a> and copy &amp; paste the following lines:</p>
+<pre class="r"><code>library(randomForest)
+library(plumber)  
+
+# loading the model globally for using the classifier 
+model&lt;-get(load(&quot;rf_model.rda&quot;))</code></pre>
+<p>In the first two lines, we simply load the <code>randomForest</code> package and the <code>plumber</code> package (the responsible of all the magic). The we load (globally) our model object. We use the <code>get()</code>function to assign it to the <code>model</code> variable. Otherwise, it would be load as <code>rf_model</code>(the name used in when the model was created).</p>
+<p>Now, it is time to include the plumber magic to convert our <code>mypredict()</code> function into a microservice using the the following code:</p>
+<pre class="r"><code>### PLUMBER ANOTATIONS
+#  prediction function
+#* @get /mypredict
+#* @serializer unboxedJSON
+
+function(s_len,s_width,p_len,p_width){
+  newdata=data.frame(
+  Sepal.Length=s_len,
+  Sepal.Width=s_width,
+  Petal.Length=p_len,
+  Petal.Width=p_width
+  )
+  prediction&lt;-predict(model,newdata)
+  return(list(class=prediction))
+}</code></pre>
+<p>The function remains basically the same, but now we have included a couple of <strong>special comments</strong> above the function. Plumber especially treats those comments starting with <code>#*</code> . These comments are the way we have make specials annotation into the function. In this particular case we had added two special comments: <code>@get /mypredict</code> and <code>@serializer unboxedJSON</code>. The decorator <code>@get</code> is used to make our R function available as and API endpoint. This basically means that the function will be available when the <code>/mypredict</code> resources is accessed. The<code>@serializer unboxedJSON</code> decorator indicates that the function output should be converted from native type format (a R list in this case) to JSON. And that is pretty much all you need to do. After these simple annotations, the <code>mypredict()</code> function has now been converted to a web microserver.</p>
+<p>There is one more final thing to do. We need to execute the service. For this, we simply are going to create a new file named <code>run_service.R</code> and add the lines of codes below.</p>
+<pre class="r"><code>### STARTING THE SERVICE
+library(plumber)
+r &lt;- plumb(&quot;myservice.R&quot;)
+r$run(host = &quot;0.0.0.0&quot;,port=8001)</code></pre>
+<p>We simply need to load the <code>myservice.R</code> file containing the microservice code we have just finished and execute it. Plumber will create an HTTP server (web server) listening in port <code>8001</code> and hosting your service in <code>/mypredict</code> .</p>
+<p>To execute the server use the following command in bash (or your favorite shell)</p>
+<pre class="bash"><code>bash$ Rscript run_service.R </code></pre>
+<p>If everything went OK. you should see something like this</p>
+<pre class="bash"><code>randomForest 4.6-14
+Type rfNews() to see new features/changes/bug fixes.
+Running plumber API at http://0.0.0.0:8001
+Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
+</div>
+<div id="testing-the-service" class="section level2">
+<h2>Testing the service</h2>
+<p>For testing the service the simplest way is to use <code>curl</code> inside a bash (command line) session.</p>
+<pre class="bash"><code>bash$ curl &quot;http://localhost:8001/mypredict?s_len=0.1&amp;s_width=0.1&amp;p_len=0.1&amp;p_width=0.1&quot;</code></pre>
+<p>If every thing went OK, you should receive a JSON response with the prediction like this.</p>
+<pre class="bash"><code>{&quot;class&quot;:&quot;setosa&quot;}</code></pre>
+<p>By using Plumber we have encapsulated our model and provided a simple API for using the model with new data. The model can new be installed in any cloud server and used according to company guidelines.</p>
+</div>
+<div id="just-some-final-words" class="section level2">
+<h2>Just some final words</h2>
+<p>This post provided you with the <strong>very very</strong> basic of the Plumber package. The package can do a lot more! Please go to <a href="https://www.rplumber.io/">plumber landing page</a> for more info. Remember that the present post aim at providing you with just the minimal notion about deploying a machine learning model. Hopefully it could be enough for you. But if not, keep in mind that deploying a Machine Learning model into a company infrastructure usually will require a lot of work and is part of the Machine Learning Engineering (<a href="https://harpomaxx.github.io/post/machine-learning-in-production/">MLE)</a> role.</p>
+<p><img src="https://www.dropbox.com/s/u7k55h891s5rw44/plumber-meme.jpg?dl=1" width="500" /></p>
+<p>[*] The random forest model and the source code for the plumber example available <a href="https://github.com/harpomaxx/plumber-example" id="source-code">here</a></p>
+</div>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/development/"> development </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/machine-learning-engineering/"> machine-learning-engineering </a>
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/mle/"> mle </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/tools/"> tools </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/random-forest/"> random-forest </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/reproducible-research/"> reproducible-research </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+</footer>
+
+</body>
+</html>

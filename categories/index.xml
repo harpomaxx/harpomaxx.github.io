@@ -7,10 +7,58 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Fri, 14 May 2021 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Tue, 29 Jun 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>development</title>
+			<link>https://harpomaxx.github.io/categories/development/</link>
+			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/development/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>machine learning engineering</title>
+			<link>https://harpomaxx.github.io/categories/machine-learning-engineering/</link>
+			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/machine-learning-engineering/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>mle</title>
+			<link>https://harpomaxx.github.io/categories/mle/</link>
+			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/mle/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>tools</title>
+			<link>https://harpomaxx.github.io/categories/tools/</link>
+			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/tools/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>experimental design</title>
 			<link>https://harpomaxx.github.io/categories/experimental-design/</link>
@@ -113,30 +161,6 @@
 			<pubDate>Sun, 06 Sep 2020 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/algorithms/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>development</title>
-			<link>https://harpomaxx.github.io/categories/development/</link>
-			<pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/development/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>tools</title>
-			<link>https://harpomaxx.github.io/categories/tools/</link>
-			<pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/tools/</guid>
 			<description>
 				
 				

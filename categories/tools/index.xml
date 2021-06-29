@@ -7,10 +7,22 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Wed, 26 Aug 2020 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Tue, 29 Jun 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/categories/tools/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Deploying a simple ML model with Plumber 101</title>
+			<link>https://harpomaxx.github.io/post/deploying-ml-model/</link>
+			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/deploying-ml-model/</guid>
+			<description>
+				
+				Sometimes notebooks are not enough and you will need to deploy your machine learning model into company infrastructre. The task involves a lot of Software Ingenieering knowledge, BUT with Plumber package for R you can do the basics with not so much pain 😉. [6 min read]
+				
+			</description>
+		</item>
 		<item>
 			<title>Notebooks in Data Science Development and other tools for reproducibility.</title>
 			<link>https://harpomaxx.github.io/post/notebooks-or-not-notebooks-in-datascience/</link>

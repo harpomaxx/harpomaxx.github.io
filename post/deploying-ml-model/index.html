@@ -137,12 +137,12 @@ rf_model</code></pre>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##         OOB estimate of  error rate: 7.62%
+##         OOB estimate of  error rate: 4.76%
 ## Confusion matrix:
 ##            setosa versicolor virginica class.error
-## setosa         36          0         0   0.0000000
-## versicolor      0         30         4   0.1176471
-## virginica       0          4        31   0.1142857</code></pre>
+## setosa         31          0         0  0.00000000
+## versicolor      0         37         2  0.05128205
+## virginica       0          3        32  0.08571429</code></pre>
 <p>We are going to save our model using R standard function <code>save()</code> for <a href="https://en.wikipedia.org/wiki/Serialization">serializing</a> objects.</p>
 <pre><code>save(rf_model,file=&quot;rf_model.rda&quot;)</code></pre>
 <p>Now, we want to predict on the remaining 30%. But instead of using the <code>predict()</code> function. We are going to <strong>wrapper</strong> the prediction inside our own function <code>mypredict().</code> I know it could seem unnecessary, but it will be required for building the microservice RESTful API.</p>
@@ -212,7 +212,7 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <h2>Just some final words</h2>
 <p>This post provided you with the <strong>very very</strong> basic of the Plumber package. The package can do a lot more! Please go to <a href="https://www.rplumber.io/">plumber landing page</a> for more info. Remember that the present post aim at providing you with just the minimal notion about deploying a machine learning model. Hopefully it could be enough for you. But if not, keep in mind that deploying a Machine Learning model into a company infrastructure usually will require a lot of work and is part of the Machine Learning Engineering (<a href="https://harpomaxx.github.io/post/machine-learning-in-production/">MLE)</a> role.</p>
 <p><img src="https://www.dropbox.com/s/u7k55h891s5rw44/plumber-meme.jpg?dl=1" width="500" /></p>
-<p>[*] The random forest model and the source code for the plumber example available <a href="https://github.com/harpomaxx/plumber-example" id="source-code">here</a></p>
+<p>[*] The random forest model and the source code for the plumber example are available <a href="https://github.com/harpomaxx/plumber-example" id="source-code">here</a></p>
 </div>
 
 	</div>

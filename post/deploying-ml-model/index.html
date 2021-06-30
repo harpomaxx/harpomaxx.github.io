@@ -99,6 +99,7 @@
 
 <p>In <a href="https://harpomaxx.github.io/post/machine-learning-in-production/">a recent post</a>, I have been writing about the different roles in the <strong>Data science</strong> ecosystem. Just a couple of years ago, the data science work consisted in the development of business-oriented solutions. Usually the management would give us access to the data and after doing our ✨ magic ✨, we would provide them with valuable information about the business for making big money 💰💰💰 in the future. (OK, I know it is not that simple. 😉 )</p>
 <p>The fact is that part of the core of the Data Science toolkit is the development of prediction models based on machine learning algorithms. Usual things such as churn prediction, productivity forecasting, sales projections, and a very long etcetera are the objective for machine learning models. The usual data scientist approach for developing such models consisted of using something like <a href="https://colab.research.google.com">google Colab</a>, <a href="https://jupyter.org/">Jupyter notebooks</a> or (if you prefer the <a href="https://www.r-project.org/">rstats</a> environment) <a href="https://rmarkdown.rstudio.com/lesson-10.html">Rstudio notebooks.</a></p>
+<p><img src="images/notebooksvsservices.jpeg" width="480" /></p>
 <p>The fact is that notebooks are a wonderful tool for almost all the steps in the data science workflow, (Does <a href="https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining">CRISP</a> ring any bells with you?). You can use notebooks during business understanding, data understanding, preparation, and for building and evaluating your models. The problem arises when management asks us the infamous questions: <em>How can we use the model if you are not here?</em> This simple question encompasses several technical aspects not usually covered in the data scientist role.</p>
 <blockquote>
 <h2 id="q-how-can-we-use-the-model-if-you-are-not-here-in-many-cases-you-simply-cannot-provide-the-source-code-of-your-notebook." style="color:gray"><em>Q: How can we use the model if you are not here? In many cases you simply cannot provide the source code of your notebook.</em></h2>
@@ -137,12 +138,12 @@ rf_model</code></pre>
 ##                      Number of trees: 500
 ## No. of variables tried at each split: 2
 ## 
-##         OOB estimate of  error rate: 4.76%
+##         OOB estimate of  error rate: 5.71%
 ## Confusion matrix:
 ##            setosa versicolor virginica class.error
-## setosa         36          0         0  0.00000000
-## versicolor      0         36         2  0.05263158
-## virginica       0          3        28  0.09677419</code></pre>
+## setosa         35          0         0   0.0000000
+## versicolor      0         30         2   0.0625000
+## virginica       0          4        34   0.1052632</code></pre>
 <p>We are going to save our model using R standard function <code>save()</code> for <a href="https://en.wikipedia.org/wiki/Serialization">serializing</a> objects.</p>
 <pre><code>save(rf_model,file=&quot;rf_model.rda&quot;)</code></pre>
 <p>Now, we want to predict on the remaining 30%. But instead of using the <code>predict()</code> function. We are going to <strong>wrapper</strong> the prediction inside our own function <code>mypredict().</code> I know it could seem unnecessary, but it will be required for building the microservice RESTful API.</p>

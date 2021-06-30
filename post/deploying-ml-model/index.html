@@ -97,9 +97,9 @@
 <script src="https://harpomaxx.github.io/post/deploying-ml-model/index.en_files/header-attrs/header-attrs.js"></script>
 
 
-<p>In <a href="https://harpomaxx.github.io/post/machine-learning-in-production/">a recent post</a>, I have been writing about the different roles in the <strong>Data science</strong> ecosystem. Just a couple of years ago, the data science work consisted in the development of business-oriented solutions. Usually the management would give you access to the data and after doing your ✨ magic ✨, you would provide them with valuable information about the business for making big money 💰💰💰 in the future. (OK, I know it is not that simple. 😉 )</p>
+<p>In <a href="https://harpomaxx.github.io/post/machine-learning-in-production/">a recent post</a>, I have been writing about the different roles in the <strong>Data science</strong> ecosystem. Just a couple of years ago, the data science work consisted in the development of business-oriented solutions. Usually the management would give us access to the data and after doing our ✨ magic ✨, we would provide them with valuable information about the business for making big money 💰💰💰 in the future. (OK, I know it is not that simple. 😉 )</p>
 <p>The fact is that part of the core of the Data Science toolkit is the development of prediction models based on machine learning algorithms. Usual things such as churn prediction, productivity forecasting, sales projections, and a very long etcetera are the objective for machine learning models. The usual data scientist approach for developing such models consisted of using something like <a href="https://colab.research.google.com">google Colab</a>, <a href="https://jupyter.org/">Jupyter notebooks</a> or (if you prefer the <a href="https://www.r-project.org/">rstats</a> environment) <a href="https://rmarkdown.rstudio.com/lesson-10.html">Rstudio notebooks.</a></p>
-<p>The fact is that notebooks are a wonderful tool for almost all the steps in the data science workflow, (Does <a href="https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining">CRISP</a> ring any bells with you?). You can use notebooks during business understanding, data understanding, preparation, and for building and evaluating your models. The problem arises when management asks the infamous questions: <em>How can we use the model if you are not here?</em> This simple question encompasses several technical aspects not usually covered in the data scientist role.</p>
+<p>The fact is that notebooks are a wonderful tool for almost all the steps in the data science workflow, (Does <a href="https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining">CRISP</a> ring any bells with you?). You can use notebooks during business understanding, data understanding, preparation, and for building and evaluating your models. The problem arises when management asks us the infamous questions: <em>How can we use the model if you are not here?</em> This simple question encompasses several technical aspects not usually covered in the data scientist role.</p>
 <blockquote>
 <h2 id="q-how-can-we-use-the-model-if-you-are-not-here-in-many-cases-you-simply-cannot-provide-the-source-code-of-your-notebook." style="color:gray"><em>Q: How can we use the model if you are not here? In many cases you simply cannot provide the source code of your notebook.</em></h2>
 </blockquote>
@@ -114,10 +114,10 @@
       <h6> Figure 1. Restful API for for accesing a particular resource, in this case a database. But it could be any kind of resource. An R function accesing your model for instance.  </h6>
   </figcaption>
 </figure>
-<p>So, now you have hopefully understand the basics of microservices 😉. So how can you easily transform your notebook code into a microservice? The <a href="https://rplumber.io">Plumber</a> package comes to the rescue.</p>
+<p>So, now we have hopefully understand the basics of microservices 😉. So how can we easily transform our notebook code into a microservice? The <a href="https://rplumber.io">Plumber</a> package comes to the rescue.</p>
 <div id="training-a-simple-model" class="section level2">
 <h2>Training a simple model</h2>
-<p>It is time to get your hands dirty with some code. Let’s train a simple random forest for predicting the <em>species</em> of the good ol’ <a href="https://archive.ics.uci.edu/ml/datasets/iris">IRIS dataset</a>. There is nothing special about the code below. The IRIS dataset is split in the usual 70/30 and a simple Random Forest is trained on the using the 70% of the dataset. Some basic metrics such as the <strong>OOB estimate of error</strong> is shown for the resulting model.</p>
+<p>It is time to get our hands dirty with some code. Let’s train a simple random forest for predicting the <em>species</em> of the good ol’ <a href="https://archive.ics.uci.edu/ml/datasets/iris">IRIS dataset</a>. There is nothing special about the code below. The IRIS dataset is split in the usual 70/30 and a simple Random Forest is trained on the using the 70% of the dataset. Some basic metrics such as the <strong>OOB estimate of error</strong> is shown for the resulting model.</p>
 <pre class="r"><code>library(randomForest)</code></pre>
 <pre><code>## randomForest 4.6-14</code></pre>
 <pre><code>## Type rfNews() to see new features/changes/bug fixes.</code></pre>
@@ -140,9 +140,9 @@ rf_model</code></pre>
 ##         OOB estimate of  error rate: 4.76%
 ## Confusion matrix:
 ##            setosa versicolor virginica class.error
-## setosa         31          0         0  0.00000000
-## versicolor      0         37         2  0.05128205
-## virginica       0          3        32  0.08571429</code></pre>
+## setosa         36          0         0  0.00000000
+## versicolor      0         36         2  0.05263158
+## virginica       0          3        28  0.09677419</code></pre>
 <p>We are going to save our model using R standard function <code>save()</code> for <a href="https://en.wikipedia.org/wiki/Serialization">serializing</a> objects.</p>
 <pre><code>save(rf_model,file=&quot;rf_model.rda&quot;)</code></pre>
 <p>Now, we want to predict on the remaining 30%. But instead of using the <code>predict()</code> function. We are going to <strong>wrapper</strong> the prediction inside our own function <code>mypredict().</code> I know it could seem unnecessary, but it will be required for building the microservice RESTful API.</p>
@@ -168,8 +168,8 @@ library(plumber)
 
 # loading the model globally for using the classifier 
 model&lt;-get(load(&quot;rf_model.rda&quot;))</code></pre>
-<p>In the first two lines, we simply load the <code>randomForest</code> package and the <code>plumber</code> package (the responsible of all the magic). The we load (globally) our model object. We use the <code>get()</code>function to assign it to the <code>model</code> variable. Otherwise, it would be load as <code>rf_model</code>(the name used in when the model was created).</p>
-<p>Now, it is time to include the plumber magic to convert our <code>mypredict()</code> function into a microservice using the the following code:</p>
+<p>In the first two lines, we simply load the <code>randomForest</code> package and the <code>plumber</code> package (the responsible of all the magic). Then, we load (globally) our model object. We use the <code>get()</code>function to assign it to the <code>model</code> variable. Otherwise, it would be load as <code>rf_model</code>(the name used when the model was created).</p>
+<p>Now, it is time to include the Plumber magic to convert our <code>mypredict()</code> function into a microservice using the the following code:</p>
 <pre class="r"><code>### PLUMBER ANOTATIONS
 #  prediction function
 #* @get /mypredict
@@ -191,10 +191,10 @@ function(s_len,s_width,p_len,p_width){
 library(plumber)
 r &lt;- plumb(&quot;myservice.R&quot;)
 r$run(host = &quot;0.0.0.0&quot;,port=8001)</code></pre>
-<p>We simply need to load the <code>myservice.R</code> file containing the microservice code we have just finished and execute it. Plumber will create an HTTP server (web server) listening in port <code>8001</code> and hosting your service in <code>/mypredict</code> .</p>
-<p>To execute the server use the following command in bash (or your favorite shell)</p>
+<p>We simply need to load the <code>myservice.R</code> file containing the microservice code we have just finished and execute it. Plumber will create an HTTP server (web server) listening in port <code>8001</code> and hosting our service in <code>/mypredict</code> .</p>
+<p>To execute the server we can use the following command in bash (or your favorite shell)</p>
 <pre class="bash"><code>bash$ Rscript run_service.R </code></pre>
-<p>If everything went OK. you should see something like this</p>
+<p>If everything went OK. we should see something like this:</p>
 <pre class="bash"><code>randomForest 4.6-14
 Type rfNews() to see new features/changes/bug fixes.
 Running plumber API at http://0.0.0.0:8001
@@ -204,15 +204,15 @@ Running swagger Docs at http://127.0.0.1:8001/__docs__/</code></pre>
 <h2>Testing the service</h2>
 <p>For testing the service the simplest way is to use <code>curl</code> inside a bash (command line) session.</p>
 <pre class="bash"><code>bash$ curl &quot;http://localhost:8001/mypredict?s_len=0.1&amp;s_width=0.1&amp;p_len=0.1&amp;p_width=0.1&quot;</code></pre>
-<p>If every thing went OK, you should receive a JSON response with the prediction like this.</p>
+<p>If every thing went OK, we should receive a JSON response with the prediction like this.</p>
 <pre class="bash"><code>{&quot;class&quot;:&quot;setosa&quot;}</code></pre>
 <p>By using Plumber we have encapsulated our model and provided a simple API for using the model with new data. The model can new be installed in any cloud server and used according to company guidelines.</p>
 </div>
 <div id="just-some-final-words" class="section level2">
-<h2>Just some final words</h2>
-<p>This post provided you with the <strong>very very</strong> basic of the Plumber package. The package can do a lot more! Please go to <a href="https://www.rplumber.io/">plumber landing page</a> for more info. Remember that the present post aim at providing you with just the minimal notion about deploying a machine learning model. Hopefully it could be enough for you. But if not, keep in mind that deploying a Machine Learning model into a company infrastructure usually will require a lot of work and is part of the Machine Learning Engineering (<a href="https://harpomaxx.github.io/post/machine-learning-in-production/">MLE)</a> role.</p>
+<h2>Just some final words…</h2>
+<p>This post provided you with the <strong>very very</strong> basic of the Plumber package. The package can do a lot more! Please go to the <a href="https://www.rplumber.io/">Plumber landing page</a> for more info. Remember that the present post aim at providing you with just the minimal notion about deploying a machine learning model. Hopefully it could be enough for you. But if not, keep in mind that deploying a Machine Learning model into a company infrastructure usually will require a lot of work and is part of the Machine Learning Engineering (<a href="https://harpomaxx.github.io/post/machine-learning-in-production/">MLE)</a> role.</p>
 <p><img src="https://www.dropbox.com/s/u7k55h891s5rw44/plumber-meme.jpg?dl=1" width="500" /></p>
-<p>[*] The random forest model and the source code for the plumber example are available <a href="https://github.com/harpomaxx/plumber-example" id="source-code">here</a></p>
+<p>[*] The random forest model and the source code for the Plumber example are available <a href="https://github.com/harpomaxx/plumber-example" id="source-code">here</a></p>
 </div>
 
 	</div>

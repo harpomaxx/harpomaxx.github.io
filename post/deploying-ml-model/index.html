@@ -115,7 +115,7 @@
       <h6> Figure 1. Restful API for for accesing a particular resource, in this case a database. But it could be any kind of resource. An R function accesing your model for instance.  </h6>
   </figcaption>
 </figure>
-<p>So, now we have hopefully understand the basics of microservices 😉. So how can we easily transform our notebook code into a microservice? The <a href="https://rplumber.io">Plumber</a> package comes to the rescue.</p>
+<p>So, now we have hopefully understand the basics of microservices 😉. So how can we easily transform our notebook code into a microservice? The <a href="https://rplumber.io">Plumber</a> package comes to the rescue. Of course Plumber works only in the <a href="https://www.r-project.org/">Rstats</a> world, for the <em>pythoners,</em> <a href="https://flask.palletsprojects.com/en/2.0.x/">flask</a> could be considered as something similar to Plumber.</p>
 <div id="training-a-simple-model" class="section level2">
 <h2>Training a simple model</h2>
 <p>It is time to get our hands dirty with some code. Let’s train a simple random forest for predicting the <em>species</em> of the good ol’ <a href="https://archive.ics.uci.edu/ml/datasets/iris">IRIS dataset</a>. There is nothing special about the code below. The IRIS dataset is split in the usual 70/30 and a simple Random Forest is trained on the using the 70% of the dataset. Some basic metrics such as the <strong>OOB estimate of error</strong> is shown for the resulting model.</p>
@@ -141,9 +141,9 @@ rf_model</code></pre>
 ##         OOB estimate of  error rate: 5.71%
 ## Confusion matrix:
 ##            setosa versicolor virginica class.error
-## setosa         35          0         0   0.0000000
-## versicolor      0         30         2   0.0625000
-## virginica       0          4        34   0.1052632</code></pre>
+## setosa         35          0         0  0.00000000
+## versicolor      0         33         2  0.05714286
+## virginica       0          4        31  0.11428571</code></pre>
 <p>We are going to save our model using R standard function <code>save()</code> for <a href="https://en.wikipedia.org/wiki/Serialization">serializing</a> objects.</p>
 <pre><code>save(rf_model,file=&quot;rf_model.rda&quot;)</code></pre>
 <p>Now, we want to predict on the remaining 30%. But instead of using the <code>predict()</code> function. We are going to <strong>wrapper</strong> the prediction inside our own function <code>mypredict().</code> I know it could seem unnecessary, but it will be required for building the microservice RESTful API.</p>

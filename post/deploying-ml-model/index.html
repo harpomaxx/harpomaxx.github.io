@@ -141,9 +141,9 @@ rf_model</code></pre>
 ##         OOB estimate of  error rate: 5.71%
 ## Confusion matrix:
 ##            setosa versicolor virginica class.error
-## setosa         35          0         0  0.00000000
-## versicolor      0         33         2  0.05714286
-## virginica       0          4        31  0.11428571</code></pre>
+## setosa         33          0         0  0.00000000
+## versicolor      0         34         2  0.05555556
+## virginica       0          4        32  0.11111111</code></pre>
 <p>We are going to save our model using R standard function <code>save()</code> for <a href="https://en.wikipedia.org/wiki/Serialization">serializing</a> objects.</p>
 <pre><code>save(rf_model,file=&quot;rf_model.rda&quot;)</code></pre>
 <p>Now, we want to predict on the remaining 30%. But instead of using the <code>predict()</code> function. We are going to <strong>wrapper</strong> the prediction inside our own function <code>mypredict().</code> I know it could seem unnecessary, but it will be required for building the microservice RESTful API.</p>
@@ -186,7 +186,8 @@ function(s_len,s_width,p_len,p_width){
   prediction&lt;-predict(model,newdata)
   return(list(class=prediction))
 }</code></pre>
-<p>The function remains basically the same, but now we have included a couple of <strong>special comments</strong> above the function. Plumber especially treats those comments starting with <code>#*</code> . These comments are the way we have make specials annotation into the function. In this particular case we had added two special comments: <code>@get /mypredict</code> and <code>@serializer unboxedJSON</code>. The decorator <code>@get</code> is used to make our R function available as and API endpoint. This basically means that the function will be available when the <code>/mypredict</code> resources is accessed. The<code>@serializer unboxedJSON</code> decorator indicates that the function output should be converted from native type format (a R list in this case) to JSON. And that is pretty much all you need to do. After these simple annotations, the <code>mypredict()</code> function has now been converted to a web microserver.</p>
+<p>The function remains basically the same, but now we have included a couple of <strong>special comments</strong> above the function. Plumber especially treats those comments starting with <code>#*</code> . These comments are the way we have make specials annotation into the function. In this particular case we had added two special comments: <code>@get /mypredict</code> and <code>@serializer unboxedJSON</code>. Of course there are many other annotations provided by the Plumber package. You should check the <a href="https://www.rplumber.io/">plumber landing page</a> for more info.</p>
+<p>Back to our function, the decorator <code>@get</code> is used to make our R function available as and API endpoint. This basically means that the function will be available when the <code>/mypredict</code> resources is accessed. The<code>@serializer unboxedJSON</code> decorator indicates that the function output should be converted from native type format (a R list in this case) to JSON. And that is pretty much all you need to do. After these simple annotations, the <code>mypredict()</code> function has now been converted to a web microserver.</p>
 <p>There is one more final thing to do. We need to execute the service. For this, we simply are going to create a new file named <code>run_service.R</code> and add the lines of codes below.</p>
 <pre class="r"><code>### STARTING THE SERVICE
 library(plumber)

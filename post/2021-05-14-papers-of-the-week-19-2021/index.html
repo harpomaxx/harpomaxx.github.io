@@ -5,15 +5,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="cross-validation,tibshirani,hastie"><meta name="description" content="The processesesand the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]"><meta property="og:title" content="Thoughts about differences in ML evaluation for Academia and Industry" />
-<meta property="og:description" content="The processesesand the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]" />
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="cross-validation,tibshirani,hastie"><meta name="description" content="The processeses and the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]"><meta property="og:title" content="Thoughts about differences in ML evaluation for Academia and Industry" />
+<meta property="og:description" content="The processeses and the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/" />
 <meta property="article:published_time" content="2021-05-14T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-05-14T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Thoughts about differences in ML evaluation for Academia and Industry"/>
-<meta name="twitter:description" content="The processesesand the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]"/>
+<meta name="twitter:description" content="The processeses and the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]"/>
 <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
@@ -97,14 +97,14 @@
 <script src="https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/index.en_files/header-attrs/header-attrs.js"></script>
 
 
-<p>How different are the strategies for training/testing a Machine Learning (ML) model for <strong>Academia/Science</strong> and <strong>Industry</strong>? Recently, I realized that the concepts behind the Expected generalization error (<span class="math inline">\(Err\)</span>) and Conditional generalization error (<span class="math inline">\(Err_{xy}\)</span>) discussed by <a href="https://statweb.stanford.edu/~tibs/">Tibshirani</a> and <a href="https://web.stanford.edu/~hastie/">Hastie</a> in <a href="https://web.stanford.edu/~hastie/ElemStatLearn/">ESL</a> could provide us with a possible explanation about the differences approaches followed by Academia and Industry.</p>
+<p>How different are the strategies for training/testing a Machine Learning (ML) model for <strong>Academia/Science</strong> and <strong>Industry</strong>? Recently, I realized that the concepts behind the Expected generalization error (<span class="math inline">\(Err\)</span>) and Conditional generalization error (<span class="math inline">\(Err_{xy}\)</span>) discussed by <a href="https://statweb.stanford.edu/~tibs/">Tibshirani</a> and <a href="https://web.stanford.edu/~hastie/">Hastie</a> in <a href="https://web.stanford.edu/~hastie/ElemStatLearn/">ESL</a> could provide us with a possible explanation about the different approaches followed by Academia and Industry.</p>
 <p>As mentioned in the <a href="https://web.stanford.edu/~hastie/ElemStatLearn/">ESL</a>:</p>
 <ol style="list-style-type: lower-roman">
 <li><p><span class="math inline">\(Err\)</span> is the average generalization error for a model trained with different datasets coming from the same distribution.</p></li>
 <li><p><span class="math inline">\(Err_{xy}\)</span> is the generalization error for a model trained with a particular dataset.</p></li>
 </ol>
-<p><strong>Academia/Science</strong> is usually more interested in knowing how a model would behave on other scenarios than the observed. In Academia, we are normally interested in knowing how well a particular algorithm would generalize when other datasets are used. When a new algorithm is developed, we want to compare this new algorithm against the state of the art in all the possible scenarios. That is why we use resampling techniques such as Cross Validation (in all its flavors), bootstrapping, etc. All these resampling techniques provides us with the expected error <span class="math inline">\(Err\)</span>. In this case, the contribution is the proposed algorithm and the idea is that everyone will use it later with his own dataset.</p>
-<p>In the <strong>Industry</strong>, on the other hand, we are interested on how an algorithm performs on the specific problem we want to solve. From the available data, we will try to obtain the best possible result for a given algorithm. Given a particular problem, we aim at solving it in the better possibly way respecting the constrains we have (money, time, etc.). Here, the contribution will be a working product that solve the problem. We are not interested in proving that it is the best algorithm, we just want the algorithm do the job.</p>
+<p><strong>Academia/Science</strong> is usually more interested in knowing how a model would behave in other scenarios than the observed. In Academia, we are normally interested in knowing how well a particular algorithm would generalize when other datasets are used. When a new algorithm is developed, we want to compare this new algorithm against the state of the art in all the possible scenarios. That is why we use resampling techniques such as Cross Validation (in all its flavors), bootstrapping, etc. All these resampling techniques provides us with the expected error <span class="math inline">\(Err\)</span>. In this case, the contribution is the proposed algorithm and the idea is that everyone will use it later with his own dataset.</p>
+<p>In the <strong>Industry</strong>, on the other hand, we are interested in how an algorithm performs on the specific problem we want to solve. From the available data, we will try to obtain the best possible result for a given algorithm. Given a particular problem, we aim at solving it in a better possible way respecting the constraints we have (money, time, etc.). Here, the contribution will be a working product that solves the problem. We are not interested in proving that it is the best algorithm, we just want the algorithm to do the job.</p>
 <figure>
 <p><img src="images/unnamed.png" style="width:80.0%" /></p>
 <figcaption>
@@ -113,16 +113,16 @@
 </h6>
 </figcaption>
 </figure>
-<p>The previous paragraph is consistent with the strategy proposed by <a href="https://en.wikipedia.org/wiki/Andrew_Ng">Andrew Ng</a> in his book <a href="https://www.goodreads.com/en/book/show/30741739-machine-learning-yearning">Machine Learning Yearning</a> where Crossvalidation is not used to adjust the model. The model performance is always evaluated with the same data. According to Ng, training should done with data from a different distribution to validation and testing (<strong>dev</strong> and <strong>test</strong> sets according to Ng). The workflow consists of getting more data (if available) and improving the quality of the data (adjusting data and retraining until we have an acceptable quality). This is what <a href="https://en.wikipedia.org/wiki/Andrew_Ng">Ng</a> calls a <a href="https://youtu.be/06-AZXmwHjo"><strong>data-centric</strong></a> approach (see Figure 1). There, the model remains <em>fixed</em> (after a reasonable parameter tuning), and all the focus is put on improving data quality. I personally think this workflow is more related with the <span class="math inline">\(Err_{xy}\)</span>. For a particular dataset, what will be the estimated generalization error? That is the question we want to resolve in the Industry.</p>
-<p>Please keep in mind that previous claims do not mean Industry is not interested in the <span class="math inline">\(Err\)</span>. In the first stage of a project, several algorithms could be considered and evaluated using resampling strategies and analyzing the <span class="math inline">\(Err\)</span> between them. But, to be honest, a general thought in Industry is that given a good dataset, almost all algorithms will work reasonably well 😆.</p>
+<p>The previous paragraph is consistent with the strategy proposed by <a href="https://en.wikipedia.org/wiki/Andrew_Ng">Andrew Ng</a> in his book <a href="https://www.goodreads.com/en/book/show/30741739-machine-learning-yearning">Machine Learning Yearning</a> where Crossvalidation is not used to adjust the model. The model performance is always evaluated with the same data. According to Ng, training should be done with data from a different distribution to validation and testing (<strong>dev</strong> and <strong>test</strong> set according to Ng). The workflow consists of getting more data (if available) and improving the quality of the data (adjusting data and retraining until we have an acceptable quality). This is what <a href="https://en.wikipedia.org/wiki/Andrew_Ng">Ng</a> calls a <a href="https://youtu.be/06-AZXmwHjo"><strong>data-centric</strong></a> approach (see Figure 1). There, the model remains <em>fixed</em> (after a reasonable parameter tuning), and all the focus is put on improving data quality. I personally think this workflow is more related with the <span class="math inline">\(Err_{xy}\)</span>. For a particular dataset, what will be the estimated generalization error? That is the question we want to resolve in the Industry.</p>
+<p>Please keep in mind that previous claims do not mean the Industry is not interested in the <span class="math inline">\(Err\)</span>. In the first stage of a project, several algorithms could be considered and evaluated using resampling strategies and analyzing the <span class="math inline">\(Err\)</span> between them. But, to be honest, a general thought in Industry is that given a good dataset, almost all algorithms will work reasonably well 😆.</p>
 <p><img src="https://imgs.xkcd.com/comics/academia_vs_business.png" style="width:90.0%" /></p>
-<p>This practical approach followed by the Industry, could be explained by the difficulty of comparing the performance of different algorithms. The truth is that comparing two algorithm is not that easy. It is simple to visualize differences for several algorithms on a given metric, however if we want to provide some sort of statistical arguments, <strong>things turn ugly</strong>. If we want to confirm the statistical significant of our results, there is no widely accepted methodology when using resampling techniques. In resampling techniques such as (<a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)">K-fold Cross validation</a>, <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">Bootstraping</a>, MonteCarlo Cross Validation, etc.), we will have repeated examples. Then, the independence (between samples) assumption will not hold and most of the statistical frameworks used wont be adequate 😔 .</p>
+<p>This practical approach followed by the Industry could be explained by the difficulty of comparing the performance of different algorithms. The truth is that comparing two algorithms is not that easy. It is simple to visualize differences for several algorithms on a given metric, however, if we want to provide some sort of statistical arguments, <strong>things turn ugly</strong>. If we want to confirm the statistical significance of our results, there is no widely accepted methodology when using resampling techniques. In resampling techniques such as (<a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)">K-fold Cross validation</a>, <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">Bootstraping</a>, MonteCarlo Cross Validation, etc.), we will have repeated examples. Then, the independence (between samples) assumption will not hold and most of the statistical frameworks used won’t be adequate 😔 .</p>
 <blockquote>
 <h2 id="a-general-thought-in-industry-is-that-given-a-good-dataset-almost-all-algorithms-will-work-reasonably-well" style="color:gray">…a general thought in Industry is that given a good dataset, almost all algorithms will work reasonably well…</h2>
 </blockquote>
 <p>For years I have been using the <a href="https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U_test">man-withney U test</a> for comparing the performance of two algorithms and recently I realized it is not the best option. The test assumes independence between samples and as I said before, it is not the case for resampling techniques.</p>
-<p>Moreover, the problem of resampling techniques go beyond comparing two algorithms. Very often, we will need to have an idea of the range of the error values shown by the model in other scenarios (<span class="math inline">\(Err\)</span>). In other words, we want to obtain the interval confidence (<a href="https://en.wikipedia.org/wiki/Confidence_interval">IC</a>). Unfortunately, obtaining such intervals suffers from the same problems mentioned when statistical comparing two algorithms.</p>
-<p>The good news are that a lot of very intelligent people is working to provide us with a solution to the issue. The articles below are just a glimpse of the research done on this topic. I strongly recommend reading the first one <a href="(https://sci2s.ugr.es/keel/pdf/algorithm/articulo/dietterich1998.pdf)">(Diettrich 1997)</a>. The article is one of the first in discussing the problem of resampling techniques for estimating the true generalization error.</p>
+<p>Moreover, the problem of resampling techniques go beyond comparing two algorithms. Very often, we will need to have an idea of the range of the error values shown by the model in other scenarios (<span class="math inline">\(Err\)</span>). In other words, we want to obtain interval confidence (<a href="https://en.wikipedia.org/wiki/Confidence_interval">IC</a>). Unfortunately, obtaining such intervals suffers from the same problems mentioned when statistical comparing two algorithms.</p>
+<p>The good news is that a lot of very intelligent people are working to provide us with a solution to the issue. The articles below are just a glimpse of the research done on this topic. I strongly recommend reading the first one <a href="(https://sci2s.ugr.es/keel/pdf/algorithm/articulo/dietterich1998.pdf)">(Diettrich 1997)</a>. The article is one of the first in discussing the problem of resampling techniques for estimating the true generalization error.</p>
 <div id="two-classical-articles" class="section level3">
 <h3>Two classical articles:</h3>
 <p><a href="https://sci2s.ugr.es/keel/pdf/algorithm/articulo/dietterich1998.pdf">[1]</a> Approximate statistical tests for comparing supervised classification learning algorithms, (Diettrich, 1997)</p>
@@ -153,6 +153,8 @@
 		</div>
 		<div class="termsfloating_right">
 			<p>
+			
+			
 			
 			
 			
@@ -218,6 +220,8 @@
 			
 			
 			
+			
+			
 			<a href="https://harpomaxx.github.io/categories/papers/"> papers </a>
 			
 			
@@ -227,6 +231,8 @@
 			
 			
 			<a href="https://harpomaxx.github.io/categories/resampling/"> resampling </a>
+			
+			
 			
 			
 			
@@ -311,7 +317,17 @@
 			
 			
 			
+			
+			
+			
+			
+			
+			
 			<a href="https://harpomaxx.github.io/tags/hastie/"> hastie </a>
+			
+			
+			
+			
 			
 			
 			

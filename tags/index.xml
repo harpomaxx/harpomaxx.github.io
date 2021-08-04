@@ -7,16 +7,52 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Tue, 29 Jun 2021 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Tue, 03 Aug 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
+			<title>efron</title>
+			<link>https://harpomaxx.github.io/tags/efron/</link>
+			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/efron/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>hastie</title>
+			<link>https://harpomaxx.github.io/tags/hastie/</link>
+			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/hastie/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
 			<title>random forest</title>
 			<link>https://harpomaxx.github.io/tags/random-forest/</link>
-			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
+			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/random-forest/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>resampling</title>
+			<link>https://harpomaxx.github.io/tags/resampling/</link>
+			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/resampling/</guid>
 			<description>
 				
 				
@@ -41,18 +77,6 @@
 			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/cross-validation/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>hastie</title>
-			<link>https://harpomaxx.github.io/tags/hastie/</link>
-			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/hastie/</guid>
 			<description>
 				
 				
@@ -101,18 +125,6 @@
 			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/dimensional-reduction/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>resampling</title>
-			<link>https://harpomaxx.github.io/tags/resampling/</link>
-			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/resampling/</guid>
 			<description>
 				
 				

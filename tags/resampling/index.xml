@@ -7,10 +7,22 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Mon, 16 Nov 2020 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Tue, 03 Aug 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/resampling/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>How confident is Random Forest about its predictions?</title>
+			<link>https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</link>
+			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</guid>
+			<description>
+				
+				Given a prediction on a particular example, how sure is Random Forest about it? For answering this question it is necessary to look beyond usual performance metrics and dive into the swampy waters of the confidence interval estimation for statistical learning algorithms 😖. [6 min read]
+				
+			</description>
+		</item>
 		<item>
 			<title>Three Common Ways for Comparing Two Dataset Distributions</title>
 			<link>https://harpomaxx.github.io/post/comparing-two-sample-distribution/</link>

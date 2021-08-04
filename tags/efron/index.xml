@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>efron on Computer Science Notes</title>
+		<link>https://harpomaxx.github.io/tags/efron/</link>
+		<description>Recent content in efron on harpomaxx.github.io</description>
+		<generator>Hugo -- gohugo.io</generator>
+		<language>en-us</language>
+		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
+		<lastBuildDate>Tue, 03 Aug 2021 00:00:00 +0000</lastBuildDate>
+		
+		<atom:link href="https://harpomaxx.github.io/tags/efron/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>How confident is Random Forest about its predictions?</title>
+			<link>https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</link>
+			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</guid>
+			<description>
+				
+				Given a prediction on a particular example, how sure is Random Forest about it? For answering this question it is necessary to look beyond usual performance metrics and dive into the swampy waters of the confidence interval estimation for statistical learning algorithms 😖. [6 min read]
+				
+			</description>
+		</item>
+		
+	</channel>
+</rss>

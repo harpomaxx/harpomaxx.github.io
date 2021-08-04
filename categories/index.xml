@@ -7,10 +7,46 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Tue, 29 Jun 2021 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Tue, 03 Aug 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>algorithms</title>
+			<link>https://harpomaxx.github.io/categories/algorithms/</link>
+			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/algorithms/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>papers</title>
+			<link>https://harpomaxx.github.io/categories/papers/</link>
+			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/papers/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>Statistics</title>
+			<link>https://harpomaxx.github.io/categories/statistics/</link>
+			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/statistics/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>development</title>
 			<link>https://harpomaxx.github.io/categories/development/</link>
@@ -72,35 +108,11 @@
 			</description>
 		</item>
 		<item>
-			<title>papers</title>
-			<link>https://harpomaxx.github.io/categories/papers/</link>
-			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/papers/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
 			<title>resampling</title>
 			<link>https://harpomaxx.github.io/categories/resampling/</link>
 			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/resampling/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>Statistics</title>
-			<link>https://harpomaxx.github.io/categories/statistics/</link>
-			<pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/statistics/</guid>
 			<description>
 				
 				
@@ -149,18 +161,6 @@
 			<pubDate>Sun, 11 Oct 2020 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/documentation/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>algorithms</title>
-			<link>https://harpomaxx.github.io/categories/algorithms/</link>
-			<pubDate>Sun, 06 Sep 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/algorithms/</guid>
 			<description>
 				
 				

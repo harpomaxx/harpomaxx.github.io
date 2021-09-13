@@ -7,10 +7,46 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Tue, 03 Aug 2021 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sun, 12 Sep 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>feature importance</title>
+			<link>https://harpomaxx.github.io/categories/feature-importance/</link>
+			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/feature-importance/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>feature selection</title>
+			<link>https://harpomaxx.github.io/categories/feature-selection/</link>
+			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/feature-selection/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>tools</title>
+			<link>https://harpomaxx.github.io/categories/tools/</link>
+			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/tools/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>algorithms</title>
 			<link>https://harpomaxx.github.io/categories/algorithms/</link>
@@ -84,18 +120,6 @@
 			</description>
 		</item>
 		<item>
-			<title>tools</title>
-			<link>https://harpomaxx.github.io/categories/tools/</link>
-			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/tools/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
 			<title>experimental design</title>
 			<link>https://harpomaxx.github.io/categories/experimental-design/</link>
 			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
@@ -125,30 +149,6 @@
 			<pubDate>Thu, 04 Mar 2021 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/engineering/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>feature importance</title>
-			<link>https://harpomaxx.github.io/categories/feature-importance/</link>
-			<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/feature-importance/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>feature selection</title>
-			<link>https://harpomaxx.github.io/categories/feature-selection/</link>
-			<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/feature-selection/</guid>
 			<description>
 				
 				

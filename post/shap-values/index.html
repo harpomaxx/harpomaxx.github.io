@@ -152,7 +152,7 @@ shap_values_G &lt;- fastshap::explain(boostFit,
 <blockquote>
 <h2 id="the-fastshap-package-is-only-calculating-an-aproximation-of-shapley-values." style="color:gray"><strong><em>The</em></strong> <strong>fastshap <em>package is only calculating an APROXIMATION of Shapley values.</em></strong></h2>
 </blockquote>
-<p>Notice that the <strong>fastshap</strong> package is only calculating an approximation of Shapley values. When the exact Shapley values are calculated for a single observation, they should add up to the difference between the prediction for that observation and the average predictions across the entire training set. This is not the case, however, for approximate Shapley values, which is the default in <strong>fastshap.</strong></p>
+<p>Notice that the <strong>fastshap</strong> package is only calculating an approximation of Shapley values. When the exact Shapley values are calculated for a single observation, they should add up to the difference between the prediction for that observation and the average predictions across the entire training set. This is not the case, however, for approximate Shapley values, <a href="Notice%20that%20the%20fastshap%20package%20is%20only%20calculating%20an%20approximation%20of%20Shapley%20values.">which is the default</a> in <strong>fastshap.</strong></p>
 <p>Once we have calculated the Shapley values, then we can start with some plotting to interpret them. The <strong>fastshap</strong> package includes a number of well-known plots using the <em>autoplot</em> function</p>
 <p>It is possible to generate a contribution plot considering all the observations in the dataset. We can also easily generate a dependency plot for a given feature. In a dependency plot, we can see the relation between Shapley values and the actual feature value.</p>
 <pre class="r"><code># use fastshap autoplot for plot the contribution of each feature value
@@ -221,9 +221,9 @@ plotly::ggplotly()</code></pre>
 </div>
 <div id="more-info-here.." class="section level2">
 <h2>More info here..</h2>
-<p><a href="https://towardsdatascience.com/shap-explained-the-way-i-wish-someone-explained-it-to-me-ab81cc69ef30">[1]</a> A Medium article for explaining SHAP values to your Mon (Eli5)</p>
+<p><a href="https://towardsdatascience.com/shap-explained-the-way-i-wish-someone-explained-it-to-me-ab81cc69ef30">[1]</a> A Medium article for explaining SHAP values to your Mom (Eli5)</p>
 <p><a href="https://www.youtube.com/watch?v=m4el1KDTEV8">[2]</a> A Youtube video with a nice introduction to SHAP values (with Code in Python)</p>
-<p><a href="https://medium.com/analytics-vidhya/shap-part-1-an-introduction-to-shap-58aa087a460c">[3]</a> Another Medium article describing the bases of SHAP</p>
+<p><a href="https://medium.com/analytics-vidhya/shap-part-1-an-introduction-to-shap-58aa087a460c">[3]</a> Another Medium article introduction the bases of SHAP (3 parts)</p>
 <p><a href="https://christophm.github.io/book/">[4]</a> The IML (Interpretable Machine Learning Book) containing a lot of info about Machine Learning Interpretation techniques. Not only SHAP</p>
 <p><a href="https://github.com/slundberg/shap/issues/367">[6]</a> A very nice discussion about using SHAP package for multi-classification problems.</p>
 <p><a href="https://github.com/ModelOriented/shapper">[7]</a> The <a href="https://github.com/ModelOriented/shapper" title="R wrapper around original python shap package"><strong>shapper</strong></a> package is an R wrapper around the original shap package.</p>

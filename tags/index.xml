@@ -7,10 +7,58 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Tue, 03 Aug 2021 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sun, 12 Sep 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>model interpretability</title>
+			<link>https://harpomaxx.github.io/tags/model-interpretability/</link>
+			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/model-interpretability/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>R Language</title>
+			<link>https://harpomaxx.github.io/tags/r-language/</link>
+			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/r-language/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>random forest</title>
+			<link>https://harpomaxx.github.io/tags/random-forest/</link>
+			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/random-forest/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>supervised learning</title>
+			<link>https://harpomaxx.github.io/tags/supervised-learning/</link>
+			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/supervised-learning/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>efron</title>
 			<link>https://harpomaxx.github.io/tags/efron/</link>
@@ -29,18 +77,6 @@
 			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/hastie/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>random forest</title>
-			<link>https://harpomaxx.github.io/tags/random-forest/</link>
-			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/random-forest/</guid>
 			<description>
 				
 				
@@ -156,18 +192,6 @@
 			</description>
 		</item>
 		<item>
-			<title>supervised learning</title>
-			<link>https://harpomaxx.github.io/tags/supervised-learning/</link>
-			<pubDate>Sun, 06 Sep 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/supervised-learning/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
 			<title>notebooks</title>
 			<link>https://harpomaxx.github.io/tags/notebooks/</link>
 			<pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
@@ -209,18 +233,6 @@
 			<pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/bayesian/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>R Language</title>
-			<link>https://harpomaxx.github.io/tags/r-language/</link>
-			<pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/r-language/</guid>
 			<description>
 				
 				

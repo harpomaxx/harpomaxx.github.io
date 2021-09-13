@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.80.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="random forest,R Language,supervised learning,model interpretability"><meta name="description" content="We can not continue treating our models as black boxes anymore. Remember, nobody trusts computers for making a very important decision (yet!). That&#39;s by the prediction of a Machine Learning model has become a major research topic. SHAP is a very nice approach for providing interpretability to any machine learning model.  For multi-classification problems, however, documentation and examples are not very clear. [8min read]"><meta property="og:title" content="SHAP values with examples applied to a multi-classification problem." />
+<meta property="og:description" content="We can not continue treating our models as black boxes anymore. Remember, nobody trusts computers for making a very important decision (yet!). That&#39;s by the prediction of a Machine Learning model has become a major research topic. SHAP is a very nice approach for providing interpretability to any machine learning model.  For multi-classification problems, however, documentation and examples are not very clear. [8min read]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/shap-values/" />
+<meta property="article:published_time" content="2021-09-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-09-12T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SHAP values with examples applied to a multi-classification problem."/>
+<meta name="twitter:description" content="We can not continue treating our models as black boxes anymore. Remember, nobody trusts computers for making a very important decision (yet!). That&#39;s by the prediction of a Machine Learning model has become a major research topic. SHAP is a very nice approach for providing interpretability to any machine learning model.  For multi-classification problems, however, documentation and examples are not very clear. [8min read]"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>SHAP values with examples applied to a multi-classification problem. | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">12</span>
+				<span class="rest">Sep 2021</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">SHAP values with examples applied to a multi-classification problem.</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://twitter.com/harpomaxx">Harpo MAxx</a>
+		
+	
+	
+		(8 min read)
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		
+<script src="https://harpomaxx.github.io/post/shap-values/index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p>At the beginning of the <a href="https://www.statlearning.com/">ISLR</a>, we found a picture representing the trade-off between model flexibility and interpretation. For instance, a model such as Linear regression shows low flexibility and high interpretation. It is very straightforward in linear models to analyze the influence of each predictor (AKA feature) by looking at the coefficients of the linear equation. However, they are very restrictive, in the sense that they can only deal with problems where linearity is present. On the other hand, models obtained through algorithms such as Neural Networks or Random Forests have much more flexibility at the cost of losing their interpretability.</p>
+<p>During the last years, the machine learning research community has provided us with major improvements on the flexibility side. Lots of new algorithms arise every day with outstanding results. However, a major inconvenience to achieving massive adoption of these models is their lack of interpretability. In other words, at some point, we need to be able to explain why the algorithm is recommending a particular action ( i.e. Should I invest all my money in this particular company only because a machine tells me so? No way! 😠). That is why the interpretation of Machine Learning models has become an important research topic.</p>
+<blockquote>
+<h2 id="at-some-point-we-need-to-be-able-to-explain-why-the-algorithm-is-recommending-a-particular-action." style="color:gray"><strong><em>At some point, we need to be able to explain why the algorithm is recommending a particular action.</em></strong></h2>
+</blockquote>
+<div id="shapley-values" class="section level2">
+<h2>Shapley values</h2>
+<p>In 2017 Scott M. Lundberg and <a href="https://twitter.com/suinleelab?lang=ca">Su-In Lee</a> published the article <a href="https://proceedings.neurips.cc/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html">“A Unified Approach to Interpreting Model Predictions”</a> where they proposed SHAP <strong>(</strong>SHapley Additive exPlanations<strong>)</strong> , a model-agnostic approach based on Lloyd Shapley ideas for interpreting predictions. <a href="https://en.wikipedia.org/wiki/Lloyd_Shapley">Lloyd Shapley</a> (Nobel Prize in Economy 2012) proposed the notion of the so-called <a href="https://en.wikipedia.org/wiki/Shapley_value">Shapley</a> values to establish the contribution of each player to a cooperative game. Lundberg and Su-In Lee used the same idea and translated the idea to the machine learning field. The idea consisted of using <a href="https://en.wikipedia.org/wiki/Shapley_value">Shapley</a> values for establishing the contribution of each feature to the final model prediction. In a brief, given a prediction for a particular instance, features with a positive higher Shapley value are contributing more to the final model output and of course, the opposite occurs with negative values. So in general, Shapley values tell us how to fairly distribute the prediction results (output) among the features. (Notice that there are some <a href="https://stackoverflow.com/questions/58203472/difference-between-shapley-values-and-shap-for-interpretable-machine-learning">differences</a> between, Shapley values and SHAP, but the general idea is the same).</p>
+<p>Look at the plot in Figure 1, there, we can see the impact of each feature in the model probability output. Notice that the contribution of each feature should be added to the expected probability to obtain the original probability output by the model. The Expected probability refers to the average prediction value for a given dataset when no features are considered. Which is just the <a href="https://github.com/slundberg/shap/issues/352">mean prediction</a>, or <span class="math inline">\(mean(yhat) = sum(yhat_i)/N\)</span> for all rows <span class="math inline">\(x_i\)</span>.</p>
+<p><img src="/img/shap-basic-bis.png" style="width:50.0%" /></p>
+<figcaption>
+<h6>
+<p>Figure 1: An example of Shapley values used for determining the impact of each feature in the final output of a model. In this case, we are considering a probability output. A positive Shapley value pushes the model above the expected (i.e. <strong>average</strong>) model output while a negative value do the opposite (Duh!).</p>
+</h6>
+</figcaption>
+</figure>
+<p>SHAP values are calculated using the marginal contribution of a feature value to a given model. To obtain the overall effect of a given feature value on the final model (i.e. the SHAP value ) it is necessary to consider the marginal contribution of that feature value in all the <em>models</em> where it is present. In other words, <strong>a SHAP</strong> <strong>value is basically the average marginal contribution of a feature value across all possible sets of features.</strong> Since all possible combinations of feature values have to be evaluated with and without the <em>j-th</em> feature, calculate the exact SHAP value is computationally costly (exponentially in the number of features). This fantastic post can explain the general idea in a pretty simple way.so</p>
+<p>Trying to reduce the computational cost of computing SHAP values has been the focus of several research articles. In particular, the authors of <a href="https://proceedings.neurips.cc/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html">SHAP</a> describe two model-agnostic approximation methods, one that is already known (Shapley sampling values) and another that is novel &amp; is based on <a href="https://arxiv.org/abs/1602.04938" title="Another technique for ML interpretation">LIME</a> (Kernel SHAP). The authors of SHAP paper have also proposed several model-type-specific approximation methods such as Linear SHAP, Deep SHAP, etc. These methods assume feature <strong>independence and model linearity</strong> to simplify the computation of SHAP values. More recently <a href="https://proceedings.neurips.cc/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html">SHAP’s</a> authors proposed <a href="https://arxiv.org/abs/1802.03888">Tree SHAP</a>: an efficient estimation approach for tree-based models. The good thing is that algorithms such as <a href="https://catboost.ai/" title="CatBoost is a high-performance open source library for gradient boosting on decision tree">catboost</a>, <a href="https://github.com/microsoft/LightGBM">LightGBM</a>, and the well-known <a href="https://github.com/dmlc/xgboost">XGBoost</a> include SHAP-based interpretation as part of the library.</p>
+<blockquote>
+<h2 id="keep-in-mind-that-shap-is-about-the-local-interpretability-of-a-predictive-model" style="color:gray"><strong><em>Keep in mind that SHAP is about the local interpretability of a predictive model</em></strong></h2>
+</blockquote>
+<p>One thing that is important to remember is that SHAP is about the local interpretability of a predictive model (one game is basically one example). In fact, plot from Figure 1, shows the feature impact on a particular instance. However, there are some nice visualizations that can help us to understand the overall impact of each feature. The latter brings another important contribution of SHAP’s authors: <strong>Visualizations.</strong> The official <a href="https://github.com/slundberg/shap">shap</a> python package (maintained by SHAP authors) is full of very useful visualizations for analyzing the overall feature impact on a given model. The package is pretty well documented, and SHAP main author is pretty active in helping users. So if you are a <em>Pythoner</em>, you won’t have any problem using the package.</p>
+</div>
+<div id="a-multi-classification-example-in-r" class="section level2">
+<h2>A Multi classification example in R</h2>
+<p>In the case of R, we will need to work a little more to create nice visualizations for understanding our model results!. One of the most simple is the <a href="https://github.com/bgreenwell/fastshap"><strong>fastshap</strong></a> package. The goal of <strong>fastshap</strong> is to provide an efficient and speedy (relative to other implementations) approach to computing approximate Shapley values. The implementation supports multi-core execution by the <a href="https://stat.ethz.ch/R-manual/R-patched/library/parallel/doc/parallel.pdf">parallel</a> package.</p>
+<p>Below you can find portions of the code I used for generating the plot from Figure 1. The training dataset I used is part of a project for animal activity recognition we are currently running at our lab.</p>
+<p>Given a model already created and a dataset, the first thing is to define a wrapper function for performing individual predictions. Two important things to consider when dealing with a multi-classification problem: (1) our model should output a probability and (2) we need to select what class are we interested in. The latter is very important for providing to the <code>explain()</code> function only one probability not the probability for all the classes in the dataset.</p>
+<p>In this example I wrote a wrapper for a <a href="https://topepo.github.io/caret/available-models.html">caret</a> model, and class <strong>G</strong>.</p>
+<pre class="r"><code># Load required packages
+library(dplyr)
+library(fastshap)
+# A function for accessing prediction to a caret model 
+p_function_G&lt;- function(object, newdata) 
+  caret::predict.train(object, 
+                       newdata = newdata, 
+                       type = &quot;prob&quot;)[,&quot;G&quot;] # select G class</code></pre>
+<p>Then, <strong>fastshap</strong> can calculate approximated SHAP values using a Montecarlo simulation approach as described in (<a href="https://link.springer.com/article/10.1007/s10115-013-0679-x">Štrumbelj and Kononenko ,2014</a>))</p>
+<p>The parameter (<code>nsim=50</code>) refers to the number of simulations. The <code>X</code> is the dataset used for randomly drawing feature values from the data (see <a href="https://christophm.github.io/interpretable-ml-book/shapley.html">here</a> for more info about the Shapley value calculation). Finally, the <code>newdata</code> parameter contains those instances we want to calculate the Shapley values for.</p>
+<pre class="r"><code># Calculate the Shapley values
+#
+# boostFit: is a caret model using catboost algorithm
+# trainset: is the dataset used for bulding the caret model. 
+#   The dataset contains 4 categories W,G,R,GM 
+#    corresponding to 4 diferent animal  behaviors
+shap_values_G &lt;- fastshap::explain(boostFit, 
+                                   X = trainset, 
+                                   pred_wrapper = p_function_G, 
+                                   nsim = 50,
+                  # select examples corresponding to category G from 
+                  # the trainset used for building the model (not shown)
+                                   newdata=trainset[which(trainset_y==&quot;G&quot;),])</code></pre>
+<blockquote>
+<h2 id="the-fastshap-package-is-only-calculating-an-aproximation-of-shapley-values." style="color:gray"><strong><em>The</em></strong> <strong>fastshap <em>package is only calculating an APROXIMATION of Shapley values.</em></strong></h2>
+</blockquote>
+<p>Notice that the <strong>fastshap</strong> package is only calculating an approximation of Shapley values. When the exact Shapley values are calculated for a single observation, they should add up to the difference between the prediction for that observation and the average predictions across the entire training set. This is not the case, however, for approximate Shapley values, which is the default in <strong>fastshap.</strong></p>
+<p>Once we have calculated the Shapley values, then we can start with some plotting to interpret them. The <strong>fastshap</strong> package includes a number of well-known plots using the <em>autoplot</em> function</p>
+<p>It is possible to generate a contribution plot considering all the observations in the dataset. We can also easily generate a dependency plot for a given feature. In a dependency plot, we can see the relation between Shapley values and the actual feature value.</p>
+<pre class="r"><code># use fastshap autoplot for plot the contribution of each feature value
+# shap_values_G are SHAP values for G class observations.
+p1&lt;-autoplot(shap_values_G, type = &quot;contribution&quot;)
+p2 &lt;- autoplot(shap_values_G, type = &quot;dependence&quot;, 
+               feature = &quot;DBL2&quot;, X = trainset_G, alpha = 0.5,
+               color_by = &quot;DBL2&quot;, smooth = TRUE, 
+               smooth_color = &quot;orange&quot;) +
+        scale_color_viridis_c()
+gridExtra::grid.arrange(p1, p2, nrow = 1)</code></pre>
+<p><img src="/img/dependecy-impact-plots.png" style="width:100.0%" /></p>
+<figcaption>
+<h6>
+<p>Figure 2: An example of Shapley values used to determine the contribution (left) and dependency with a feature value (right) along the portion of dataset labeled with class G. (A contribution plot is also shown )</p>
+</h6>
+</figcaption>
+</figure>
+<p>Force plots are another interesting visualization for analyzing the feature contribution <strong>but</strong> on a <em>particular</em> observation (similar to plot from Figure 1). In a force plot we can exactly see which features had the most influence on the model’s prediction for a single observation. The <strong>fasthap</strong> package provides a wrapper around <strong>shap</strong> python package. Notice that for this particular plot I added a <em>baseline</em> parameter model prediction ( 0.14) which indicates the excepted value across the entire training set.</p>
+<p>Each feature SHAP value is added to the baseline to obtain the final probability for that observation. In the original Python version, you can hover over the plot to get more info. In R we are not so lucky 😥 !</p>
+<pre class="r"><code>force_plot(object = shap_values_G[8L,], 
+           feature_values = trainset_G[8L, ], 
+           display = &quot;html&quot;,
+           baseline = 0.14) </code></pre>
+<p><img src="/img/force-plot-shap.png" style="width:100.0%" /></p>
+<figcaption>
+<h6>
+<p>Figure 3: An example of force plot for a single observation.</p>
+</h6>
+</figcaption>
+</figure>
+<p>For the multi-classification problem, we could need to see the impact of each feature considering the different classes. A simple summary plot can generated considering the <strong>absolute</strong> average SHAP values along all the classes. In the code below I used a dataframe <code>shap_values</code> containing the SHAP values for all the four classes. In addition, you can use <code>plot_ly()</code> to create some minimal interaction in the plot 😎.</p>
+<pre class="r"><code>shap_values %&gt;% 
+  group_by(class,variable) %&gt;% 
+  summarise(mean=mean(abs(value))) %&gt;% 
+  arrange(desc(mean)) %&gt;%
+  ggplot()+
+  geom_col(aes(y=variable,x=mean,group = class, fill = class),
+           position=&quot;stack&quot;)+
+  xlab(&quot;Mean(|Shap Value|) Average impact on model output magnitude&quot;)
+plotly::ggplotly()</code></pre>
+<iframe height="400" width="100%" frameborder="no" src="/html/plotly.html">
+</iframe>
+<p>Finally, the last plot is a <a href="https://shap.readthedocs.io/en/latest/example_notebooks/api_examples/plots/beeswarm.html">beeswarm plot</a>, which is basically a dependency plot considering all the features in the datasets for a particular class. The idea is to show de relation between the SHAP values and the corresponding feature value for all the observations labeled for a particular class. Below is a portion of the code I used for generate it. Two important things to mention: (1) I used the<code>geom_sina()</code> function from the <a href="https://cran.r-project.org/web/packages/ggforce/index.html"><code>ggforce</code></a> package and (2) I scaled all the features values between 0 and 1.</p>
+<pre class="r"><code>cbind(shap_values, 
+      feature_value=trainset_melted_scaled$value_scale) %&gt;%  
+  filter(class==&quot;W&quot;) %&gt;%
+  ggplot()+
+  geom_hline(yintercept=0, 
+                color = &quot;red&quot;, size=0.5)+
+  ggforce::geom_sina(aes(x=variable,
+                         y=value,
+                         color=feature_value),
+                     size=0.8,
+                     bins=4,
+                     alpha=0.5)+
+    scale_colour_gradient(low = &quot;yellow&quot;, high = &quot;red&quot;, na.value = NA)+
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))</code></pre>
+<p><img src="/img/dependecy-features-full-R-bis.png" style="width:80.0%" /></p>
+<figcaption>
+<h6>
+<p>Figure 4: An example of the beeswarn plot for a single observation. We can observe that when feature <em>Active</em> has higher values, it contributes more to push the classification to the <em>W</em> class.</p>
+</h6>
+</figcaption>
+</figure>
+</div>
+<div id="more-info-here.." class="section level2">
+<h2>More info here..</h2>
+<p><a href="https://towardsdatascience.com/shap-explained-the-way-i-wish-someone-explained-it-to-me-ab81cc69ef30">[1]</a> A Medium article for explaining SHAP values to your Mon (Eli5)</p>
+<p><a href="https://www.youtube.com/watch?v=m4el1KDTEV8">[2]</a> A Youtube video with a nice introduction to SHAP values (with Code in Python)</p>
+<p><a href="https://medium.com/analytics-vidhya/shap-part-1-an-introduction-to-shap-58aa087a460c">[3]</a> Another Medium article describing the bases of SHAP</p>
+<p><a href="https://christophm.github.io/book/">[4]</a> The IML (Interpretable Machine Learning Book) containing a lot of info about Machine Learning Interpretation techniques. Not only SHAP</p>
+<p><a href="https://github.com/slundberg/shap/issues/367">[6]</a> A very nice discussion about using SHAP package for multi-classification problems.</p>
+<p><a href="https://github.com/ModelOriented/shapper">[7]</a> The <a href="https://github.com/ModelOriented/shapper" title="R wrapper around original python shap package"><strong>shapper</strong></a> package is an R wrapper around the original shap package.</p>
+<p><a href="https://proceedings.neurips.cc/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html">[8]</a> SHAP original paper</p>
+</div>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/feature-importance/"> feature-importance </a>
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/feature-selection/"> feature-selection </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/tools/"> tools </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/model-interpretability/"> model-interpretability </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/r-language/"> r-language </a>
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/random-forest/"> random-forest </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/supervised-learning/"> supervised-learning </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+
+<form style="float:center;" action="https://tinyletter.com/harpomaxx" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/harpomaxx', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+<label for="tlemail">Enter your email address</label>
+<input type="text" style="width:140px" name="email" id="tlemail" />
+<input type="hidden" value="1" name="embed"/>
+<input type="submit" value="Subscribe" />
+</form>
+
+
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+
+
+</footer>
+
+</body>
+</html>

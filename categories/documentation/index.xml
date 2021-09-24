@@ -7,22 +7,10 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Mon, 22 Feb 2021 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sun, 11 Oct 2020 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/categories/documentation/index.xml" rel="self" type="application/rss+xml" />
 		
-		<item>
-			<title>Resources for a Gentle Introduction to Deep Learning</title>
-			<link>https://harpomaxx.github.io/post/resources-for-deep-learning/</link>
-			<pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/post/resources-for-deep-learning/</guid>
-			<description>
-				
-				The Deep Learning (DL) topic is huge! So huge that many people consider it is as a topic separated from the Machine Learning field. I partially agree with that. IMHO, I consider DL more like a very GE...
-				
-			</description>
-		</item>
 		<item>
 			<title>Resources for a Gentle Introduction to Machine Learning</title>
 			<link>https://harpomaxx.github.io/post/introductional-resources-for-machine-learning/</link>
@@ -31,7 +19,7 @@
 			<guid>https://harpomaxx.github.io/post/introductional-resources-for-machine-learning/</guid>
 			<description>
 				
-				Jurgen has his own list of recommended resources for new members of his lab. Well, we have ours too. Here is a portion of the list for a gentle introduction to Machine Learning  for LABSIN new members. [5 min read]. (updated 10/23/2020).
+				Jurgen has his own list of recommended resources for new members of his lab. Well, we have ours too. Here is a portion of the list for a gentle introduction to Machine Learning  for LABSIN new members. [5 min read]. (updated 09/24/2021).
 				
 			</description>
 		</item>

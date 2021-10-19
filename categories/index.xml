@@ -7,10 +7,34 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Sun, 12 Sep 2021 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Tue, 19 Oct 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>data science</title>
+			<link>https://harpomaxx.github.io/categories/data-science/</link>
+			<pubDate>Tue, 19 Oct 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/data-science/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>engineering</title>
+			<link>https://harpomaxx.github.io/categories/engineering/</link>
+			<pubDate>Tue, 19 Oct 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/engineering/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>feature importance</title>
 			<link>https://harpomaxx.github.io/categories/feature-importance/</link>
@@ -137,18 +161,6 @@
 			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/resampling/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>engineering</title>
-			<link>https://harpomaxx.github.io/categories/engineering/</link>
-			<pubDate>Thu, 04 Mar 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/engineering/</guid>
 			<description>
 				
 				

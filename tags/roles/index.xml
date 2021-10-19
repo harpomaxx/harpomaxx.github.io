@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>engineering on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/categories/engineering/</link>
-		<description>Recent content in engineering on harpomaxx.github.io</description>
+		<title>roles on Computer Science Notes</title>
+		<link>https://harpomaxx.github.io/tags/roles/</link>
+		<description>Recent content in roles on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Tue, 19 Oct 2021 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/categories/engineering/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/tags/roles/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>NO, Data Science is not just cleaning and transforming data!</title>
@@ -20,18 +20,6 @@
 			<description>
 				
 				Decent programming skills, strong math and stats knowledge, and amazing visuals are not enough for a data science position in the industry. These are just the necessary tools you will need, but you don&#39;t have to lose the ultimate goal &#34;to  provide valuable information to decision-makers&#34;.  That is how you can make a difference.[5min read]
-				
-			</description>
-		</item>
-		<item>
-			<title>Machine Learning in Production</title>
-			<link>https://harpomaxx.github.io/post/machine-learning-in-production/</link>
-			<pubDate>Thu, 04 Mar 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/post/machine-learning-in-production/</guid>
-			<description>
-				
-				Working with machine learning is not what it used to be. Let&#39;s face it. Now, there is much less time for hacking and much more time for deployment. The situation is not new and certainly not bad at all. That is why you should be prepared for the new roles and positions offered by the market. [5min read] (updated 04/09/2021)
 				
 			</description>
 		</item>

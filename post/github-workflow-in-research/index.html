@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.80.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo Maxx"><meta name="keywords" content="reproducible Research"><meta name="description" content="The Software Industry has well-defined standards and procedures which are heavily based on tools such as Gitlab. However,  in research sometimes we follow a more relaxed and not structured way. At LABSIN we have recently begun to apply software industry approaches to our daily work.  The match is not perfect since research could be different in some way. But, the benefits are clear.  [9min read]"><meta property="og:title" content="Github flow for conducting research projects" />
+<meta property="og:description" content="The Software Industry has well-defined standards and procedures which are heavily based on tools such as Gitlab. However,  in research sometimes we follow a more relaxed and not structured way. At LABSIN we have recently begun to apply software industry approaches to our daily work.  The match is not perfect since research could be different in some way. But, the benefits are clear.  [9min read]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/github-workflow-in-research/" />
+<meta property="article:published_time" content="2021-11-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-11-30T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Github flow for conducting research projects"/>
+<meta name="twitter:description" content="The Software Industry has well-defined standards and procedures which are heavily based on tools such as Gitlab. However,  in research sometimes we follow a more relaxed and not structured way. At LABSIN we have recently begun to apply software industry approaches to our daily work.  The match is not perfect since research could be different in some way. But, the benefits are clear.  [9min read]"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Github flow for conducting research projects | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">30</span>
+				<span class="rest">Nov 2021</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Github flow for conducting research projects</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://twitter.com/harpomaxx">Harpo Maxx</a>
+		
+	
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		<blockquote>
+<p>Thanks to<a href="https://www.linkedin.com/in/juanmanuelromero-1899/">Juanma Romero</a>, <a href="https://www.linkedin.com/in/mmarchetta/">Tincho Marchetta</a> and <a href="https://twitter.com/RGonzalez_PhD">Rodralez</a> from <a href="https://labsin.org">LABSIN</a> for point me to most of the rules and procedures described in this post.</p>
+</blockquote>
+<h2 id="the-common-scenario">The common scenario</h2>
+<p>Using <strong>Source code Management</strong> (SCM) tools for conducting a development process is basically the way to go in the software industry. Let be me clear: <em>Not using such tools is basically insane!</em> <a href="https://en.wikipedia.org/wiki/Software_configuration_management">SCM</a> tools are usually integrated into some kind of web application and they provide much more than just simple collaborative access to code and code versioning. You usually have access to some sort of ticket tracking system, a continuous integration (CI) tool, among others. <a href="https://github.com">Github</a>, <a href="https://gitlab.com">GitLab</a>, and <a href="https://bitbucket.org">bitbucket</a> are good examples of these kinds of tools. (I&rsquo;m pretty sure you have heard about them 😜).</p>
+<p>The Software Industry has well-defined standards and procedures which are heavily based on tools such as Gitlab. The <a href="https://docs.github.com/en/get-started/quickstart/github-flow">Github flow</a>, for instance, is a good example of some of the procedures applied in collaborative software development.<br>
+However, in research sometimes we follow a more relaxed and not structured way to do our job. Don&rsquo;t get me wrong, of course, we use SCM tools (sometimes) for keeping track of our code. But, since research could be a solitary task, we tend to relax the standards. Every researcher is free to work the way he wants. Usually, the research topics are so complicated in their own way, that forcing the use of a procedure or specific tools is left aside. Such behavior could a big problem when a new member wants to join a particular project. An infamous research scenario is someone trying to join a project and not finding the last version of a particular model, nor the code that implemented it.</p>
+<blockquote>
+<h2 style="color:gray" id="the-data-capture-process-the-data-analysis-is-certainly-rigorous-the-software-well-that-is-a-completely-different-story"><em><strong>The data capture process, the data analysis is certainly rigorous, the software&hellip; well that is a completely different story.</strong></em></h2>
+</blockquote>
+<p>If you think a little bit about it, you can say it sounds ridiculous, a researcher that doesn&rsquo;t follow a rigorous methodology? Well, the data capture process and the data analysis are certainly rigorous, <strong>the software</strong>&hellip; well that is a completely different story. This behavior has started to change with journals and conferences asking for the code. More recently, sites like <a href="https://paperswithcode.com/">Papers with Code</a> have started forcing researchers to be more careful when coding.</p>
+<p>At <a href="https://labsin.org">LABSIN</a> we have started exploring the application of these tools as a fundamental part of our daily research. In the rest of this post, I will discuss how we applied several ideas from software development to our research process. So if you have experience in the software industry this post could be a little be boring for you!</p>
+<h2 id="the-recommended-repository-structure">The recommended repository structure.</h2>
+<p>Every new research project should have a repository on Github. Depending on the kind of research project, the Github repo could be <strong>private</strong> or <strong>public</strong>. The general idea of the repository is to include all the data related to the given research project. Not only the code but also all the resources used in the project. So you need to include a link to every important paper, book, video or internet article useful for the project in the repository. The contributions (aka publications) should be also included in the repository. Not only the PDF version but also the source (latex, word, markdown, etc.)</p>
+<p>In the figure below, you can find a preliminary directory structure template we use every time we start a new research project. Please keep in mind this is very data-science oriented.</p>
+<p><img src="images/Screenshot_2021-11-20_19-45-38.png" alt=""></p>
+<p>In the <code>rawdata/</code> folder, you should put the data used for the project without any kind of transformation. Since raw data used to be huge, you can simply create a file pointing to the datasets. In case data is stored in some kind of database, then the instruction for accessing the database should be available here.</p>
+<p>If you decide to carry out some kind of cleaning, data transformation, etc.), or maybe you want to sample a smaller portion in the data for working in-memory, such data should be stored in the <code>data/</code> folder.</p>
+<p>In the <code>code/</code> folder, you should put the source code for every experiment, study, and developed application related to the research. Since we basically focus on Data Science projects our main languages are <code>Python,</code> <code>R</code> and <code>Bash</code> . How to continue the hierarchy below the language folder? It depends. I personally like to create a new folder for <code>notebooks/</code>. Another for <code>scripts</code>/ and (if necessary) one more for R <code>packages/</code> or<code>shiny</code>/ apps.</p>
+<p>The <code>doc/</code> folder is for all the references used in the project: Books, papers, datasheets, articles, videos, etc. For that, you can use a BibTex file for papers and books and a markdown file for the remaining resources. (In some cases you can include the PDF ).</p>
+<p>From time to time you share a chart with your co-workers or a table with partial results. It is a good idea to save them. You never know when you will need it again. For storing these kinds of resources you can use the <code>images/</code> folder.</p>
+<p>In the <code>publications/</code> folder you can store all the publications of the project. We use special directories for <code>posters/</code> and <code>articles/</code>. Remember, the idea is to also include here all the sources of the publication for further modification.</p>
+<p>Finally in the <code>models/</code> folder, you should store the results models. Here you can put the plain model object for use when new data become available. Very often models are deployed via some <a href="https://harpomaxx.github.io/post/deploying-ml-model/">kind of microservice</a> (<a href="https://flask.palletsprojects.com/en/2.0.x/">Flask</a>, <a href="https://fastapi.tiangolo.com/">fastAPI</a> or <a href="https://www.rplumber.io/">Plumber</a> for instance). in that case all the code of the microservice should be stored here (as well as <a href="https://www.docker.com/">Docker</a> files if they are needed).</p>
+<h2 id="the-ticket-system">The ticket system</h2>
+<p>GitHub is a great tool for a lightweight ticketing system and we at LABSIN have strongly embraced it. What do I mean by that? Well, the idea is to use the ticket system for everything related to the project and certainly not limited to the code.</p>
+<p>Let&rsquo;s say you have to do some literature review. Well, you can create an issue for that, and once you have finished, you can close the issue. Or maybe you have to make a video of the project for presenting to some virtual conference. You create an issue for that, make the video, upload it to the <code>publications/videos/</code> folder (or at least create a link pointing to it), and then you can close the issue.</p>
+<p>So basically we try to create an issue for every project task. I know it could be excessive, but believe me, when you are working with several research projects in parallel, this could be life-saving. If you need to leave a particular project for a week o so, you can return to it and have a clear idea about the state of the project: what have been done, what is still missing, who is working o what, etc.</p>
+<blockquote>
+<h2 style="color:gray" id="github-is-a-great-tool-for-a-lightweight-ticketing-system-and-we-at-labsin-have-strongly-embraced-it"><em><strong>GitHub is a great tool for a lightweight ticketing system and we at LABSIN have strongly embraced it.</strong></em></h2>
+</blockquote>
+<p>Of course, Github provides a method for assigning a particular issue to a member (or members) of the project. But also provides a labeling system for annotating tickets according to your needs. You can establish a priority or maybe the project stage associated with the issue. For instance, we at LABSIN use the <strong>WIP</strong> label for indicating somebody is working on an issue, and also we use labels for indicating the stage of that issue.</p>
+<p>You can choose your own way of making use of the ticket system. In the Figure below there is a real example of a LASBIN project we have started recently. In this case issue #1 required to all members pick a couple of datasets for doing some transformation. When a member has picked his datasets, he can remove himself from the assignees' list and start a new issue (#3) dedicated to making the actual transformation. This is just one use example&hellip;</p>
+<p><img src="images/github-issues.png" alt=""></p>
+<h2 id="slack-integration">Slack Integration</h2>
+<p>Communication platforms like <a href="https://slack.com/">slack</a> have become very common today. At LABSIN we Integrated Github project into our slack workspace. The idea is simple: For every new project you have two channels: <code>#project-name</code> and <code>#project-name-dev</code> . In the first channel, you discuss everything related to the research project, and in the second ( <code>#project-name-dev)</code> you focus only on the development aspect of the project. In this last channel, you add the <a href="https://slack.github.com/">GitHub slack integration</a> for having notifications about each issue, comment, branch, and Pull Request (PR).</p>
+<p><img src="images/slack-github-integration.png" alt=""></p>
+<p>By integrating Github repository action into the project channel you can keep out to date with the last changes in the project discuss every notification, propose a new change or issue, anything you want&hellip;</p>
+<h2 id="the-github-flow">The GitHub Flow</h2>
+<p>GitHub flow is <strong>a lightweight, branch-based workflow</strong>. The GitHub flow is useful for everyone, not just developers. For example, according to <a href="https://docs.github.com/en/get-started/quickstart/github-flow">GitHub</a>, you can use GitHub flow for a site policy, documentation, and roadmap among others.</p>
+<p>As I mentioned before, there is nothing new about this methodology so I will discuss it briefly. We are working on a more complete document you can find <a href="https://github.com/rodralez/sales-forecasting/blob/develop/labsin-project-workflow-guide-en.md">here</a>.</p>
+<h3 id="you-work-hierarchically-with-2-branches-simultaneously">You work hierarchically with 2 branches simultaneously:</h3>
+<p><code>main</code>: Production branch. Nothing is merged into <code>main</code> except there is a strong consensus among all the participants working on the repository. Only the <code>develop</code> branch can be merged to the <code>main</code> branch.</p>
+<p><code>develop</code>: it is the integration branch used by all the branches to merge particular changes.</p>
+<h3 id="for-each-new-feature-create-an-issue-and-then-create-a-new-topic-branch">For each new feature, create an issue and then create a new topic branch.</h3>
+<p>For every new feature we need to implement (a portion of a paper, a new function, a modification to the Bibtex file, etc.) you create an issue in the ticket system. Once created you assigned it to some members of your teams. (Let&rsquo;s be realistic, it will be probably you!!). When you (or somebody else) decide to work on a particular issue, you can use a label (WIP) or just post a comment on the Github platform and create a new topic branch from <code>develop</code> . This is a local copy only available in the local version of the repo. The idea is that you work in this new topic branch and once you have finished out pushed to the remote repository.<br>
+Then, you create a <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests">Pull Request</a> (<strong>PR</strong>) at the <a href="https://github.com">Github</a> site and wait until other members approve it (hopefully it won&rsquo;t take long 😝). Finally, when the PR is approved, the merge between <code>develop</code> and our topic branch is made at the Github site. Finally, if all issues were resolved related to the branch, the branch can be deleted.</p>
+<h3 id="about-releases">About releases</h3>
+<p>A release is an official version of the project under development. When we are going to make a release, we typically do a single PR from `develop` to `main`, check and merge in `main`.</p>
+<p>Then, the version history is usually kept by adding tags in `main` (we can add them in any branch anyway if we need them). The tags are like markers in the history and then if necessary we can create branches off of those tags.</p>
+<h2 id="just-a-few-more-words">Just a few more words.</h2>
+<p>This post is just a first attempt to formalize the methodology for conducting a new research project at <a href="https://labsin.org/">LABSIN</a> and certainly is a <strong>Work in Progress</strong> per se. So, we are pretty sure a lot of things could be improved and actually WILL BE improved as we continue applying the methodology in our daily tasks. <strong>So be ready for updates.</strong></p>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/data-science/"> data-science </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/machine-learning-engineering/"> machine-learning-engineering </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/tools/"> tools </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/reproducible-research/"> reproducible-research </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+
+<form style="float:center;" action="https://tinyletter.com/harpomaxx" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/harpomaxx', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+<label for="tlemail">Enter your email address</label>
+<input type="text" style="width:140px" name="email" id="tlemail" />
+<input type="hidden" value="1" name="embed"/>
+<input type="submit" value="Subscribe" />
+</form>
+
+
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+
+
+</footer>
+
+</body>
+</html>

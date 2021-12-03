@@ -7,22 +7,10 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Tue, 30 Nov 2021 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Tue, 19 Oct 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
-		<item>
-			<title>reproducible Research</title>
-			<link>https://harpomaxx.github.io/tags/reproducible-research/</link>
-			<pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/reproducible-research/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
 		<item>
 			<title>roles</title>
 			<link>https://harpomaxx.github.io/tags/roles/</link>
@@ -120,6 +108,18 @@
 			</description>
 		</item>
 		<item>
+			<title>reproducible Research</title>
+			<link>https://harpomaxx.github.io/tags/reproducible-research/</link>
+			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/reproducible-research/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
 			<title>cross-validation</title>
 			<link>https://harpomaxx.github.io/tags/cross-validation/</link>
 			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
@@ -156,18 +156,6 @@
 			</description>
 		</item>
 		<item>
-			<title>books</title>
-			<link>https://harpomaxx.github.io/tags/books/</link>
-			<pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/books/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
 			<title>lasso</title>
 			<link>https://harpomaxx.github.io/tags/lasso/</link>
 			<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
@@ -185,6 +173,18 @@
 			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/dimensional-reduction/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>books</title>
+			<link>https://harpomaxx.github.io/tags/books/</link>
+			<pubDate>Sun, 11 Oct 2020 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/books/</guid>
 			<description>
 				
 				

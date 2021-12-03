@@ -7,10 +7,22 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Tue, 19 Oct 2021 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Tue, 30 Nov 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/post/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Github flow for conducting research projects</title>
+			<link>https://harpomaxx.github.io/post/github-workflow-in-research/</link>
+			<pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/github-workflow-in-research/</guid>
+			<description>
+				
+				The Software Industry has well-defined standards and procedures which are heavily based on tools such as Gitlab. However,  in research sometimes we follow a more relaxed and not structured way. At LABSIN we have recently begun to apply software industry approaches to our daily work.  The match is not perfect since research could be different in some way. But, the benefits are clear.  [9min read]
+				
+			</description>
+		</item>
 		<item>
 			<title>NO, Data Science is not just cleaning and transforming data!</title>
 			<link>https://harpomaxx.github.io/post/cleaning-and-transforming-datasets-is-not-enough/</link>
@@ -104,6 +116,18 @@
 			<description>
 				
 				Working with machine learning is not what it used to be. Let&#39;s face it. Now, there is much less time for hacking and much more time for deployment. The situation is not new and certainly not bad at all. That is why you should be prepared for the new roles and positions offered by the market. [5min read] (updated 04/09/2021)
+				
+			</description>
+		</item>
+		<item>
+			<title>Resources for a Gentle Introduction to Deep Learning</title>
+			<link>https://harpomaxx.github.io/post/resources-for-deep-learning/</link>
+			<pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/resources-for-deep-learning/</guid>
+			<description>
+				
+				The Deep Learning (DL) topic is huge! So huge that many people consider it is as a topic separated from the Machine Learning field. I partially agree with that. IMHO, I consider DL more like a very GE...
 				
 			</description>
 		</item>

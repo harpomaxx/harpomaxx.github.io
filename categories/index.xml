@@ -7,16 +7,40 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Tue, 19 Oct 2021 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Tue, 30 Nov 2021 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>data science</title>
 			<link>https://harpomaxx.github.io/categories/data-science/</link>
-			<pubDate>Tue, 19 Oct 2021 00:00:00 +0000</pubDate>
+			<pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/data-science/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>machine learning engineering</title>
+			<link>https://harpomaxx.github.io/categories/machine-learning-engineering/</link>
+			<pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/machine-learning-engineering/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>tools</title>
+			<link>https://harpomaxx.github.io/categories/tools/</link>
+			<pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/tools/</guid>
 			<description>
 				
 				
@@ -53,18 +77,6 @@
 			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/feature-selection/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>tools</title>
-			<link>https://harpomaxx.github.io/categories/tools/</link>
-			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/tools/</guid>
 			<description>
 				
 				
@@ -120,18 +132,6 @@
 			</description>
 		</item>
 		<item>
-			<title>machine learning engineering</title>
-			<link>https://harpomaxx.github.io/categories/machine-learning-engineering/</link>
-			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/machine-learning-engineering/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
 			<title>mle</title>
 			<link>https://harpomaxx.github.io/categories/mle/</link>
 			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
@@ -168,11 +168,11 @@
 			</description>
 		</item>
 		<item>
-			<title>documentation</title>
-			<link>https://harpomaxx.github.io/categories/documentation/</link>
-			<pubDate>Sun, 11 Oct 2020 00:00:00 +0000</pubDate>
+			<title>Deep Learning</title>
+			<link>https://harpomaxx.github.io/categories/deep-learning/</link>
+			<pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/categories/documentation/</guid>
+			<guid>https://harpomaxx.github.io/categories/deep-learning/</guid>
 			<description>
 				
 				
@@ -180,11 +180,11 @@
 			</description>
 		</item>
 		<item>
-			<title>Deep Learning</title>
-			<link>https://harpomaxx.github.io/categories/deep-learning/</link>
-			<pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+			<title>documentation</title>
+			<link>https://harpomaxx.github.io/categories/documentation/</link>
+			<pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/categories/deep-learning/</guid>
+			<guid>https://harpomaxx.github.io/categories/documentation/</guid>
 			<description>
 				
 				

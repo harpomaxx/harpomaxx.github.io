@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.80.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="random forest,lasso,tibshirani,boosting"><meta name="description" content="Tree-based algorithms suffer from severe limitations when applied to forecasting problems. They can&#39;t predict beyond observed training data points values. However, not everything is lost. There are some alternative approaches to improve the performance of the tree-based algorithm under such scenarios. [5min read]"><meta property="og:title" content="Tackling the limitations of tree-based algorithms" />
+<meta property="og:description" content="Tree-based algorithms suffer from severe limitations when applied to forecasting problems. They can&#39;t predict beyond observed training data points values. However, not everything is lost. There are some alternative approaches to improve the performance of the tree-based algorithm under such scenarios. [5min read]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/random-forest-extrapolation/" />
+<meta property="article:published_time" content="2022-02-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-02-18T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Tackling the limitations of tree-based algorithms"/>
+<meta name="twitter:description" content="Tree-based algorithms suffer from severe limitations when applied to forecasting problems. They can&#39;t predict beyond observed training data points values. However, not everything is lost. There are some alternative approaches to improve the performance of the tree-based algorithm under such scenarios. [5min read]"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Tackling the limitations of tree-based algorithms | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">18</span>
+				<span class="rest">Feb 2022</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Tackling the limitations of tree-based algorithms</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by Harpo MAxx
+		
+	
+	
+		(5 min read)
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		
+<script src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/header-attrs/header-attrs.js"></script>
+
+
+<p>In the first post of 2022, I want to discuss a well-known problem of tree-based algorithms: <strong>Their inability to extrapolate.</strong> That’s right, tree-based algorithms cant go beyond the data observed during training. In other words, in a regression problem, the range of predictions a tree-based algorithm can make is bound by the highest and lowest outcome values in the training data. In case you didn’t know, <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">KNN</a> is another algorithm suffering from the same problem.</p>
+<div id="recognizing-the-problem" class="section level2">
+<h2>Recognizing the problem</h2>
+<p>OK, but what are the implications of this limitation?. Let’s see the problem in action. First we are going to generate a training set and a test with only one predictor variable.</p>
+<pre class="r"><code>library(dplyr)
+set.seed(19091973)
+x1&lt;-rnorm(50,30,30)
+error&lt;-rnorm(50,30,30)
+y1&lt;-(4*x1)+error
+
+x1_test&lt;-rnorm(50,160,30)
+error&lt;-rnorm(50,30,30)
+y1_test&lt;-(4*x1_test)+error
+
+sample_train&lt;- data.frame(dataset=&quot;training&quot;,y=y1,x=x1)
+sample_test&lt;-  data.frame(dataset=&quot;testing&quot;,y=y1_test,x=x1_test)</code></pre>
+<p>In this particular dataset, the range of predictor values use for training does not overlap with values from the testing dataset. Let’s plot the data to see what am I talking about.</p>
+<pre class="r"><code>library(ggplot2)
+rbind(sample_train,sample_test)  %&gt;% ggplot()+
+  geom_point(aes(x=x,y=y,color=dataset),shape=21)+
+  ggdark::dark_theme_bw()+
+  labs(title=&quot;Simulated data for regression&quot;,
+  subtitle = &quot;Datasets with different range values for predictor variable&quot;)+
+  guides(color=guide_legend(title=&quot;Dataset&quot;))</code></pre>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/unnamed-chunk-2-1.png" alt="Plot of simulated data for testing and training models" width="672" />
+<p class="caption">
+Figure 1: Plot of simulated data for testing and training models
+</p>
+</div>
+<p>There’s a remarkable linear trend in the training dataset, and the tendency continues in the testing dataset. The regression problem can easily be handled by fitting a linear model. Let’s verify this with the following code.</p>
+<p>First, a simple function for include predictions from a given model into a dataframe.</p>
+<pre class="r"><code># A helper function for facilitating ploting data
+create_predictions_df &lt;- function(model, train, test){
+
+  if (class(model) == &quot;catboost.Model&quot;){
+    test_pool&lt;-catboost.load_pool(test %&gt;% select(-dataset,-y), 
+                              label = test$y)
+    test_predictions&lt;-catboost.predict(model,test_pool)
+    train_pool&lt;-catboost.load_pool(train %&gt;% select(-dataset,-y), 
+                              label = train$y)
+    train_predictions&lt;-catboost.predict(model,train_pool)
+  } else {
+    test_predictions &lt;- predict(model, test %&gt;% select(-dataset,-y))
+    train_predictions &lt;- predict(model, train %&gt;% select(-dataset,-y))
+  }
+  
+  predictions_test_df &lt;- 
+    data.frame(dataset = &quot;test&quot;, y = test$y, x = test$x, predictions =
+                 if(class(model) == &quot;ranger&quot; || &quot;grf&quot; %in% class(model))  
+                    test_predictions$predictions else 
+                    test_predictions)
+  predictions_train_df &lt;- 
+    data.frame(dataset = &quot;train&quot;, y = train$y, x = train$x, predictions =
+                 if(class(model) == &quot;ranger&quot; || &quot;grf&quot; %in% class(model))  
+                    train_predictions$predictions else 
+                    train_predictions)
+ rbind(predictions_train_df,predictions_test_df)
+}</code></pre>
+<p>Then, we train a simple linear regression model using training data and try to predict the outcome for testing.</p>
+<pre class="r"><code># Fit a linear model
+lm_fit&lt;-lm(y~x,data=sample_train %&gt;% select(-dataset))
+
+create_predictions_df(lm_fit,sample_train,sample_test) %&gt;%
+  ggplot()+
+  geom_line(aes(x=x,y=predictions),color=&#39;orange&#39;)+
+  ylab(&quot;y&quot;)+
+  geom_point(aes(x=x,y=y,color=dataset),shape=21)+
+  ggdark::dark_theme_bw()+
+  labs(title=&quot;Linear Regressor&quot;,
+  subtitle = &quot;Datasets with different range values for predictor variable&quot;)+
+  guides(color=guide_legend(title=&quot;Dataset&quot;))</code></pre>
+<div class="figure"><span style="display:block;" id="fig:lm-results"></span>
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/lm-results-1.png" alt="Linear Regression results" width="672" />
+<p class="caption">
+Figure 2: Linear Regression results
+</p>
+</div>
+<p><em>No problem man!</em> As expected the linear regressor model did pretty decent work fitting the data ( see orange line). Now, let start with a classic tree-based (<a href="https://www.taylorfrancis.com/books/mono/10.1201/9781315139470/classification-regression-trees-leo-breiman-jerome-friedman-richard-olshen-charles-stone">CART</a>) approach. I will use the <a href="https://cran.r-project.org/web/packages/rpart/">rpart</a> package.</p>
+<pre class="r"><code>library(rpart)
+part_fit&lt;-rpart(y ~ x,data = sample_train,control = rpart.control(cp = 0.001))
+
+create_predictions_df(part_fit,sample_train,sample_test)  %&gt;%
+  ggplot()+
+  geom_line(aes(x=x,y=predictions),color=&#39;orange&#39;)+
+  geom_point(aes(x=x,y=y,color=dataset),shape=21)+
+  ylab(&quot;y&quot;)+
+  ggdark::dark_theme_bw()+
+  labs(title=&quot;Tree Regressor&quot;,
+  subtitle = &quot;Datasets with different range values for predictor variable&quot;)+
+  guides(color=guide_legend(title=&quot;Dataset&quot;))</code></pre>
+<div class="figure"><span style="display:block;" id="fig:cart-results"></span>
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/cart-results-1.png" alt="CART results" width="672" />
+<p class="caption">
+Figure 3: CART results
+</p>
+</div>
+<p><em>Boooh!</em> . We can see that <code>rpart</code> model was unable to predict the outcome on the testing set. But, CART are not the state of the art of tree-based algorithm. So let’s try the good ol’ Random Forest algorithm. In this particular case, I will use the <a href="https://cran.r-project.org/web/packages/ranger/index.html"><code>ranger</code></a> package, a fast and modern implementation of Random Forest.</p>
+<pre class="r"><code>library(ranger)
+# Fit data on training set
+rf_fit&lt;-ranger(y ~ x, sample_train, num.trees = 100, keep.inbag = TRUE)
+
+create_predictions_df(rf_fit,sample_train,sample_test)  %&gt;%
+  ggplot()+
+  geom_line(aes(x=x,y=predictions),color=&#39;orange&#39;)+
+  geom_point(aes(x=x,y=y,color=dataset),shape=21)+
+  ylab(&quot;y&quot;)+
+  ggdark::dark_theme_bw()+
+  labs(title=&quot;Random Forest Regressor&quot;,
+  subtitle = &quot;Datasets with different range values for predictor variable&quot;)+
+  guides(color=guide_legend(title=&quot;Dataset&quot;))</code></pre>
+<div class="figure"><span style="display:block;" id="fig:random-forest-results"></span>
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/random-forest-results-1.png" alt="Random Forest results" width="672" />
+<p class="caption">
+Figure 4: Random Forest results
+</p>
+</div>
+<p>Random Forest did a very good job fitting the data from the training set. However, its performance on testing data was really embarrassing. <em>No way man!</em> 😥 😥. What about a state-of-the-art tree-based algorithm such as <a href="https://catboost.ai/">catboost</a>? Let’s see.</p>
+<pre><code>library(catboost)
+# Fit data on training set
+train_pool&lt;-catboost.load_pool(sample_train %&gt;% select(-dataset,-y),
+                               label = sample_train$y)
+cat_fit&lt;-catboost.train(train_pool)</code></pre>
+<pre class="r"><code>create_predictions_df(cat_fit,sample_train,sample_test)  %&gt;%
+  ggplot()+
+  geom_line(aes(x=x,y=predictions),color=&#39;orange&#39;)+
+  geom_point(aes(x=x,y=y,color=dataset),shape=21)+
+  ylab(&quot;y&quot;)+
+  ggdark::dark_theme_bw()+
+  labs(title=&quot;Catboost Regressor&quot;,
+  subtitle = &quot;Datasets with different range values for predictor variable&quot;)+
+  guides(color=guide_legend(title=&quot;Dataset&quot;))</code></pre>
+<div class="figure"><span style="display:block;" id="fig:catboost-results"></span>
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/catboost-results-1.png" alt="Catboost results" width="672" />
+<p class="caption">
+Figure 5: Catboost results
+</p>
+</div>
+<p><em>Mmmmm</em>… not a big difference compared with Random Forest. Well, the problem is pretty obvious. When Random Forest, CART, or catboost are used for regression the output for a leaf equals the average of the data points belonging to the leaf. Moreover, the threshold used for splitting the data is also calculated from the average of the observed data points. Look at the resulting tree when <code>rpart</code> is used..</p>
+<div class="figure"><span style="display:block;" id="fig:rpart-plot"></span>
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/rpart-plot-1.png" alt="Resulting CART for training data." width="672" />
+<p class="caption">
+Figure 6: Resulting CART for training data.
+</p>
+</div>
+<p>The threshold value of the root node is set to <strong>171</strong>. Any value for the predictor variable ( <strong>x</strong> ) greater than <strong>171</strong> will end in the right leaf and the average outcome ( <strong>y</strong> ) value for those observations with <strong>( x &gt; 171 ) equals</strong> <strong>323</strong>. So, it means that the predicted outcome will be bound at <strong>323</strong>. And in fact, we can confirm that if we look again at Figure <a href="#fig:cart-results">3</a>.</p>
+<blockquote>
+<h2 id="most-of-tree-based-algorithms-are-bound-by-the-average-values-coming-from-observations-used-in-training.-." style="color:gray"><strong><em>Most of Tree-based algorithms are bound by the average values coming from observations used in training. .</em></strong></h2>
+</blockquote>
+</div>
+<div id="tackling-the-problem." class="section level2">
+<h2>Tackling the problem.</h2>
+<p>Fortunately, very smart people have noticed the issue a long time ago, and provide us with some alternatives to deal with this limitation of tree-based algorithms. But keep in mind these alternatives, do not provide us with a concluding solution, just some minor improvements to the original problem.</p>
+<div id="quinlans-m5-model-tree" class="section level3">
+<h3>Quinlan’s M5 model tree</h3>
+<p>One of the first approaches was developed by the legendary <a href="https://en.wikipedia.org/wiki/Ross_Quinlan">Ross Quinlan</a> (the father of the C4.5 algorithm). In the <a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.34.885">article</a> <em>Learning with continuous classes,</em> Quinlan developed the idea of building a linear regression function using the data points observations belonging to that leaf instead of the average. The resulting algorithm named M5, constructs tree-based piecewise linear models. <a href="https://twitter.com/topepos?lang=en">Max Khun</a> has developed the <a href="https://cran.r-project.org/web/packages/Cubist/index.html">Cubist</a> R package that implements similar ideas.</p>
+<pre class="r"><code>library(Cubist)
+# Fit data on training set
+m5_fit&lt;-cubist(x=sample_train %&gt;% select(-dataset,-y), y=sample_train$y)
+
+create_predictions_df(m5_fit,sample_train,sample_test)  %&gt;%
+  ggplot()+
+  geom_line(aes(x=x,y=predictions),color=&#39;orange&#39;)+
+  geom_point(aes(x=x,y=predictions),color=&#39;orange&#39;,shape=21,size=0.5)+
+  geom_point(aes(x=x,y=y,color=dataset),shape=21)+
+  ylab(&quot;y&quot;)+
+  ggdark::dark_theme_bw()+
+  labs(title=&quot;M5 Regressor&quot;,
+  subtitle = &quot;Datasets with different range values for predictor variable&quot;)+
+  guides(color=guide_legend(title=&quot;Dataset&quot;))</code></pre>
+<div class="figure"><span style="display:block;" id="fig:m5-results"></span>
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/m5-results-1.png" alt="M5 results" width="672" />
+<p class="caption">
+Figure 7: M5 results
+</p>
+</div>
+<p>Not bad for an algorithm from 1992 💪. In addition, the <a href="https://cran.r-project.org/web/packages/Cubist/index.html">Cubist</a> package also includes the idea of <em>committees,</em> a boosting-like scheme called where iterative model trees are created in sequence. Unlike traditional boosting, stage weights for each committee are not used to average the predictions from each model tree; the final prediction is a simple average of the predictions from each model tree.</p>
+</div>
+<div id="linear-local-forests" class="section level3">
+<h3>Linear Local Forests</h3>
+<p>People from Stanford led by <a href="https://web.stanford.edu/~swager/research.html">Stefan Wager</a> (see my <a href="https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/">post</a> about RF confidence interval) have come up with the so-called <a href="https://grf-labs.github.io/grf/articles/llf.html">Linear Local Forest</a>, which is actually very similar to the M5 approach. The idea is to instead of using the weights to fit a local average, they use them to fit a local linear regression, with a ridge penalty for regularization (see paper <a href="https://arxiv.org/abs/1807.11408">here</a>). The authors have provided us with the <a href="https://grf-labs.github.io/grf/index.html">grf</a> package which implements the LLF approach in addition to several other extensions to random forest.</p>
+<pre class="r"><code>library(grf)
+set.seed(1920202)
+grf_fit&lt;-ll_regression_forest(X=sample_train %&gt;%
+                                select(-dataset,-y) %&gt;% as.matrix(), 
+                              Y=sample_train$y, num.trees = 2000)
+
+create_predictions_df(grf_fit,sample_train,sample_test)  %&gt;%
+  ggplot()+
+  geom_line(aes(x=x,y=predictions),color=&#39;orange&#39;)+
+  geom_point(aes(x=x,y=y,color=dataset),shape=21)+
+  ylab(&quot;y&quot;)+
+  ggdark::dark_theme_bw()+
+  labs(title=&quot;Linear Local Forest Regressor&quot;,
+  subtitle = &quot;Datasets with different range values for predictor variable&quot;)+
+  guides(color=guide_legend(title=&quot;Dataset&quot;))</code></pre>
+<div class="figure"><span style="display:block;" id="fig:llf-results"></span>
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/llf-results-1.png" alt="LLF Results" width="672" />
+<p class="caption">
+Figure 8: LLF Results
+</p>
+</div>
+<p>Well, this is definitively better. However, despite LLF is performing better than standard Random Forest, the truth is that LLF was not designed with <a href="https://github.com/grf-labs/grf/issues/931">extrapolation in mind</a>. So their performance on other more complex datasets could not be the same as in the figure above</p>
+</div>
+<div id="regression-enhanced-random-forests" class="section level3">
+<h3>Regression-Enhanced Random Forests</h3>
+<p>The approach was published in <a href="https://arxiv.org/pdf/1904.10416.pdf">this paper</a> in 2017 by people from <a href="https://www.bioinformatics.iastate.edu/project/regression-enhanced-random-forests">Iowa State University</a>. There, the authors propose a technique borrowed from the strengths of penalized parametric regression to give better results in extrapolation problems.</p>
+<p>Specifically, there are two steps to the process:</p>
+<ul>
+<li><p>run Lasso before Random Forest, </p></li>
+<li><p>train a Random Forest on the residuals from Lasso.</p></li>
+<li><p>The final prediction value will be the sum of Lasso and Random Forest predictions.</p></li>
+</ul>
+<p>The good performances reached by Regression-enhanced Forests are obtained by mixing the power of Linear Regression to learn linear relationships and the more sophisticated ability of Random Forest to approximate complex patterns observed in train data.</p>
+<p><strong>DISCLAIMER</strong></p>
+<p><em>To be honest, I wasn’t able to produce nice results using this approach. Since I have tried the ideas on a univariate dataset, the results did not seem better than using standalone LASSO regression.</em>🤷</p>
+<p>In any case you can try this python <a href="https://github.com/cerlymarco/linear-tree">implementation</a> by your own.</p>
+</div>
+</div>
+<div id="just-a-few-more-words" class="section level2">
+<h2>Just a few more words…</h2>
+<p>This post includes only toy examples for all the cases, certainly, we need to conduct a test on a more realistic dataset to get an idea of the real limitation of Random Forests and the actual benefits of the mentioned approaches. A clear conclusion is that Random Forests and other tree-based approaches are not always the way to go when dealing with regression problems. Moreover, If you’re interested in forecasting models, I’d suggest using other algorithms specifically designed for time-series data.</p>
+<p>A similar situation arises in classification problems when new categories are observed during prediction. I’m not talking about outcome categories, but predictor categories. Random Forests and tree-based algorithms will be bound to observed categories (pretty obvious isn’t it) and when a new category arises, the algorithm will treat it as one of the already observed. It will be great if instead of choosing any arbitrary category value, the algorithm would be able of choosing the closest in terms of semantics. For now, the default option under these scenarios is to retrain the algorithm with new data…</p>
+</div>
+<div id="more-info-here" class="section level2">
+<h2>More info here</h2>
+<p><a href="https://neptune.ai/blog/random-forest-regression-when-does-it-fail-and-why">[1]</a> This post in Medium provides a much more detailed explanation of the limitation of Random Forest and the use of Regression Random Forest for tackling the issue.</p>
+<p>[<a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.34.885">2</a>] <em>Learning with continuous classes</em> by <em>Ross</em> Quinlan, an article discussing the M5 algorithm.</p>
+<p><a href="https://arxiv.org/pdf/1904.10416.pdf">[3]</a> A paper discussing a new approach called regression-enhanced random forests (RERFs).</p>
+<p><a href="https://towardsdatascience.com/improve-random-forest-with-linear-models-1fa789691e18">[4]</a> A medium post discussing a python implementation of regression-enhanced random forests (RERFs).</p>
+<p><a href="https://grf-labs.github.io/grf/articles/llf.html">[5]</a> Local Linear Forest, an approach from Stanford Group. (Arxiv paper.)</p>
+<p><a href="https://grf-labs.github.io/grf/articles/llf.html">[6]</a> GRF, an R package implementing Local Linear Forests.</p>
+</div>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/algorithms/"> algorithms </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/boosting/"> boosting </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/lasso/"> lasso </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/random-forest/"> random-forest </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/tibshirani/"> tibshirani </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+
+<form style="float:center;" action="https://tinyletter.com/harpomaxx" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/harpomaxx', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+<label for="tlemail">Enter your email address</label>
+<input type="text" style="width:140px" name="email" id="tlemail" />
+<input type="hidden" value="1" name="embed"/>
+<input type="submit" value="Subscribe" />
+</form>
+
+
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+
+
+</footer>
+
+</body>
+</html>

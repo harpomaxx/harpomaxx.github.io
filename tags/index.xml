@@ -7,10 +7,58 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Tue, 30 Nov 2021 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Fri, 18 Feb 2022 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>boosting</title>
+			<link>https://harpomaxx.github.io/tags/boosting/</link>
+			<pubDate>Fri, 18 Feb 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/boosting/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>lasso</title>
+			<link>https://harpomaxx.github.io/tags/lasso/</link>
+			<pubDate>Fri, 18 Feb 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/lasso/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>random forest</title>
+			<link>https://harpomaxx.github.io/tags/random-forest/</link>
+			<pubDate>Fri, 18 Feb 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/random-forest/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>tibshirani</title>
+			<link>https://harpomaxx.github.io/tags/tibshirani/</link>
+			<pubDate>Fri, 18 Feb 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/tibshirani/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>reproducible Research</title>
 			<link>https://harpomaxx.github.io/tags/reproducible-research/</link>
@@ -53,18 +101,6 @@
 			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/r-language/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>random forest</title>
-			<link>https://harpomaxx.github.io/tags/random-forest/</link>
-			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/random-forest/</guid>
 			<description>
 				
 				
@@ -132,18 +168,6 @@
 			</description>
 		</item>
 		<item>
-			<title>tibshirani</title>
-			<link>https://harpomaxx.github.io/tags/tibshirani/</link>
-			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/tibshirani/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
 			<title>proportional data</title>
 			<link>https://harpomaxx.github.io/tags/proportional-data/</link>
 			<pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
@@ -156,11 +180,11 @@
 			</description>
 		</item>
 		<item>
-			<title>lasso</title>
-			<link>https://harpomaxx.github.io/tags/lasso/</link>
-			<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
+			<title>books</title>
+			<link>https://harpomaxx.github.io/tags/books/</link>
+			<pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/tags/lasso/</guid>
+			<guid>https://harpomaxx.github.io/tags/books/</guid>
 			<description>
 				
 				
@@ -173,18 +197,6 @@
 			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/dimensional-reduction/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>books</title>
-			<link>https://harpomaxx.github.io/tags/books/</link>
-			<pubDate>Sun, 11 Oct 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/books/</guid>
 			<description>
 				
 				

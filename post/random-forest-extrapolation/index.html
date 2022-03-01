@@ -97,7 +97,7 @@
 <script src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/header-attrs/header-attrs.js"></script>
 
 
-<p>In the first post of 2022, I want to discuss a well-known problem of tree-based algorithms: <strong>Their inability to extrapolate.</strong> That’s right, tree-based algorithms cant go beyond the data observed during training. In other words, in a regression problem, the range of predictions a tree-based algorithm can make is bound by the highest and lowest outcome values in the training data. In case you didn’t know, <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">KNN</a> is another algorithm suffering from the same problem.</p>
+<p>In my first post of 2022, I want to discuss a well-known problem of tree-based algorithms: <strong>Their inability to extrapolate.</strong> That’s right, tree-based algorithms cant go beyond the data observed during training. In other words, in a regression problem, the range of predictions a tree-based algorithm can make is bound by the highest and lowest outcome values in the training data. In case you didn’t know, <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">KNN</a> is another algorithm suffering from the same problem.</p>
 <div id="recognizing-the-problem" class="section level2">
 <h2>Recognizing the problem</h2>
 <p>OK, but what are the implications of this limitation?. Let’s see the problem in action. First we are going to generate a training set and a test with only one predictor variable.</p>

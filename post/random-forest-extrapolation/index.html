@@ -175,7 +175,7 @@ create_predictions_df(lm_fit,sample_train,sample_test) %&gt;%
 Figure 2: Linear Regression results
 </p>
 </div>
-<p><em>No problem man!</em> As expected the linear regressor model did pretty decent work fitting the data ( see orange line). Now, let start with a classic tree-based (<a href="https://www.taylorfrancis.com/books/mono/10.1201/9781315139470/classification-regression-trees-leo-breiman-jerome-friedman-richard-olshen-charles-stone">CART</a>) approach. I will use the <a href="https://cran.r-project.org/web/packages/rpart/">rpart</a> package.</p>
+<p><em>No problem man!</em> As expected the linear regressor model did a pretty decent work fitting the data (see orange line). Now, let’s start with a classic tree-based (<a href="https://www.taylorfrancis.com/books/mono/10.1201/9781315139470/classification-regression-trees-leo-breiman-jerome-friedman-richard-olshen-charles-stone">CART</a>) approach. I will use the <a href="https://cran.r-project.org/web/packages/rpart/">rpart</a> package.</p>
 <pre class="r"><code>library(rpart)
 part_fit&lt;-rpart(y ~ x,data = sample_train,control = rpart.control(cp = 0.001))
 
@@ -194,7 +194,7 @@ create_predictions_df(part_fit,sample_train,sample_test)  %&gt;%
 Figure 3: CART results
 </p>
 </div>
-<p><em>Boooh!</em> . We can see that <code>rpart</code> model was unable to predict the outcome on the testing set. But, CART are not the state of the art of tree-based algorithm. So let’s try the good ol’ Random Forest algorithm. In this particular case, I will use the <a href="https://cran.r-project.org/web/packages/ranger/index.html"><code>ranger</code></a> package, a fast and modern implementation of Random Forest.</p>
+<p><em>Boooh!</em> . We can see that <code>rpart</code> model was unable to predict the outcome on the testing set. But, CART are not the state of the art of tree-based algorithm. So let’s try the good ol’ Random Forest algorithm. In this particular case, I will use the <a href="https://cran.r-project.org/web/packages/ranger/index.html"><code>ranger</code></a> package, a fast and modern implementation of Random Forest (highly recommend if you prefer R).</p>
 <pre class="r"><code>library(ranger)
 # Fit data on training set
 rf_fit&lt;-ranger(y ~ x, sample_train, num.trees = 100, keep.inbag = TRUE)
@@ -312,7 +312,7 @@ Figure 8: LLF Results
 </ul>
 <p>The good performances reached by Regression-enhanced Forests are obtained by mixing the power of Linear Regression to learn linear relationships and the more sophisticated ability of Random Forest to approximate complex patterns observed in train data.</p>
 <p><strong>DISCLAIMER</strong></p>
-<p><em>To be honest, I wasn’t able to produce nice results using this approach. Since I have tried the ideas on a univariate dataset, the results did not seem better than using standalone LASSO regression.</em>🤷</p>
+<p><em>To be honest, I wasn’t able to produce nice results using this approach. Since I have tried the ideas on a univariate dataset, the results did not seem better than using standalone regression.</em> <em>On the other hand, LASSO requires two predictor variables at least. So, I’m too lazy to adapt the code to use two predictors</em>. 🤷</p>
 <p>In any case you can try this python <a href="https://github.com/cerlymarco/linear-tree">implementation</a> by your own.</p>
 </div>
 </div>
@@ -468,10 +468,6 @@ Figure 8: LLF Results
 			
 			
 			
-			
-			
-			
-			
 			</p>
 		</div>
 		<div class="clearit"></div>
@@ -490,8 +486,6 @@ Figure 8: LLF Results
 		</div>
 		<div class="termsfloating_right">
 			<p>
-			
-			
 			
 			
 			

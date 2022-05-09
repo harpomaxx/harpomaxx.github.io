@@ -7,10 +7,46 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Fri, 18 Feb 2022 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Mon, 09 May 2022 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>essay</title>
+			<link>https://harpomaxx.github.io/categories/essay/</link>
+			<pubDate>Mon, 09 May 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/essay/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>opinion</title>
+			<link>https://harpomaxx.github.io/categories/opinion/</link>
+			<pubDate>Mon, 09 May 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/opinion/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>writing</title>
+			<link>https://harpomaxx.github.io/categories/writing/</link>
+			<pubDate>Mon, 09 May 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/writing/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>algorithms</title>
 			<link>https://harpomaxx.github.io/categories/algorithms/</link>
@@ -168,11 +204,11 @@
 			</description>
 		</item>
 		<item>
-			<title>documentation</title>
-			<link>https://harpomaxx.github.io/categories/documentation/</link>
-			<pubDate>Sun, 11 Oct 2020 00:00:00 +0000</pubDate>
+			<title>Deep Learning</title>
+			<link>https://harpomaxx.github.io/categories/deep-learning/</link>
+			<pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/categories/documentation/</guid>
+			<guid>https://harpomaxx.github.io/categories/deep-learning/</guid>
 			<description>
 				
 				
@@ -180,11 +216,11 @@
 			</description>
 		</item>
 		<item>
-			<title>Deep Learning</title>
-			<link>https://harpomaxx.github.io/categories/deep-learning/</link>
-			<pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
+			<title>documentation</title>
+			<link>https://harpomaxx.github.io/categories/documentation/</link>
+			<pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/categories/deep-learning/</guid>
+			<guid>https://harpomaxx.github.io/categories/documentation/</guid>
 			<description>
 				
 				
@@ -221,18 +257,6 @@
 			<pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/feature-selections/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>writing</title>
-			<link>https://harpomaxx.github.io/categories/writing/</link>
-			<pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/writing/</guid>
 			<description>
 				
 				

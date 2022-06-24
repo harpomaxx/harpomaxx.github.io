@@ -97,8 +97,8 @@
 
 
 <p>This is the first part of a series of posts discussing the more relevant aspects of using DVC. Part 2 introducing stage pipelines is available <a href="/post/dvc-intro-part-stages/">here</a>.</p>
-<div id="why-using-dvc" class="section level2">
-<h2>Why using DVC</h2>
+<div id="the-idea-behind-dvc" class="section level2">
+<h2>The idea behind DVC</h2>
 <p>Notebooks (<a href="https://jupyter.org/">Jupyter</a>, <a href="https://colab.research.google.com/">Colab</a>, <a href="https://rmarkdown.rstudio.com/lesson-10.html">Rstudio</a> for R, or even the new <a href="https://juliahub.com/ui/Packages/Pluto/OJqMt/0.7.5">Pluto</a> for Julia) are fantastic tools for getting code, plots, and documentation in one place. These benefits are perhaps the cause behind their massive adoption in current machine learning and data science projects.<br />
 Unfortunately, despite all their benefits, notebooks can be a real pain if you don’t follow a set of good practices. As soon as the notebook gets big, things start to get messy. <em>How often do we repeat the same code in different chunks (with minor changes) ? How many times do we keep a portion of code not used anymore in the same notebook (just in case)? How many times do we end up running chunks in a particularly bizarre sequence to test a particular approach?</em> <em>And what happens when a new dataset is provided?</em> I know these a pretty extreme and insane cases. Sure you can structure your notebooks to be understandable, modular, and easily adaptable. But, let’s face it, notebooks don’t help us to follow software engineering good practices 😠.</p>
 <blockquote>

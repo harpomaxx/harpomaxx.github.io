@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>writing on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/categories/writing/</link>
-		<description>Recent content in writing on harpomaxx.github.io</description>
+		<link>/categories/writing/</link>
+		<description>Recent content in writing on </description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Mon, 09 May 2022 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/categories/writing/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="/categories/writing/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>The Crisis of Computer Science careers in LATAM</title>
-			<link>https://harpomaxx.github.io/post/2022-05-09-universitity-crisis/</link>
+			<link>/post/2022-05-09-universitity-crisis/</link>
 			<pubDate>Mon, 09 May 2022 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/2022-05-09-universitity-crisis/</guid>
+			<guid>/post/2022-05-09-universitity-crisis/</guid>
 			<description>
 				
 				Are there any tangible benefits for the IT sector when hiring university graduates?  A two-year program can fill the industry&#39;s needs?. The latter are valid questions that we should ask ourselves if we want to bring the university to current times. [6min read]
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Collaborative Edition</title>
-			<link>https://harpomaxx.github.io/post/colaborative-edition/</link>
+			<link>/post/colaborative-edition/</link>
 			<pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/colaborative-edition/</guid>
+			<guid>/post/colaborative-edition/</guid>
 			<description>
 				
 				Manubot an Open Source git-based tool.

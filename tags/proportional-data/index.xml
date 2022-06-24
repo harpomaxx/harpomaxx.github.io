@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>proportional data on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/tags/proportional-data/</link>
-		<description>Recent content in proportional data on harpomaxx.github.io</description>
+		<link>/tags/proportional-data/</link>
+		<description>Recent content in proportional data on </description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Mon, 29 Mar 2021 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/tags/proportional-data/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="/tags/proportional-data/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Inference with Observational Data</title>
-			<link>https://harpomaxx.github.io/post/inference-observational/</link>
+			<link>/post/inference-observational/</link>
 			<pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/inference-observational/</guid>
+			<guid>/post/inference-observational/</guid>
 			<description>
 				
 				Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics comes to help us with its strong theoretical framework. [6min read]

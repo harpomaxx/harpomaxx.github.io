@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>books on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/tags/books/</link>
-		<description>Recent content in books on harpomaxx.github.io</description>
+		<link>/tags/books/</link>
+		<description>Recent content in books on </description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Sun, 11 Oct 2020 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/tags/books/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="/tags/books/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Resources for a Gentle Introduction to Machine Learning</title>
-			<link>https://harpomaxx.github.io/post/introductional-resources-for-machine-learning/</link>
+			<link>/post/introductional-resources-for-machine-learning/</link>
 			<pubDate>Sun, 11 Oct 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/introductional-resources-for-machine-learning/</guid>
+			<guid>/post/introductional-resources-for-machine-learning/</guid>
 			<description>
 				
 				Jurgen has his own list of recommended resources for new members of his lab. Well, we have ours too. Here is a portion of the list for a gentle introduction to Machine Learning  for LABSIN new members. [5 min read]. (updated 09/24/2021).

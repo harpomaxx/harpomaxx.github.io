@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>feature selection on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/categories/feature-selection/</link>
-		<description>Recent content in feature selection on harpomaxx.github.io</description>
+		<link>/categories/feature-selection/</link>
+		<description>Recent content in feature selection on </description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Sun, 12 Sep 2021 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/categories/feature-selection/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="/categories/feature-selection/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>SHAP values with examples applied to a multi-classification problem.</title>
-			<link>https://harpomaxx.github.io/post/shap-values/</link>
+			<link>/post/shap-values/</link>
 			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/shap-values/</guid>
+			<guid>/post/shap-values/</guid>
 			<description>
 				
 				We can not continue treating our models as black boxes anymore. Remember, nobody trusts computers for making a very important decision (yet!). That&#39;s why the interpretation of  Machine Learning models has become a major research topic. SHAP is a very robust approach for providing interpretability to any machine learning model.  For multi-classification problems, however, documentation and examples are not very clear. [8min read]
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Feature Selection Strategies</title>
-			<link>https://harpomaxx.github.io/post/feature-selection-strategies/</link>
+			<link>/post/feature-selection-strategies/</link>
 			<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/feature-selection-strategies/</guid>
+			<guid>/post/feature-selection-strategies/</guid>
 			<description>
 				
 				Feature selection is a topic any machine learning practicioner should master. There are plenty strategies for performing feature selection. Some more useful than others. Some with more limitation than benefits.  Here, I mention the most common approaches for feature selection using information collected from articles, books and research papers. [5 min read]

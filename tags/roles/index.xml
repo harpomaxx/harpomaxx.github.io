@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>roles on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/tags/roles/</link>
-		<description>Recent content in roles on harpomaxx.github.io</description>
+		<link>/tags/roles/</link>
+		<description>Recent content in roles on </description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Tue, 19 Oct 2021 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/tags/roles/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="/tags/roles/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>NO, Data Science is not just cleaning and transforming data!</title>
-			<link>https://harpomaxx.github.io/post/cleaning-and-transforming-datasets-is-not-enough/</link>
+			<link>/post/cleaning-and-transforming-datasets-is-not-enough/</link>
 			<pubDate>Tue, 19 Oct 2021 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/cleaning-and-transforming-datasets-is-not-enough/</guid>
+			<guid>/post/cleaning-and-transforming-datasets-is-not-enough/</guid>
 			<description>
 				
 				Decent programming skills, strong math and stats knowledge, and amazing visuals are not enough for a data science position in the industry. These are just  necessary tools you will need for doing your daily tasks, but you don&#39;t have to lose the ultimate goal &#34;to  provide valuable information to decision-makers&#34; (Duh!).  This is how you can make a difference and companies know it. [5min read]

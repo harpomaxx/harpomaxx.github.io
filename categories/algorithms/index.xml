@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>algorithms on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/categories/algorithms/</link>
-		<description>Recent content in algorithms on harpomaxx.github.io</description>
+		<link>/categories/algorithms/</link>
+		<description>Recent content in algorithms on </description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Fri, 18 Feb 2022 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/categories/algorithms/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="/categories/algorithms/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Tackling the limitations of tree-based algorithms</title>
-			<link>https://harpomaxx.github.io/post/random-forest-extrapolation/</link>
+			<link>/post/random-forest-extrapolation/</link>
 			<pubDate>Fri, 18 Feb 2022 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/random-forest-extrapolation/</guid>
+			<guid>/post/random-forest-extrapolation/</guid>
 			<description>
 				
 				Tree-based algorithms suffer from severe limitations when applied to forecasting problems. They can&#39;t predict beyond observed training data points values. However, not everything is lost. There are some alternative approaches to improve the performance of the tree-based algorithm under such scenarios. [5min read]
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>How confident is Random Forest about its predictions?</title>
-			<link>https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</link>
+			<link>/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</link>
 			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</guid>
+			<guid>/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</guid>
 			<description>
 				
 				Given a prediction on a particular example, how sure is Random Forest about it? For answering this question it is necessary to look beyond usual performance metrics and dive into the swampy waters of the confidence interval estimation for statistical learning algorithms 😖. [6 min read]
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>Are Boosting Algorithms the new baseline model for your Tabular data? Part 1</title>
-			<link>https://harpomaxx.github.io/post/are-boosting-algorithms-the-new-baseline-models/</link>
+			<link>/post/are-boosting-algorithms-the-new-baseline-models/</link>
 			<pubDate>Sun, 06 Sep 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/are-boosting-algorithms-the-new-baseline-models/</guid>
+			<guid>/post/are-boosting-algorithms-the-new-baseline-models/</guid>
 			<description>
 				
 				Neural networks rule the world of machine learning IFF, you have a lot of data, and just for a reduced set of problems. The fact is that for heterogeneous (numerical and categorical) tabular data, decision trees are still one of the best options. Also, they have the benefit of being (more) explainable to the customer. Boosting decision trees are among the most successful algorithms in data science competitions, but could they replace Random Forest? The absolute leader, when you try a first model in your data.[updated]
@@ -49,10 +49,10 @@
 		</item>
 		<item>
 			<title>Tools of the Week.</title>
-			<link>https://harpomaxx.github.io/post/tools-of-the-week/</link>
+			<link>/post/tools-of-the-week/</link>
 			<pubDate>Sun, 26 Jul 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/tools-of-the-week/</guid>
+			<guid>/post/tools-of-the-week/</guid>
 			<description>
 				
 				UMAP, SHAP Values among other links to interesting stuff I run into.

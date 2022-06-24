@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.80.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo Maxx"><meta name="keywords" content="notebooks,R Language,reproducible Research"><meta name="description" content="Notebooks rule! We agree on that, but they can get messy very fast. The truth is  they are not the best tool for good software engineering practices. Data Version Control (DVC) is a toolset for helping the development of machine learning experiments favoring better practices. Are you ready to give it a try? [5min read]"><meta property="og:title" content="Why Using DVC" />
+<meta property="og:description" content="Notebooks rule! We agree on that, but they can get messy very fast. The truth is  they are not the best tool for good software engineering practices. Data Version Control (DVC) is a toolset for helping the development of machine learning experiments favoring better practices. Are you ready to give it a try? [5min read]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/dvc-intro-part-why/" />
+<meta property="article:published_time" content="2022-06-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-02T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Why Using DVC"/>
+<meta name="twitter:description" content="Notebooks rule! We agree on that, but they can get messy very fast. The truth is  they are not the best tool for good software engineering practices. Data Version Control (DVC) is a toolset for helping the development of machine learning experiments favoring better practices. Are you ready to give it a try? [5min read]"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="/css/all.css" />
+	<link rel="stylesheet" href="/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Why Using DVC | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">02</span>
+				<span class="rest">Jun 2022</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Why Using DVC</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://twitter.com/harpomaxx">Harpo Maxx</a>
+		
+	
+	
+		(5 min read)
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		
+
+
+<p>This is the first part of a series of posts discussing the more relevant aspects of using DVC. Part 2 introducing stage pipelines is available <a href="/post/dvc-intro-part-stages/">here</a>.</p>
+<div id="why-using-dvc" class="section level2">
+<h2>Why using DVC</h2>
+<p>Notebooks (<a href="https://jupyter.org/">Jupyter</a>, <a href="https://colab.research.google.com/">Colab</a>, <a href="https://rmarkdown.rstudio.com/lesson-10.html">Rstudio</a> for R, or even the new <a href="https://juliahub.com/ui/Packages/Pluto/OJqMt/0.7.5">Pluto</a> for Julia) are fantastic tools for getting code, plots, and documentation in one place. These benefits are perhaps the cause behind their massive adoption in current machine learning and data science projects.<br />
+Unfortunately, despite all their benefits, notebooks can be a real pain if you don’t follow a set of good practices. As soon as the notebook gets big, things start to get messy. <em>How often do we repeat the same code in different chunks (with minor changes) ? How many times do we keep a portion of code not used anymore in the same notebook (just in case)? How many times do we end up running chunks in a particularly bizarre sequence to test a particular approach?</em> <em>And what happens when a new dataset is provided?</em> I know these a pretty extreme and insane cases. Sure you can structure your notebooks to be understandable, modular, and easily adaptable. But, let’s face it, notebooks don’t help us to follow software engineering good practices 😠.</p>
+<blockquote>
+<h2 id="lets-face-it-notebooks-dont-help-us-to-follow-software-engineering-good-practices." style="color:gray">Let’s face it, notebooks don’t help us to follow software engineering good practices.</h2>
+</blockquote>
+<p><a href="https://dvc.org">DVC</a> is a tool for dealing with some of the problems we mentioned above. DVC stands for Data Version Control and is specially focused on Machine Learning projects. The general idea of DVC is to guarantee the consistency of your experiment. In other words, DVC helps you to keep track of changes in your <em>data</em>, <em>model</em>, <em>parameters,</em> and scripts. But also DVC provides tools for repeating and analyzing your experiment to achieve the desired results.</p>
+<p>Perhaps the main advantage of DVC is its integration with <a href="https://git-scm.com/">git</a>. In a previous <a href="https://harpomaxx.github.io/post/github-workflow-in-research/">post</a>, I discussed an approach for using git and <a href="https://github.com/">GitHub</a> for managing research projects. Since it seems the perfect complement for our current project managing approach, I have tried DVC on a couple of projects. This post aim at providing a set of guidelines for moving from notebooks to DVC for managing experiments</p>
+<p>Please remember this is a WIP, therefore, it could be updated from time to time.</p>
+</div>
+<div id="dvc-general-idea" class="section level2">
+<h2>DVC general idea</h2>
+<p>DVC aims at solving two common issues when working on a Machine learning project with git. The first issue is <strong><em>how to keep track of large files inside a git repository</em></strong>. A machine learning project has a lot of large files including datasets and models and git has not been designed for dealing with them efficiently. Datasets in machine learning experiments are usually quasi-static data. They do not change very often, but from time to time datasets need to be updated.</p>
+<p>Before using DVC, I used to create a markdown file with the URL of the dataset’s location (Dropbox or Google Drive storage for instance). The problem arose when I modified the datasets. It was really difficult to keep track of the changes using this approach and I used to confuse the version of the dataset used for my experiments from time to time. I eventually solved the problem by adding a hash to the markdown file. Well, this is the approach followed by DVC, but of course more efficiently.</p>
+<p>The second issue tackled by DVC is <strong>how to keep track of your whole machine learning pipeline.</strong> DVC aims to track the data, code, configuration parameters, and resulting models. As you can see from the picture below (Gently stolen from DVC ), DVC creates references to all the resources (i.e. code, datasets, and models) involved in the current pipeline. So, with DVC you have a sort of <em>snapshot</em> of the code, datasets, configuration parameters, and models.</p>
+<blockquote>
+<h2 id="dvc-helps-with-the-tracking-of-large-files-inside-git-repositories-including-the-data-code-configuration-parameters-and-models." style="color:gray;text-align: left">DVC helps with the tracking of large files inside git repositories including the data, code, configuration parameters, and models.</h2>
+</blockquote>
+<p><img src="images/reproducibility.png" width="600" /></p>
+<figcaption>
+<h6>
+<p>Figure 1: DVC keeps track of the code, data, configurations, and resulting model of your experiment. All the resource references are associated with the same commit.</p>
+</h6>
+</figcaption>
+<p>Notice that all this is carried out using git as the backend. DVC is by no means a replacement for git. I found this extremely useful. You can go back to any experiment you have run and get the right version of your resources since all the resource references are associated with the same commit. I think this is the major benefit of DVC.</p>
+<p>Another great DVC feature is the generation of a dependency graph on all the resources involved in your pipeline, so every time a resource changes, the required processes are re-executed accordingly. In the image below you can see the DAG (Directed Acyclic Graph) corresponding to a particular experiment related to goat behavior classification (check the <a href="https://github.com/harpomaxx/goat-behavior/tree/develop">GitHub repository</a>). The image was generated using DVC for producing a DAG in the <a href="https://mermaid-js.github.io/mermaid/#/">mermaid format</a>.</p>
+<pre class="bash"><code>bash$ dvc dag --mermaid</code></pre>
+<p><img src="images/dvc-graph-example.jpeg" width="450" /></p>
+<figcaption>
+<h6>
+<p>Figure 2: A directed cyclic graph of a machine learning pipeline. Edges indicate dependencies between resources. Therefore, every time a resource changes, all the nodes depending on it will be executed again.</p>
+</h6>
+</figcaption>
+</div>
+<div id="starting-with-dvc" class="section level2">
+<h2>Starting with DVC</h2>
+<p>Creating a new DVC repository within your git repo is pretty straightforward (just run <code>dvc init</code> inside the git repo). Then, you need just some simple commands for adding a new large file into DVC (you can download an example repository with files from <a href="https://www.dropbox.com/s/ey0zuusxnts66ao/dvc-example-repo.zip?dl=1">here</a>)</p>
+<p>As I mentioned, DVC can be used for storing large files. I won’t give the details about configuring remote storage inside DVC. For that, I recommend reading the excellent intro provided in the <a href="https://dvc.org/doc/start/data-management">DVC documentation</a>.</p>
+<p>Assuming you have a working DVC remote storage, you just need to add a new dataset to DVC using the <code>dvc add</code> command. <em>Notice that DVC will show you the git commands you need to run to keep track of the new file.</em></p>
+<pre class="bash"><code>bash$ dvc add preprocessed.tsv</code></pre>
+<p>This will create a new file with the <code>.dvc</code> extension. If you look into it, you will find something like the code below.</p>
+<pre class="yaml"><code>outs:
+- md5: 0f7b713988aba8bb854605744161277a
+  size: 265696
+  path: preprocessed.tsv</code></pre>
+<p>It is basically, a <a href="https://yaml.org/"><code>YAML</code></a> file with information about the stored file. The information is pretty straightforward: the <code>path:</code>, <code>size:</code> and a <code>md5:</code> hash for keeping track of possible file modifications. Now, the idea is to commit into your git repo the <code>.tsv</code> file instead of the original dataset.</p>
+<pre class="bash"><code>bash$ git add preprocessed.tsv.dvc
+bash$ git commit -m &quot;add dataset&quot;</code></pre>
+<p>The whole process is shown in this fancy animation (BTW, I used <a href="https://github.com/phw/peek">peek</a> for doing it).</p>
+<p><img src="images/dvc-example-1-02.gif" width="1401" /></p>
+<p>Finally, it is necessary to store the actual dataset in the DVC remote storage. The command <code>dvc push</code> does the magic. (<em>you probably would like to <code>push</code> your git repo too</em>).</p>
+<pre><code>bash$ dvc push</code></pre>
+<p>Dealing with large files inside git is one of the benefits provided by DVC. A pretty cool one actually. I started using DVC just because of this simple feature. Maybe you don’t need more than that. You can use <code>dvc add</code> it for remote storing models, datasets, or whatever large file you want, and then just commit the <code>*.tsv</code> files into your git repo. Pretty straightforward, isn’t it?</p>
+</div>
+<div id="just-a-few-more-words" class="section level2">
+<h2>Just a few more words…</h2>
+<p>As you can see, the idea of DVC is to use a friendly syntax for git users. Now, if somebody new wants to access all your resources they just need to clone the repo and execute <code>dvc pull</code> for getting the files from the remote DVC storage (again, more info about this is provided on the DVC website).</p>
+<p>Notice that there are other tools for doing exactly the same such as the <a href="https://git-lfs.github.com/">Git Large File Storage extension</a>, which works similar to DVC. However, the real benefits behind DVC arise when you start using DVC for building pipelines. DVC facilitates the synchronization process between all the resources involved in your experiment, with the additional benefits of maintaining a dependency graph. I will discuss this in the next post of the series (Scripts and examples in R). You can read it <a href="/post/dvc-intro-part-stages/">here</a>.</p>
+</div>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="/categories/data-science/"> data-science </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="/categories/development/"> development </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="/categories/engineering/"> engineering </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="/categories/experimental-design/"> experimental-design </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="/categories/machine-learning-engineering/"> machine-learning-engineering </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="/tags/notebooks/"> notebooks </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="/tags/r-language/"> r-language </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="/tags/reproducible-research/"> reproducible-research </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+
+<form style="float:center;" action="https://tinyletter.com/harpomaxx" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/harpomaxx', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+<label for="tlemail">Enter your email address</label>
+<input type="text" style="width:140px" name="email" id="tlemail" />
+<input type="hidden" value="1" name="embed"/>
+<input type="submit" value="Subscribe" />
+</form>
+
+
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+
+
+</footer>
+
+</body>
+</html>

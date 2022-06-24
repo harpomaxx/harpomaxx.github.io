@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>tibshirani on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/tags/tibshirani/</link>
-		<description>Recent content in tibshirani on harpomaxx.github.io</description>
+		<link>/tags/tibshirani/</link>
+		<description>Recent content in tibshirani on </description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Fri, 18 Feb 2022 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/tags/tibshirani/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="/tags/tibshirani/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Tackling the limitations of tree-based algorithms</title>
-			<link>https://harpomaxx.github.io/post/random-forest-extrapolation/</link>
+			<link>/post/random-forest-extrapolation/</link>
 			<pubDate>Fri, 18 Feb 2022 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/random-forest-extrapolation/</guid>
+			<guid>/post/random-forest-extrapolation/</guid>
 			<description>
 				
 				Tree-based algorithms suffer from severe limitations when applied to forecasting problems. They can&#39;t predict beyond observed training data points values. However, not everything is lost. There are some alternative approaches to improve the performance of the tree-based algorithm under such scenarios. [5min read]
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Thoughts about differences in ML evaluation for Academia and Industry</title>
-			<link>https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/</link>
+			<link>/post/2021-05-14-papers-of-the-week-19-2021/</link>
 			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/</guid>
+			<guid>/post/2021-05-14-papers-of-the-week-19-2021/</guid>
 			<description>
 				
 				The processeses and the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>Selected Papers for the Week 13/2021</title>
-			<link>https://harpomaxx.github.io/post/selected-papers-week-13-2021/</link>
+			<link>/post/selected-papers-week-13-2021/</link>
 			<pubDate>Fri, 02 Apr 2021 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/selected-papers-week-13-2021/</guid>
+			<guid>/post/selected-papers-week-13-2021/</guid>
 			<description>
 				
 				Brief comments about 3 Papers dealing with Generalization and Autodifferentiation  [2min read]
@@ -49,10 +49,10 @@
 		</item>
 		<item>
 			<title>Feature Selection Strategies</title>
-			<link>https://harpomaxx.github.io/post/feature-selection-strategies/</link>
+			<link>/post/feature-selection-strategies/</link>
 			<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/post/feature-selection-strategies/</guid>
+			<guid>/post/feature-selection-strategies/</guid>
 			<description>
 				
 				Feature selection is a topic any machine learning practicioner should master. There are plenty strategies for performing feature selection. Some more useful than others. Some with more limitation than benefits.  Here, I mention the most common approaches for feature selection using information collected from articles, books and research papers. [5 min read]

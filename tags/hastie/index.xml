@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>hastie on Computer Science Notes</title>
-		<link>/tags/hastie/</link>
-		<description>Recent content in hastie on </description>
+		<link>https://harpomaxx.github.io/tags/hastie/</link>
+		<description>Recent content in hastie on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Tue, 03 Aug 2021 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/tags/hastie/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/tags/hastie/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>How confident is Random Forest about its predictions?</title>
-			<link>/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</link>
+			<link>https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</link>
 			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</guid>
+			<guid>https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</guid>
 			<description>
 				
 				Given a prediction on a particular example, how sure is Random Forest about it? For answering this question it is necessary to look beyond usual performance metrics and dive into the swampy waters of the confidence interval estimation for statistical learning algorithms 😖. [6 min read]
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Thoughts about differences in ML evaluation for Academia and Industry</title>
-			<link>/post/2021-05-14-papers-of-the-week-19-2021/</link>
+			<link>https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/</link>
 			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/2021-05-14-papers-of-the-week-19-2021/</guid>
+			<guid>https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/</guid>
 			<description>
 				
 				The processeses and the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>Feature Selection Strategies</title>
-			<link>/post/feature-selection-strategies/</link>
+			<link>https://harpomaxx.github.io/post/feature-selection-strategies/</link>
 			<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/feature-selection-strategies/</guid>
+			<guid>https://harpomaxx.github.io/post/feature-selection-strategies/</guid>
 			<description>
 				
 				Feature selection is a topic any machine learning practicioner should master. There are plenty strategies for performing feature selection. Some more useful than others. Some with more limitation than benefits.  Here, I mention the most common approaches for feature selection using information collected from articles, books and research papers. [5 min read]
@@ -49,10 +49,10 @@
 		</item>
 		<item>
 			<title>Three Common Ways for Comparing Two Dataset Distributions</title>
-			<link>/post/comparing-two-sample-distribution/</link>
+			<link>https://harpomaxx.github.io/post/comparing-two-sample-distribution/</link>
 			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/comparing-two-sample-distribution/</guid>
+			<guid>https://harpomaxx.github.io/post/comparing-two-sample-distribution/</guid>
 			<description>
 				
 				From time to time you will need to compare the distribution of two datasets. There are plenty of information about this topic in statistics books and all over the Internet. In this post I discuss three very practical approaches coming from different perspectives. [3.5 min read](updated 04/01/2021)

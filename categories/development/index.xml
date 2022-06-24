@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>development on Computer Science Notes</title>
-		<link>/categories/development/</link>
-		<description>Recent content in development on </description>
+		<link>https://harpomaxx.github.io/categories/development/</link>
+		<description>Recent content in development on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Thu, 23 Jun 2022 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/categories/development/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/categories/development/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Using DVC pipelines with examples in R (stages)</title>
-			<link>/post/dvc-intro-part-stages/</link>
+			<link>https://harpomaxx.github.io/post/dvc-intro-part-stages/</link>
 			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/post/dvc-intro-part-stages/</guid>
+			<guid>https://harpomaxx.github.io/post/dvc-intro-part-stages/</guid>
 			<description>
 				
 				DVC provides the elements for managing machine learning pipelines using git repositories as a backend. If you use git for tracking your machine learning experiments, you will feel comfortable with DVC.[9min read]
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Why Using DVC</title>
-			<link>/post/dvc-intro-part-why/</link>
+			<link>https://harpomaxx.github.io/post/dvc-intro-part-why/</link>
 			<pubDate>Thu, 02 Jun 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/post/dvc-intro-part-why/</guid>
+			<guid>https://harpomaxx.github.io/post/dvc-intro-part-why/</guid>
 			<description>
 				
 				Notebooks rule! We agree on that, but they can get messy very fast. The truth is  they are not the best tool for good software engineering practices. Data Version Control (DVC) is a toolset for helping the development of machine learning experiments favoring better practices. Are you ready to give it a try? [5min read]
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>Deploying a simple ML model with Plumber 101</title>
-			<link>/post/deploying-ml-model/</link>
+			<link>https://harpomaxx.github.io/post/deploying-ml-model/</link>
 			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/deploying-ml-model/</guid>
+			<guid>https://harpomaxx.github.io/post/deploying-ml-model/</guid>
 			<description>
 				
 				Sometimes notebooks are not enough and you will need to deploy your machine learning model into company infrastructre. The task involves a lot of Software Ingenieering knowledge, BUT with Plumber package for R you can do the basics with not so much pain 😉. [6 min read]
@@ -49,10 +49,10 @@
 		</item>
 		<item>
 			<title>Notebooks in Data Science Development and other tools for reproducibility.</title>
-			<link>/post/notebooks-or-not-notebooks-in-datascience/</link>
+			<link>https://harpomaxx.github.io/post/notebooks-or-not-notebooks-in-datascience/</link>
 			<pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/notebooks-or-not-notebooks-in-datascience/</guid>
+			<guid>https://harpomaxx.github.io/post/notebooks-or-not-notebooks-in-datascience/</guid>
 			<description>
 				
 				Jupyter and Rstudio notebooks have become the default standard for data science development. However, it is important to know their limitations and detect the moment of moving to a more &#34;powerful&#34; tool. Since in data science a very significant portion of the work is related to  development, it is always important to be aware of the last development tools.

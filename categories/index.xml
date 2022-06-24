@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Categories on Computer Science Notes</title>
-		<link>/categories/</link>
-		<description>Recent content in Categories on </description>
+		<link>https://harpomaxx.github.io/categories/</link>
+		<description>Recent content in Categories on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Thu, 23 Jun 2022 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>data science</title>
-			<link>/categories/data-science/</link>
+			<link>https://harpomaxx.github.io/categories/data-science/</link>
 			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/data-science/</guid>
+			<guid>https://harpomaxx.github.io/categories/data-science/</guid>
 			<description>
 				
 				
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>development</title>
-			<link>/categories/development/</link>
+			<link>https://harpomaxx.github.io/categories/development/</link>
 			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/development/</guid>
+			<guid>https://harpomaxx.github.io/categories/development/</guid>
 			<description>
 				
 				
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>engineering</title>
-			<link>/categories/engineering/</link>
+			<link>https://harpomaxx.github.io/categories/engineering/</link>
 			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/engineering/</guid>
+			<guid>https://harpomaxx.github.io/categories/engineering/</guid>
 			<description>
 				
 				
@@ -49,10 +49,10 @@
 		</item>
 		<item>
 			<title>experimental design</title>
-			<link>/categories/experimental-design/</link>
+			<link>https://harpomaxx.github.io/categories/experimental-design/</link>
 			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/experimental-design/</guid>
+			<guid>https://harpomaxx.github.io/categories/experimental-design/</guid>
 			<description>
 				
 				
@@ -61,10 +61,10 @@
 		</item>
 		<item>
 			<title>machine learning engineering</title>
-			<link>/categories/machine-learning-engineering/</link>
+			<link>https://harpomaxx.github.io/categories/machine-learning-engineering/</link>
 			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/machine-learning-engineering/</guid>
+			<guid>https://harpomaxx.github.io/categories/machine-learning-engineering/</guid>
 			<description>
 				
 				
@@ -73,10 +73,10 @@
 		</item>
 		<item>
 			<title>essay</title>
-			<link>/categories/essay/</link>
+			<link>https://harpomaxx.github.io/categories/essay/</link>
 			<pubDate>Mon, 09 May 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/essay/</guid>
+			<guid>https://harpomaxx.github.io/categories/essay/</guid>
 			<description>
 				
 				
@@ -85,10 +85,10 @@
 		</item>
 		<item>
 			<title>opinion</title>
-			<link>/categories/opinion/</link>
+			<link>https://harpomaxx.github.io/categories/opinion/</link>
 			<pubDate>Mon, 09 May 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/opinion/</guid>
+			<guid>https://harpomaxx.github.io/categories/opinion/</guid>
 			<description>
 				
 				
@@ -97,10 +97,10 @@
 		</item>
 		<item>
 			<title>writing</title>
-			<link>/categories/writing/</link>
+			<link>https://harpomaxx.github.io/categories/writing/</link>
 			<pubDate>Mon, 09 May 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/writing/</guid>
+			<guid>https://harpomaxx.github.io/categories/writing/</guid>
 			<description>
 				
 				
@@ -109,10 +109,10 @@
 		</item>
 		<item>
 			<title>algorithms</title>
-			<link>/categories/algorithms/</link>
+			<link>https://harpomaxx.github.io/categories/algorithms/</link>
 			<pubDate>Fri, 18 Feb 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/algorithms/</guid>
+			<guid>https://harpomaxx.github.io/categories/algorithms/</guid>
 			<description>
 				
 				
@@ -121,10 +121,10 @@
 		</item>
 		<item>
 			<title>tools</title>
-			<link>/categories/tools/</link>
+			<link>https://harpomaxx.github.io/categories/tools/</link>
 			<pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/tools/</guid>
+			<guid>https://harpomaxx.github.io/categories/tools/</guid>
 			<description>
 				
 				
@@ -133,10 +133,10 @@
 		</item>
 		<item>
 			<title>feature importance</title>
-			<link>/categories/feature-importance/</link>
+			<link>https://harpomaxx.github.io/categories/feature-importance/</link>
 			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/feature-importance/</guid>
+			<guid>https://harpomaxx.github.io/categories/feature-importance/</guid>
 			<description>
 				
 				
@@ -145,10 +145,10 @@
 		</item>
 		<item>
 			<title>feature selection</title>
-			<link>/categories/feature-selection/</link>
+			<link>https://harpomaxx.github.io/categories/feature-selection/</link>
 			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/feature-selection/</guid>
+			<guid>https://harpomaxx.github.io/categories/feature-selection/</guid>
 			<description>
 				
 				
@@ -157,10 +157,10 @@
 		</item>
 		<item>
 			<title>papers</title>
-			<link>/categories/papers/</link>
+			<link>https://harpomaxx.github.io/categories/papers/</link>
 			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/papers/</guid>
+			<guid>https://harpomaxx.github.io/categories/papers/</guid>
 			<description>
 				
 				
@@ -169,10 +169,10 @@
 		</item>
 		<item>
 			<title>Statistics</title>
-			<link>/categories/statistics/</link>
+			<link>https://harpomaxx.github.io/categories/statistics/</link>
 			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/statistics/</guid>
+			<guid>https://harpomaxx.github.io/categories/statistics/</guid>
 			<description>
 				
 				
@@ -181,10 +181,10 @@
 		</item>
 		<item>
 			<title>mle</title>
-			<link>/categories/mle/</link>
+			<link>https://harpomaxx.github.io/categories/mle/</link>
 			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/mle/</guid>
+			<guid>https://harpomaxx.github.io/categories/mle/</guid>
 			<description>
 				
 				
@@ -193,10 +193,10 @@
 		</item>
 		<item>
 			<title>resampling</title>
-			<link>/categories/resampling/</link>
+			<link>https://harpomaxx.github.io/categories/resampling/</link>
 			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/resampling/</guid>
+			<guid>https://harpomaxx.github.io/categories/resampling/</guid>
 			<description>
 				
 				
@@ -205,10 +205,10 @@
 		</item>
 		<item>
 			<title>documentation</title>
-			<link>/categories/documentation/</link>
+			<link>https://harpomaxx.github.io/categories/documentation/</link>
 			<pubDate>Sun, 11 Oct 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/documentation/</guid>
+			<guid>https://harpomaxx.github.io/categories/documentation/</guid>
 			<description>
 				
 				
@@ -217,10 +217,10 @@
 		</item>
 		<item>
 			<title>Deep Learning</title>
-			<link>/categories/deep-learning/</link>
+			<link>https://harpomaxx.github.io/categories/deep-learning/</link>
 			<pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/deep-learning/</guid>
+			<guid>https://harpomaxx.github.io/categories/deep-learning/</guid>
 			<description>
 				
 				
@@ -229,10 +229,10 @@
 		</item>
 		<item>
 			<title>covid19</title>
-			<link>/categories/covid19/</link>
+			<link>https://harpomaxx.github.io/categories/covid19/</link>
 			<pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/covid19/</guid>
+			<guid>https://harpomaxx.github.io/categories/covid19/</guid>
 			<description>
 				
 				
@@ -241,10 +241,10 @@
 		</item>
 		<item>
 			<title>time series</title>
-			<link>/categories/time-series/</link>
+			<link>https://harpomaxx.github.io/categories/time-series/</link>
 			<pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/time-series/</guid>
+			<guid>https://harpomaxx.github.io/categories/time-series/</guid>
 			<description>
 				
 				
@@ -253,10 +253,10 @@
 		</item>
 		<item>
 			<title>feature selections</title>
-			<link>/categories/feature-selections/</link>
+			<link>https://harpomaxx.github.io/categories/feature-selections/</link>
 			<pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/categories/feature-selections/</guid>
+			<guid>https://harpomaxx.github.io/categories/feature-selections/</guid>
 			<description>
 				
 				

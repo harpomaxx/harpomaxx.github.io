@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Tags on Computer Science Notes</title>
-		<link>/tags/</link>
-		<description>Recent content in Tags on </description>
+		<link>https://harpomaxx.github.io/tags/</link>
+		<description>Recent content in Tags on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Thu, 23 Jun 2022 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>notebooks</title>
-			<link>/tags/notebooks/</link>
+			<link>https://harpomaxx.github.io/tags/notebooks/</link>
 			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/notebooks/</guid>
+			<guid>https://harpomaxx.github.io/tags/notebooks/</guid>
 			<description>
 				
 				
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>R Language</title>
-			<link>/tags/r-language/</link>
+			<link>https://harpomaxx.github.io/tags/r-language/</link>
 			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/r-language/</guid>
+			<guid>https://harpomaxx.github.io/tags/r-language/</guid>
 			<description>
 				
 				
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>reproducible Research</title>
-			<link>/tags/reproducible-research/</link>
+			<link>https://harpomaxx.github.io/tags/reproducible-research/</link>
 			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/reproducible-research/</guid>
+			<guid>https://harpomaxx.github.io/tags/reproducible-research/</guid>
 			<description>
 				
 				
@@ -49,10 +49,10 @@
 		</item>
 		<item>
 			<title>boosting</title>
-			<link>/tags/boosting/</link>
+			<link>https://harpomaxx.github.io/tags/boosting/</link>
 			<pubDate>Fri, 18 Feb 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/boosting/</guid>
+			<guid>https://harpomaxx.github.io/tags/boosting/</guid>
 			<description>
 				
 				
@@ -61,10 +61,10 @@
 		</item>
 		<item>
 			<title>lasso</title>
-			<link>/tags/lasso/</link>
+			<link>https://harpomaxx.github.io/tags/lasso/</link>
 			<pubDate>Fri, 18 Feb 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/lasso/</guid>
+			<guid>https://harpomaxx.github.io/tags/lasso/</guid>
 			<description>
 				
 				
@@ -73,10 +73,10 @@
 		</item>
 		<item>
 			<title>random forest</title>
-			<link>/tags/random-forest/</link>
+			<link>https://harpomaxx.github.io/tags/random-forest/</link>
 			<pubDate>Fri, 18 Feb 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/random-forest/</guid>
+			<guid>https://harpomaxx.github.io/tags/random-forest/</guid>
 			<description>
 				
 				
@@ -85,10 +85,10 @@
 		</item>
 		<item>
 			<title>tibshirani</title>
-			<link>/tags/tibshirani/</link>
+			<link>https://harpomaxx.github.io/tags/tibshirani/</link>
 			<pubDate>Fri, 18 Feb 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/tibshirani/</guid>
+			<guid>https://harpomaxx.github.io/tags/tibshirani/</guid>
 			<description>
 				
 				
@@ -97,10 +97,10 @@
 		</item>
 		<item>
 			<title>roles</title>
-			<link>/tags/roles/</link>
+			<link>https://harpomaxx.github.io/tags/roles/</link>
 			<pubDate>Tue, 19 Oct 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/roles/</guid>
+			<guid>https://harpomaxx.github.io/tags/roles/</guid>
 			<description>
 				
 				
@@ -109,10 +109,10 @@
 		</item>
 		<item>
 			<title>model interpretability</title>
-			<link>/tags/model-interpretability/</link>
+			<link>https://harpomaxx.github.io/tags/model-interpretability/</link>
 			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/model-interpretability/</guid>
+			<guid>https://harpomaxx.github.io/tags/model-interpretability/</guid>
 			<description>
 				
 				
@@ -121,10 +121,10 @@
 		</item>
 		<item>
 			<title>supervised learning</title>
-			<link>/tags/supervised-learning/</link>
+			<link>https://harpomaxx.github.io/tags/supervised-learning/</link>
 			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/supervised-learning/</guid>
+			<guid>https://harpomaxx.github.io/tags/supervised-learning/</guid>
 			<description>
 				
 				
@@ -133,10 +133,10 @@
 		</item>
 		<item>
 			<title>efron</title>
-			<link>/tags/efron/</link>
+			<link>https://harpomaxx.github.io/tags/efron/</link>
 			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/efron/</guid>
+			<guid>https://harpomaxx.github.io/tags/efron/</guid>
 			<description>
 				
 				
@@ -145,10 +145,10 @@
 		</item>
 		<item>
 			<title>hastie</title>
-			<link>/tags/hastie/</link>
+			<link>https://harpomaxx.github.io/tags/hastie/</link>
 			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/hastie/</guid>
+			<guid>https://harpomaxx.github.io/tags/hastie/</guid>
 			<description>
 				
 				
@@ -157,10 +157,10 @@
 		</item>
 		<item>
 			<title>resampling</title>
-			<link>/tags/resampling/</link>
+			<link>https://harpomaxx.github.io/tags/resampling/</link>
 			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/resampling/</guid>
+			<guid>https://harpomaxx.github.io/tags/resampling/</guid>
 			<description>
 				
 				
@@ -169,10 +169,10 @@
 		</item>
 		<item>
 			<title>cross-validation</title>
-			<link>/tags/cross-validation/</link>
+			<link>https://harpomaxx.github.io/tags/cross-validation/</link>
 			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/cross-validation/</guid>
+			<guid>https://harpomaxx.github.io/tags/cross-validation/</guid>
 			<description>
 				
 				
@@ -181,10 +181,10 @@
 		</item>
 		<item>
 			<title>proportional data</title>
-			<link>/tags/proportional-data/</link>
+			<link>https://harpomaxx.github.io/tags/proportional-data/</link>
 			<pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/proportional-data/</guid>
+			<guid>https://harpomaxx.github.io/tags/proportional-data/</guid>
 			<description>
 				
 				
@@ -193,10 +193,10 @@
 		</item>
 		<item>
 			<title>dimensional reduction</title>
-			<link>/tags/dimensional-reduction/</link>
+			<link>https://harpomaxx.github.io/tags/dimensional-reduction/</link>
 			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/dimensional-reduction/</guid>
+			<guid>https://harpomaxx.github.io/tags/dimensional-reduction/</guid>
 			<description>
 				
 				
@@ -205,10 +205,10 @@
 		</item>
 		<item>
 			<title>books</title>
-			<link>/tags/books/</link>
+			<link>https://harpomaxx.github.io/tags/books/</link>
 			<pubDate>Sun, 11 Oct 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/books/</guid>
+			<guid>https://harpomaxx.github.io/tags/books/</guid>
 			<description>
 				
 				
@@ -217,10 +217,10 @@
 		</item>
 		<item>
 			<title>boost</title>
-			<link>/tags/boost/</link>
+			<link>https://harpomaxx.github.io/tags/boost/</link>
 			<pubDate>Sun, 06 Sep 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/boost/</guid>
+			<guid>https://harpomaxx.github.io/tags/boost/</guid>
 			<description>
 				
 				
@@ -229,10 +229,10 @@
 		</item>
 		<item>
 			<title>overfitting</title>
-			<link>/tags/overfitting/</link>
+			<link>https://harpomaxx.github.io/tags/overfitting/</link>
 			<pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/overfitting/</guid>
+			<guid>https://harpomaxx.github.io/tags/overfitting/</guid>
 			<description>
 				
 				
@@ -241,10 +241,10 @@
 		</item>
 		<item>
 			<title>multicollinearity</title>
-			<link>/tags/multicollinearity/</link>
+			<link>https://harpomaxx.github.io/tags/multicollinearity/</link>
 			<pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/multicollinearity/</guid>
+			<guid>https://harpomaxx.github.io/tags/multicollinearity/</guid>
 			<description>
 				
 				
@@ -253,10 +253,10 @@
 		</item>
 		<item>
 			<title>Bayesian</title>
-			<link>/tags/bayesian/</link>
+			<link>https://harpomaxx.github.io/tags/bayesian/</link>
 			<pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/bayesian/</guid>
+			<guid>https://harpomaxx.github.io/tags/bayesian/</guid>
 			<description>
 				
 				
@@ -265,10 +265,10 @@
 		</item>
 		<item>
 			<title>STAN</title>
-			<link>/tags/stan/</link>
+			<link>https://harpomaxx.github.io/tags/stan/</link>
 			<pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/stan/</guid>
+			<guid>https://harpomaxx.github.io/tags/stan/</guid>
 			<description>
 				
 				
@@ -277,10 +277,10 @@
 		</item>
 		<item>
 			<title>graph networks</title>
-			<link>/tags/graph-networks/</link>
+			<link>https://harpomaxx.github.io/tags/graph-networks/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/tags/graph-networks/</guid>
+			<guid>https://harpomaxx.github.io/tags/graph-networks/</guid>
 			<description>
 				
 				

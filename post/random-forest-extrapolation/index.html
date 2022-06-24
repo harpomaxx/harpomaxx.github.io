@@ -8,7 +8,7 @@
 	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="random forest,lasso,tibshirani,boosting"><meta name="description" content="Tree-based algorithms suffer from severe limitations when applied to forecasting problems. They can&#39;t predict beyond observed training data points values. However, not everything is lost. There are some alternative approaches to improve the performance of the tree-based algorithm under such scenarios. [5min read]"><meta property="og:title" content="Tackling the limitations of tree-based algorithms" />
 <meta property="og:description" content="Tree-based algorithms suffer from severe limitations when applied to forecasting problems. They can&#39;t predict beyond observed training data points values. However, not everything is lost. There are some alternative approaches to improve the performance of the tree-based algorithm under such scenarios. [5min read]" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/post/random-forest-extrapolation/" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/random-forest-extrapolation/" />
 <meta property="article:published_time" content="2022-02-18T00:00:00+00:00" />
 <meta property="article:modified_time" content="2022-02-18T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
@@ -16,24 +16,24 @@
 <meta name="twitter:description" content="Tree-based algorithms suffer from severe limitations when applied to forecasting problems. They can&#39;t predict beyond observed training data points values. However, not everything is lost. There are some alternative approaches to improve the performance of the tree-based algorithm under such scenarios. [5min read]"/>
 <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-	<link rel="stylesheet" type="text/css" media="screen" href="/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="/css/all.css" />
-	<link rel="stylesheet" href="/css/katex.min.css" crossorigin="anonymous">
-	<script defer src="/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-	<script defer src="/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Tackling the limitations of tree-based algorithms | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Tackling the limitations of tree-based algorithms | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body><header>
 	
 	<div id="avatar">
-		<a href="/">
+		<a href="https://harpomaxx.github.io/">
 			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
 		</a>
 	</div>
 	
-	<div id="titletext"><h2 id="title"><a href="/">Computer Science Notes</a></h2></div>
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
 	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
 			<nav>
 				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
@@ -94,7 +94,7 @@
 
 	<div class="markdown">
 		
-<script src="/post/random-forest-extrapolation/index.en_files/header-attrs/header-attrs.js"></script>
+<script src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/header-attrs/header-attrs.js"></script>
 
 
 <p>In my first post of 2022, I want to discuss a well-known problem of tree-based algorithms: <strong>Their inability to extrapolate.</strong> That’s right, tree-based algorithms cant go beyond the data observed during training. In other words, in a regression problem, the range of predictions a tree-based algorithm can make is bound by the highest and lowest outcome values in the training data. In case you didn’t know, <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">KNN</a> is another algorithm suffering from the same problem.</p>
@@ -122,7 +122,7 @@ rbind(sample_train,sample_test)  %&gt;% ggplot()+
   subtitle = &quot;Datasets with different range values for predictor variable&quot;)+
   guides(color=guide_legend(title=&quot;Dataset&quot;))</code></pre>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
-<img src="/post/random-forest-extrapolation/index.en_files/figure-html/unnamed-chunk-2-1.png" alt="Plot of simulated data for testing and training models" width="672" />
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/unnamed-chunk-2-1.png" alt="Plot of simulated data for testing and training models" width="672" />
 <p class="caption">
 Figure 1: Plot of simulated data for testing and training models
 </p>
@@ -170,7 +170,7 @@ create_predictions_df(lm_fit,sample_train,sample_test) %&gt;%
   subtitle = &quot;Datasets with different range values for predictor variable&quot;)+
   guides(color=guide_legend(title=&quot;Dataset&quot;))</code></pre>
 <div class="figure"><span style="display:block;" id="fig:lm-results"></span>
-<img src="/post/random-forest-extrapolation/index.en_files/figure-html/lm-results-1.png" alt="Linear Regression results" width="672" />
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/lm-results-1.png" alt="Linear Regression results" width="672" />
 <p class="caption">
 Figure 2: Linear Regression results
 </p>
@@ -189,7 +189,7 @@ create_predictions_df(part_fit,sample_train,sample_test)  %&gt;%
   subtitle = &quot;Datasets with different range values for predictor variable&quot;)+
   guides(color=guide_legend(title=&quot;Dataset&quot;))</code></pre>
 <div class="figure"><span style="display:block;" id="fig:cart-results"></span>
-<img src="/post/random-forest-extrapolation/index.en_files/figure-html/cart-results-1.png" alt="CART results" width="672" />
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/cart-results-1.png" alt="CART results" width="672" />
 <p class="caption">
 Figure 3: CART results
 </p>
@@ -209,7 +209,7 @@ create_predictions_df(rf_fit,sample_train,sample_test)  %&gt;%
   subtitle = &quot;Datasets with different range values for predictor variable&quot;)+
   guides(color=guide_legend(title=&quot;Dataset&quot;))</code></pre>
 <div class="figure"><span style="display:block;" id="fig:random-forest-results"></span>
-<img src="/post/random-forest-extrapolation/index.en_files/figure-html/random-forest-results-1.png" alt="Random Forest results" width="672" />
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/random-forest-results-1.png" alt="Random Forest results" width="672" />
 <p class="caption">
 Figure 4: Random Forest results
 </p>
@@ -230,14 +230,14 @@ cat_fit&lt;-catboost.train(train_pool)</code></pre>
   subtitle = &quot;Datasets with different range values for predictor variable&quot;)+
   guides(color=guide_legend(title=&quot;Dataset&quot;))</code></pre>
 <div class="figure"><span style="display:block;" id="fig:catboost-results"></span>
-<img src="/post/random-forest-extrapolation/index.en_files/figure-html/catboost-results-1.png" alt="Catboost results" width="672" />
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/catboost-results-1.png" alt="Catboost results" width="672" />
 <p class="caption">
 Figure 5: Catboost results
 </p>
 </div>
 <p><em>Mmmmm</em>… not a big difference compared with Random Forest. Well, the problem is pretty obvious. When Random Forest, CART, or catboost are used for regression the output for a leaf equals the average of the data points belonging to the leaf. Moreover, the threshold used for splitting the data is also calculated from the average of the observed data points. Look at the resulting tree when <code>rpart</code> is used..</p>
 <div class="figure"><span style="display:block;" id="fig:rpart-plot"></span>
-<img src="/post/random-forest-extrapolation/index.en_files/figure-html/rpart-plot-1.png" alt="Resulting CART for training data." width="672" />
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/rpart-plot-1.png" alt="Resulting CART for training data." width="672" />
 <p class="caption">
 Figure 6: Resulting CART for training data.
 </p>
@@ -268,7 +268,7 @@ create_predictions_df(m5_fit,sample_train,sample_test)  %&gt;%
   subtitle = &quot;Datasets with different range values for predictor variable&quot;)+
   guides(color=guide_legend(title=&quot;Dataset&quot;))</code></pre>
 <div class="figure"><span style="display:block;" id="fig:m5-results"></span>
-<img src="/post/random-forest-extrapolation/index.en_files/figure-html/m5-results-1.png" alt="M5 results" width="672" />
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/m5-results-1.png" alt="M5 results" width="672" />
 <p class="caption">
 Figure 7: M5 results
 </p>
@@ -294,7 +294,7 @@ create_predictions_df(grf_fit,sample_train,sample_test)  %&gt;%
   subtitle = &quot;Datasets with different range values for predictor variable&quot;)+
   guides(color=guide_legend(title=&quot;Dataset&quot;))</code></pre>
 <div class="figure"><span style="display:block;" id="fig:llf-results"></span>
-<img src="/post/random-forest-extrapolation/index.en_files/figure-html/llf-results-1.png" alt="LLF Results" width="672" />
+<img src="https://harpomaxx.github.io/post/random-forest-extrapolation/index.en_files/figure-html/llf-results-1.png" alt="LLF Results" width="672" />
 <p class="caption">
 Figure 8: LLF Results
 </p>
@@ -348,7 +348,7 @@ Figure 8: LLF Results
 			
 			
 			
-			<a href="/categories/algorithms/"> algorithms </a>
+			<a href="https://harpomaxx.github.io/categories/algorithms/"> algorithms </a>
 			
 			
 			
@@ -533,7 +533,7 @@ Figure 8: LLF Results
 			
 			
 			
-			<a href="/tags/boosting/"> boosting </a>
+			<a href="https://harpomaxx.github.io/tags/boosting/"> boosting </a>
 			
 			
 			
@@ -573,7 +573,7 @@ Figure 8: LLF Results
 			
 			
 			
-			<a href="/tags/lasso/"> lasso </a>
+			<a href="https://harpomaxx.github.io/tags/lasso/"> lasso </a>
 			
 			
 			
@@ -615,7 +615,7 @@ Figure 8: LLF Results
 			
 			
 			
-			<a href="/tags/random-forest/"> random-forest </a>
+			<a href="https://harpomaxx.github.io/tags/random-forest/"> random-forest </a>
 			
 			
 			
@@ -675,7 +675,7 @@ Figure 8: LLF Results
 			
 			
 			
-			<a href="/tags/tibshirani/"> tibshirani </a>
+			<a href="https://harpomaxx.github.io/tags/tibshirani/"> tibshirani </a>
 			
 			
 			

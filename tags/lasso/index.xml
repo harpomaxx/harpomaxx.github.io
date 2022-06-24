@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>lasso on Computer Science Notes</title>
-		<link>/tags/lasso/</link>
-		<description>Recent content in lasso on </description>
+		<link>https://harpomaxx.github.io/tags/lasso/</link>
+		<description>Recent content in lasso on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Fri, 18 Feb 2022 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/tags/lasso/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/tags/lasso/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Tackling the limitations of tree-based algorithms</title>
-			<link>/post/random-forest-extrapolation/</link>
+			<link>https://harpomaxx.github.io/post/random-forest-extrapolation/</link>
 			<pubDate>Fri, 18 Feb 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/post/random-forest-extrapolation/</guid>
+			<guid>https://harpomaxx.github.io/post/random-forest-extrapolation/</guid>
 			<description>
 				
 				Tree-based algorithms suffer from severe limitations when applied to forecasting problems. They can&#39;t predict beyond observed training data points values. However, not everything is lost. There are some alternative approaches to improve the performance of the tree-based algorithm under such scenarios. [5min read]
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Feature Selection Strategies</title>
-			<link>/post/feature-selection-strategies/</link>
+			<link>https://harpomaxx.github.io/post/feature-selection-strategies/</link>
 			<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/feature-selection-strategies/</guid>
+			<guid>https://harpomaxx.github.io/post/feature-selection-strategies/</guid>
 			<description>
 				
 				Feature selection is a topic any machine learning practicioner should master. There are plenty strategies for performing feature selection. Some more useful than others. Some with more limitation than benefits.  Here, I mention the most common approaches for feature selection using information collected from articles, books and research papers. [5 min read]

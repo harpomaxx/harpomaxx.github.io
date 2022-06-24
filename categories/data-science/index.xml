@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>data science on Computer Science Notes</title>
-		<link>/categories/data-science/</link>
-		<description>Recent content in data science on </description>
+		<link>https://harpomaxx.github.io/categories/data-science/</link>
+		<description>Recent content in data science on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Thu, 23 Jun 2022 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/categories/data-science/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/categories/data-science/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Using DVC pipelines with examples in R (stages)</title>
-			<link>/post/dvc-intro-part-stages/</link>
+			<link>https://harpomaxx.github.io/post/dvc-intro-part-stages/</link>
 			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/post/dvc-intro-part-stages/</guid>
+			<guid>https://harpomaxx.github.io/post/dvc-intro-part-stages/</guid>
 			<description>
 				
 				DVC provides the elements for managing machine learning pipelines using git repositories as a backend. If you use git for tracking your machine learning experiments, you will feel comfortable with DVC.[9min read]
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Why Using DVC</title>
-			<link>/post/dvc-intro-part-why/</link>
+			<link>https://harpomaxx.github.io/post/dvc-intro-part-why/</link>
 			<pubDate>Thu, 02 Jun 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/post/dvc-intro-part-why/</guid>
+			<guid>https://harpomaxx.github.io/post/dvc-intro-part-why/</guid>
 			<description>
 				
 				Notebooks rule! We agree on that, but they can get messy very fast. The truth is  they are not the best tool for good software engineering practices. Data Version Control (DVC) is a toolset for helping the development of machine learning experiments favoring better practices. Are you ready to give it a try? [5min read]
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>Github flow for conducting research projects</title>
-			<link>/post/github-workflow-in-research/</link>
+			<link>https://harpomaxx.github.io/post/github-workflow-in-research/</link>
 			<pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/github-workflow-in-research/</guid>
+			<guid>https://harpomaxx.github.io/post/github-workflow-in-research/</guid>
 			<description>
 				
 				The Software Industry has well-defined standards and procedures which are heavily based on tools such as Gitlab. However,  in research sometimes we follow a more relaxed and not structured way. At LABSIN we have recently begun to apply software industry approaches to our daily work.  The match is not perfect since research could be different in some way. But, the benefits are clear.  [9min read]
@@ -49,10 +49,10 @@
 		</item>
 		<item>
 			<title>NO, Data Science is not just cleaning and transforming data!</title>
-			<link>/post/cleaning-and-transforming-datasets-is-not-enough/</link>
+			<link>https://harpomaxx.github.io/post/cleaning-and-transforming-datasets-is-not-enough/</link>
 			<pubDate>Tue, 19 Oct 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/cleaning-and-transforming-datasets-is-not-enough/</guid>
+			<guid>https://harpomaxx.github.io/post/cleaning-and-transforming-datasets-is-not-enough/</guid>
 			<description>
 				
 				Decent programming skills, strong math and stats knowledge, and amazing visuals are not enough for a data science position in the industry. These are just  necessary tools you will need for doing your daily tasks, but you don&#39;t have to lose the ultimate goal &#34;to  provide valuable information to decision-makers&#34; (Duh!).  This is how you can make a difference and companies know it. [5min read]

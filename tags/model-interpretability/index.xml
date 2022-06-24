@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>model interpretability on Computer Science Notes</title>
-		<link>/tags/model-interpretability/</link>
-		<description>Recent content in model interpretability on </description>
+		<link>https://harpomaxx.github.io/tags/model-interpretability/</link>
+		<description>Recent content in model interpretability on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Sun, 12 Sep 2021 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/tags/model-interpretability/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/tags/model-interpretability/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>SHAP values with examples applied to a multi-classification problem.</title>
-			<link>/post/shap-values/</link>
+			<link>https://harpomaxx.github.io/post/shap-values/</link>
 			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/shap-values/</guid>
+			<guid>https://harpomaxx.github.io/post/shap-values/</guid>
 			<description>
 				
 				We can not continue treating our models as black boxes anymore. Remember, nobody trusts computers for making a very important decision (yet!). That&#39;s why the interpretation of  Machine Learning models has become a major research topic. SHAP is a very robust approach for providing interpretability to any machine learning model.  For multi-classification problems, however, documentation and examples are not very clear. [8min read]

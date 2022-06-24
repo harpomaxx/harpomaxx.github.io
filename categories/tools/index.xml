@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>tools on Computer Science Notes</title>
-		<link>/categories/tools/</link>
-		<description>Recent content in tools on </description>
+		<link>https://harpomaxx.github.io/categories/tools/</link>
+		<description>Recent content in tools on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Tue, 30 Nov 2021 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/categories/tools/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Github flow for conducting research projects</title>
-			<link>/post/github-workflow-in-research/</link>
+			<link>https://harpomaxx.github.io/post/github-workflow-in-research/</link>
 			<pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/github-workflow-in-research/</guid>
+			<guid>https://harpomaxx.github.io/post/github-workflow-in-research/</guid>
 			<description>
 				
 				The Software Industry has well-defined standards and procedures which are heavily based on tools such as Gitlab. However,  in research sometimes we follow a more relaxed and not structured way. At LABSIN we have recently begun to apply software industry approaches to our daily work.  The match is not perfect since research could be different in some way. But, the benefits are clear.  [9min read]
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>SHAP values with examples applied to a multi-classification problem.</title>
-			<link>/post/shap-values/</link>
+			<link>https://harpomaxx.github.io/post/shap-values/</link>
 			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/shap-values/</guid>
+			<guid>https://harpomaxx.github.io/post/shap-values/</guid>
 			<description>
 				
 				We can not continue treating our models as black boxes anymore. Remember, nobody trusts computers for making a very important decision (yet!). That&#39;s why the interpretation of  Machine Learning models has become a major research topic. SHAP is a very robust approach for providing interpretability to any machine learning model.  For multi-classification problems, however, documentation and examples are not very clear. [8min read]
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>Deploying a simple ML model with Plumber 101</title>
-			<link>/post/deploying-ml-model/</link>
+			<link>https://harpomaxx.github.io/post/deploying-ml-model/</link>
 			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/deploying-ml-model/</guid>
+			<guid>https://harpomaxx.github.io/post/deploying-ml-model/</guid>
 			<description>
 				
 				Sometimes notebooks are not enough and you will need to deploy your machine learning model into company infrastructre. The task involves a lot of Software Ingenieering knowledge, BUT with Plumber package for R you can do the basics with not so much pain 😉. [6 min read]
@@ -49,10 +49,10 @@
 		</item>
 		<item>
 			<title>Notebooks in Data Science Development and other tools for reproducibility.</title>
-			<link>/post/notebooks-or-not-notebooks-in-datascience/</link>
+			<link>https://harpomaxx.github.io/post/notebooks-or-not-notebooks-in-datascience/</link>
 			<pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/notebooks-or-not-notebooks-in-datascience/</guid>
+			<guid>https://harpomaxx.github.io/post/notebooks-or-not-notebooks-in-datascience/</guid>
 			<description>
 				
 				Jupyter and Rstudio notebooks have become the default standard for data science development. However, it is important to know their limitations and detect the moment of moving to a more &#34;powerful&#34; tool. Since in data science a very significant portion of the work is related to  development, it is always important to be aware of the last development tools.

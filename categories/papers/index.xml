@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>papers on Computer Science Notes</title>
-		<link>/categories/papers/</link>
-		<description>Recent content in papers on </description>
+		<link>https://harpomaxx.github.io/categories/papers/</link>
+		<description>Recent content in papers on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Tue, 03 Aug 2021 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/categories/papers/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/categories/papers/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>How confident is Random Forest about its predictions?</title>
-			<link>/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</link>
+			<link>https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</link>
 			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</guid>
+			<guid>https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</guid>
 			<description>
 				
 				Given a prediction on a particular example, how sure is Random Forest about it? For answering this question it is necessary to look beyond usual performance metrics and dive into the swampy waters of the confidence interval estimation for statistical learning algorithms 😖. [6 min read]
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Thoughts about differences in ML evaluation for Academia and Industry</title>
-			<link>/post/2021-05-14-papers-of-the-week-19-2021/</link>
+			<link>https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/</link>
 			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/2021-05-14-papers-of-the-week-19-2021/</guid>
+			<guid>https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/</guid>
 			<description>
 				
 				The processeses and the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>Selected Papers for the Week 13/2021</title>
-			<link>/post/selected-papers-week-13-2021/</link>
+			<link>https://harpomaxx.github.io/post/selected-papers-week-13-2021/</link>
 			<pubDate>Fri, 02 Apr 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/selected-papers-week-13-2021/</guid>
+			<guid>https://harpomaxx.github.io/post/selected-papers-week-13-2021/</guid>
 			<description>
 				
 				Brief comments about 3 Papers dealing with Generalization and Autodifferentiation  [2min read]

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Computer Science Notes</title>
-		<link>/</link>
-		<description>Recent content on </description>
+		<link>https://harpomaxx.github.io/</link>
+		<description>Recent content on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Thu, 23 Jun 2022 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Using DVC pipelines with examples in R (stages)</title>
-			<link>/post/dvc-intro-part-stages/</link>
+			<link>https://harpomaxx.github.io/post/dvc-intro-part-stages/</link>
 			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/post/dvc-intro-part-stages/</guid>
+			<guid>https://harpomaxx.github.io/post/dvc-intro-part-stages/</guid>
 			<description>
 				
 				DVC provides the elements for managing machine learning pipelines using git repositories as a backend. If you use git for tracking your machine learning experiments, you will feel comfortable with DVC.[9min read]
@@ -25,10 +25,10 @@
 		</item>
 		<item>
 			<title>Why Using DVC</title>
-			<link>/post/dvc-intro-part-why/</link>
+			<link>https://harpomaxx.github.io/post/dvc-intro-part-why/</link>
 			<pubDate>Thu, 02 Jun 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/post/dvc-intro-part-why/</guid>
+			<guid>https://harpomaxx.github.io/post/dvc-intro-part-why/</guid>
 			<description>
 				
 				Notebooks rule! We agree on that, but they can get messy very fast. The truth is  they are not the best tool for good software engineering practices. Data Version Control (DVC) is a toolset for helping the development of machine learning experiments favoring better practices. Are you ready to give it a try? [5min read]
@@ -37,10 +37,10 @@
 		</item>
 		<item>
 			<title>The Crisis of Computer Science careers in LATAM</title>
-			<link>/post/2022-05-09-universitity-crisis/</link>
+			<link>https://harpomaxx.github.io/post/2022-05-09-universitity-crisis/</link>
 			<pubDate>Mon, 09 May 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/post/2022-05-09-universitity-crisis/</guid>
+			<guid>https://harpomaxx.github.io/post/2022-05-09-universitity-crisis/</guid>
 			<description>
 				
 				Are there any tangible benefits for the IT sector when hiring university graduates?  A two-year program can fill the industry&#39;s needs?. The latter are valid questions that we should ask ourselves if we want to bring the university to current times. [6min read]
@@ -49,10 +49,10 @@
 		</item>
 		<item>
 			<title>Tackling the limitations of tree-based algorithms</title>
-			<link>/post/random-forest-extrapolation/</link>
+			<link>https://harpomaxx.github.io/post/random-forest-extrapolation/</link>
 			<pubDate>Fri, 18 Feb 2022 00:00:00 +0000</pubDate>
 			
-			<guid>/post/random-forest-extrapolation/</guid>
+			<guid>https://harpomaxx.github.io/post/random-forest-extrapolation/</guid>
 			<description>
 				
 				Tree-based algorithms suffer from severe limitations when applied to forecasting problems. They can&#39;t predict beyond observed training data points values. However, not everything is lost. There are some alternative approaches to improve the performance of the tree-based algorithm under such scenarios. [5min read]
@@ -61,10 +61,10 @@
 		</item>
 		<item>
 			<title>Github flow for conducting research projects</title>
-			<link>/post/github-workflow-in-research/</link>
+			<link>https://harpomaxx.github.io/post/github-workflow-in-research/</link>
 			<pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/github-workflow-in-research/</guid>
+			<guid>https://harpomaxx.github.io/post/github-workflow-in-research/</guid>
 			<description>
 				
 				The Software Industry has well-defined standards and procedures which are heavily based on tools such as Gitlab. However,  in research sometimes we follow a more relaxed and not structured way. At LABSIN we have recently begun to apply software industry approaches to our daily work.  The match is not perfect since research could be different in some way. But, the benefits are clear.  [9min read]
@@ -73,10 +73,10 @@
 		</item>
 		<item>
 			<title>NO, Data Science is not just cleaning and transforming data!</title>
-			<link>/post/cleaning-and-transforming-datasets-is-not-enough/</link>
+			<link>https://harpomaxx.github.io/post/cleaning-and-transforming-datasets-is-not-enough/</link>
 			<pubDate>Tue, 19 Oct 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/cleaning-and-transforming-datasets-is-not-enough/</guid>
+			<guid>https://harpomaxx.github.io/post/cleaning-and-transforming-datasets-is-not-enough/</guid>
 			<description>
 				
 				Decent programming skills, strong math and stats knowledge, and amazing visuals are not enough for a data science position in the industry. These are just  necessary tools you will need for doing your daily tasks, but you don&#39;t have to lose the ultimate goal &#34;to  provide valuable information to decision-makers&#34; (Duh!).  This is how you can make a difference and companies know it. [5min read]
@@ -85,10 +85,10 @@
 		</item>
 		<item>
 			<title>SHAP values with examples applied to a multi-classification problem.</title>
-			<link>/post/shap-values/</link>
+			<link>https://harpomaxx.github.io/post/shap-values/</link>
 			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/shap-values/</guid>
+			<guid>https://harpomaxx.github.io/post/shap-values/</guid>
 			<description>
 				
 				We can not continue treating our models as black boxes anymore. Remember, nobody trusts computers for making a very important decision (yet!). That&#39;s why the interpretation of  Machine Learning models has become a major research topic. SHAP is a very robust approach for providing interpretability to any machine learning model.  For multi-classification problems, however, documentation and examples are not very clear. [8min read]
@@ -97,10 +97,10 @@
 		</item>
 		<item>
 			<title>How confident is Random Forest about its predictions?</title>
-			<link>/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</link>
+			<link>https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</link>
 			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</guid>
+			<guid>https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</guid>
 			<description>
 				
 				Given a prediction on a particular example, how sure is Random Forest about it? For answering this question it is necessary to look beyond usual performance metrics and dive into the swampy waters of the confidence interval estimation for statistical learning algorithms 😖. [6 min read]
@@ -109,10 +109,10 @@
 		</item>
 		<item>
 			<title>Deploying a simple ML model with Plumber 101</title>
-			<link>/post/deploying-ml-model/</link>
+			<link>https://harpomaxx.github.io/post/deploying-ml-model/</link>
 			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/deploying-ml-model/</guid>
+			<guid>https://harpomaxx.github.io/post/deploying-ml-model/</guid>
 			<description>
 				
 				Sometimes notebooks are not enough and you will need to deploy your machine learning model into company infrastructre. The task involves a lot of Software Ingenieering knowledge, BUT with Plumber package for R you can do the basics with not so much pain 😉. [6 min read]
@@ -121,10 +121,10 @@
 		</item>
 		<item>
 			<title>Thoughts about differences in ML evaluation for Academia and Industry</title>
-			<link>/post/2021-05-14-papers-of-the-week-19-2021/</link>
+			<link>https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/</link>
 			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/2021-05-14-papers-of-the-week-19-2021/</guid>
+			<guid>https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/</guid>
 			<description>
 				
 				The processeses and the methods followed in Academia for evaluating a Machine Learning Model are different from the approaches used by the Industry. Why? [4min read]
@@ -133,10 +133,10 @@
 		</item>
 		<item>
 			<title>Selected Papers for the Week 13/2021</title>
-			<link>/post/selected-papers-week-13-2021/</link>
+			<link>https://harpomaxx.github.io/post/selected-papers-week-13-2021/</link>
 			<pubDate>Fri, 02 Apr 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/selected-papers-week-13-2021/</guid>
+			<guid>https://harpomaxx.github.io/post/selected-papers-week-13-2021/</guid>
 			<description>
 				
 				Brief comments about 3 Papers dealing with Generalization and Autodifferentiation  [2min read]
@@ -145,10 +145,10 @@
 		</item>
 		<item>
 			<title>Inference with Observational Data</title>
-			<link>/post/inference-observational/</link>
+			<link>https://harpomaxx.github.io/post/inference-observational/</link>
 			<pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/inference-observational/</guid>
+			<guid>https://harpomaxx.github.io/post/inference-observational/</guid>
 			<description>
 				
 				Despite selection and information bias it is possible to do inference from non-randomized experiments?.  The good ol&#39; statistics comes to help us with its strong theoretical framework. [6min read]
@@ -157,10 +157,10 @@
 		</item>
 		<item>
 			<title>Machine Learning in Production</title>
-			<link>/post/machine-learning-in-production/</link>
+			<link>https://harpomaxx.github.io/post/machine-learning-in-production/</link>
 			<pubDate>Thu, 04 Mar 2021 00:00:00 +0000</pubDate>
 			
-			<guid>/post/machine-learning-in-production/</guid>
+			<guid>https://harpomaxx.github.io/post/machine-learning-in-production/</guid>
 			<description>
 				
 				Working with machine learning is not what it used to be. Let&#39;s face it. Now, there is much less time for hacking and much more time for deployment. The situation is not new and certainly not bad at all. That is why you should be prepared for the new roles and positions offered by the market. [5min read] (updated 04/09/2021)
@@ -169,10 +169,10 @@
 		</item>
 		<item>
 			<title>Feature Selection Strategies</title>
-			<link>/post/feature-selection-strategies/</link>
+			<link>https://harpomaxx.github.io/post/feature-selection-strategies/</link>
 			<pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/feature-selection-strategies/</guid>
+			<guid>https://harpomaxx.github.io/post/feature-selection-strategies/</guid>
 			<description>
 				
 				Feature selection is a topic any machine learning practicioner should master. There are plenty strategies for performing feature selection. Some more useful than others. Some with more limitation than benefits.  Here, I mention the most common approaches for feature selection using information collected from articles, books and research papers. [5 min read]
@@ -181,10 +181,10 @@
 		</item>
 		<item>
 			<title>Three Common Ways for Comparing Two Dataset Distributions</title>
-			<link>/post/comparing-two-sample-distribution/</link>
+			<link>https://harpomaxx.github.io/post/comparing-two-sample-distribution/</link>
 			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/comparing-two-sample-distribution/</guid>
+			<guid>https://harpomaxx.github.io/post/comparing-two-sample-distribution/</guid>
 			<description>
 				
 				From time to time you will need to compare the distribution of two datasets. There are plenty of information about this topic in statistics books and all over the Internet. In this post I discuss three very practical approaches coming from different perspectives. [3.5 min read](updated 04/01/2021)
@@ -193,10 +193,10 @@
 		</item>
 		<item>
 			<title>Resources for a Gentle Introduction to Machine Learning</title>
-			<link>/post/introductional-resources-for-machine-learning/</link>
+			<link>https://harpomaxx.github.io/post/introductional-resources-for-machine-learning/</link>
 			<pubDate>Sun, 11 Oct 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/introductional-resources-for-machine-learning/</guid>
+			<guid>https://harpomaxx.github.io/post/introductional-resources-for-machine-learning/</guid>
 			<description>
 				
 				Jurgen has his own list of recommended resources for new members of his lab. Well, we have ours too. Here is a portion of the list for a gentle introduction to Machine Learning  for LABSIN new members. [5 min read]. (updated 09/24/2021).
@@ -205,10 +205,10 @@
 		</item>
 		<item>
 			<title>Machine Learning Experimental Design 102</title>
-			<link>/post/machine-learning-experimental-design-102/</link>
+			<link>https://harpomaxx.github.io/post/machine-learning-experimental-design-102/</link>
 			<pubDate>Tue, 22 Sep 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/machine-learning-experimental-design-102/</guid>
+			<guid>https://harpomaxx.github.io/post/machine-learning-experimental-design-102/</guid>
 			<description>
 				
 				The usual approach of shuffling the data and split in train and test could not be the best strategy for some cases for getting a good error estimator  of your model. Sometimes pure random splits do not guarantee the required level of dissimilarity. In adition, all the precautions to avoid contamination of your test set during your trainset manipulation must be taken for the test fold during cross validation. [4min read]
@@ -217,10 +217,10 @@
 		</item>
 		<item>
 			<title>Machine Learning Experimental Design 101</title>
-			<link>/post/experimental-design/</link>
+			<link>https://harpomaxx.github.io/post/experimental-design/</link>
 			<pubDate>Fri, 18 Sep 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/experimental-design/</guid>
+			<guid>https://harpomaxx.github.io/post/experimental-design/</guid>
 			<description>
 				
 				Experimental Design in Machine learning is well established. However, from time to time it is important to revisit the process to analyze the  confidence level you have in your results. Machine learning shares a lot with statistics, but since Machine learning practitioners have a more practical vision, sometimes the experimental design is neglected when applied to real-world problems. This note explains the basic strategy followed in almost any machine learning experimental setup.
@@ -229,10 +229,10 @@
 		</item>
 		<item>
 			<title>Are Boosting Algorithms the new baseline model for your Tabular data? Part 1</title>
-			<link>/post/are-boosting-algorithms-the-new-baseline-models/</link>
+			<link>https://harpomaxx.github.io/post/are-boosting-algorithms-the-new-baseline-models/</link>
 			<pubDate>Sun, 06 Sep 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/are-boosting-algorithms-the-new-baseline-models/</guid>
+			<guid>https://harpomaxx.github.io/post/are-boosting-algorithms-the-new-baseline-models/</guid>
 			<description>
 				
 				Neural networks rule the world of machine learning IFF, you have a lot of data, and just for a reduced set of problems. The fact is that for heterogeneous (numerical and categorical) tabular data, decision trees are still one of the best options. Also, they have the benefit of being (more) explainable to the customer. Boosting decision trees are among the most successful algorithms in data science competitions, but could they replace Random Forest? The absolute leader, when you try a first model in your data.[updated]
@@ -241,10 +241,10 @@
 		</item>
 		<item>
 			<title>Notebooks in Data Science Development and other tools for reproducibility.</title>
-			<link>/post/notebooks-or-not-notebooks-in-datascience/</link>
+			<link>https://harpomaxx.github.io/post/notebooks-or-not-notebooks-in-datascience/</link>
 			<pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/notebooks-or-not-notebooks-in-datascience/</guid>
+			<guid>https://harpomaxx.github.io/post/notebooks-or-not-notebooks-in-datascience/</guid>
 			<description>
 				
 				Jupyter and Rstudio notebooks have become the default standard for data science development. However, it is important to know their limitations and detect the moment of moving to a more &#34;powerful&#34; tool. Since in data science a very significant portion of the work is related to  development, it is always important to be aware of the last development tools.
@@ -253,10 +253,10 @@
 		</item>
 		<item>
 			<title>Double Descent in Deep Learning</title>
-			<link>/post/double-descent-in-deep-learning/</link>
+			<link>https://harpomaxx.github.io/post/double-descent-in-deep-learning/</link>
 			<pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/double-descent-in-deep-learning/</guid>
+			<guid>https://harpomaxx.github.io/post/double-descent-in-deep-learning/</guid>
 			<description>
 				
 				The U-shape observed when measuring model performance on testset as a function of its flexibility does not hold during training deep learning models. (WHAT!!!?????. Is the world going mad?. Not really.)
@@ -265,10 +265,10 @@
 		</item>
 		<item>
 			<title>COVID-19 Resources for the Amateur Epidemiologist</title>
-			<link>/post/covid19-time-series-prediction/</link>
+			<link>https://harpomaxx.github.io/post/covid19-time-series-prediction/</link>
 			<pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/covid19-time-series-prediction/</guid>
+			<guid>https://harpomaxx.github.io/post/covid19-time-series-prediction/</guid>
 			<description>
 				
 				Some useful  resources for playing with epidemic models (Mostly COVID-19 of course). From an explanation of the dificulties behind building an epidemic models to the different approaches followed by researchers and enthusiasts (me) here in my home town, Mendoza City.
@@ -277,10 +277,10 @@
 		</item>
 		<item>
 			<title>Features Selection Resources</title>
-			<link>/post/features-selection-resources/</link>
+			<link>https://harpomaxx.github.io/post/features-selection-resources/</link>
 			<pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/features-selection-resources/</guid>
+			<guid>https://harpomaxx.github.io/post/features-selection-resources/</guid>
 			<description>
 				
 				Beware of Random Forest GINI index for feature importance. Some other resources related with feature selection such as how to use PCA and the problems (or not) behind colinearity.
@@ -289,10 +289,10 @@
 		</item>
 		<item>
 			<title>Statistical Rethinking Book [and other resources]</title>
-			<link>/post/statistical-rethinking-book/</link>
+			<link>https://harpomaxx.github.io/post/statistical-rethinking-book/</link>
 			<pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/statistical-rethinking-book/</guid>
+			<guid>https://harpomaxx.github.io/post/statistical-rethinking-book/</guid>
 			<description>
 				
 				A book about Bayesian thinking with examples in R and STAN [and other resources]
@@ -301,10 +301,10 @@
 		</item>
 		<item>
 			<title>Graph Neural Networks</title>
-			<link>/post/graph-neural-networks/</link>
+			<link>https://harpomaxx.github.io/post/graph-neural-networks/</link>
 			<pubDate>Sat, 01 Aug 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/graph-neural-networks/</guid>
+			<guid>https://harpomaxx.github.io/post/graph-neural-networks/</guid>
 			<description>
 				
 				Graphs meets Deep Learning!
@@ -313,10 +313,10 @@
 		</item>
 		<item>
 			<title>Tools of the Week.</title>
-			<link>/post/tools-of-the-week/</link>
+			<link>https://harpomaxx.github.io/post/tools-of-the-week/</link>
 			<pubDate>Sun, 26 Jul 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/tools-of-the-week/</guid>
+			<guid>https://harpomaxx.github.io/post/tools-of-the-week/</guid>
 			<description>
 				
 				UMAP, SHAP Values among other links to interesting stuff I run into.
@@ -325,10 +325,10 @@
 		</item>
 		<item>
 			<title>About me</title>
-			<link>/about/</link>
+			<link>https://harpomaxx.github.io/about/</link>
 			<pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/about/</guid>
+			<guid>https://harpomaxx.github.io/about/</guid>
 			<description>
 				
 				
@@ -337,10 +337,10 @@
 		</item>
 		<item>
 			<title>Collaborative Edition</title>
-			<link>/post/colaborative-edition/</link>
+			<link>https://harpomaxx.github.io/post/colaborative-edition/</link>
 			<pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
 			
-			<guid>/post/colaborative-edition/</guid>
+			<guid>https://harpomaxx.github.io/post/colaborative-edition/</guid>
 			<description>
 				
 				Manubot an Open Source git-based tool.

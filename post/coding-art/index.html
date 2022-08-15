@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.101.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo Maxx &amp; Lili Fiallo"><meta name="keywords" content="R Language,generative art"><meta name="description" content="The idea of making art with code is not new, but what about Data? Can data be a work of art?  Well, the truth is that thanks to  conceptualism, it is possible. Trust me! [4min read]"><meta property="og:title" content="Art with Data" />
+<meta property="og:description" content="The idea of making art with code is not new, but what about Data? Can data be a work of art?  Well, the truth is that thanks to  conceptualism, it is possible. Trust me! [4min read]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/coding-art/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-07-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-31T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Art with Data"/>
+<meta name="twitter:description" content="The idea of making art with code is not new, but what about Data? Can data be a work of art?  Well, the truth is that thanks to  conceptualism, it is possible. Trust me! [4min read]"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Art with Data | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">31</span>
+				<span class="rest">Jul 2022</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Art with Data</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by Harpo Maxx &amp; Lili Fiallo
+		
+	
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		<p>I&rsquo;m far from being an art expert, but we can say that since <a href="https://en.wikipedia.org/wiki/Fountain_(Duchamp)">Marcel Duchamp&rsquo;s Fountain</a> sculpture, consisting of a <a href="https://en.wikipedia.org/wiki/Porcelain" title="Porcelain">porcelain</a> <a href="https://en.wikipedia.org/wiki/Urinal_(restroom)" title="Urinal (restroom)">urinal</a>, the world of art changed forever! The Fountain is a readymade sculpture by Marcel Duchamp in 1917, consisting of a porcelain urinal signed &ldquo;R. Mutt&rdquo;. When explaining the purpose of his <strong>Readymade</strong> sculpture, Duchamp stated they are &ldquo;everyday objects raised to the dignity of a work of art by the artist&rsquo;s act of choice. In other words, everything could be art with the right concept and computer code is no exception.</p>
+<p><img src="images/urinal.jpg" alt="dd" width="30%"/> <figcaption></p>
+<h6>Figure 1: Fountain is a readymade sculpture by Marcel Duchamp </h6>
+</figcaption>
+<p>I always considered myself a great artist trapped in a talentless man body. I was not joking. I always believed that artists and hackers have so many things in common. I always felt comfortable talking and discussing with artists. I love it so much that I actually married one 🖤. The way the artists interact with the world was so similar to mine. And then I found <a href="http://www.paulgraham.com/hp.html">PG&rsquo;s essay</a> about <em>painters and hackers</em> and everything started to fit! The similarities between both were evident! The most interesting people I have met in the computer science scene also have an artistic facet. Music, painting, writing, filmmaking, game design&hellip; you name it!</p>
+<p><a href="https://harpomaxx.shinyapps.io/harpoquotes"> <img src="/img/harpo-quote-artist-2.png" alt="I\'m a great artist trapped in the body of a talentless man\..." width="69%"><br>
+</a></p>
+<p>So, returning to Duchamp, everything can be art, and code of course is not the exception. In the last <a href="https://www.rstudio.com/conference/">rstudio::conf(2022)</a> held in Washington DC , the thing that got my attention (among the large set of <a href="https://www.rstudio.com/blog/rstudio-is-becoming-posit/">exciting news</a>) was the <a href="https://art-from-code.netlify.app/#about-the-workshop">workshop</a> on generative art given by <a href="https://djnavarro.net/">Danielle Navarro</a>. Danielle is a generative artist, data scientist, and <em>academic in recovery</em> among other things. According to Danielle&rsquo;s definition, <a href="https://en.wikipedia.org/wiki/Generative_art">generative art</a> is computational artwork that incorporates some source of noise, disorder, or randomness (natural or artificial) into the artistic process itself. Danielle&rsquo;s workshop was based on the R language (of course!). And especially in some aspects of the <a href="https://ggplot2.tidyverse.org/">ggplot2</a> <a href="https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448/ref=as_li_ss_tl">grammar of graphics</a>.</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Um. So. I wrote a thing. Should anyone out there happen to be interested in the fairly extensive notes on generative art in R written to accompany my <a href="https://twitter.com/hashtag/RStudioConf2022?src=hash&amp;ref_src=twsrc%5Etfw">#RStudioConf2022</a> workshop, here they are! A little <a href="https://twitter.com/hashtag/rtistry?src=hash&amp;ref_src=twsrc%5Etfw">#rtistry</a> love for today 💕 <a href="https://t.co/hLqSeI2OCr">https://t.co/hLqSeI2OCr</a></p>&mdash; Danielle Navarro (@djnavarro) <a href="https://twitter.com/djnavarro/status/1552341089427853314?ref_src=twsrc%5Etfw">July 27, 2022</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p>Yes, we are using R for making aRt, (what else should we expect next in this crazy world? Using <a href="https://coolbutuseless.github.io/2022/07/29/anotherworld-game-written-playable-in-r-with-nara-and-eventloop/">R for making games</a>? No way!!! 🤣.). You can search for the hashtag <a href="https://twitter.com/search?q=%23rtistry&amp;src=typed_query&amp;f=top">#rtistry</a> on Twitter to see some really beautiful examples.</p>
+<p>Generative art uses random data, but what about making <strong>art with real data</strong>? That will be something Duchamp could not have ever imagined (or maybe yes??). Could data be a work of art? Well, I really don&rsquo;t know and I&rsquo;m far from being a specialist on that subject. The fact is that together with visual artist <a href="https://www.instagram.com/fiallolili/?hl=en">Lili Fiallo</a>, we have started to produce works of art based on data and inspired by graphics generated with the R language. Our first work of art is BIAS.</p>
+<p>BIAS is a work of art generated from DATA from the <a href="https://www.mendoza.gov.ar/prensa/recomendado-salon-regional-vendimia-de-artes-visuales/"><em>Vendimia</em> Art Salon</a>. A traditional salon for visual artists held in Mendoza City (Argentina) for the last forty years. Data were compiled from catalogs, newspapers, and other sources provided by the Internet The data were extracted, curated, and cleaned using the usual R tools. Then, we used the <a href="https://ggplot2.tidyverse.org/">ggplot2</a> package (among others) for transforming data into a visual representation. Check the code below!!</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#06b;font-weight:bold">library</span>(googlesheets4)
+</span></span><span style="display:flex;"><span><span style="color:#06b;font-weight:bold">library</span>(ggplot2)
+</span></span><span style="display:flex;"><span><span style="color:#06b;font-weight:bold">library</span>(ggalluvial)
+</span></span><span style="display:flex;"><span><span style="color:#06b;font-weight:bold">library</span>(dplyr)
+</span></span><span style="display:flex;"><span><span style="color:#06b;font-weight:bold">library</span>(lubridate)
+</span></span><span style="display:flex;"><span>salon_vendimia<span style="color:#333">&lt;-</span>googlesheets4<span style="color:#333">::</span><span style="color:#06b;font-weight:bold">read_sheet</span>(<span style="background-color:#fff0f0">&#34;xxxxxx&#34;</span>)
+</span></span><span style="display:flex;"><span>salon_vendimia <span style="color:#333">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">group_by</span>(Ano,Disciplina,Premio,Genero) <span style="color:#333">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">summarise</span>(Freq<span style="color:#333">=</span><span style="color:#06b;font-weight:bold">n</span>()) <span style="color:#333">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">arrange</span>(<span style="color:#06b;font-weight:bold">desc</span>(Freq)) <span style="color:#333">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">ggplot</span>(<span style="color:#06b;font-weight:bold">aes</span>(y <span style="color:#333">=</span> Freq, axis1 <span style="color:#333">=</span> <span style="color:#06b;font-weight:bold">as.factor</span>(Ano), 
+</span></span><span style="display:flex;"><span>    axis2 <span style="color:#333">=</span> Premio, 
+</span></span><span style="display:flex;"><span>    axis3<span style="color:#333">=</span>Disciplina),
+</span></span><span style="display:flex;"><span>    alpha<span style="color:#333">=</span><span style="color:#60e;font-weight:bold">0.2</span>) <span style="color:#333">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">geom_alluvium</span>(<span style="color:#06b;font-weight:bold">aes</span>(fill <span style="color:#333">=</span> Genero), width <span style="color:#333">=</span> <span style="color:#60e;font-weight:bold">1</span><span style="color:#333">/</span><span style="color:#60e;font-weight:bold">12</span>) <span style="color:#333">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">geom_stratum</span>(width <span style="color:#333">=</span> <span style="color:#60e;font-weight:bold">1</span><span style="color:#333">/</span><span style="color:#60e;font-weight:bold">8</span>, fill <span style="color:#333">=</span> <span style="background-color:#fff0f0">&#34;white&#34;</span>, color <span style="color:#333">=</span> <span style="background-color:#fff0f0">&#34;gray&#34;</span>) <span style="color:#333">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">scale_fill_brewer</span>(type <span style="color:#333">=</span> <span style="background-color:#fff0f0">&#34;qual&#34;</span>, palette <span style="color:#333">=</span> <span style="background-color:#fff0f0">&#34;Set1&#34;</span>) <span style="color:#333">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">theme_void</span>() <span style="color:#333">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">theme</span>(legend.position <span style="color:#333">=</span> <span style="background-color:#fff0f0">&#34;none&#34;</span>) 
+</span></span></code></pre></div><p>We have applied some of the tips provided by Danielle Guerrero in her workshop about generative art using ggplot2. Still, instead <em><strong>of putting some artificial randomness</strong></em>, the source disorder comes from <a href="https://www.instagram.com/fiallolili/?hl=en">Lili Fiallo&rsquo;s</a> own reinterpretation of the plot on a 90cm x 90cm canvas.</p>
+<blockquote>
+<h2 style="color:gray;text-align: left" id="bias-refers-to-the-ever-present-bias-toward-women-in-the-art-world"><em>BIAS refers to the ever-present bias toward women in the art world.</em></h2>
+</blockquote>
+<img src="images/BIAS-2022.jpeg" alt="BIAS" width="70%"/>
+<figcaption> <h6>Figure 2: BIAS. Acrylic on canvas. 90cm x 90cm. Adapted from an alluvial plot generated using ggplot2. </h6> </figcaption>
+<p>The concept behind BIAS refers to the ever-present bias toward women in the art world. This kind of bias is also present in the <em>Vendimia</em> Art Salon. In BIAS we aim to expose the little influence women have had from 1970 to the present in the Salon which is demonstrated convincingly from the data.</p>
+<p>Here, the data is a work of art. A work communicated through a 90cm x 90cm canvas where the colors are altered from the conservative preconception, where the light blue represents the feminine presence and the traditional pink the masculine one.</p>
+<p>Most generative art is focused on producing beautiful patterns using random data. But In many cases, there is no concept behind the resulting plots. Here instead, we have a concept. BIAS has a clear concept provided by the data and is represented visually on the canvas.</p>
+<p>So as you can see, thanks to Duchamp, we can find art everywhere and Data is not the exception!</p>
+<h2 id="more-info-about-generative-art">More info about generative art</h2>
+<p><a href="https://koenderks.github.io/aRtsy/">[1]</a> aRtsy: Generative Art with <code>R</code> and <code>ggplot2.</code> A library to make generative art accessible to the general public</p>
+<p><a href="https://art-from-code.netlify.app/#about-the-workshop">[2]</a> Danielle Navarro&rsquo;s workshop about generative art</p>
+<p><a href="https://www.pythoninformer.com/generative-art/">[3]</a> generativepy, a python library for making generative art.</p>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/algorithms/"> algorithms </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/art/"> art </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/visualizations/"> visualizations </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/generative-art/"> generative-art </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/r-language/"> r-language </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+
+<form style="float:center;" action="https://tinyletter.com/harpomaxx" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/harpomaxx', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+<label for="tlemail">Enter your email address</label>
+<input type="text" style="width:140px" name="email" id="tlemail" />
+<input type="hidden" value="1" name="embed"/>
+<input type="submit" value="Subscribe" />
+</form>
+
+
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+
+
+</footer>
+
+</body>
+</html>

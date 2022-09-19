@@ -7,10 +7,22 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Tue, 03 Aug 2021 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sun, 04 Sep 2022 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/resampling/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Beyond Random Split for Assessing Statistical Model Performance</title>
+			<link>https://harpomaxx.github.io/post/beyond-random-split-for-assessing-statistical-model-performance/</link>
+			<pubDate>Sun, 04 Sep 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/beyond-random-split-for-assessing-statistical-model-performance/</guid>
+			<description>
+				
+				Sometimes  the standard splitting techniques used for testing your machine learning models can underestimate the generalization performance of the model. In this  post, I expose some of the most common approaches for splitting your data beyond the classical random split approach. [5min read]
+				
+			</description>
+		</item>
 		<item>
 			<title>How confident is Random Forest about its predictions?</title>
 			<link>https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/</link>

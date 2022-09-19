@@ -118,14 +118,14 @@
 <p><img src="https://harpomaxx.github.io/post/github-workflow-in-research/images/Screenshot_2021-11-20_19-45-38.png" /></p>
 <figcaption>
 <h6>
-<p>Figure 3: A possible directory structure of a git repository for machine learning research experiments</p>
+Figure 3: A possible directory structure of a git repository for machine learning research experiments
 </h6>
 </figcaption>
 <p>The <code>code/</code> directory contains all the code for running the experiment. As you can see in the image below, inside the <code>R/</code> directory there are other directories including the <code>functions/</code>. The same approach applies if you use Python but under the <code>python/</code> directory ( Duh !! ). Inside this directory, you should include all the functions extracted from your notebooks. In the example below, I have created functions for feature selection, training models, and SHAP value analysis, among others.</p>
 <p><img src="/img/dvc-code-tree-example.png" width="500" /></p>
 <figcaption>
 <h6>
-<p>Figure 4: An example of file distribution inside the <code>code/</code> directory</p>
+Figure 4: An example of file distribution inside the <code>code/</code> directory
 </h6>
 </figcaption>
 <p>Let’s define a simple function that selects the initial set of features for a given dataset. The function receives two parameters, the dataset and a list of the selected features.</p>
@@ -240,7 +240,7 @@ if (opt$input %&gt;% is.null() ||
 <p>The first YAML node is the name associated with the <em>select_features_initial</em> stage. Notice that it is not necessary to match. You can pick whatever name you want. Then, the node <code>features</code> is a collection with the names of the selected features.</p>
 <p>Unfortunately, manipulating the information provided inside <code>params.yaml</code> is your responsibility. In other words, you should read and parse the corresponding parameters inside the <code>020_select_features_initial_cmd.R</code> file.</p>
 <p>The good news is that in R you can use the <a href="https://cran.r-project.org/web/packages/yaml/index.html"><code>yaml</code></a> package for reading and writing YAML files. It is actually pretty simple.</p>
-<pre class="R"><code>  ## Set default parameters
+<pre class="r"><code>  ## Set default parameters
   params &lt;- yaml::read_yaml(&quot;params.yaml&quot;)
   if(!  &quot;select_initial&quot; %in% names(params)) {
     message(&quot;[] Error: No information for selecting features.&quot;)
@@ -250,7 +250,7 @@ if (opt$input %&gt;% is.null() ||
  [1] &quot;Anim&quot; &quot;Standing&quot;  &quot;Active&quot; &quot;Lying&quot;  &quot;DFL1&quot;  &quot;DFL2&quot;  &quot;DFL3&quot;  &quot;DFA12&quot;
  ....</code></pre>
 <p>So, now you can invoke the function with the corresponding variable</p>
-<pre class="R"><code> dataset &lt;- select_initial_features(dataset,params$select_initial$features)</code></pre>
+<pre class="r"><code> dataset &lt;- select_initial_features(dataset,params$select_initial$features)</code></pre>
 <p>The last is to inform DVC about the parameters. By doing this, DVC will be updating the dependency graph with the node <code>select_initial</code> located inside <code>params.yaml.</code> So, you need to add into <code>dvc.yaml</code> the following line in the <code>select_initial_features</code> node. I will post the complete stage section for completeness.</p>
 <pre class="yaml"><code> stages:
     select_features_initial:
@@ -467,6 +467,8 @@ if (opt$input %&gt;% is.null() ||
 			
 			
 			
+			
+			
 			</p>
 		</div>
 		<div class="clearit"></div>
@@ -485,6 +487,8 @@ if (opt$input %&gt;% is.null() ||
 		</div>
 		<div class="termsfloating_right">
 			<p>
+			
+			
 			
 			
 			
@@ -578,6 +582,8 @@ if (opt$input %&gt;% is.null() ||
 			
 			
 			
+			
+			
 			<a href="https://harpomaxx.github.io/tags/r-language/"> r-language </a>
 			
 			
@@ -605,6 +611,8 @@ if (opt$input %&gt;% is.null() ||
 			
 			
 			<a href="https://harpomaxx.github.io/tags/reproducible-research/"> reproducible-research </a>
+			
+			
 			
 			
 			

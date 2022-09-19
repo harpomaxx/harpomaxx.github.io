@@ -7,10 +7,46 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Sun, 31 Jul 2022 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sun, 04 Sep 2022 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>cross-validation</title>
+			<link>https://harpomaxx.github.io/tags/cross-validation/</link>
+			<pubDate>Sun, 04 Sep 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/cross-validation/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>overfitting</title>
+			<link>https://harpomaxx.github.io/tags/overfitting/</link>
+			<pubDate>Sun, 04 Sep 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/overfitting/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>resampling</title>
+			<link>https://harpomaxx.github.io/tags/resampling/</link>
+			<pubDate>Sun, 04 Sep 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/resampling/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>generative art</title>
 			<link>https://harpomaxx.github.io/tags/generative-art/</link>
@@ -168,30 +204,6 @@
 			</description>
 		</item>
 		<item>
-			<title>resampling</title>
-			<link>https://harpomaxx.github.io/tags/resampling/</link>
-			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/resampling/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>cross-validation</title>
-			<link>https://harpomaxx.github.io/tags/cross-validation/</link>
-			<pubDate>Fri, 14 May 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/cross-validation/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
 			<title>proportional data</title>
 			<link>https://harpomaxx.github.io/tags/proportional-data/</link>
 			<pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
@@ -233,18 +245,6 @@
 			<pubDate>Sun, 06 Sep 2020 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/boost/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>overfitting</title>
-			<link>https://harpomaxx.github.io/tags/overfitting/</link>
-			<pubDate>Thu, 20 Aug 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/overfitting/</guid>
 			<description>
 				
 				

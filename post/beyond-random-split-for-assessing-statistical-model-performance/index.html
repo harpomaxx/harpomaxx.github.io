@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.101.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo Maxx"><meta name="keywords" content="cross-validation,overfitting,resampling"><meta name="description" content="Sometimes  the standard splitting techniques used for testing your machine learning models can underestimate the generalization performance of the model. In this  post, I expose some of the most common approaches for splitting your data beyond the classical random split approach. [5min read]"><meta property="og:title" content="Beyond Random Split for Assessing Statistical Model Performance" />
+<meta property="og:description" content="Sometimes  the standard splitting techniques used for testing your machine learning models can underestimate the generalization performance of the model. In this  post, I expose some of the most common approaches for splitting your data beyond the classical random split approach. [5min read]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/beyond-random-split-for-assessing-statistical-model-performance/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-09-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-09-04T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Beyond Random Split for Assessing Statistical Model Performance"/>
+<meta name="twitter:description" content="Sometimes  the standard splitting techniques used for testing your machine learning models can underestimate the generalization performance of the model. In this  post, I expose some of the most common approaches for splitting your data beyond the classical random split approach. [5min read]"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Beyond Random Split for Assessing Statistical Model Performance | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">04</span>
+				<span class="rest">Sep 2022</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Beyond Random Split for Assessing Statistical Model Performance</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://twitter.com/harpomaxx">Harpo Maxx</a>
+		
+	
+	
+		(5 min read)
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		<p>A couple of years ago, I started to think about some issues in the standard experimental design for evaluating the performance of a machine learning model</p>
+<p>The standard experimental design is pretty simple, a dataset is split usually in a 70/30 ratio. The 30% of the data, referred to as the <strong>testing</strong> set, should be left aside and ideally never used until model tuning has finished. On the other hand, 70% of the data, referred to as the <strong>training</strong> set, could be used to train and optionally validate the model or conduct a hyperparameter search for model tuning. (You can check two articles about this <a href="https://harpomaxx.github.io/post/experimental-design/">here</a> and <a href="https://harpomaxx.github.io/post/machine-learning-experimental-design-102/">here</a>).</p>
+<p><img src="images/ml-experimental-designA.png" alt=""></p>
+<figcaption>
+<h6>Figure 1:  Experimental design for evaluating the performance of a Machine learning model </h6>
+</figcaption>
+<p>I used to think that training and testing datasets needed some similarity (both have to follow the same distribution). Otherwise, it would be impossible for the model to perform well on the testing set. (<strong>And please, don&rsquo;t get me wrong, that is still necessary under most of the usual scenarios</strong>). However, if the examples are too similar in both datasets, then it could be impossible to assure an accurate generalization performance for the model. Moreover, the model&rsquo;s overall generalization performance could be overestimated.</p>
+<p>The usual <strong>train/test random split</strong> of a dataset is not always the best approach for estimating performance generalization under some scenarios. A common situation is when predicting patient outcomes. In these cases, the model should be constructed using certain patient sets (e.g., from the same clinical site or disease stage), but then need to be tested on a different sample population (You can check Kuhn 2013). Another situation is the fact that it is not always possible to have access to a representative sample. Detecting a non-representative sample is possible through applying several techniques, such as cross-validation, learning curves, and confidence intervals, among others. Unfortunately, in many cases, a non-representative sample is all we have to generate a machine learning model. In those cases when a sample does not follow the same population distribution, a random split might not provide the required level of representativeness for rare or elusive examples in a testing set. As a result, the standard metrics could overestimate the performance of the model. It is possible to deal with the lack of representativeness in classification problems using a stratification strategy. However, when rare examples are not labeled, <strong>a predictor-based sampling strategy will be necessary</strong></p>
+<p><img src="images/samping-strategies-ctu19.png" alt=""> <figcaption></p>
+<h6>Figure 2: Procedure used for generating the training and testing sets for the
+four splitting strategies: Monte Carlo, Dissimilarity-based, clustering-based and
+informed-based.  </h6>
+</figcaption>
+<h2 id="monte-carlo">Monte Carlo</h2>
+<p>You randomly select (without replacement) some fraction of your data to form the training set, and then assign the rest of the points to the test set. This process is then repeated multiple times, generating (at random) new training and test partitions</p>
+<p>The usual sampling strategy for model evaluation consists of taking a uniformly random sample without the replacement of a portion of the data for the training set, while all other data points are added to the testing set. Such a strategy can be thought of as a special case of the Monte Carlo Cross Validation (MCCV) with just one resample instance. The Monte Carlo (MC) splitting strategy guarantees the same distribution across not only the response but also the predictor variables for training and testing sets.</p>
+<p>The code below generates 25 samples of the CTU19 dataset using MCCV. The CTU19 is a dataset with 19 network traffic captures taken from the <a href="https://www.stratosphereips.org/datasets-malware">Malware Facility Capture Project.</a> Notice here I considered only 3000 observations from the total number of observations of the dataset. I did that just because I wanted to reduce the time for training the models. The number 3000 is completely arbitrary and under other circumstances a procedure like the one I describe in this post should be done on the dataset.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>workdir <span style="color:#333">&lt;-</span> <span style="background-color:#fff0f0">&#34;/tmp&#34;</span>
+</span></span><span style="display:flex;"><span>ctu19_vectorized <span style="color:#333">&lt;-</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">read_csv</span>(
+</span></span><span style="display:flex;"><span>    <span style="background-color:#fff0f0">&#34;https://www.dropbox.com/s/0ziry2zi6gsgpi6/ctu19_filtered_fv.csv?dl=1&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#888"># Shuffle the dataset and pick 2000 for training and 1000 for testing. </span>
+</span></span><span style="display:flex;"><span>resample_mc_cv<span style="color:#333">&lt;-</span><span style="color:#06b;font-weight:bold">function</span>(x){
+</span></span><span style="display:flex;"><span>  train_ind <span style="color:#333">&lt;-</span> <span style="color:#06b;font-weight:bold">sample</span>(<span style="color:#06b;font-weight:bold">seq_len</span>(<span style="color:#06b;font-weight:bold">nrow</span>(x)), size <span style="color:#333">=</span> <span style="color:#06b;font-weight:bold">nrow</span>(x))
+</span></span><span style="display:flex;"><span>  train<span style="color:#333">&lt;-</span>x[train_ind[1<span style="color:#333">:</span><span style="color:#60e;font-weight:bold">2000</span>],]
+</span></span><span style="display:flex;"><span>  test<span style="color:#333">&lt;-</span>x[train_ind[2001<span style="color:#333">:</span><span style="color:#60e;font-weight:bold">3000</span>],]
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">return </span>(<span style="color:#06b;font-weight:bold">list</span>(train<span style="color:#333">=</span>train,test<span style="color:#333">=</span>test))
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#888"># Repeat 25 times.  </span>
+</span></span><span style="display:flex;"><span><span style="color:#06b;font-weight:bold">for </span>(iter in <span style="color:#06b;font-weight:bold">seq</span>(<span style="color:#60e;font-weight:bold">25</span>)){
+</span></span><span style="display:flex;"><span>    resample_mc_cv_datasets<span style="color:#333">&lt;-</span><span style="color:#06b;font-weight:bold">resample_mc_cv</span>(ctu19_vectorized)
+</span></span><span style="display:flex;"><span>    readr<span style="color:#333">::</span><span style="color:#06b;font-weight:bold">write_csv</span>(resample_mc_cv_datasets<span style="color:#333">$</span>train,
+</span></span><span style="display:flex;"><span>                  path<span style="color:#333">=</span><span style="color:#06b;font-weight:bold">paste0</span>(workdir,
+</span></span><span style="display:flex;"><span>                              <span style="background-color:#fff0f0">&#34;sample-group-mc-train-&#34;</span>,iter,<span style="background-color:#fff0f0">&#34;.csv&#34;</span>))
+</span></span><span style="display:flex;"><span>    readr<span style="color:#333">::</span><span style="color:#06b;font-weight:bold">write_csv</span>(resample_mc_cv_datasets<span style="color:#333">$</span>test,
+</span></span><span style="display:flex;"><span>                  path<span style="color:#333">=</span><span style="color:#06b;font-weight:bold">paste0</span>(workdir,
+</span></span><span style="display:flex;"><span>                              <span style="background-color:#fff0f0">&#34;sample-group-mc-test-&#34;</span>,iter,<span style="background-color:#fff0f0">&#34;.csv&#34;</span>))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In comparison with Monte Carlo, the remaining splitting strategies provide the steps to create different test sets that include rare or elusive examples while maintaining similar properties across the predictor space as the training set.</p>
+<h2 id="dissimilarity-based">Dissimilarity-based</h2>
+<p>The simplest method to measure dissimilarity consists of using the distance between the predictor values for two samples. The larger the distance between points, the larger indicative of dissimilarity. The application of dissimilarity during data splitting requires a set initialized with a few samples. Then, the dissimilarity between this set and the rest of the unallocated samples can be calculated. The unallocated sample that is most dissimilar to the initial set would then be added to the test set.</p>
+<p>Below is the code for performing a Dissimilarity-based sampling strategy. The function <code>resample_maxDissim</code> receives a dataframe with observation. An initial train set is sampled following the same approach as in MCCV, but the test set is generated by calculating the most distant points from the training set. The function responsible is <code>maxDissim</code>, which was provided by the R caret package.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>workdir <span style="color:#333">&lt;-</span> <span style="background-color:#fff0f0">&#34;/tmp&#34;</span>
+</span></span><span style="display:flex;"><span>ctu19_vectorized <span style="color:#333">&lt;-</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">read_csv</span>(
+</span></span><span style="display:flex;"><span>    <span style="background-color:#fff0f0">&#34;https://www.dropbox.com/s/0ziry2zi6gsgpi6/ctu19_filtered_fv.csv?dl=1&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>resample_maxDissim <span style="color:#333">&lt;-</span> <span style="color:#06b;font-weight:bold">function</span>(x) {
+</span></span><span style="display:flex;"><span>  train_ind <span style="color:#333">&lt;-</span> <span style="color:#06b;font-weight:bold">sample</span>(<span style="color:#06b;font-weight:bold">seq_len</span>(<span style="color:#06b;font-weight:bold">nrow</span>(x)), size <span style="color:#333">=</span> <span style="color:#06b;font-weight:bold">nrow</span>(x))
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  train <span style="color:#333">&lt;-</span> x[train_ind[1<span style="color:#333">:</span><span style="color:#60e;font-weight:bold">2000</span>], ]
+</span></span><span style="display:flex;"><span>  test_ind <span style="color:#333">&lt;-</span>caret<span style="color:#333">::</span><span style="color:#06b;font-weight:bold">maxDissim</span>(train[, <span style="color:#60e;font-weight:bold">1</span><span style="color:#333">:</span><span style="color:#60e;font-weight:bold">10</span>], 
+</span></span><span style="display:flex;"><span>                         x[train_ind[2001<span style="color:#333">:</span><span style="color:#06b;font-weight:bold">nrow</span>(x)], <span style="color:#60e;font-weight:bold">1</span><span style="color:#333">:</span><span style="color:#60e;font-weight:bold">10</span>], 
+</span></span><span style="display:flex;"><span>                         n <span style="color:#333">=</span> <span style="color:#60e;font-weight:bold">1000</span>, 
+</span></span><span style="display:flex;"><span>                         verbose <span style="color:#333">=</span> <span style="color:#60e;font-weight:bold">1</span>)
+</span></span><span style="display:flex;"><span>  test <span style="color:#333">&lt;-</span> x[test_ind, ]
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">return </span>(<span style="color:#06b;font-weight:bold">list</span>(train <span style="color:#333">=</span> train, test <span style="color:#333">=</span> test))
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#888"># Repeat 25 times.  </span>
+</span></span><span style="display:flex;"><span><span style="color:#06b;font-weight:bold">for </span>(iter in <span style="color:#06b;font-weight:bold">seq</span>(<span style="color:#60e;font-weight:bold">25</span>)){
+</span></span><span style="display:flex;"><span>    resample_mc_cv_datasets<span style="color:#333">&lt;-</span><span style="color:#06b;font-weight:bold">resample_maxDissim</span>(ctu19_vectorized)
+</span></span><span style="display:flex;"><span>    readr<span style="color:#333">::</span><span style="color:#06b;font-weight:bold">write_csv</span>(resample_mc_cv_datasets<span style="color:#333">$</span>train,
+</span></span><span style="display:flex;"><span>                  path<span style="color:#333">=</span><span style="color:#06b;font-weight:bold">paste0</span>(workdir,
+</span></span><span style="display:flex;"><span>                              <span style="background-color:#fff0f0">&#34;sample-group-diss-train-&#34;</span>,iter,<span style="background-color:#fff0f0">&#34;.csv&#34;</span>))
+</span></span><span style="display:flex;"><span>    readr<span style="color:#333">::</span><span style="color:#06b;font-weight:bold">write_csv</span>(resample_mc_cv_datasets<span style="color:#333">$</span>test,
+</span></span><span style="display:flex;"><span>                  path<span style="color:#333">=</span><span style="color:#06b;font-weight:bold">paste0</span>(workdir,
+</span></span><span style="display:flex;"><span>                              <span style="background-color:#fff0f0">&#34;sample-group-diss-test-&#34;</span>,iter,<span style="background-color:#fff0f0">&#34;.csv&#34;</span>))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Dissimilarity splitting proved to be useful over chemical databases&rsquo; splitting. Nevertheless, this method strongly depends on the initial set used to calculate the dissimilarity of the rest of the samples, prompting problems in cases of small datasets where the initial set is not representative enough.</p>
+<p>Another problem with the dissimilarity approach is that there is no guarantee the sampling strategy includes observations for all the classes. In that case, you will need to do some kind of stratification (i.e. sampling the most different observations for each class)</p>
+<h2 id="informed-based">Informed-based</h2>
+<p>A well-known non-random split strategy consists of using some kind of grouping information from the data to restrict the set of samples used for testing. The general idea after splitting the data is that members of a group present in the training set should not be included in the testing set. Such strategies are well-known in areas such as Medicine and Finances, where testing should be conducted on a different patient group, or, in the finances field, where the model should be tested on a time series from a different time period.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>workdir <span style="color:#333">&lt;-</span> <span style="background-color:#fff0f0">&#34;/tmp&#34;</span>
+</span></span><span style="display:flex;"><span>ctu19_vectorized <span style="color:#333">&lt;-</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">read_csv</span>(
+</span></span><span style="display:flex;"><span>    <span style="background-color:#fff0f0">&#34;https://www.dropbox.com/s/0ziry2zi6gsgpi6/ctu19_filtered_fv.csv?dl=1&#34;</span>
+</span></span><span style="display:flex;"><span>  )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>resample_informed<span style="color:#333">&lt;-</span><span style="color:#06b;font-weight:bold">function</span>(x){
+</span></span><span style="display:flex;"><span>  sources<span style="color:#333">&lt;-</span>x <span style="color:#333">%&gt;%</span> <span style="color:#06b;font-weight:bold">group_by</span>(source) <span style="color:#333">%&gt;%</span> <span style="color:#06b;font-weight:bold">count</span>() <span style="color:#333">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#06b;font-weight:bold">select</span>(source) <span style="color:#333">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#06b;font-weight:bold">unlist</span>() <span style="color:#333">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#06b;font-weight:bold">unname</span>()
+</span></span><span style="display:flex;"><span>  sources_ind<span style="color:#333">&lt;-</span><span style="color:#06b;font-weight:bold">sample</span>(<span style="color:#60e;font-weight:bold">19</span>,<span style="color:#60e;font-weight:bold">10</span>,replace <span style="color:#333">=</span> F)
+</span></span><span style="display:flex;"><span>  sources[sources_ind]
+</span></span><span style="display:flex;"><span>  sources[<span style="color:#333">-</span>sources_ind]
+</span></span><span style="display:flex;"><span>  train_pool<span style="color:#333">&lt;-</span>x <span style="color:#333">%&gt;%</span> <span style="color:#06b;font-weight:bold">filter</span>(source <span style="color:#333">%in%</span> sources)
+</span></span><span style="display:flex;"><span>  test_pool<span style="color:#333">&lt;-</span>x <span style="color:#333">%&gt;%</span> <span style="color:#06b;font-weight:bold">filter</span>(<span style="color:#333">!</span>(source <span style="color:#333">%in%</span> sources))
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  train_ind <span style="color:#333">&lt;-</span> <span style="color:#06b;font-weight:bold">sample</span>(<span style="color:#06b;font-weight:bold">seq_len</span>(<span style="color:#06b;font-weight:bold">nrow</span>(train_pool)), size <span style="color:#333">=</span> <span style="color:#06b;font-weight:bold">nrow</span>(train_pool))
+</span></span><span style="display:flex;"><span>  test_ind <span style="color:#333">&lt;-</span> <span style="color:#06b;font-weight:bold">sample</span>(<span style="color:#06b;font-weight:bold">seq_len</span>(<span style="color:#06b;font-weight:bold">nrow</span>(test_pool)), size <span style="color:#333">=</span> <span style="color:#06b;font-weight:bold">nrow</span>(test_pool))
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  train<span style="color:#333">&lt;-</span>train_pool[train_ind[1<span style="color:#333">:</span><span style="color:#60e;font-weight:bold">2000</span>],]
+</span></span><span style="display:flex;"><span>  test<span style="color:#333">&lt;-</span>test_pool[test_ind[1<span style="color:#333">:</span><span style="color:#60e;font-weight:bold">1000</span>],]
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">return </span>(<span style="color:#06b;font-weight:bold">list</span>(train<span style="color:#333">=</span>train,test<span style="color:#333">=</span>test))
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#06b;font-weight:bold">for </span>(iter in <span style="color:#06b;font-weight:bold">seq</span>(<span style="color:#60e;font-weight:bold">25</span>)){
+</span></span><span style="display:flex;"><span>    resample_informed_cv_datasets<span style="color:#333">&lt;-</span><span style="color:#06b;font-weight:bold">resample_informed</span>(ctu19_vectorized)
+</span></span><span style="display:flex;"><span>    readr<span style="color:#333">::</span><span style="color:#06b;font-weight:bold">write_csv</span>(resample_informed_cv_datasets<span style="color:#333">$</span>train,
+</span></span><span style="display:flex;"><span>                path<span style="color:#333">=</span><span style="color:#06b;font-weight:bold">paste0</span>(workdir,
+</span></span><span style="display:flex;"><span>                            <span style="background-color:#fff0f0">&#34;sample-group-informed-train-&#34;</span>,iter,<span style="background-color:#fff0f0">&#34;.csv&#34;</span>))
+</span></span><span style="display:flex;"><span>    readr<span style="color:#333">::</span><span style="color:#06b;font-weight:bold">write_csv</span>(resample_informed_cv_datasets<span style="color:#333">$</span>test,
+</span></span><span style="display:flex;"><span>                path<span style="color:#333">=</span><span style="color:#06b;font-weight:bold">paste0</span>(workdir,
+</span></span><span style="display:flex;"><span>                            <span style="background-color:#fff0f0">&#34;sample-group-informed-test-&#34;</span>,iter,<span style="background-color:#fff0f0">&#34;.csv&#34;</span>))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="clustering-based">Clustering-based</h2>
+<p>The clustering split strategy follows the same principle of the informed split. However, there could be situations where no grouping information can be extracted from the samples to perform an informed split. In these cases, the application of a clustering algorithm could be used to replace the missing information. The labels generated by this procedure will be then used for performing a group split similarly to the informed split strategy.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>workdir <span style="color:#333">&lt;-</span> <span style="background-color:#fff0f0">&#34;/tmp&#34;</span>
+</span></span><span style="display:flex;"><span>ctu19_vectorized <span style="color:#333">&lt;-</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">read_csv</span>(
+</span></span><span style="display:flex;"><span>    <span style="background-color:#fff0f0">&#34;https://www.dropbox.com/s/0ziry2zi6gsgpi6/ctu19_filtered_fv.csv?dl=1&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>ctu19_vectorized_kmeans<span style="color:#333">&lt;-</span><span style="color:#06b;font-weight:bold">kmeans</span>(ctu19_vectorized[,<span style="color:#60e;font-weight:bold">1</span><span style="color:#333">:</span><span style="color:#60e;font-weight:bold">10</span>],
+</span></span><span style="display:flex;"><span>                                nstart <span style="color:#333">=</span> <span style="color:#60e;font-weight:bold">5</span>, 
+</span></span><span style="display:flex;"><span>                                centers <span style="color:#333">=</span> <span style="color:#60e;font-weight:bold">10</span>)
+</span></span><span style="display:flex;"><span>ctu19_vectorized_cluster<span style="color:#333">&lt;-</span> ctu19_vectorized <span style="color:#333">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  tibble<span style="color:#333">::</span><span style="color:#06b;font-weight:bold">add_column</span>(cluster<span style="color:#333">=</span>ctu19_vectorized_kmeans<span style="color:#333">$</span>cluster)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>resample_kmeans<span style="color:#333">&lt;-</span><span style="color:#06b;font-weight:bold">function</span>(x){
+</span></span><span style="display:flex;"><span>  cluster_ind<span style="color:#333">&lt;-</span><span style="color:#06b;font-weight:bold">sample</span>(<span style="color:#60e;font-weight:bold">20</span>,<span style="color:#60e;font-weight:bold">10</span>)
+</span></span><span style="display:flex;"><span>  train_pool<span style="color:#333">&lt;-</span>x <span style="color:#333">%&gt;%</span> <span style="color:#06b;font-weight:bold">filter</span>(cluster <span style="color:#333">%in%</span> cluster_ind)
+</span></span><span style="display:flex;"><span>  test_pool<span style="color:#333">&lt;-</span>x <span style="color:#333">%&gt;%</span> <span style="color:#06b;font-weight:bold">filter</span>(<span style="color:#333">!</span>(cluster <span style="color:#333">%in%</span> cluster_ind))
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  train_ind <span style="color:#333">&lt;-</span> <span style="color:#06b;font-weight:bold">sample</span>(<span style="color:#06b;font-weight:bold">seq_len</span>(<span style="color:#06b;font-weight:bold">nrow</span>(train_pool)), size <span style="color:#333">=</span> <span style="color:#06b;font-weight:bold">nrow</span>(train_pool))
+</span></span><span style="display:flex;"><span>  test_ind <span style="color:#333">&lt;-</span> <span style="color:#06b;font-weight:bold">sample</span>(<span style="color:#06b;font-weight:bold">seq_len</span>(<span style="color:#06b;font-weight:bold">nrow</span>(test_pool)), size <span style="color:#333">=</span> <span style="color:#06b;font-weight:bold">nrow</span>(test_pool))
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  train<span style="color:#333">&lt;-</span>train_pool[train_ind[1<span style="color:#333">:</span><span style="color:#60e;font-weight:bold">2000</span>],]
+</span></span><span style="display:flex;"><span>  test<span style="color:#333">&lt;-</span>test_pool[test_ind[1<span style="color:#333">:</span><span style="color:#60e;font-weight:bold">1000</span>],]
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">return </span>(<span style="color:#06b;font-weight:bold">list</span>(train<span style="color:#333">=</span>train,test<span style="color:#333">=</span>test))
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#06b;font-weight:bold">for </span>(iter in <span style="color:#06b;font-weight:bold">seq</span>(<span style="color:#60e;font-weight:bold">25</span>)){
+</span></span><span style="display:flex;"><span>    resample_kmeans_cv_datasets<span style="color:#333">&lt;-</span><span style="color:#06b;font-weight:bold">resample_kmeans</span>(ctu19_vectorized_cluster)
+</span></span><span style="display:flex;"><span>    readr<span style="color:#333">::</span><span style="color:#06b;font-weight:bold">write_csv</span>(resample_kmeans_cv_datasets<span style="color:#333">$</span>train,
+</span></span><span style="display:flex;"><span>                  path<span style="color:#333">=</span><span style="color:#06b;font-weight:bold">paste0</span>(workdir,
+</span></span><span style="display:flex;"><span>                              <span style="background-color:#fff0f0">&#34;sample-group-kmeans-train-&#34;</span>,iter,<span style="background-color:#fff0f0">&#34;.csv&#34;</span>))
+</span></span><span style="display:flex;"><span>    readr<span style="color:#333">::</span><span style="color:#06b;font-weight:bold">write_csv</span>(resample_kmeans_cv_datasets<span style="color:#333">$</span>test,
+</span></span><span style="display:flex;"><span>                  path<span style="color:#333">=</span><span style="color:#06b;font-weight:bold">paste0</span>(workdir,
+</span></span><span style="display:flex;"><span>                              <span style="background-color:#fff0f0">&#34;sample-group-kmeans-test-&#34;</span>,iter,<span style="background-color:#fff0f0">&#34;.csv&#34;</span>))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Let&rsquo;s see how the four splitting strategies impact a particular dataset. In this case, a network security dataset for botnet detection composed of nineteen network captures published by the stratosphere IPS research group at CTU</p>
+<p>Let&rsquo;s visualize the differences between the four sampling strategies using a a PCA projection of the training and the testing dataset.</p>
+<p><img src="images/sampling.png" alt=""> <figcaption></p>
+<h6>Figure 3: 2D projection and boxplot distribution for the 25 pairs of training and testing datasets for each splitting strategy   </h6>
+</figcaption>
+<p>An interesting thing about the plot is that if we look at the boxplot it is not easy to spot a difference between each splitting strategy. However, the 2D projection using PCA shows clearly the differences between the four approaches.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#888">### 2D Representation using PCA</span>
+</span></span><span style="display:flex;"><span>create_2d_viz<span style="color:#333">&lt;-</span><span style="color:#06b;font-weight:bold">function</span>(train,test,title<span style="color:#333">=</span><span style="background-color:#fff0f0">&#34;notitle&#34;</span>){
+</span></span><span style="display:flex;"><span>  train_pca <span style="color:#333">&lt;-</span> <span style="color:#06b;font-weight:bold">prcomp</span>(train,center<span style="color:#333">=</span><span style="color:#080;font-weight:bold">TRUE</span>,scale.<span style="color:#333">=</span><span style="color:#080;font-weight:bold">TRUE</span>)
+</span></span><span style="display:flex;"><span>  test_pca <span style="color:#333">&lt;-</span> <span style="color:#06b;font-weight:bold">predict</span>(train_pca,test)
+</span></span><span style="display:flex;"><span>  train <span style="color:#333">&lt;-</span> <span style="color:#06b;font-weight:bold">data.frame</span>(train_pca<span style="color:#333">$</span>x,dataset<span style="color:#333">=</span><span style="background-color:#fff0f0">&#34;training&#34;</span>)
+</span></span><span style="display:flex;"><span>  test <span style="color:#333">&lt;-</span> <span style="color:#06b;font-weight:bold">data.frame</span>(test_pca<span style="color:#333">$</span>x, dataset<span style="color:#333">=</span><span style="background-color:#fff0f0">&#34;testing&#34;</span>)
+</span></span><span style="display:flex;"><span>  dataset<span style="color:#333">&lt;-</span><span style="color:#06b;font-weight:bold">rbind</span>(train,test)
+</span></span><span style="display:flex;"><span>  <span style="color:#06b;font-weight:bold">ggplot</span>(dataset) <span style="color:#333">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#06b;font-weight:bold">geom_point</span>(<span style="color:#06b;font-weight:bold">aes</span>(x<span style="color:#333">=</span>PC1,y<span style="color:#333">=</span>PC2,color<span style="color:#333">=</span>dataset),alpha<span style="color:#333">=</span><span style="color:#60e;font-weight:bold">0.2</span>,size<span style="color:#333">=</span><span style="color:#60e;font-weight:bold">0.5</span>)<span style="color:#333">+</span>
+</span></span><span style="display:flex;"><span>    ggdark<span style="color:#333">::</span><span style="color:#06b;font-weight:bold">dark_theme_classic</span>()<span style="color:#333">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#06b;font-weight:bold">theme_bw</span>()<span style="color:#333">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#06b;font-weight:bold">labs</span>(title<span style="color:#333">=</span>title)<span style="color:#333">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#06b;font-weight:bold">theme</span>(legend.position<span style="color:#333">=</span><span style="background-color:#fff0f0">&#34;bottom&#34;</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>The similarities between training and testing sets are clearly observable for the <strong>Monte Carlo CV</strong> strategies, while the remaining strategies provide clear differences, being the <strong>dissimilarity-based</strong> approach the one observing the most of it.</p>
+<h2 id="just-a-few-more-words">Just a few more words&hellip;</h2>
+<p>In theory, a simple Cross Validation (CV) approach would be enough for estimating the generalization error of a model. Unfortunately, statisticians have found considerable issues with these approaches in the last years. It seems that the estimation provided by CV has severe flaws. (Hastie and Tibshirani have discussed some of them in a <a href="https://arxiv.org/pdf/2104.00673.pdf">recent paper</a> submitted to arxiv.)</p>
+<p>Theoretical frameworks used for estimating the generalization are still an important research topic. Despite the industry is not really interested in this problem.</p>
+<p>Estimating the generalization error of a model is not easy. The methods described above are simple ideas (some of the well-established ideas) to have a practical intuition on how well and how badly the model will perform on unseen examples.</p>
+<p><em>Informed</em> and <em>dissimilarity-based</em> strategies could become handy for particular problems, while a <em>cluster-based</em> strategy is just a compromise solution when you don&rsquo;t have information for doing the split.</p>
+<p>The idea of using a different distribution in testing could seem awkward at first but is not as unusual as you may think. <strong>Andrew Ng</strong> in the book <a href="https://www.goodreads.com/en/book/show/30741739-machine-learning-yearning"><em>Machine Learning Yearning</em></a>proposes an approach where the independent <em>testing</em> set should have a different distribution from <em>training</em> and <em>dev</em> datasets.</p>
+<h2 id="references">References</h2>
+<p><a href="https://arxiv.org/abs/2209.03346">[1]</a> <em>Beyond Random Split for Assessing Statistical Model Performance</em>. A report we submitted to <a href="https://arxiv.org">arxiv</a> where we evaluated a random forest model on the 4 different splitting strategies.</p>
+<p><a href="http://appliedpredictivemodeling.com/">[2]</a> <em>Applied predictive modeling.</em> A book by Max Khun &amp; Kjell Johnson, in Chapter 20 <em>&ldquo;Factors that can affect model performance&rdquo;,</em> discuss some other problems and possible solution to asset model performance. In particular subsection 20.5 <em>When Should You Trust Your Model&rsquo;s Prediction?</em></p>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/resampling/"> resampling </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/cross-validation/"> cross-validation </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/overfitting/"> overfitting </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/resampling/"> resampling </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+
+<form style="float:center;" action="https://tinyletter.com/harpomaxx" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/harpomaxx', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+<label for="tlemail">Enter your email address</label>
+<input type="text" style="width:140px" name="email" id="tlemail" />
+<input type="hidden" value="1" name="embed"/>
+<input type="submit" value="Subscribe" />
+</form>
+
+
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+
+
+</footer>
+
+</body>
+</html>

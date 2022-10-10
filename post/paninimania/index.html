@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.101.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpomaxx"><meta name="keywords" content="R Language"><meta name="description" content="Nobody has doubts about the importance for humankind of the PANINI sticker album for the FIFA World Cup. From a mathematical point of view, several interesting questions arise. How much money do they need to spend? How many other collectors do they need to interact with? What if a sticker pack had 6 stickers instead of 4? Rodralez, from LABSIN developed an app for answering these and other questions [3min read]."><meta property="og:title" content="Paninimania!!" />
+<meta property="og:description" content="Nobody has doubts about the importance for humankind of the PANINI sticker album for the FIFA World Cup. From a mathematical point of view, several interesting questions arise. How much money do they need to spend? How many other collectors do they need to interact with? What if a sticker pack had 6 stickers instead of 4? Rodralez, from LABSIN developed an app for answering these and other questions [3min read]." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/paninimania/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-09-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-09-28T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Paninimania!!"/>
+<meta name="twitter:description" content="Nobody has doubts about the importance for humankind of the PANINI sticker album for the FIFA World Cup. From a mathematical point of view, several interesting questions arise. How much money do they need to spend? How many other collectors do they need to interact with? What if a sticker pack had 6 stickers instead of 4? Rodralez, from LABSIN developed an app for answering these and other questions [3min read]."/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Paninimania!! | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">28</span>
+				<span class="rest">Sep 2022</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Paninimania!!</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://twitter.com/harpomaxx">Harpomaxx</a>
+		
+	
+	
+		(3 min read)
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		<blockquote>
+<p>Thanks to <a href="https://twitter.com/rodralez/">Rodralez</a> from LABSIN for doing all the work! 😂 Check the complete report here.</p>
+</blockquote>
+<p>The world is clearly insane, we can all agree about that !. And the probe could be the recent madness about the infamous PANINI&rsquo;s Football World cup cards. Every 4 years the madness begins!.. and this 2022 (despite all the <a href="https://en.wikipedia.org/wiki/2022_FIFA_World_Cup_controversies">Qatar controversy</a>) is not going to be the exception. No Sir!</p>
+<p>This year the PANINI album contains <strong>638 stickers</strong> with pictures of the most worthy and wealthy 🤑 football players in the world. And of course, we have to spend our money on that. <strong>Why not? (nobody can tell me how I should spend my money!)</strong></p>
+<img src="images/Photo-Jul-26-12-46-54-PM.jpg" alt="" width="50%"/>
+<p>So, a question nobody asks is how much money I have to spend for completing the album. Nobody cares actually since <strong>Passion</strong> is beyond everything&hellip; but we care. Why do we care? Well, the fact is the question requires some math to being answering. Well, some probability theory actually.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Coupon_collector%27s_problem">Coupon Collector Problem</a> (CCP) is a mathematical framework to estimate how many coupons have to be collected to win a prize from, for example, an on-pack cereal promotion. At first glance, CCP could be used to estimate the number of missing packs to complete a PANINI album, but it is not exactly the same problem. When trying to complete a PANINI album, collectors must gather <strong>638 stickers</strong> by getting 5 different stickers randomly when purchasing 1 pack. PANINI guarantees that stickers inside a pack are not duplicated. Additionally, PANINI collectors can cooperate and swap duplicated stickers. This is a widespread practice. Because of these particularities, this problem is usually called the <strong>PANINI Collector Problem</strong> (<strong>PCP</strong>).</p>
+<p>A month ago, <a href="https://twitter.com/rodralez/">Rodralez</a> (a recent <a href="https://labsin.org">LABSIN</a> Member) fell into the PANINI madness and developed an <a href="https://model01.ingenieria.uncuyo.edu.ar/panini-app/">online application</a> for calculating how much money you will need to spend in this whole PANINI madness.</p>
+<p><img src="images/panini-distribuion.png" alt=""></p>
+<p>The application estimates the complete probability density function (<a href="https://en.wikipedia.org/wiki/Probability_density_function">PDF</a>) of the number of packs needed to complete a PANINI album under different scenarios. The most simple scenario assume you will buy several packets without swapping with other collectors. A very unlikely scenario (at least here in South America). For the latter, you have a <a href="https://rpubs.com/rodralez/panini">closed-form solution</a>. But the truth is that swapping with other collectors is the most common strategy for completing the album. Son the app uses <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo</a> simulations or modeling the different swapping strategies.</p>
+<p>Monte Carlo&rsquo;s methods are perhaps the best contribution of the Grimaldi family? Well, to be honest Grimaldi had nothing to do with that of course. According to Wikipedia Monte Carlo methods were one of the first algorithms programmed into the <a href="https://en.wikipedia.org/wiki/ENIAC" title="ENIAC">ENIAC</a> computer by <a href="https://en.wikipedia.org/wiki/John_von_Neumann">Von Neumann</a> and <a href="https://en.wikipedia.org/wiki/Nicholas_Metropolis" title="Nicholas Metropolis">Nicholas Metropolis</a> . The name is just an internal joke of Metropolis due to the intrinsic randomness of the algorithm.</p>
+<p>Anyway, the app uses Monte Carlo experiments for obtaining a PDF considering swapping interaction with a different number of collectors. If you have fallen into the PANINI madness, please give it a try. It will give you information about the number of packages you need to buy and how many other collectors you need to interact with. Who knows perhaps it can help you to put yourself together and start spending your money on more useful things&hellip;? Probably not!</p>
+<h1 id="references">References</h1>
+<p><a href="https://rpubs.com/rodralez/panini">[1]</a> Rodralez&rsquo;s report describes the mathematical framework used by the APP.<br>
+<a href="https://model01.ingenieria.uncuyo.edu.ar/panini-app/">[2]</a> Link to the web app using Shiny.<br>
+<a href="https://dial.uclouvain.be/downloader/downloader.php?pid=thesis%3A20994&amp;datastream=PDF_01">[3]</a> A master thesis focusing on PCP.</p>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/algorithms/"> algorithms </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/statistics/"> statistics </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/visualizations/"> visualizations </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/r-language/"> r-language </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+
+<form style="float:center;" action="https://tinyletter.com/harpomaxx" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/harpomaxx', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+<label for="tlemail">Enter your email address</label>
+<input type="text" style="width:140px" name="email" id="tlemail" />
+<input type="hidden" value="1" name="embed"/>
+<input type="submit" value="Subscribe" />
+</form>
+
+
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+
+
+</footer>
+
+</body>
+</html>

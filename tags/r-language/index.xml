@@ -7,10 +7,22 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Sun, 31 Jul 2022 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Wed, 28 Sep 2022 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/r-language/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Paninimania!!</title>
+			<link>https://harpomaxx.github.io/post/paninimania/</link>
+			<pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/paninimania/</guid>
+			<description>
+				
+				Nobody has doubts about the importance for humankind of the PANINI sticker album for the FIFA World Cup. From a mathematical point of view, several interesting questions arise. How much money do they need to spend? How many other collectors do they need to interact with? What if a sticker pack had 6 stickers instead of 4? Rodralez, from LABSIN developed an app for answering these and other questions [3min read].
+				
+			</description>
+		</item>
 		<item>
 			<title>Art with Data</title>
 			<link>https://harpomaxx.github.io/post/coding-art/</link>

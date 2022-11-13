@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>time series on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/categories/time-series/</link>
-		<description>Recent content in time series on harpomaxx.github.io</description>
+		<title>dynamic time warping on Computer Science Notes</title>
+		<link>https://harpomaxx.github.io/tags/dynamic-time-warping/</link>
+		<description>Recent content in dynamic time warping on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Mon, 31 Oct 2022 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/categories/time-series/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/tags/dynamic-time-warping/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Clustering techniques for time series</title>
@@ -20,18 +20,6 @@
 			<description>
 				
 				The good old clustering analysis techniques present some differences when applied to time series.  So many to discuss in one simple post. However, I will do my best to provide some examples of two basic approaches for doing time series  analysis.
-				
-			</description>
-		</item>
-		<item>
-			<title>COVID-19 Resources for the Amateur Epidemiologist</title>
-			<link>https://harpomaxx.github.io/post/covid19-time-series-prediction/</link>
-			<pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/post/covid19-time-series-prediction/</guid>
-			<description>
-				
-				Some useful  resources for playing with epidemic models (Mostly COVID-19 of course). From an explanation of the dificulties behind building an epidemic models to the different approaches followed by researchers and enthusiasts (me) here in my home town, Mendoza City.
 				
 			</description>
 		</item>

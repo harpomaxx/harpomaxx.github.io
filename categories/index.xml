@@ -7,16 +7,52 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Wed, 28 Sep 2022 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Mon, 31 Oct 2022 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>algorithms</title>
 			<link>https://harpomaxx.github.io/categories/algorithms/</link>
-			<pubDate>Wed, 28 Sep 2022 00:00:00 +0000</pubDate>
+			<pubDate>Mon, 31 Oct 2022 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/algorithms/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>data science</title>
+			<link>https://harpomaxx.github.io/categories/data-science/</link>
+			<pubDate>Mon, 31 Oct 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/data-science/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>feature selection</title>
+			<link>https://harpomaxx.github.io/categories/feature-selection/</link>
+			<pubDate>Mon, 31 Oct 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/feature-selection/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>time series</title>
+			<link>https://harpomaxx.github.io/categories/time-series/</link>
+			<pubDate>Mon, 31 Oct 2022 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/time-series/</guid>
 			<description>
 				
 				
@@ -65,18 +101,6 @@
 			<pubDate>Sun, 31 Jul 2022 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/art/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>data science</title>
-			<link>https://harpomaxx.github.io/categories/data-science/</link>
-			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/data-science/</guid>
 			<description>
 				
 				
@@ -192,18 +216,6 @@
 			</description>
 		</item>
 		<item>
-			<title>feature selection</title>
-			<link>https://harpomaxx.github.io/categories/feature-selection/</link>
-			<pubDate>Sun, 12 Sep 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/feature-selection/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
 			<title>papers</title>
 			<link>https://harpomaxx.github.io/categories/papers/</link>
 			<pubDate>Tue, 03 Aug 2021 00:00:00 +0000</pubDate>
@@ -257,18 +269,6 @@
 			<pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/covid19/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>time series</title>
-			<link>https://harpomaxx.github.io/categories/time-series/</link>
-			<pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/time-series/</guid>
 			<description>
 				
 				

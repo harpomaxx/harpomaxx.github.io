@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.101.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo Maxx"><meta name="keywords" content="dynamic time warping"><meta name="description" content="The good old clustering analysis techniques present some differences when applied to time series.  So many to discuss in one simple post. However, I will do my best to provide some examples of two basic approaches for doing time series  analysis."><meta property="og:title" content="Clustering techniques for time series" />
+<meta property="og:description" content="The good old clustering analysis techniques present some differences when applied to time series.  So many to discuss in one simple post. However, I will do my best to provide some examples of two basic approaches for doing time series  analysis." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/clustering-approaches-time-series/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-10-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-10-31T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Clustering techniques for time series"/>
+<meta name="twitter:description" content="The good old clustering analysis techniques present some differences when applied to time series.  So many to discuss in one simple post. However, I will do my best to provide some examples of two basic approaches for doing time series  analysis."/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Clustering techniques for time series | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">31</span>
+				<span class="rest">Oct 2022</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Clustering techniques for time series</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://twitter.com/harpomaxx">Harpo Maxx</a>
+		
+	
+	
+		(6 min read)
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		
+
+
+<div id="clustering-time-series" class="section level2">
+<h2>Clustering time series</h2>
+<p>The good old clustering analysis techniques present some differences when applied to time series. Actually, there are many approaches for applying clustering techniques to time-series (look at <a href="https://linkinghub.elsevier.com/retrieve/pii/S0306437915000733">[1]</a> for a taxonomy). In this post, I will focus on clustering <strong>the whole-time series</strong>. Here, clustering means applying conventional clustering on discrete objects, where objects are time-series.</p>
+<p>Time-series pose some challenging issues due to their large size and <strong>high dimensionality</strong> . In this context, the dimensionality of a series refers to time. In other words, the length of the series. There are several approaches for reducing time-series dimensionality (i.e. <a href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform">Discrete Fourier Transformation</a>, <a href="https://en.wikipedia.org/wiki/Singular_value_decomposition">Single Value Decomposition</a>, <a href="https://optimization.cbe.cornell.edu/index.php?title=Piecewise_linear_approximation">Piecewise Linear Approximation</a>).</p>
+<p>One of the most simple techniques for reducing the dimensionality of a time series consists of extracting features. Under these <strong>feature-based</strong> approaches, you can use these features for running any traditional clustering methods. (Yess, similar to any other machine learning problem). The question is what features? and perhaps most important is to know how.</p>
+<p>Alternatively, you can avoid any dimensional reduction and try some of the <strong>shape-based</strong> approaches. These kinds of approaches use the <strong>raw time series</strong> and usually employ conventional clustering methods, which are compatible with static data while their <strong>distance/similarity measure has been modified</strong> with an appropriate one for time series. Depending on the objective and length of the time series, the proper type of distance measures is determined. The L1 and L2 vector norms, also known as <a href="https://www.sciencedirect.com/topics/mathematics/manhattan-distance">Manhattan</a> and <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean</a> distances respectively, are the most commonly used distance measures. They can be efficiently computed, but are only defined for series of equal length and are sensitive to noise, scale, and time shifts <a href="https://cran.r-project.org/web/packages/dtwclust/vignettes/dtwclust.pdf">[2]</a>. Thus, many other distance measures tailored to time series have been developed in order to overcome these limitations as well as other challenges associated with the structure of time series, such as multiple variables, serial correlation, etc.</p>
+<p>One of the most common distance/similarity measures used with time series is <a href="https://en.wikipedia.org/wiki/Dynamic_time_warping">DTW (Dynamic Time Warping)</a>. The easiest way to get an intuition of what DTW does is graphically. In the image below (stolen from the <a href="https://cran.r-project.org/web/packages/dtwclust/vignettes/dtwclust.pdf">dtwclust</a> package reference) you can see a sample alignment performed by the DTW algorithm between two series. The dashed blue lines exemplify how some points are mapped to each other, which shows how they can be warped in time.</p>
+<p><img src="images/dtw.png" /></p>
+<p>For much more information about the clustering of time series I recommend the article <em>Time-series clustering – A decade review</em> <a href="https://linkinghub.elsevier.com/retrieve/pii/S0306437915000733">[1]</a>. There you will find a good taxonomy of the different approaches for time-series clustering as well as a detail of the different aspects to consider when applying clustering methods to time-series.</p>
+<p>So now.. let’s write some code!</p>
+</div>
+<div id="some-of-the-tools-available-for-r" class="section level2">
+<h2>Some of the tools available for R</h2>
+<p>For <a href="https://www.r-project.org/">R</a>, there are plenty of packages for dealing with time series. Recently, the <a href="https://tidyverts.org/">tidyverts</a> <a href="https://tidyverts.org/">[3]</a> set of packages have raised my attention. Similarly to the well-known tidyverse, the tidyverts attempt to provide tidy tools for time series. The tidyverts include the <a href="https://tsibble.tidyverts.org/">tsibble</a> package for temporal data frames manipulation, the <a href="https://fable.tidyverts.org/">fable</a> package for forecasting, and the <a href="https://feasts.tidyverts.org/reference/feasts-package.html">feasts</a> package for feature extraction (among others). In addition, the book <a href="https://otexts.com/fpp3/stlfeatures.html">Forecasting Principle and Practices: Measuring strength of trend and seasonality</a> [4] makes use of all the tools of the tidyverts (notice that one of the authors of the book, Prof. <em>Rob J Hyndman,</em> is one of the principals responsible for the tidyverts ).</p>
+</div>
+<div id="a-simple-example" class="section level2">
+<h2>A simple example</h2>
+<p>Let’s try some of the discussed approaches on a simple dataset containing meteorological information. The dataset contains information from 11 weather stations for two years (2018 and 2019). A total of eight meteorological variables are available. I won’t provide a detailed explanation of the variables because is out of the scope of the post. You can get the dataset from <a href="https://github.com/harpomaxx/ts-clustering-example/blob/main/data/stations_data.csv.gz?raw=true">here</a>.</p>
+<pre class="r"><code>library(dplyr)
+library(readr)
+library(tsibble)
+library(lubridate)
+library(ggplot2)
+library(purrr)
+library(dtwclust)
+library(RColorBrewer)</code></pre>
+<pre class="r"><code>sta_data&lt;-
+  readr::read_csv(
+    &quot;https://github.com/harpomaxx/ts-clustering-example/raw/main/data/stations_data.csv.gz&quot;,
+    col_types = cols(
+      station = col_character(),
+      datetime = col_datetime(format = &quot;&quot;),
+      air_temp = col_double(),
+      drew_point = col_double(),
+      solar_rad_wm2 = col_double(),
+      humidity = col_double(),
+      wind_speed_kmh = col_double(),
+      wind_direction_deg = col_integer(),
+      ET0_mm = col_double(),
+      pp_mm = col_double()
+))</code></pre>
+<p>First, let’s take a look at the missing values inside the dataset. For this, we will plot a sort of heatmap with values averaged per week of the year for both years (2018 and 2019). we need to do some transformations for plotting data using the <code>ggplot2</code> package. The process is pretty simple:</p>
+<ol style="list-style-type: decimal">
+<li><p>Round down the <code>datetime</code> variable to <code>week</code> unit.</p></li>
+<li><p>Group by week and calculate the average for each numeric variable</p></li>
+<li><p>transform <code>datetime</code> to <code>yearweek</code>unit from the <a href="https://tsibble.tidyverts.org/">tsibble</a> package</p></li>
+<li><p>Reshape the dataset for use in <code>ggplot2</code></p></li>
+</ol>
+<pre class="r"><code>sta_weekly &lt;-
+    sta_data %&gt;% group_by(station) %&gt;%
+    mutate(datetime = lubridate::floor_date(datetime, &quot;week&quot;)) %&gt;% 
+  ungroup()
+ 
+sta_weekly &lt;-
+    sta_weekly %&gt;% group_by(station, datetime) %&gt;%
+    summarise_if(is.numeric, mean, na.rm = TRUE)
+
+sta_weekly_melted&lt;-sta_weekly %&gt;% 
+  mutate(datetime = tsibble::yearweek(datetime)) %&gt;% 
+    tidyr::pivot_longer(3:ncol(sta_weekly), names_to = &quot;variable&quot;)
+sta_weekly_melted</code></pre>
+<pre><code>## # A tibble: 8,536 × 4
+## # Groups:   station [11]
+##    station datetime variable            value
+##    &lt;chr&gt;     &lt;week&gt; &lt;chr&gt;               &lt;dbl&gt;
+##  1 1       2017 W52 air_temp            26.6 
+##  2 1       2017 W52 drew_point           8.51
+##  3 1       2017 W52 solar_rad_wm2      328.  
+##  4 1       2017 W52 humidity            35.0 
+##  5 1       2017 W52 wind_speed_kmh       4.09
+##  6 1       2017 W52 wind_direction_deg 183.  
+##  7 1       2017 W52 ET0_mm               6.64
+##  8 1       2017 W52 pp_mm              NaN   
+##  9 1       2018 W01 air_temp            26.4 
+## 10 1       2018 W01 drew_point          15.5 
+## # … with 8,526 more rows</code></pre>
+<pre class="r"><code>plot &lt;-sta_weekly_melted %&gt;% 
+  filter(year(datetime) %in% c(&quot;2018&quot;,&quot;2019&quot;)) %&gt;%
+    ggplot() +
+    facet_grid(variable ~ station, scales = &#39;free_y&#39;) +
+    geom_tile(aes(
+      x = year(datetime) %&gt;% as.factor(),
+      y = week(datetime),
+      fill = value,
+      alpha = 0.5
+    )) +
+    theme_bw()+
+    xlab(&quot;Year&quot;) + ylab(&quot;Week of the year&quot;) +
+    theme(axis.text.x = element_text(
+      angle = 45,
+      vjust = 0.5,
+      hjust = 1
+    )) +
+    scale_fill_gradient(low = &quot;yellow&quot;, high = &quot;red&quot;) +
+    theme(
+      axis.title.x = element_blank(),
+      legend.position = &#39;none&#39;)
+
+  plot</code></pre>
+<p><img src="https://harpomaxx.github.io/post/clustering-approaches-time-series/index.en_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="feature-based-clustering" class="section level2">
+<h2>Feature-based clustering</h2>
+<p>Now, let’s go with the first approach, we will extract some basic time-series features using the <a href="https://cran.r-project.org/web/packages/tsfeatures/vignettes/tsfeatures.html"><code>tsfeatures</code></a> package. But first, just for reducing the computation, we will group and replace all the observations from the same day with the average of that given day. Then we will convert to the <code>tstibble</code> format from the <code>tidyverts</code> for being able to use the <code>tsfeatures</code> package.</p>
+<pre class="r"><code>sta_data_filtered &lt;-
+  sta_data %&gt;%
+  mutate(datetime = lubridate::floor_date(datetime, unit = &quot;1 day&quot;)) %&gt;% 
+  group_by(station, datetime) %&gt;%  
+  summarise(across(where(is.numeric), ~ mean(.x, na.rm = TRUE, ))) %&gt;% 
+  ungroup()
+
+sta_data_filtered  &lt;- sta_data_filtered %&gt;%
+  mutate(datetime = as.Date(datetime)) %&gt;% 
+  as_tsibble(index = datetime,
+             key = station,
+             regular = TRUE)</code></pre>
+<p>Now, let’s calculate the <code>stability</code> and <code>lumpiness</code> for a particular variable: <code>air_temp</code>. These two time-series features are based on tiled (non-overlapping) windows. Means or variances are produced for all tiled windows. Then, <code>stability</code> is the variance of the means, while <code>lumpiness</code> is the variance of the variances (check the <a href="https://cran.r-project.org/web/packages/tsfeatures/vignettes/tsfeatures.html">tsfeatures</a> package for more info).<br />
+<br />
+</p>
+<pre class="r"><code>library(feasts)
+library(tsfeatures)
+
+air_temp_stability &lt;- sta_data_filtered %&gt;% 
+  features(air_temp,stability) %&gt;% 
+  select(station,stability) 
+
+
+air_temp_lumpiness &lt;- sta_data_filtered %&gt;% 
+  features(air_temp,lumpiness ) %&gt;% 
+  pull(lumpiness)  
+  
+  
+cbind(air_temp_stability,
+      air_temp_lumpiness ) %&gt;% 
+  as_tibble()</code></pre>
+<pre><code>## # A tibble: 11 × 3
+##    station stability air_temp_lumpiness
+##    &lt;chr&gt;       &lt;dbl&gt;              &lt;dbl&gt;
+##  1 1           0.892             0.0107
+##  2 10          0.703             0.106 
+##  3 11          0.859             0.0145
+##  4 2           0.767             0.0328
+##  5 3           0.793             0.0445
+##  6 4           0.674             0.0385
+##  7 5           0.787             0.0675
+##  8 6           0.701             0.136 
+##  9 7           0.779             0.0343
+## 10 8           0.769             0.0360
+## 11 9           0.873             0.0110</code></pre>
+<p>The function <code>features()</code> creates scalar valued summary features for a dataset from feature functions. The function requires two parameters, the <em>time-series</em> and <em>functions</em> (or lambda expressions) for the features to compute. Here, we have used the functions <code>stability()</code> and <code>lumpiness()</code> from the <code>tsfeature</code> package.<br />
+<br />
+Now, let’s calculate some other features. The function <code>acf_features()</code> computes the autocorrelation function of the series, the differenced series, and the twice-differenced series. <code>acf_features()</code> produces a vector comprising the first autocorrelation coefficient in each case, and the sum of squares of the first 10 autocorrelation coefficients in each case. On the other hand the function <code>stl_features</code> computes various measures of trend and seasonality of a time series based on an <a href="https://otexts.com/fpp3/stl.html">STL decomposition</a>. STL is a versatile and robust method for decomposing time series. STL is an acronym for “<em>Seasonal and Trend decomposition using Loess”.</em></p>
+<pre class="r"><code>air_temp_acf &lt;- sta_data_filtered %&gt;% 
+  features(air_temp,acf_features ) %&gt;% select(x_acf1,x_acf10)
+
+air_temp_stl &lt;- sta_data_filtered %&gt;% 
+  features(air_temp,stl_features ) %&gt;% select(trend,spike, linearity, curvature)
+
+air_temp_tsfeatures &lt;- cbind(
+    air_temp_stability,
+      lumpiness = air_temp_lumpiness,
+      air_temp_stl,
+      air_temp_acf
+      ) %&gt;% as_tibble()
+
+air_temp_tsfeatures</code></pre>
+<pre><code>## # A tibble: 11 × 9
+##    station stability lumpiness trend    spike linearity curvature x_acf1 x_acf10
+##    &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1 1           0.892    0.0107 0.845 0.000377    -1.25       46.8  0.940    6.91
+##  2 10          0.703    0.106  0.620 0.000407     1.37       21.7  0.858    3.70
+##  3 11          0.859    0.0145 0.803 0.000344    -0.849      47.7  0.927    6.19
+##  4 2           0.767    0.0328 0.768 0.000691   -19.1        49.4  0.902    5.44
+##  5 3           0.793    0.0445 0.728 0.000198     4.53       20.5  0.896    5.15
+##  6 4           0.674    0.0385 0.606 0.00108    -25.3        13.8  0.818    3.31
+##  7 5           0.787    0.0675 0.719 0.000349    -1.39       23.1  0.904    5.00
+##  8 6           0.701    0.136  0.660 0.00210    -21.8        13.1  0.850    3.99
+##  9 7           0.779    0.0343 0.726 0.000638    16.1        44.2  0.895    5.07
+## 10 8           0.769    0.0360 0.725 0.000762    -5.50       39.4  0.875    5.07
+## 11 9           0.873    0.0110 0.833 0.000379    -5.00       46.9  0.935    6.68</code></pre>
+<p>So now, we can finally apply a clustering method. Why don’t try the good old <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means.</a></p>
+<pre class="r"><code>kmeans_results&lt;-kmeans(air_temp_tsfeatures,centers =5, 
+                       nstart = 1, 
+                       iter.max = 10)
+cbind(air_temp_tsfeatures,cluster=kmeans_results$cluster) %&gt;% 
+select(station,cluster)</code></pre>
+<pre><code>##    station cluster
+## 1        1       3
+## 2       10       1
+## 3       11       3
+## 4        2       4
+## 5        3       1
+## 6        4       2
+## 7        5       1
+## 8        6       5
+## 9        7       3
+## 10       8       3
+## 11       9       3</code></pre>
+</div>
+<div id="shape-based-clustering" class="section level2">
+<h2>Shape-based clustering</h2>
+<p>For the shape-based approach, we will use the <a href="https://cran.r-project.org/web/packages/dtwclust/index.html"><code>dtwclust</code></a> package. Similarly to the previous <strong>feature-based</strong> approach, we will group and average by day.</p>
+<pre class="r"><code>## Group by day and average
+sta_data &lt;- sta_data %&gt;%
+  mutate(datetime = lubridate::floor_date(datetime, 
+                                          unit = &quot;1 day&quot;)) %&gt;% 
+  group_by(station, datetime) %&gt;% 
+  summarise(avg_hour=mean(air_temp,na.rm=TRUE)
+  ) %&gt;% ungroup() </code></pre>
+<p>The <a href="https://cran.r-project.org/web/packages/dtwclust/index.html">dtwclust</a> package is not part of the tidyverts so we will need to convert the <code>tsibble</code> data to a R list before invoking the <code>dtwclust()</code> function. First, we will convert all the <code>nan</code> values present in the time-series to <code>NA</code>. This is required by the <a href="https://tidyr.tidyverse.org/">tidyr</a> <a href="https://tidyr.tidyverse.org/reference/fill.html"><code>fill()</code></a> function. The <code>fill()</code> function is used to replace missing values with previous and next values. Then, we convert to matrix, there are probably faster and better ways to do this, but… who cares.. this do the work!</p>
+<pre class="r"><code>## replace nan by NA
+sta_data &lt;-
+  sta_data %&gt;% mutate_if(is.numeric,  ~ ifelse(is.nan(.), NA, .))
+# transfor dataframe to matrix
+sta_series &lt;- sta_data %&gt;%
+  as_tibble() %&gt;% select(station, datetime, avg_hour) %&gt;%
+  group_by(station) %&gt;%
+  tidyr::fill(avg_hour, .direction = &quot;downup&quot;) %&gt;%
+  ungroup() %&gt;%
+  group_split(station, .keep = FALSE) %&gt;%
+  map( ~ .x %&gt;%
+         pull(avg_hour))
+
+## print the first then observation from station 1
+sta_series[[1]][1:10]</code></pre>
+<pre><code>##  [1] 24.53708 25.74463 28.05531 29.30167 26.41094 25.37417 26.09240 25.95158
+##  [9] 26.63589 29.43906</code></pre>
+<p>OK, now, we can finally use the <code>tsclust()</code> from <code>dtwclust</code> package. The function allows you to define several aspects of clustering methods. the first is the <strong><code>type</code></strong> of clustering algorithm you want to use. Here you can choose between Hierarchical and partitional clustering (check the reference for more options). We re going to choose <code>partitional</code>, In this case, the data is explicitly assigned to one and only one cluster out of k total clusters. The latter is the same one we used for the <strong>feature-based</strong> approach. Then, it is <em>distance</em>, here we can use several distances such <code>dtw</code>, <code>dtw_basic</code> among several DTW variants (again… check the package reference for more info). <code>dwt_basic</code> is the default, and is a custom version of DTW with less functionality, but faster (according to the <code>dwtclust</code> package author). Finally, it is the <em>prototypes</em><strong>,</strong> which stands for time-series averaging, which is another word for referring to <em>centroids</em>. So basically, here we can choose the method for centroids selection. In this case, we are going to use the <code>pam</code> method. This basically means that the cluster centroids are always one of the time series in the data. In this case, the distance matrix can be pre-computed once using all-time series in the data and then re-used at each iteration. It usually saves overhead overall for a small dataset.</p>
+<pre class="r"><code>## reinterpolate (only necesary for for L1)
+#sta_series &lt;-
+#  reinterpolate(sta_matrix, new.length = max(lengths(sta_matrix)))
+## Clustering 
+univariate_clusters &lt;- tsclust(
+  sta_series,
+  k = 4,
+  type = &quot;partitional&quot;,
+  distance = &quot;dtw_basic&quot;,
+  centroid = &quot;pam&quot;, # fast method
+  seed = 3247,
+  trace = TRUE,
+  control = partitional_control(nrep = 1L)
+)</code></pre>
+<pre><code>## 
+##  Precomputing distance matrix...
+## 
+## Iteration 1: Changes / Distsum = 11 / 9030.598
+## Iteration 2: Changes / Distsum = 3 / 8020.471
+## Iteration 3: Changes / Distsum = 0 / 8020.471
+## 
+##  Elapsed time is 0.55 seconds.</code></pre>
+<p>By default the <code>tsclust</code> object prints information about the 4 selected centroids.</p>
+<pre class="r"><code>univariate_clusters</code></pre>
+<pre><code>## partitional clustering with 4 clusters
+## Using dtw_basic distance
+## Using pam centroids
+## 
+## Time required for analysis:
+##    user  system elapsed 
+##   1.060   0.013   0.550 
+## 
+## Cluster sizes with average intra-cluster distance:
+## 
+##   size  av_dist
+## 1    2 421.7952
+## 2    3 739.0566
+## 3    2 720.0553
+## 4    4 879.9001</code></pre>
+<p>Now, let’s print the membership table.</p>
+<pre class="r"><code>## gather the information about stations and set list names
+sta_lst_labels&lt;-sta_data %&gt;% as_tibble() %&gt;% 
+  select(station) %&gt;% unique() %&gt;% 
+  unname() %&gt;% unlist()
+names(sta_series)&lt;-sta_lst_labels
+
+## print the table with clustering information
+cbind(cluster=univariate_clusters@cluster,
+      station=names(sta_series)) %&gt;% 
+  as.data.frame() %&gt;% 
+  arrange(station)</code></pre>
+<pre><code>##    cluster station
+## 1        2       1
+## 2        1      10
+## 3        2      11
+## 4        4       2
+## 5        3       3
+## 6        3       4
+## 7        1       5
+## 8        4       6
+## 9        4       7
+## 10       4       8
+## 11       2       9</code></pre>
+<p>Finally, since the <code>tsclust</code> object contains distance information, we can use it for generating a heatmap including the hierarchical information.</p>
+<pre class="r"><code>heatmap(univariate_clusters@distmat,main = &quot;Similarities between stations&quot;, 
+        col = colorRampPalette(brewer.pal(9, &quot;Blues&quot;))(16),
+        cexRow = 1,cexCol = 1,
+        symm = TRUE)</code></pre>
+<p><img src="https://harpomaxx.github.io/post/clustering-approaches-time-series/index.en_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="just-a-few-more-words" class="section level2">
+<h2>Just a few more words…</h2>
+<p>Additionally, a single time series may be constituted by several values that change on the same time scale, in which case they are named <strong>multivariate time series.</strong> In this post, I’ve just focused on two univariate approaches. By using the package <code>tsclust</code> it is not difficult to adapt the code from this post to work with multivariate time series.</p>
+<p>Time-series clustering is a huge research topic, there are several approaches with multiple variations. The work of Aghabozorgi et al., 2015 <a href="https://linkinghub.elsevier.com/retrieve/pii/S0306437915000733">[1]</a> provides a good starting point to understand the differences between all the possible approaches for clustering with time-series</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p><a href="https://linkinghub.elsevier.com/retrieve/pii/S0306437915000733">[1]</a> Time-series clustering – A decade review. (Aghabozorgi et al., 2015)</p>
+<p><a href="https://cran.r-project.org/web/packages/dtwclust/vignettes/dtwclust.pdf">[2]</a> Comparing Time-Series Clustering Algorithms in R Using the dtwclust Package</p>
+<p><a href="https://tidyverts.org/">[3]</a> Tidy tools for Time Series. A set of R packages for working with time series.</p>
+<p><a href="https://otexts.com/fpp3/">[4]</a> Forecasting: Principles and Practice (3rd Ed.). An excellent book for working with time series forecasting. Several tools from the <code>tidyverts</code> are discussed in the book</p>
+<p><a href="https://github.com/harpomaxx/ts-clustering-example">[5]</a> Repository with the code and data</p>
+</div>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/algorithms/"> algorithms </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/data-science/"> data-science </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/feature-selection/"> feature-selection </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/time-series/"> time-series </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/dynamic-time-warping/"> dynamic-time-warping </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+
+<form style="float:center;" action="https://tinyletter.com/harpomaxx" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/harpomaxx', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+<label for="tlemail">Enter your email address</label>
+<input type="text" style="width:140px" name="email" id="tlemail" />
+<input type="hidden" value="1" name="embed"/>
+<input type="submit" value="Subscribe" />
+</form>
+
+
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+
+
+</footer>
+
+</body>
+</html>

@@ -5,8 +5,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="author" content="Harpo Maxx"><meta name="keywords" content="dynamic time warping"><meta name="description" content="The good old clustering analysis techniques present some differences when applied to time series.  So many to discuss in one simple post. However, I will do my best to provide some examples of two basic approaches for doing time series  analysis."><meta property="og:title" content="Clustering techniques for time series" />
-<meta property="og:description" content="The good old clustering analysis techniques present some differences when applied to time series.  So many to discuss in one simple post. However, I will do my best to provide some examples of two basic approaches for doing time series  analysis." />
+	<meta name="author" content="Harpo Maxx"><meta name="keywords" content="dynamic time warping"><meta name="description" content="The good old clustering analysis techniques present some differences when applied to time series.  So many to discuss in one simple post. However, I will do my best to provide some examples of two basic approaches for doing time series  analysis [6min read]."><meta property="og:title" content="Clustering techniques for time series" />
+<meta property="og:description" content="The good old clustering analysis techniques present some differences when applied to time series.  So many to discuss in one simple post. However, I will do my best to provide some examples of two basic approaches for doing time series  analysis [6min read]." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://harpomaxx.github.io/post/clustering-approaches-time-series/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2022-10-31T00:00:00+00:00" />
@@ -14,7 +14,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Clustering techniques for time series"/>
-<meta name="twitter:description" content="The good old clustering analysis techniques present some differences when applied to time series.  So many to discuss in one simple post. However, I will do my best to provide some examples of two basic approaches for doing time series  analysis."/>
+<meta name="twitter:description" content="The good old clustering analysis techniques present some differences when applied to time series.  So many to discuss in one simple post. However, I will do my best to provide some examples of two basic approaches for doing time series  analysis [6min read]."/>
 <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
@@ -284,17 +284,17 @@ air_temp_tsfeatures</code></pre>
 cbind(air_temp_tsfeatures,cluster=kmeans_results$cluster) %&gt;% 
 select(station,cluster)</code></pre>
 <pre><code>##    station cluster
-## 1        1       3
+## 1        1       4
 ## 2       10       1
-## 3       11       3
-## 4        2       4
+## 3       11       4
+## 4        2       2
 ## 5        3       1
-## 6        4       2
+## 6        4       3
 ## 7        5       1
 ## 8        6       5
-## 9        7       3
-## 10       8       3
-## 11       9       3</code></pre>
+## 9        7       4
+## 10       8       4
+## 11       9       4</code></pre>
 </div>
 <div id="shape-based-clustering" class="section level2">
 <h2>Shape-based clustering</h2>
@@ -346,7 +346,7 @@ univariate_clusters &lt;- tsclust(
 ## Iteration 2: Changes / Distsum = 3 / 8020.471
 ## Iteration 3: Changes / Distsum = 0 / 8020.471
 ## 
-##  Elapsed time is 0.55 seconds.</code></pre>
+##  Elapsed time is 0.371 seconds.</code></pre>
 <p>By default the <code>tsclust</code> object prints information about the 4 selected centroids.</p>
 <pre class="r"><code>univariate_clusters</code></pre>
 <pre><code>## partitional clustering with 4 clusters
@@ -355,7 +355,7 @@ univariate_clusters &lt;- tsclust(
 ## 
 ## Time required for analysis:
 ##    user  system elapsed 
-##   1.060   0.013   0.550 
+##   0.947   0.016   0.371 
 ## 
 ## Cluster sizes with average intra-cluster distance:
 ## 
@@ -406,7 +406,7 @@ cbind(cluster=univariate_clusters@cluster,
 <p><a href="https://cran.r-project.org/web/packages/dtwclust/vignettes/dtwclust.pdf">[2]</a> Comparing Time-Series Clustering Algorithms in R Using the dtwclust Package</p>
 <p><a href="https://tidyverts.org/">[3]</a> Tidy tools for Time Series. A set of R packages for working with time series.</p>
 <p><a href="https://otexts.com/fpp3/">[4]</a> Forecasting: Principles and Practice (3rd Ed.). An excellent book for working with time series forecasting. Several tools from the <code>tidyverts</code> are discussed in the book</p>
-<p><a href="https://github.com/harpomaxx/ts-clustering-example">[5]</a> Repository with the code and data</p>
+<p><a href="https://github.com/harpomaxx/ts-clustering-example">[5]</a> Repository with the code and data.</p>
 </div>
 
 	</div>

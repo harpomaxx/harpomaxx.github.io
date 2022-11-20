@@ -95,12 +95,11 @@
 
 	<div class="markdown">
 		
-<script src="https://harpomaxx.github.io/post/2021-08-03-how-confident-is-random-forests-about-its-predictions/index.en_files/header-attrs/header-attrs.js"></script>
 
 
 <p>The problem is quite simple: you have collected a good tabular dataset. After cleaning and doing the <a href="https://harpomaxx.github.io/post/experimental-design/">usual Machine Learning procedure,</a> you decide to try the good ol’ Random Forest from our friend <a href="https://projecteuclid.org/journals/annals-of-applied-statistics/volume-4/issue-4/Remembering-Leo-Breiman/10.1214/10-AOAS427.full">Leo</a>. You train the model and test it on unseen data and surprisingly you got some very decent results.</p>
-<p>But now, you asked yourself: given a prediction on a particular example, how sure is Random Forest about it. Or if you put it in different words: if we change the training dataset just a little bit, will Random Forest l give you the same result for that particular example?</p>
-<p>You should notice this question is a little different from the usual Machine learning issue regarding model future performance estimation. The traditional question is more focused on how different will be the overall performance of a given model if we use a different dataset. (read about average generalization error <a href="https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/">here</a>). Despite their similarities, the key here is the word <strong>overall</strong>. We are not interested in the overall performance but in a particular example in our test dataset. For dealing with the former, you will use approaches such as K-fold cross-validation or the classic <a href="https://towardsdatascience.com/cross-validation-k-fold-vs-monte-carlo-e54df2fc179b">Monte Carlo split</a>. For the latter, there are several approaches, but clearly, the term Confidence interval (CI) arises as a possible solution.</p>
+<p>But now, you asked yourself: given a prediction on a particular example, how sure is Random Forest about it. Or if you put it in different words: if we change the training dataset just a little bit, will Random Forest give you the same result for that particular example?</p>
+<p>You should notice this question is a little different from the usual Machine learning issue regarding model future performance estimation. The traditional question is more focused on how different will be the <strong>overall</strong> performance of a given model if we use a different dataset. (read about average generalization error <a href="https://harpomaxx.github.io/post/2021-05-14-papers-of-the-week-19-2021/">here</a>). Despite their similarities, the key here is the word <strong>overall</strong>. We are not interested in the overall performance, but in a particular example in our test dataset. For dealing with the former, you will use approaches such as K-fold cross-validation or the classic <a href="https://towardsdatascience.com/cross-validation-k-fold-vs-monte-carlo-e54df2fc179b">Monte Carlo split</a>. For the latter, there are several approaches, but clearly, the term Confidence interval (CI) arises as a possible solution.</p>
 <blockquote>
 <h2 id="q-given-a-prediction-on-a-particular-example-how-sure-is-random-forest-about-it" style="color:gray"><strong><em>Q:</em></strong> <strong>Given a prediction on a particular example, how sure is Random Forest about it?</strong></h2>
 </blockquote>
@@ -111,7 +110,7 @@
 <div id="a-practical-example" class="section level2">
 <h2>A practical example</h2>
 <p>Let’s try an example using a dataset containing information about malicious and normal network traffic connections.</p>
-<p>You do the usual 70/30 split in train and test sets and then you train four different models using Random Forest varying the number of trees. In the end, you get the following table:</p>
+<p>You do the usual 70/30 split in train and test sets and then you train four different models using Random Forest varying the number of trees (aka estimators). In the end, you get the following table:</p>
 <table>
 <caption>Table 1: Prediction results for RF using different numbers of trees.</caption>
 <thead>
@@ -149,9 +148,9 @@
 </tr>
 </tbody>
 </table>
-<p>The problem here (notice it is oversimplified) is which model you will choose. Accuracy and Sensitivity are practically the same. An even for specificity you have all but the model with 100 trees showing the same values. If you follow a traditional policy of selecting the best value. Then, RF with <em>ntree = 50</em> will be the model of choice. However, if you look at the CI distribution for each of the output probabilities, things could be different.</p>
-<p>In figure 1. shows a plot of test-set predictions against estimates of standard error (<span class="math inline">\(se\)</span>) for all four RF models. Orange dots refer to instances incorrectly classified while blue to correctly classified. The solid curves are smoothing splines fit through the data. Remember that <span class="math inline">\(CI = mean\pm se\)</span> .</p>
-<p>Now, you can see some observable differences between the four RF models. The model using 50 trees have a very large <span class="math inline">\(se\)</span> values, in some cases very close to 1. So it basically means that the model is not sure about <strong>anything</strong> and the results from Table 1 should be taking so seriously. Moreover, It is possible that the model is overfitting the data. On the other hand, the model using 1000 trees and all <span class="math inline">\(se\)</span> values under 0.25, it is certainly more confident about its predictions.</p>
+<p>The problem here (notice it is oversimplified) is which model you will choose. Accuracy and Sensitivity are practically the same. And even for specificity you have all but the model with 100 trees showing the same values. If you follow a traditional policy of selecting the best value. Then, RF with <em>the number of trees = 50 will be the choice model</em>. However, if you look at the CI distribution for each of the output probabilities, things could be different.</p>
+<p>Figure 1. shows a plot of test-set predictions against estimates of standard error (<span class="math inline">\(se\)</span>) for all four RF models. Orange dots refer to instances incorrectly classified while blue to correctly classified. The solid curves are smoothing splines that fit through the data. Remember that <span class="math inline">\(CI = mean\pm se\)</span> .</p>
+<p>Now, you can see some observable differences between the four RF models. The model using 50 trees has a very large <span class="math inline">\(se\)</span> values, in some cases very close to 1. So it basically means that the model is not sure about <strong>anything</strong> and the results from Table 1 should not be taken so seriously. Moreover, It is possible that the model is overfitting the data. On the other hand, the model using 1000 trees and all <span class="math inline">\(se\)</span> values under 0.25, it is certainly more confident about its predictions.</p>
 <figure>
 <img src="images/rf_ci.png" alt="roles" width="100%"/>
   <figcaption>
@@ -162,7 +161,7 @@
 </div>
 <div id="under-the-hood" class="section level2">
 <h2>Under the hood</h2>
-<p>So, how is CI calculated for random forests?, there are several approaches (see the list of papers at the end of the post). But the one I used for the above example is based on the article <a href="Confidence%20Intervals%20for%20Random%20Forests:%20The%20Jackknife%20and%20the%20Infinitesimal%20Jackknife">Confidence Intervals for Random Forests: The Jackknife and the Infinitesimal Jackknife (Wager, Hastie and Efron 2014)</a></p>
+<p>So, how is CI calculated for random forests?, there are several approaches (see the list of papers at the end of the post). But the one I used for the above example is based on the article <a href="https://jmlr.org/papers/volume15/wager14a/wager14a.pdf">Confidence Intervals for Random Forests: The Jackknife and the Infinitesimal Jackknife (Wager, Hastie and Efron 2014)</a></p>
 <p>The wager approach uses the <a href="https://en.wikipedia.org/wiki/Jackknife_resampling">Jackknife</a> resampling technique for estimating the CI. Jackknife was proposed by <a href="https://en.wikipedia.org/wiki/John_Tukey" title="John Tukey">John Tukey</a> in 1956. The general idea behind Jackknife is that a parameter estimate can be found by estimating the parameter for each subsample omitting the <em>i</em>-th observation.</p>
 <p>More formally, you have to generate a jackknife sample that has the value <span class="math inline">\(x_i\)</span> removed and then compute the <em>i</em>-th partial estimate of the statistic using this sample,</p>
 <p><span class="math display">\[
@@ -172,22 +171,24 @@
 <p><span class="math display">\[
 \hat{\theta}_{i}*=n\hat{\theta} - (n -1) \hat{\theta}_{i}
 \]</span></p>
-<p>where <span class="math inline">\(\hat{\theta}*\)</span> is the estimate using the full dataset.</p>
-<p>Let’s see an example in R. We have a vector <span class="math inline">\(x\)</span> and we define the function <code>tetha</code> that corresponds to the coefficient of variation (i.e the statistics we want to estimate)</p>
+<p>where <span class="math inline">\(\hat{\theta}\)</span> is the estimate using the full dataset. The previous equation is the <a href="https://en.wikipedia.org/wiki/Jackknife_resampling"><em>bias-corrected jackknife estimate</em>.</a></p>
+<p>Let’s see an example in R. We have a vector <span class="math inline">\(x\)</span> and we define the function <code>tetha</code> that corresponds to the coefficient of variation (i.e. the statistics we want to estimate)</p>
 <pre class="r"><code>x &lt;-c(8.26, 6.33, 10.4, 5.27, 5.35, 5.61, 6.12, 6.19, 5.2,
 7.01, 8.74, 7.78, 7.02, 6, 6.5, 5.8, 5.12, 7.41, 6.52, 6.21,
 12.28, 5.6, 5.38, 6.6, 8.74)
 
 theta &lt;- function(x) sqrt(var(x))/mean(x)</code></pre>
-<p>We create two vectors, <code>jack</code> and <code>pseudo</code> and we need to fill in the elements of the jack sample vector as follows. For <span class="math inline">\(j&lt;i\)</span>, the <span class="math inline">\(j − 1\)</span>th element of <code>jack</code> is the <em>d</em> th element of <em>d</em>. We can state all this using a logical <code>if .. else</code> statement within a<code>for</code> loop,</p>
+<p>We create two vectors, <code>jack</code> and <code>pseudo</code> and we need to fill in the elements of the jack sample vector as follows. For <span class="math inline">\(j&lt;i\)</span>, the <span class="math inline">\(j − 1\)</span>th element of <code>jack</code> is the <em>d</em> th element of <em>x</em>. We can state all this using a logical <code>if .. else</code> statement within a<code>for</code> loop,</p>
 <pre class="r"><code>jack &lt;- numeric(length(x)-1)
 pseudo &lt;- numeric(length(x))
 
+# creates datasets with all but the ith sample
 for (i in 1:length(x)) {
   for (j in 1:length(x)) {
     if(j &lt; i) jack[j] &lt;- x[j]
       else if(j &gt; i) jack[j-1] &lt;- x[j]
   }
+  # calculate the estimate for ith
   pseudo[i] &lt;- length(x)*theta(x) -(length(x)-1)*theta(jack)
 }</code></pre>
 <p>Now we can calculate approximate 95% confidence interval by calculating the upper and lower limits</p>
@@ -195,7 +196,7 @@ for (i in 1:length(x)) {
 <pre><code>## [1] 0.3729806</code></pre>
 <pre class="r"><code>mean(pseudo) - qt(0.975,length(x)-1)*sqrt(var(pseudo)/length(x))</code></pre>
 <pre><code>## [1] 0.1504947</code></pre>
-<p>Giving the approximate 95% jackknife confidence interval as 0.150 to 0.372. Please note that this is an oversimplified explanation of the jackknife technique. The method described in Wager’s article is clearly more advance, but I think this could help you (and me) to understand the basics of the approach.</p>
+<p>Giving the approximate 95% jackknife confidence interval as 0.150 to 0.372. Please note that this is an oversimplified explanation of the jackknife technique. The method described in Wager’s article is clearly more advanced, but I think this could help you (and me) to understand the basics of the approach.</p>
 </div>
 <div id="some-final-words" class="section level2">
 <h2>Some final words…</h2>
@@ -204,7 +205,7 @@ for (i in 1:length(x)) {
 </div>
 <div id="references" class="section level2">
 <h2>References</h2>
-<p><a href="https://github.com/imbs-hl/ranger/">[1]</a> The <code>ranger</code> package for R is a fast implementation of Random forest that includes the Wager approach for confidence intervals.</p>
+<p><a href="https://github.com/imbs-hl/ranger/">[1]</a> The <code>ranger</code> package for R is a fast implementation of Random forest that includes the Wager’s approach for confidence intervals.</p>
 <p><a href="https://jmlr.org/papers/volume7/meinshausen06a/meinshausen06a.pdf">[2]</a> Quantile Regression Forests provides a method for prediction intervals.</p>
 <p><a href="http://www.jmlr.org/papers/volume17/14-168/14-168.pdf">[3]</a> The U-statistics approach of <a href="http://www.jmlr.org/papers/volume17/14-168/14-168.pdf">Mentch and Hooker (2006)</a> is another approach for confidence intervals.<br />
 <a href="https://github.com/imbs-hl/ranger/issues/136">[4]</a> A discussion about implementation details is available on Github.</p>

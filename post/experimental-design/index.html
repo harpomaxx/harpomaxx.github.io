@@ -99,7 +99,6 @@
 
 	<div class="markdown">
 		
-<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <blockquote>
@@ -108,7 +107,7 @@
 <p>This post is part of a series of posts about experimental design in machine learning: <a href="https://harpomaxx.github.io/post/machine-learning-experimental-design-102/">Experimental design 102</a></p>
 <div id="the-standard-workflow" class="section level3">
 <h3>The standard workflow</h3>
-<p>Experimental design is a fundamental skill for any machine learning practitioner. No matter if you work in academy or in the private sector, from time to time you will require to perform some sort of evaluation of your model. At some point you should convince customers or reviewers that your model results have a certain amount of generalization and it is capable of dealing with future (not seen) scenarios reasonably well.</p>
+<p>Experimental design is a fundamental skill for any machine learning practitioner. No matter if you work in the academy or in the private sector, from time to time you will require to perform some sort of evaluation of your model. At some point, you should convince customers or reviewers that your model results have a certain amount of generalization and it is capable of dealing with future (not seen) scenarios reasonably well.</p>
 <p>Fortunately for us, the experimental design for evaluating the performance of a machine learning model is well known. The process is described in Figure 1. There, you basically have a dataset split in training and test (usually a 70/30 ratio). The 30% of the data should be left aside and ideally never touched until you have finished with your model tuning. On the other hand, the 70% of the data could be used for training/validate your model and/or conduct a hyper parameter search for tuning the model. The are several approaches during the validation phase (see chapter five about resampling methods from <a href="http://faculty.marshall.usc.edu/gareth-james/ISL/">ISLR</a> for more info), but using cross validation with k folds is perhaps the most widely used. I personally like to perform <a href="https://sci2s.ugr.es/keel/pdf/algorithm/articulo/dietterich1998.pdf">2x5 resampling</a>, which basically means applying a 5 folds cross validation repeated 2 times.</p>
 <figure>
 <p><img src="/post/2020-09-09-experimental-design.en_files/ml-experimenta-designA.png" alt="experimental design" width="100%"/></p>
@@ -122,23 +121,21 @@ Figure 1. Standard experimental design for evaluating the performance of a machi
 </div>
 <div id="the-cv-report" class="section level3">
 <h3>The CV Report</h3>
-<p>The CV results give you with information about:</p>
+<p>The CV results give you information about:</p>
 <ol style="list-style-type: decimal">
-<li><p><strong>Model Variance:</strong>
-No matter if you apply a two folds or a ten folds strategy on your training data, you definitively need some sort of repetition for evaluating the variability observed in your model when using different datasets for training. Here, you will need to report the mean and standard deviation of any of the model configuration you have tried (perhaps in conjunction with some visualization of the error distribution such as <a href="https://www.r-graph-gallery.com/boxplot.html">boxplot</a> or <a href="https://www.r-graph-gallery.com/violin.html">violin</a> charts)<br />
+<li><p><strong>Model Variance:</strong> No matter if you apply a two folds or a ten folds strategy on your training data, you definitively need some sort of repetition for evaluating the variability observed in your model when using different datasets for training. Here, you will need to report the mean and standard deviation of any of the model configurations you have tried (perhaps in conjunction with some visualization of the error distribution such as <a href="https://www.r-graph-gallery.com/boxplot.html">boxplot</a> or <a href="https://www.r-graph-gallery.com/violin.html">violin</a> charts)<br />
 In any case, CV results will provide you with a better estimator of the generalization error of your model and as stated by <a href="https://sci2s.ugr.es/keel/pdf/algorithm/articulo/dietterich1998.pdf">(Dietterich, 1998)</a> allow you to perform stronger tests (statisticaly-based) to compare different models.</p></li>
-<li><p><strong>Overffiting:</strong>
-Sometimes your model performs extremely well during your CV evaluation but the performance could be considerable worse during test. Therefore, reporting CV results can give you a clue about possible overfitting problems. Ideally, when using CV you reduce the chance of overfitting a model, but that does not mean overfitting can not occur. See article from <a href="https://www.researchgate.net/publication/220320908_On_Over-fitting_in_Model_Selection_and_Subsequent_Selection_Bias_in_Performance_Evaluation">Cawley &amp; Talbot (2010)</a> for a analysis of the overfitting problem selecting your model using CV and the possible way to avoid it. Notice that overfitting <strong>is not</strong> the only explanation behind discrepancies between CV and test reports. This <strong>model performance mismatch</strong> can be explained by simple reasons such as your training data is <strong>not representative of the problem</strong>, or maybe that the sample size is too small. Alternatively, it can be caused by the <strong>stochastic nature of the algorithm used</strong> (e.g. Neural Networks). In both cases the analysis of the sample mean and the standard deviation over several repetitions using training data can help you to differentiate each cause. See this short post about the topic <a href="https://machinelearningmastery.com/the-model-performance-mismatch-problem/">here.</a></p></li>
+<li><p><strong>Overfitting:</strong> Sometimes your model performs extremely well during your CV evaluation but the performance could be considerably worse during the test. Therefore, reporting CV results can give you a clue about possible overfitting problems. Ideally, when using CV you reduce the chance of overfitting a model, but that does not mean overfitting can not occur. See article from <a href="https://www.researchgate.net/publication/220320908_On_Over-fitting_in_Model_Selection_and_Subsequent_Selection_Bias_in_Performance_Evaluation">Cawley &amp; Talbot (2010)</a> for an analysis of the overfitting problem selecting your model using CV and the possible way to avoid it. Notice that overfitting <strong>is not</strong> the only explanation behind discrepancies between CV and test reports. This <strong>model performance mismatch</strong> can be explained by simple reasons such as your training data is <strong>not representative of the problem</strong>, or maybe that the sample size is too small. Alternatively, it can be caused by the <strong>stochastic nature of the algorithm used</strong> (e.g. Neural Networks). In both cases the analysis of the sample mean and the standard deviation over several repetitions using training data can help you to differentiate each cause. See this short post about the topic <a href="https://machinelearningmastery.com/the-model-performance-mismatch-problem/">here.</a></p></li>
 </ol>
 <p>From the information provided by the CV report you will finally choose the <em>“best”</em> (more adequate) model for dealing with your machine learning problem. Notice that sometimes the definition of <em>“best”</em> can not be easily established.</p>
 </div>
 <div id="the-test-report" class="section level3">
 <h3>The Test Report</h3>
-<p>The Test results give you with information about:</p>
+<p>The Test results give you information about:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Independence:</strong> The main reason for using a test set is that you will have an idea of how well the model is expected to perform in real-life. Since any decision regarding the model generation should have <strong>NOT</strong> been made considering the information provided by the testset, then you would have an unbiased idea of the model performance when deployed in the real world.</li>
+<li><strong>Independence:</strong> The main reason for using a test set is that you will have an idea of how well the model is expected to perform in real life. Since any decision regarding the model generation should have <strong>NOT</strong> been made considering the information provided by the testset, then you would have an unbiased idea of the model performance when deployed in the real world.</li>
 </ol>
-<p>Ideally your result in the test set should be within the range of results observed in <em>CV Results</em>, however, as stated before, such situation not always happens. When analyzing test results, the model performance mismatch can be caused when there is no correlation between train and test sets. In other words, the test set you are using has completely different examples from trainset. If such is the case there is nothing the model can do. This situation is referred as <a href="https://towardsdatascience.com/understanding-dataset-shift-f2a5a262a766#:~:text=Covariate%20shift%20is%20the%20change,spatial%2C%20or%20less%20obvious.%20%E2%80%94">Covariate shift</a>, when predictor variables have different characteristics (distribution) in train and test datasets.</p>
+<p>Ideally, your result in the test set should be within the range of results observed in <em>CV Results</em>, however, as stated before, such a situation not always happens. When analyzing test results, the model performance mismatch can be caused when there is no correlation between train and test sets. In other words, the test set you are using has completely different examples from trainset. If such is the case there is nothing the model can do. This situation is referred as <a href="https://towardsdatascience.com/understanding-dataset-shift-f2a5a262a766#:~:text=Covariate%20shift%20is%20the%20change,spatial%2C%20or%20less%20obvious.%20%E2%80%94">Covariate shift</a>, when predictor variables have different characteristics (distribution) in train and test datasets.</p>
 <blockquote>
 <p><em>A appropriate test set should follow the same predictor variable distribution, <strong>BUT</strong> it should have a certain degree of uncorrelated examples. Moreover, to collect evidence for supporting your estimated model performance , you should evaluate your model on different independent test sets.</em></p>
 </blockquote>
@@ -147,8 +144,8 @@ Sometimes your model performs extremely well during your CV evaluation but the p
 <h3>Conclusions:</h3>
 <ol style="list-style-type: decimal">
 <li>No matter the situation, you should <strong>always repeat the evaluation of your model</strong> on different datasets. Resampling techniques are the most common strategy.</li>
-<li><strong>Always report CV and Test results</strong>. Both reports provide you with valuable information for a better estimation of the model overall performance.</li>
-<li>Testset shouldn’t be used for taking any decision about your model. <strong>You should evaluate your model on testset as little as possible</strong>. (just one time is the ideal)</li>
+<li><strong>Always report CV and Test results</strong>. Both reports provide you with valuable information for a better estimation of the model’s overall performance.</li>
+<li>Testset shouldn’t be used for taking any decision about your model. <strong>You should evaluate your model on testset as little as possible</strong>. (just one time is ideal)</li>
 </ol>
 </div>
 <div id="list-of-resources" class="section level3">

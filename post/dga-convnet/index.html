@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.101.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="R Language"><meta name="description" content="DGA is a mechanism used by malware for stablishing contact with the C2 channel. The idea behind this post is to show how to create a simple DGA using tecniques for text generation. In particular CNN using Keras and Tensorflow for R. [6 min read]"><meta property="og:title" content="Using CNN for a Domain name Generation Algorithm" />
+<meta property="og:description" content="DGA is a mechanism used by malware for stablishing contact with the C2 channel. The idea behind this post is to show how to create a simple DGA using tecniques for text generation. In particular CNN using Keras and Tensorflow for R. [6 min read]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/dga-convnet/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-27T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Using CNN for a Domain name Generation Algorithm"/>
+<meta name="twitter:description" content="DGA is a mechanism used by malware for stablishing contact with the C2 channel. The idea behind this post is to show how to create a simple DGA using tecniques for text generation. In particular CNN using Keras and Tensorflow for R. [6 min read]"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Using CNN for a Domain name Generation Algorithm | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">27</span>
+				<span class="rest">Feb 2023</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Using CNN for a Domain name Generation Algorithm</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://sigmoid.social/@harpomaxx">Harpo MAxx</a>
+		
+	
+	
+		(6 min read)
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		
+
+
+<div id="what-is-dga" class="section level2">
+<h2>What is DGA?</h2>
+<p>A domain generation algorithm (DGA) is a technique used by malware to generate a large number of domain names that can be used as rendezvous points for the malware to communicate with its command-and-control (<a href="https://en.wikipedia.org/wiki/Command_and_control">C2</a>) server.</p>
+<p>This technique is used to make it more difficult for security experts to block communication between the malware and its C2 server, as the domain names used by the malware are generated dynamically and change frequently.</p>
+<p>By using a DGA, the malware can generate domain names that are seemingly random and use them to establish a connection to the C2 server, making it harder for security researchers to detect and stop the malware’s activity.</p>
+<p>A common approach for DGA detection is the so-called <strong>Lexicographical-based</strong>. Under this approach, the idea is to classify the domains by studying the statistical properties of the characters conforming to the domain name. In other words, we can use several Natural Language Processing (NLP) strategies for detecting algorithmically generated domains (AGD). I personally was involved in the development of a <a href="http://sedici.unlp.edu.ar/handle/10915/73629">simple approach</a> using Convolutional Neural Networks (CNN) for detecting these types of domains.<br />
+</p>
+</div>
+<div id="using-cnn-for-dga.-how" class="section level2">
+<h2>Using CNN for DGA. HOW?</h2>
+<p><br />
+But now, the approach is a little bit different. Instead of using CNN for domain detection, we are going to use them for generating pseudo-random domains. There is nothing new in this approach. Neural networks have been used for generating text for almost 10 years… (maybe more??). There are plenty of examples of doing this over the internet. Here we are going to use an example from the <a href="https://keras.io/examples/generative/lstm_character_level_text_generation/">Keras website</a> for character-level text generation and we are going to adapt it for DGA.</p>
+<p>⚠️ <strong>Please be prepare for some inefficiency in the preprocessing pipeline.</strong> ⚠️</p>
+<p>The general idea is to create a model capable of predicting the next character of a sentence. For doing that, we need to do some preprocessing. The approach is pretty simple. We are going to create a dataset containing a fixed portion of a domain name as input and the label will be the next character in that domain name.<br />
+So the image we have a portion of the <code>facebook.com</code> domain name. We can create a dataset in the following way:<br />
+</p>
+<pre><code>input  label
+
+faceb  o
+acebo  o
+ceboo  k
+ebbok  .
+book.  c</code></pre>
+<p>In this case we have moved one <code>step</code> forward to create several examples. The same can be done with other domain names of course. Of course, we will need some more preprocessing for adapting the above dataset to something usable by Tensorflow and friends. Let’s see what we need to do.</p>
+<div id="preparing-the-data" class="section level3">
+<h3>Preparing the data</h3>
+<p>Keras and TensorFlow have a lot of functions for going easily through to preprocessing pipeline. However, in this post, We will do it the hard way. We will do it from scratch. I think this is useful just to get the idea of what is happening under the hood and I recommend doing it at least a couple of times before jumping to the <a href="https://keras.io/guides/preprocessing_layers/">preprocessing Layers</a> provided by Tensorflow.</p>
+<p>So the first thing we are going to do is to read a <a href="https://github.com/harpomaxx/deepseq/raw/master/datasets/argencon.csv.gz">CSV file containing domain names</a>.<br />
+The CSV file contains one domain name per row and the “label” column specifies whether the domain is “normal” or not. In this case, we are going to filter the data to only include “normal” domains, then randomly sample 3% of the data (just to keep things small), and concatenate the remaining domains into a variable called <strong><code>domains</code></strong> The resulting <strong><code>domains</code></strong> variable will be used as input to the DGA algorithm based on CNN.</p>
+<pre class="r"><code>text &lt;- readr::read_csv(&quot;https://github.com/harpomaxx/deepseq/raw/master/datasets/argencon.csv.gz&quot;)
+text&lt;-text %&gt;% filter(grepl(&quot;normal&quot;,label))
+text&lt;-text %&gt;% sample_frac(0.03)
+domains &lt;-  text %&gt;% pull(domain) %&gt;%
+    str_c(collapse = &quot; &quot;) </code></pre>
+<p>Once we have selected the domain names, the next step is to perform the so-called tokenization. Tokenization is the process of splitting text into individual “tokens” or units, which can be words, characters, or other types of units depending on the task. In this case, we are first tokenizing the <strong><code>domains</code></strong> string into individual characters using the function <strong><code>tokenize_characters()</code></strong> from the <strong>tokenizers</strong> package.</p>
+<pre class="r"><code>domains &lt;- domains %&gt;%
+    tokenize_characters(lowercase = TRUE, 
+                        strip_non_alphanum = TRUE, 
+                        simplify = TRUE)</code></pre>
+<p>So at the end of this first step in the tokenization process, we end with an array with all the characters present in the datasets.</p>
+<pre><code>  [1] &quot;g&quot; &quot;o&quot; &quot;p&quot; &quot;a&quot; &quot;d&quot; &quot;e&quot; &quot;n&quot; &quot;a&quot; &quot;k&quot; &quot;a&quot; &quot;y&quot; &quot;a&quot; &quot;m&quot; &quot;a&quot; &quot;s&quot;
+  [16] &quot;k&quot; &quot;i&quot; &quot;c&quot; &quot;o&quot; &quot;m&quot; &quot;a&quot; &quot;m&quot; &quot;p&quot; &quot;e&quot; &quot;r&quot; &quot;k&quot; &quot;i&quot; &quot;n&quot; &quot;r&quot; &quot;u&quot;
+  [31] &quot;o&quot; &quot;p&quot; &quot;e&quot; &quot;n&quot; &quot;c&quot; &quot;a&quot; &quot;r&quot; &quot;t&quot; &quot;d&quot; &quot;e&quot; &quot;m&quot; &quot;o&quot; &quot;s&quot; &quot;o&quot; &quot;r&quot;</code></pre>
+<p>Now we will start preparing the <strong><code>domains</code></strong> for use as training data in a Keras model by splitting it into sequences of length <strong><code>maxlen</code></strong>, and creating a dataset consisting of each sequence and its corresponding “next” character.</p>
+<pre class="r"><code>maxlen &lt;-40
+steps &lt;- 3
+
+dataset &lt;- map(
+    seq(1, length(domains) - maxlen - 1, by = steps),
+    ~list(sentence = domains[.x:(.x + maxlen - 1)],
+          next_char = domains[.x + maxlen])
+)
+dataset &lt;- transpose(dataset)
+seq_x &lt;- dataset$sentence %&gt;% 
+  map(~str_c(.x,collapse= &quot;&quot;)) %&gt;% unlist()
+seq_y &lt;- dataset$next_char %&gt;% unlist()</code></pre>
+<p>The <strong><code>map()</code></strong> the function is being used to iterate over a sequence of indices (characters), with each iteration creating a new element in the <strong><code>dataset</code></strong> a list consisting of the current <strong><code>maxlen</code></strong>-length sequence and its corresponding next character. The <strong><code>by = steps</code></strong> argument to the <strong><code>seq()</code></strong> function controls the spacing between these indices so that only every <strong><code>steps</code></strong>-th index is used. This effectively skips over some of the input data, reducing the amount of overlap between the input sequences and making the training process more efficient.</p>
+<p>The resulting <strong><code>dataset</code></strong> list is then <strong>transposed</strong> to create two vectors <strong><code>seq_x</code></strong> and <strong><code>seq_y</code></strong>, which contain all of the input sequences and their corresponding target characters, respectively.</p>
+<pre><code>      seq_x                                      seq_y
+     [1,] &quot;netempregogovptkobayashicomtwpetmagcombr&quot; &quot;a&quot;  
+     [2,] &quot;empregogovptkobayashicomtwpetmagcombrall&quot; &quot;f&quot; 
+     [3,] &quot;regogovptkobayashicomtwpetmagcombrallfuc&quot; &quot;k&quot;  </code></pre>
+<p>Now, we are going to create a mapping between individual characters and integer values. In particular, we are going to use one-hot encoding, where each character is represented as a sparse vector with a <strong><code>1</code></strong> in the position corresponding to its integer index and <strong><code>0</code></strong> elsewhere. But first, we need to convert each character into its corresponding integer representation.</p>
+<pre class="r"><code>valid_characters_vector &lt;-
+  stringr::str_split(&quot;$abcdefghijklmnopqrstuvwxyz0123456789-_.+*,\&quot;&quot;, 
+  pattern = &#39;&#39;)[[1]]
+valid_characters_vector&lt;-c(valid_characters_vector)
+tokens &lt;- 1:length(valid_characters_vector)
+names(tokens) &lt;- valid_characters_vector</code></pre>
+<p>The <strong><code>valid_characters_vector</code></strong> is a character vector that contains all of the valid characters that can appear in the input text. The <strong><code>str_split()</code></strong> function from the <strong><code>stringr</code></strong> package is used to split the string into individual characters, and the resulting vector is appended to <strong><code>valid_characters_vector</code></strong> using the <strong><code>c()</code></strong> function.</p>
+<p>The <strong><code>tokens</code></strong> vector is then created as a sequence of integers from <strong><code>1</code></strong> to the length of <strong><code>valid_characters_vector</code></strong>. The <strong><code>names()</code></strong> function is used to associate each integer with its corresponding character in <strong><code>valid_characters_vector</code></strong>.</p>
+<p>The process continues with the function <strong><code>tokenize()</code></strong> , which will convert the input data into a matrix of tokens considering some padding to the maximum length of the sequences.</p>
+<pre class="r"><code>tokenize &lt;- function(data, labels, maxlen) {
+  sequencel &lt;- sapply(data, function(x)
+    strsplit(x, split = &quot;&quot;))
+  # print(sequencel)
+  x_data &lt;- lapply(sequencel, function(x)
+    sapply(x, function(x) {
+      tokens[[x]]
+    }))
+  
+  y_data &lt;- lapply(labels, function(x)
+    sapply(x, function(x) {
+      tokens[[x]]
+    }))
+  padded_token &lt;-
+    pad_sequences(
+      unname(x_data),
+      maxlen = maxlen,
+      padding = &#39;post&#39;,
+      truncating = &#39;post&#39;
+    )
+  return (list(x = padded_token, y = y_data %&gt;% 
+  unlist() %&gt;% unname()))
+}</code></pre>
+<p>The input to the function includes <strong><code>data</code></strong>, <strong><code>labels</code></strong>, and <strong><code>maxlen</code></strong>. <strong><code>data</code></strong> is a list of character vectors containing the input text data, <strong><code>labels</code></strong> is a list of character vectors containing the corresponding label data. In this case <strong><code>labels</code></strong> will refer to the next character in the sequence. Finally, <strong><code>maxlen</code></strong> is an integer representing the maximum length of each input sequence.</p>
+<p>The function first splits each character vector <strong><code>data</code></strong> into individual characters using <strong><code>strsplit()</code></strong> and maps each character to its corresponding integer value using the <strong><code>tokens</code></strong> mapping created earlier. The resulting sequence of integers is then padded to a fixed length of <strong><code>maxlen</code></strong> using <a href="https://www.tensorflow.org/api_docs/python/tf/keras/utils/pad_sequences">pad_sequences()</a>, which is a function from the <strong><code>Keras</code></strong> package that pads sequences with zeros either at the beginning or at the end, depending on the value of the <strong><code>padding</code></strong> argument. The resulting padded matrix is returned as the <strong><code>x</code></strong> component of the output.</p>
+<p>The <strong><code>labels</code></strong> data is processed similarly, but it is not padded since it represents the output labels and not the input data. The resulting sequence of integers is returned as the <strong><code>y</code></strong> component of the output.</p>
+<p>So at this point, we will have something like this:</p>
+<p><img src="images/array.png" /></p>
+<p>The final preprocessing step is done in the function <strong><code>preprocess_dataset_one_hot()</code></strong> . Here the idea is to convert the tokenized text data and labels into a format that can be used as input for a machine learning model that requires one-hot encoding of the input and output data.</p>
+<pre class="r"><code>n_samples&lt;-nrow(seq_x$x)
+n_tokens&lt;-length(valid_characters_vector)
+
+preprocess_dataset_one_hot &lt;- function(data, labels, maxlen) {
+  labels &lt;- labels %&gt;% as.matrix()
+  dataset &lt;- tokenize(data, labels, maxlen)
+  shape &lt;- c(n_samples, maxlen, n_tokens )
+  dataset$x &lt;- to_onehot(dataset$x, shape)
+  shape &lt;- c(n_samples, n_tokens)
+  dataset$y &lt;- to_onehot_y(dataset$y, shape)
+  return(dataset)
+}</code></pre>
+<p>The <strong><code>preprocess_dataset_one_hot()</code></strong> function is applied to the tokenized input <strong><code>seq_x</code></strong> and output <strong><code>seq_y</code></strong> to create a one-hot encoded representation of the dataset.</p>
+<p>Specifically, it assigns the output of <strong><code>preprocess_dataset_one_hot()</code></strong> to the variable <strong><code>sentences_one_hot</code></strong>. The resulting object is a list containing two elements, <strong><code>x</code></strong> and <strong><code>y</code></strong>.</p>
+<p>The <strong><code>x</code></strong> element contains a tensor of shape <strong><code>(n_samples, maxlen, n_tokens)</code></strong>, where <strong><code>n_samples</code></strong> is the number of samples in the input data, <strong><code>maxlen</code></strong> is the maximum sequence length, and <strong><code>n_tokens</code></strong> is the number of unique tokens in the input data. This tensor represents the one-hot encoded input sequences.</p>
+<p>The <strong><code>y</code></strong> element contains a tensor of shape <strong><code>(n_samples, n_tokens)</code></strong>. This tensor represents the one-hot encoded output labels.</p>
+<p>Finally, the code extracts <strong><code>seq_vectorized_x</code></strong> and <strong><code>seq_vectorized_y</code></strong> from the <strong><code>sentences_one_hot</code></strong> object, which is the one-hot encoded input sequences and output labels, respectively.</p>
+<pre class="r"><code>sentences_one_hot &lt;- build_dataset_one_hot(seq_x, seq_y, maxlen)
+seq_vectorized_x&lt;-sentences_one_hot$x
+seq_vectorized_y&lt;-sentences_one_hot$y</code></pre>
+</div>
+</div>
+<div id="sum-up" class="section level2">
+<h2>Sum up</h2>
+<p>So far we have finished with all the preprocessing for building a DGA. The steps were:</p>
+<ol style="list-style-type: decimal">
+<li>Get a dataset with domain names.</li>
+<li>Define a maximum length for the sequences and create a new dataset with a given sequence and the next character of the sequence.</li>
+<li>Convert each character to the sequence to an integer using tokenization.</li>
+<li>Convert each integer to one-hot encoding. (including the labels)</li>
+</ol>
+<p>We are now ready to train a model for DGA. See the next post for learning how.</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p><a href="https://www.springerprofessional.de/en/deep-convolutional-neural-networks-for-dga-detection/16734450">[1]</a> An application of CNN for DGA detection. Some approaches for DGA detection are explained.</p>
+<p><a href="https://keras.io/examples/generative/lstm_character_level_text_generation/">[2]</a> Character-level text generation with LSTM using KERAS</p>
+<p><a href="https://www.manning.com/books/deep-learning-with-python-second-edition">[3]</a> Deep Learning with Python (2nd Ed.) has a complete chapter devoted to generative approaches.</p>
+<p><a href="https://github.com/harpomaxx/aidojo/blob/main/experiments/dga-gen/code/R/plumber/dgagen/dgagen-helpers.R">[4]</a> Link to the GitHub repo containing most code shown here.</p>
+</div>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/algorithms/"> algorithms </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/deep-learning/"> deep-learning </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/infosec/"> infosec </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/r-language/"> r-language </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+
+<form style="float:center;" action="https://tinyletter.com/harpomaxx" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/harpomaxx', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+<label for="tlemail">Enter your email address</label>
+<input type="text" style="width:140px" name="email" id="tlemail" />
+<input type="hidden" value="1" name="embed"/>
+<input type="submit" value="Subscribe" />
+</form>
+
+
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+
+
+</footer>
+
+</body>
+</html>

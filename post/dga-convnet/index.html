@@ -121,9 +121,17 @@ ceboo  k
 ebbok  .
 book.  c</code></pre>
 <p>In this case we have moved one <code>step</code> forward to create several examples. The same can be done with other domain names of course. Of course, we will need some more preprocessing for adapting the above dataset to something usable by Tensorflow and friends. Let’s see what we need to do.</p>
+<p>Keras and TensorFlow have a lot of functions for going easily through to preprocessing pipeline. However, in this post, We will do it the hard way. We will do it from scratch. I think this is useful just to get the idea of what is happening under the hood and I recommend doing it at least a couple of times before jumping to the <a href="https://keras.io/guides/preprocessing_layers/">preprocessing Layers</a> provided by Tensorflow.</p>
 <div id="preparing-the-data" class="section level3">
 <h3>Preparing the data</h3>
-<p>Keras and TensorFlow have a lot of functions for going easily through to preprocessing pipeline. However, in this post, We will do it the hard way. We will do it from scratch. I think this is useful just to get the idea of what is happening under the hood and I recommend doing it at least a couple of times before jumping to the <a href="https://keras.io/guides/preprocessing_layers/">preprocessing Layers</a> provided by Tensorflow.</p>
+<p>Load some required libraries for doing the work…</p>
+<pre class="r"><code>library(reticulate) 
+library(tensorflow)
+library(keras)
+library(tokenizers)
+library(stringr)
+library(dplyr)
+library(purrr)</code></pre>
 <p>So the first thing we are going to do is to read a <a href="https://github.com/harpomaxx/deepseq/raw/master/datasets/argencon.csv.gz">CSV file containing domain names</a>.<br />
 The CSV file contains one domain name per row and the “label” column specifies whether the domain is “normal” or not. In this case, we are going to filter the data to only include “normal” domains, then randomly sample 3% of the data (just to keep things small), and concatenate the remaining domains into a variable called <strong><code>domains</code></strong> The resulting <strong><code>domains</code></strong> variable will be used as input to the DGA algorithm based on CNN.</p>
 <pre class="r"><code>text &lt;- readr::read_csv(&quot;https://github.com/harpomaxx/deepseq/raw/master/datasets/argencon.csv.gz&quot;)
@@ -172,7 +180,6 @@ names(tokens) &lt;- valid_characters_vector</code></pre>
 <pre class="r"><code>tokenize &lt;- function(data, labels, maxlen) {
   sequencel &lt;- sapply(data, function(x)
     strsplit(x, split = &quot;&quot;))
-  # print(sequencel)
   x_data &lt;- lapply(sequencel, function(x)
     sapply(x, function(x) {
       tokens[[x]]

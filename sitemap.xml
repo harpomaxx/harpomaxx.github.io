@@ -3,13 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://harpomaxx.github.io/categories/algorithms/</loc>
-    <lastmod>2023-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://harpomaxx.github.io/categories/art/</loc>
+    <lastmod>2023-03-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/categories/</loc>
-    <lastmod>2023-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/</loc>
-    <lastmod>2023-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://harpomaxx.github.io/post/2023-03-12-a-few-words-about-the-ia-hype/</loc>
+    <lastmod>2023-03-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://harpomaxx.github.io/categories/opinion/</loc>
+    <lastmod>2023-03-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://harpomaxx.github.io/post/</loc>
+    <lastmod>2023-03-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/categories/deep-learning/</loc>
     <lastmod>2023-02-27T00:00:00+00:00</lastmod>
@@ -17,13 +29,16 @@
     <loc>https://harpomaxx.github.io/categories/infosec/</loc>
     <lastmod>2023-02-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://harpomaxx.github.io/post/</loc>
+    <loc>https://harpomaxx.github.io/tags/keras/</loc>
     <lastmod>2023-02-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/tags/r-language/</loc>
     <lastmod>2023-02-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/tags/</loc>
+    <lastmod>2023-02-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://harpomaxx.github.io/tags/tensorflow/</loc>
     <lastmod>2023-02-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/post/dga-convnet/</loc>
@@ -68,9 +83,6 @@
     <loc>https://harpomaxx.github.io/categories/resampling/</loc>
     <lastmod>2022-09-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://harpomaxx.github.io/categories/art/</loc>
-    <lastmod>2022-07-31T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://harpomaxx.github.io/post/coding-art/</loc>
     <lastmod>2022-07-31T00:00:00+00:00</lastmod>
   </url><url>
@@ -102,9 +114,6 @@
     <lastmod>2022-06-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/categories/essay/</loc>
-    <lastmod>2022-05-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://harpomaxx.github.io/categories/opinion/</loc>
     <lastmod>2022-05-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/post/2022-05-09-universitity-crisis/</loc>

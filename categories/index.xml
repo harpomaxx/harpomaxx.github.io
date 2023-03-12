@@ -7,16 +7,40 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Mon, 27 Feb 2023 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sun, 12 Mar 2023 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>algorithms</title>
 			<link>https://harpomaxx.github.io/categories/algorithms/</link>
-			<pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate>
+			<pubDate>Sun, 12 Mar 2023 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/algorithms/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>art</title>
+			<link>https://harpomaxx.github.io/categories/art/</link>
+			<pubDate>Sun, 12 Mar 2023 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/art/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>opinion</title>
+			<link>https://harpomaxx.github.io/categories/opinion/</link>
+			<pubDate>Sun, 12 Mar 2023 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/opinion/</guid>
 			<description>
 				
 				
@@ -120,18 +144,6 @@
 			</description>
 		</item>
 		<item>
-			<title>art</title>
-			<link>https://harpomaxx.github.io/categories/art/</link>
-			<pubDate>Sun, 31 Jul 2022 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/art/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
 			<title>development</title>
 			<link>https://harpomaxx.github.io/categories/development/</link>
 			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
@@ -185,18 +197,6 @@
 			<pubDate>Mon, 09 May 2022 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/essay/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>opinion</title>
-			<link>https://harpomaxx.github.io/categories/opinion/</link>
-			<pubDate>Mon, 09 May 2022 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/opinion/</guid>
 			<description>
 				
 				

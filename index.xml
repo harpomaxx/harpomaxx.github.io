@@ -7,10 +7,22 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Mon, 27 Feb 2023 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sun, 12 Mar 2023 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Don&#39;t be afraid of AI. Embrace it</title>
+			<link>https://harpomaxx.github.io/post/2023-03-12-a-few-words-about-the-ia-hype/</link>
+			<pubDate>Sun, 12 Mar 2023 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/2023-03-12-a-few-words-about-the-ia-hype/</guid>
+			<description>
+				
+				The use of artificial intelligence (AI) algorithms in various fields  are becoming an integral part of our lives. While some people are opposed to their use others have embraced the technology and are using it. I am one of them. [6 min read]
+				
+			</description>
+		</item>
 		<item>
 			<title>Using CNN for a Domain name Generation Algorithm</title>
 			<link>https://harpomaxx.github.io/post/dga-convnet/</link>

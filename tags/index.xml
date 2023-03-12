@@ -12,11 +12,35 @@
 		<atom:link href="https://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
+			<title>keras</title>
+			<link>https://harpomaxx.github.io/tags/keras/</link>
+			<pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/keras/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
 			<title>R Language</title>
 			<link>https://harpomaxx.github.io/tags/r-language/</link>
 			<pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/r-language/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>tensorflow</title>
+			<link>https://harpomaxx.github.io/tags/tensorflow/</link>
+			<pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/tensorflow/</guid>
 			<description>
 				
 				

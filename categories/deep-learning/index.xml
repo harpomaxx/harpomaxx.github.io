@@ -7,22 +7,10 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Fri, 10 Mar 2023 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Mon, 27 Feb 2023 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/categories/deep-learning/index.xml" rel="self" type="application/rss+xml" />
 		
-		<item>
-			<title>Using CNN for a Domain name Generation Algorithm II</title>
-			<link>https://harpomaxx.github.io/post/dga-convnet-p2/</link>
-			<pubDate>Fri, 10 Mar 2023 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/post/dga-convnet-p2/</guid>
-			<description>
-				
-				DGA is a mechanism used by malware for stablishing contact with the C2 channel. The idea behind this post is to show how to create a simple DGA using tecniques for text generation. In particular CNN using Keras and Tensorflow for R. [6 min read]
-				
-			</description>
-		</item>
 		<item>
 			<title>Using CNN for a Domain name Generation Algorithm</title>
 			<link>https://harpomaxx.github.io/post/dga-convnet/</link>
@@ -32,18 +20,6 @@
 			<description>
 				
 				DGA is a mechanism used by malware for stablishing contact with the C2 channel. The idea behind this post is to show how to create a simple DGA using tecniques for text generation. In particular CNN using Keras and Tensorflow for R. [6 min read]
-				
-			</description>
-		</item>
-		<item>
-			<title>Resources for a Gentle Introduction to Deep Learning</title>
-			<link>https://harpomaxx.github.io/post/resources-for-deep-learning/</link>
-			<pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/post/resources-for-deep-learning/</guid>
-			<description>
-				
-				The Deep Learning (DL) topic is huge! So huge that many people consider it is as a topic separated from the Machine Learning field. I partially agree with that. IMHO, I consider DL more like a very GE...
 				
 			</description>
 		</item>

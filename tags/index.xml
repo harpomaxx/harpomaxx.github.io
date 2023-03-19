@@ -7,14 +7,26 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Mon, 27 Feb 2023 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sun, 19 Mar 2023 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
+			<title>DGA</title>
+			<link>https://harpomaxx.github.io/tags/dga/</link>
+			<pubDate>Sun, 19 Mar 2023 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/dga/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
 			<title>keras</title>
 			<link>https://harpomaxx.github.io/tags/keras/</link>
-			<pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate>
+			<pubDate>Sun, 19 Mar 2023 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/keras/</guid>
 			<description>
@@ -26,7 +38,7 @@
 		<item>
 			<title>R Language</title>
 			<link>https://harpomaxx.github.io/tags/r-language/</link>
-			<pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate>
+			<pubDate>Sun, 19 Mar 2023 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/r-language/</guid>
 			<description>
@@ -38,7 +50,7 @@
 		<item>
 			<title>tensorflow</title>
 			<link>https://harpomaxx.github.io/tags/tensorflow/</link>
-			<pubDate>Mon, 27 Feb 2023 00:00:00 +0000</pubDate>
+			<pubDate>Sun, 19 Mar 2023 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/tags/tensorflow/</guid>
 			<description>

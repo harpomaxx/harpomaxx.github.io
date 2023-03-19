@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>keras on Computer Science Notes</title>
-		<link>https://harpomaxx.github.io/tags/keras/</link>
-		<description>Recent content in keras on harpomaxx.github.io</description>
+		<title>DGA on Computer Science Notes</title>
+		<link>https://harpomaxx.github.io/tags/dga/</link>
+		<description>Recent content in DGA on harpomaxx.github.io</description>
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
 		<lastBuildDate>Sun, 19 Mar 2023 00:00:00 +0000</lastBuildDate>
 		
-		<atom:link href="https://harpomaxx.github.io/tags/keras/index.xml" rel="self" type="application/rss+xml" />
+		<atom:link href="https://harpomaxx.github.io/tags/dga/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
 			<title>Using CNN for a Domain name Generation Algorithm (2)</title>

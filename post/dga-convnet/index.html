@@ -5,16 +5,16 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="R Language,keras,tensorflow"><meta name="description" content="DGA is a mechanism used by malware for stablishing contact with the C2 channel. The idea behind this post is to show how to create a simple DGA using tecniques for text generation. In particular CNN using Keras and Tensorflow for R. [6 min read]"><meta property="og:title" content="Using CNN for a Domain name Generation Algorithm" />
-<meta property="og:description" content="DGA is a mechanism used by malware for stablishing contact with the C2 channel. The idea behind this post is to show how to create a simple DGA using tecniques for text generation. In particular CNN using Keras and Tensorflow for R. [6 min read]" />
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="R Language,keras,tensorflow,DGA"><meta name="description" content="DGA is a mechanism used by malware for establishing contact with the C2 channel. The idea behind this post is to show how to create a simple DGA using techniques for text generation. In particular, CNN using Keras and Tensorflow for R. This is the first part of a series of two. [6 min read]"><meta property="og:title" content="Using CNN for a Domain name Generation Algorithm (1)" />
+<meta property="og:description" content="DGA is a mechanism used by malware for establishing contact with the C2 channel. The idea behind this post is to show how to create a simple DGA using techniques for text generation. In particular, CNN using Keras and Tensorflow for R. This is the first part of a series of two. [6 min read]" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://harpomaxx.github.io/post/dga-convnet/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2023-02-27T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-02-27T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Using CNN for a Domain name Generation Algorithm"/>
-<meta name="twitter:description" content="DGA is a mechanism used by malware for stablishing contact with the C2 channel. The idea behind this post is to show how to create a simple DGA using tecniques for text generation. In particular CNN using Keras and Tensorflow for R. [6 min read]"/>
+<meta name="twitter:title" content="Using CNN for a Domain name Generation Algorithm (1)"/>
+<meta name="twitter:description" content="DGA is a mechanism used by malware for establishing contact with the C2 channel. The idea behind this post is to show how to create a simple DGA using techniques for text generation. In particular, CNN using Keras and Tensorflow for R. This is the first part of a series of two. [6 min read]"/>
 <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
@@ -22,7 +22,7 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
 	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
 	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Using CNN for a Domain name Generation Algorithm | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Using CNN for a Domain name Generation Algorithm (1) | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
 </head>
@@ -75,7 +75,7 @@
 		</div>
 		
 		<div class="matter">
-			<h1 class="title">Using CNN for a Domain name Generation Algorithm</h1>
+			<h1 class="title">Using CNN for a Domain name Generation Algorithm (1)</h1>
 		</div>
 	</div>
 	<div class="author">
@@ -97,7 +97,7 @@
 		
 
 
-<p>The current post is the first part of a series of posts discussing the development of an algorithm for domain generation (DGA) See the second post <a href="https://harpomaxx.github.io/post/dga-convnet/">here</a>. The current post is centered around the preprocessing aspects of a DGA using Keras and the R language.</p>
+<p>The current post is the first part of a series of posts discussing the development of an algorithm for domain generation (DGA) See the second post <a href="https://harpomaxx.github.io/post/dga-convnet/">here</a>. The current post is centered around the preprocessing aspects of a DGA using <a href="https://tensorflow.rstudio.com/">Keras</a> and the <a href="https://www.r-project.org/">R</a> language.</p>
 <div id="what-is-dga" class="section level2">
 <h2>What is DGA?</h2>
 <p>A domain generation algorithm (DGA) is a technique used by malware to generate a large number of domain names that can be used as rendezvous points for the malware to communicate with its command-and-control (<a href="https://en.wikipedia.org/wiki/Command_and_control">C2</a>) server.</p>
@@ -132,14 +132,17 @@ library(keras)
 library(tokenizers)
 library(stringr)
 library(dplyr)
-library(purrr)</code></pre>
+library(purrr)
+library(urltools)</code></pre>
 <p>So the first thing we are going to do is to read a <a href="https://github.com/harpomaxx/deepseq/raw/master/datasets/argencon.csv.gz">CSV file containing domain names</a>.<br />
-The CSV file contains one domain name per row and the “label” column specifies whether the domain is “normal” or not. In this case, we are going to filter the data to only include “normal” domains, then randomly sample 3% of the data (just to keep things small), and concatenate the remaining domains into a variable called <strong><code>domains</code></strong> The resulting <strong><code>domains</code></strong> variable will be used as input to the DGA algorithm based on CNN.</p>
+The CSV file contains one domain name per row and the “label” column specifies whether the domain is “normal” or not. In this case, we are going to filter the data to only include “normal” domains, then randomly sample 3% of the data (just to keep things small), and concatenate the remaining domains into a variable called <strong><code>domains</code></strong> The resulting <strong><code>domains</code></strong> variable will be used as input to the DGA algorithm based on CNN. Notice that I am using the <code>urltools</code> package for keeping just the domain name and removing any second level domain and the Top Level Domain (TLD). So, instead of using <code>www.google.com</code>, we are going to use just <code>google</code>.</p>
 <pre class="r"><code>text &lt;- readr::read_csv(&quot;https://github.com/harpomaxx/deepseq/raw/master/datasets/argencon.csv.gz&quot;)
 text&lt;-text %&gt;% filter(grepl(&quot;normal&quot;,label))
 text&lt;-text %&gt;% sample_frac(0.03)
-domains &lt;-  text %&gt;% pull(domain) %&gt;%
-    str_c(collapse = &quot; &quot;) </code></pre>
+
+domains &lt;-  text %&gt;% pull(domain)
+domains &lt;- domains %&gt;% urltools::host_extract()
+domains &lt;- domains  %&gt;% tidyr::drop_na() %&gt;% pull(host) %&gt;% str_c(collapse = &quot; &quot;) </code></pre>
 <p>Once we have selected the domain names, the next step is to perform the so-called tokenization. Tokenization is the process of splitting text into individual “tokens” or units, which can be words, characters, or other types of units depending on the task. In this case, we are first tokenizing the <strong><code>domains</code></strong> string into individual characters using the function <strong><code>tokenize_characters()</code></strong> from the <strong>tokenizers</strong> package.</p>
 <pre class="r"><code>domains &lt;- domains %&gt;%
     tokenize_characters(lowercase = TRUE, 
@@ -266,6 +269,8 @@ seq_vectorized_y&lt;-sentences_one_hot$y</code></pre>
 			
 			
 			
+			
+			
 			<a href="https://harpomaxx.github.io/categories/algorithms/"> algorithms </a>
 			
 			
@@ -308,7 +313,11 @@ seq_vectorized_y&lt;-sentences_one_hot$y</code></pre>
 			
 			
 			
+			
+			
 			<a href="https://harpomaxx.github.io/categories/deep-learning/"> deep-learning </a>
+			
+			
 			
 			
 			
@@ -511,6 +520,16 @@ seq_vectorized_y&lt;-sentences_one_hot$y</code></pre>
 			
 			
 			
+			<a href="https://harpomaxx.github.io/tags/dga/"> dga </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -579,7 +598,11 @@ seq_vectorized_y&lt;-sentences_one_hot$y</code></pre>
 			
 			
 			
+			
+			
 			<a href="https://harpomaxx.github.io/tags/r-language/"> r-language </a>
+			
+			
 			
 			
 			

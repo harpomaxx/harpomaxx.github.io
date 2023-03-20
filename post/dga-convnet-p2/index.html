@@ -323,10 +323,10 @@ Prediction  0  1
       Balanced Accuracy :      NA         
                                           
        &#39;Positive&#39; Class : 0      </code></pre>
-<p>As you can see, only 7 out 100 generated domains were detected by the DGA detector (Notice that observations labeled as 0 are normal domains while 1 was used for DGA). Of course that means nothing since there are much more defective DGA detectors, but it is just to get an idea..</p>
+<p>As you can see, only 7 out 101 generated domains were detected by the DGA detector (Notice that observations labeled as 0 are normal domains while 1 was used for DGA). Of course that means nothing since there are much more effective DGA detectors, but it is just to get an idea. I guess…</p>
 </div>
-<div id="sum-up" class="section level2">
-<h2><strong>Sum up</strong></h2>
+<div id="some-final-words" class="section level2">
+<h2><strong>Some final words…</strong></h2>
 <p>As you can see it is not difficult to implement a character-level generative approach for DGA. The performance of the generated domains is actually pretty decent. However, there are still some considerations before deploying an approach like that.</p>
 <p>The first issue is that the whole approach requires a predefined list of domains to use as the seed sequence (i.e. the one used to start the generation of new domains). Such a list must be included (or accessible somehow) by the malware. Such inclusion can be easily detected by forensic analysis and it would be pretty easy to take some countermeasures to take over the whole Botnet.</p>
 <p>A second issue, also related to the seed, is that we have not considered any C2 synchronization approach. In this post, we have just used a hard-coded approach. But using this strategy could be easy to detect. The bostmaster and the botnet need to agree on a pseudo-random seed to start generating and using the current date is the common approach. So, we need to build a function for mapping the current date into one of the domains used in the predefined list.</p>

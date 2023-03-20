@@ -289,6 +289,14 @@ for (j in seq(1:10)) {
 [8] &quot;generated: eercacecoms1207fa49.com&quot;
 [9] &quot;generated: flecbroctopsalrtun.com&quot;</code></pre>
 <p>Perhaps it is just me, but I think the first group of DGA domains looks more “normal” than the second one. In any case, the final decision would be to check the DGA domains against some sort of detector. I tested the generated domains against a simple <a href="http://sedici.unlp.edu.ar/handle/10915/73629">convnet DGA detector</a> and the results were pretty good actually ̇.</p>
+<pre class="r"><code>library(curl)
+res&lt;-c()
+reference&lt;-factor(rep(1,length(dga)),levels=c(0,1))
+for (j in seq(1:length(dga))){
+  req&lt;- curl::curl_fetch_memory(paste0(&quot;http://ns158.ingenieria.uncuyo.edu.ar:8000/predict?domain=&quot;,dga[j]))
+  res[j]&lt;-({jsonlite::parse_json(rawToChar(req$content))}$class)
+}
+caret::confusionMatrix(data=as.factor(res),reference)</code></pre>
 <pre><code>Confusion Matrix and Statistics
 
           Reference
@@ -316,6 +324,12 @@ Prediction  0  1
                                           
        &#39;Positive&#39; Class : 0      </code></pre>
 <p>As you can see, only 7 out 100 generated domains were detected by the DGA detector (Notice that observations labeled as 0 are normal domains while 1 was used for DGA). Of course that means nothing since there are much more defective DGA detectors, but it is just to get an idea..</p>
+</div>
+<div id="sum-up" class="section level2">
+<h2><strong>Sum up</strong></h2>
+<p>As you can see it is not difficult to implement a character-level generative approach for DGA. The performance of the generated domains is actually pretty decent. However, there are still some considerations before deploying an approach like that.</p>
+<p>The first issue is that the whole approach requires a predefined list of domains to use as the seed sequence (i.e. the one used to start the generation of new domains). Such a list must be included (or accessible somehow) by the malware. Such inclusion can be easily detected by forensic analysis and it would be pretty easy to take some countermeasures to take over the whole Botnet.</p>
+<p>A second issue, also related to the seed, is that we have not considered any C2 synchronization approach. In this post, we have just used a hard-coded approach. But using this strategy could be easy to detect. The bostmaster and the botnet need to agree on a pseudo-random seed to start generating and using the current date is the common approach. So, we need to build a function for mapping the current date into one of the domains used in the predefined list.</p>
 <p>You can check the complete source code as well as a <a href="https://www.rplumber.io/">plumber</a> implementation of the approach in my <a href="https://github.com/harpomaxx/deepDGAgen/tree/master/code/R/plumber/dgagen">GitHub repository</a></p>
 </div>
 <div id="references" class="section level2">

@@ -7,16 +7,16 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Sun, 19 Mar 2023 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sat, 08 Apr 2023 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
-			<title>algorithms</title>
-			<link>https://harpomaxx.github.io/categories/algorithms/</link>
-			<pubDate>Sun, 19 Mar 2023 00:00:00 +0000</pubDate>
+			<title>Deep Learning</title>
+			<link>https://harpomaxx.github.io/categories/deep-learning/</link>
+			<pubDate>Sat, 08 Apr 2023 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/categories/algorithms/</guid>
+			<guid>https://harpomaxx.github.io/categories/deep-learning/</guid>
 			<description>
 				
 				
@@ -24,11 +24,59 @@
 			</description>
 		</item>
 		<item>
-			<title>Deep Learning</title>
-			<link>https://harpomaxx.github.io/categories/deep-learning/</link>
+			<title>development</title>
+			<link>https://harpomaxx.github.io/categories/development/</link>
+			<pubDate>Sat, 08 Apr 2023 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/development/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>documentation</title>
+			<link>https://harpomaxx.github.io/categories/documentation/</link>
+			<pubDate>Sat, 08 Apr 2023 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/documentation/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>engineering</title>
+			<link>https://harpomaxx.github.io/categories/engineering/</link>
+			<pubDate>Sat, 08 Apr 2023 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/engineering/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>machine learning engineering</title>
+			<link>https://harpomaxx.github.io/categories/machine-learning-engineering/</link>
+			<pubDate>Sat, 08 Apr 2023 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/machine-learning-engineering/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>algorithms</title>
+			<link>https://harpomaxx.github.io/categories/algorithms/</link>
 			<pubDate>Sun, 19 Mar 2023 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/categories/deep-learning/</guid>
+			<guid>https://harpomaxx.github.io/categories/algorithms/</guid>
 			<description>
 				
 				
@@ -144,47 +192,11 @@
 			</description>
 		</item>
 		<item>
-			<title>development</title>
-			<link>https://harpomaxx.github.io/categories/development/</link>
-			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/development/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>engineering</title>
-			<link>https://harpomaxx.github.io/categories/engineering/</link>
-			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/engineering/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
 			<title>experimental design</title>
 			<link>https://harpomaxx.github.io/categories/experimental-design/</link>
 			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/experimental-design/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>machine learning engineering</title>
-			<link>https://harpomaxx.github.io/categories/machine-learning-engineering/</link>
-			<pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/machine-learning-engineering/</guid>
 			<description>
 				
 				
@@ -257,18 +269,6 @@
 			<pubDate>Tue, 29 Jun 2021 00:00:00 +0000</pubDate>
 			
 			<guid>https://harpomaxx.github.io/categories/mle/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
-		<item>
-			<title>documentation</title>
-			<link>https://harpomaxx.github.io/categories/documentation/</link>
-			<pubDate>Sun, 11 Oct 2020 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/categories/documentation/</guid>
 			<description>
 				
 				

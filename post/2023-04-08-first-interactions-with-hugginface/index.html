@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.101.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="hugo,vitae,theme,static"><meta name="description" content="Share your model,  your dataset, provide a simple mechanisms for using them. That is what research is all about. Hugging Face provides you with a great infrasctruture for doing an a little more. [5 min read]"><meta property="og:title" content="Publishing your model on Hugging Face." />
+<meta property="og:description" content="Share your model,  your dataset, provide a simple mechanisms for using them. That is what research is all about. Hugging Face provides you with a great infrasctruture for doing an a little more. [5 min read]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/2023-04-08-first-interactions-with-hugginface/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-04-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-04-08T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Publishing your model on Hugging Face."/>
+<meta name="twitter:description" content="Share your model,  your dataset, provide a simple mechanisms for using them. That is what research is all about. Hugging Face provides you with a great infrasctruture for doing an a little more. [5 min read]"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Publishing your model on Hugging Face. | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">08</span>
+				<span class="rest">Apr 2023</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Publishing your model on Hugging Face.</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://sigmoid.social/@harpomaxx">Harpo MAxx</a>
+		
+	
+	
+		(5 min read)
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		
+
+
+<p>If you have been working with IA-based applications in the last years, you should have definitively heard about Hugging Face. Hugging Face is a technology company that specializes in natural language processing (NLP) and artificial intelligence (AI). According to their website, their mission is to democratize AI and make these technologies more accessible to the broader community, encouraging researchers and developers to build innovative applications based on NLP.<br />
+<br />
+Last week I was iterating with all the different aspects of the Hugging Face platform. My Idea was to <a href="https://huggingface.co/harpomaxx/dga-detector">publish a model for DGA detection</a> (yeap the same model I’ve been mentioning the last couple of posts).<br />
+</p>
+<div id="hugging-face-services" class="section level2">
+<h2>Hugging Face Services</h2>
+<p>In a brief, the Hugging Face platform provide you with four different services.</p>
+<ol style="list-style-type: decimal">
+<li><strong>PUBLISH YOUR MODEL</strong> . In the<a href="https://huggingface.co/docs/hub/models">basic service</a> you can publish your pretrained model together with information about the training process such as weights, training dataset used, etc.<br />
+</li>
+<li><strong>PUBLISH YOUR DATASET.</strong> You can <a href="https://huggingface.co/docs/hub/datasets">publish a dataset</a>. Eventually you can link a particular model to a particular dataset if you have used it for training your model.<br />
+</li>
+<li><strong>PUBLISH A MINIMAL UI</strong> for your model. These are called <a href="https://huggingface.co/docs/hub/spaces"><em>Spaces</em></a> and they provide you with <a href="https://huggingface.co/docs/hub/spaces-overview#creating-a-new-space">different SDKs</a> for building a simple UI for querying your model. For building the UI can can rely in very well-known python libraries such as <a href="https://gradio.app/">Gradio</a> and <a href="https://streamlit.io/">StreamLit</a>. However, more recently, they have included support for <a href="https://www.docker.com/">dockerized</a> apps. In this way you can use your favorite language and libraries for building your own UI. A basic computer infrastructure with 2 CPU is available for free. <strong><em>For more hardware you will need yo pay! 👊</em><br />
+</strong></li>
+<li><strong>CREATE A CUSTOM ENDPOINT</strong> for your model. Basically you can create a endpoint for accesing your application from any other sources. An endpoint refers to a URL (Uniform Resource Locator) or URI (Uniform Resource Identifier) that a client can use to access a specific service or resource on a server or web application. ⚠️ <strong><em>Notice that this a payed service.</em></strong> ⚠️</li>
+</ol>
+<p>Models, Spaces, and datasets are hosted on the Hugging Face Hub as <a href="https://git-scm.com/about"><strong>Git repositories</strong></a>, which means that version control and collaboration are core elements of the Hub</p>
+</div>
+<div id="the-model-hub" class="section level2">
+<h2>The Model Hub</h2>
+<p>For managing all the services at Hugging Face you can access trough the so-called Model Hub. The Model Hub is where the members of the Hugging Face community can host all of their model checkpoints for simple storage, discovery, and sharing. Download pre-trained models with the <a href="https://huggingface.co/docs/huggingface_hub/index"><strong><code>huggingface_hub</code> client library</strong></a>, with 🤗 <a href="https://huggingface.co/docs/transformers/index"><strong><code>Transformers</code></strong></a> for fine-tuning and other usages or with any of the over <a href="https://huggingface.co/docs/hub/models-libraries"><strong>15 integrated libraries</strong></a>.</p>
+<p>The <code>huggingface_hub</code> is a python module for interacting with Hugging Face. In a lot of cases, you must be logged in with a Hugging Face account to interact with the Hub: download private repos, upload files, create PRs,… <a href="https://huggingface.co/join"><strong>Create an account</strong></a> if you don’t already have one, and then sign in to get your <a href="https://huggingface.co/docs/hub/security-tokens"><strong>User Access Token</strong></a> from your <a href="https://huggingface.co/settings/tokens"><strong>Settings page</strong></a>. The User Access Token is used to authenticate your identity to the Hub.</p>
+<p>Once you have setup your token, you can login and start using the model hub. This can be done programatically vi the <code>huggingface_hub package</code>. We are going to use the excellent <code>reticulate</code> package for accessing python from R.</p>
+<pre class="r"><code>library(reticulate)
+hfhub &lt;- reticulate::import(&#39;huggingface_hub&#39;)
+hfhub$login()</code></pre>
+<p>Now we are logged into the Hugging Face hub. So, the next step is to push the model into the model hub. As I mentioned (actually I copied &amp; pasted from Hugging Face), the model Hub has support for 15 well-known integrated libraries. Of course <a href="https://keras.io/">Keras</a> is one of them.<br />
+<br />
+For pushing a model into the Model Hub, you will need to create a Keras model or (as in my case) just load a previously saved one. Then, using the hugging Face API you can push the model into the Model Hub with the <strong><em>push_to_hub_keras()</em></strong> function. The function takes two parameters: the model and the name of the remote repository where you want to store the model.</p>
+<pre class="r"><code>library(keras)
+
+# loading the DGA model for classifier 
+model&lt;-load_model_hdf5(&quot;cacic-pmodel.h5&quot;)
+
+# Push model to hf
+hfhub$push_to_hub_keras(model,&#39;dga-detector&#39;)</code></pre>
+<p>When you use the <strong><em>push_to_hub_keras()</em></strong> the model is pushed into the remote repository ( ‘dga-detector’ in this case). But also this will generate a <a href="https://huggingface.co/docs/hub/model-cards"><strong>model card</strong></a> that includes your model’s hyperparameters, plot of your model and couple of sections related to the usage purpose of your model, model biases and limitations about putting the model in production. Model cards are files that accompany the models and provide handy information. Under the hood, model cards are simple Markdown files with additional <a href="https://huggingface.co/docs/hub/model-cards#model-card-metadata">metadata</a>. Here you can check the <a href="https://huggingface.co/harpomaxx/dga-detector/blob/main/README.md">model card</a> generated for the <code>dga-detector</code> . In my case I didn’t include training information, since I lost the <a href="https://www.tensorflow.org/tensorboard">Tensorboard</a> information. The DGA-detector is 5 years old, so…</p>
+<p>Theoretically, the model is ready to be used from anybody interested in DGA detector. Using the function <strong>from_pretrained_keras()</strong> and indicating the model name.</p>
+<pre><code>model &lt;- hfhub$from_pretrained_keras(&quot;harpomaxx/dga-detector&quot;)
+## Do your stuff with the model</code></pre>
+<p>However, for actually using the model, you will need to provide some information about the input format and ideally the necessary code for reproducing the preprocessing. Since <code>harpomaxx/dga-detector</code> is a git repository you could easily add a couple of files with the required preprocessing pipeline. In this case, the only preprocessing consists of tokenizing the domain name.</p>
+<pre class="r"><code># Code for using the DGA detector model
+
+library(keras)
+library(plumber)
+library(reticulate)
+
+hfhub &lt;- reticulate::import(&#39;huggingface_hub&#39;)
+model &lt;- hfhub$from_pretrained_keras(&quot;harpomaxx/dga-detector&quot;)
+modelid &lt;- &quot;cacic-2018-model&quot;
+valid_characters &lt;- &quot;$abcdefghijklmnopqrstuvwxyz0123456789-_.&quot;
+valid_characters_vector &lt;- strsplit(valid_characters,split=&quot;&quot;)[[1]]
+tokens &lt;- 0:length(valid_characters_vector)
+names(tokens) &lt;- valid_characters_vector
+
+# DGA prediction function
+predict &lt;- function(domain){
+domain_encoded &lt;-
+sapply(
+unlist(strsplit(tolower(domain),split=&quot;&quot;)), 
+function(x) tokens [[x]]
+)
+
+domain_encoded&lt;-pad_sequences(t(domain_encoded),
+                              maxlen=45,
+                              padding=&#39;post&#39;,
+                              truncating=&#39;post&#39;)
+  prediction&lt;-predict(model,
+                      domain_encoded)
+  return(list(modelid=modelid,
+              domain=domain,
+              class=ifelse(prediction[1]&gt;0.9,1,0),
+              probability=prediction[1]))
+}</code></pre>
+<p>That is the minimal work required for sharing a model at Hugging Face. You can check the model at Hugging Face <a href="https://huggingface.co/harpomaxx/dga-detector">here</a>.<br />
+However, if you want to provide something working out of the box. Then you will need to use the <a href="https://huggingface.co/docs/hub/spaces">Hugging Face Spaces.</a> I will discuss the process in a next post..</p>
+</div>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/deep-learning/"> deep-learning </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/development/"> development </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/documentation/"> documentation </a>
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/engineering/"> engineering </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/machine-learning-engineering/"> machine-learning-engineering </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+
+<form style="float:center;" action="https://tinyletter.com/harpomaxx" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/harpomaxx', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+<label for="tlemail">Enter your email address</label>
+<input type="text" style="width:140px" name="email" id="tlemail" />
+<input type="hidden" value="1" name="embed"/>
+<input type="submit" value="Subscribe" />
+</form>
+
+
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+
+
+</footer>
+
+</body>
+</html>

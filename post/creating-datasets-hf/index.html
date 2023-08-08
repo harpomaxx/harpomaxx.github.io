@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.101.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="datasets"><meta name="description" content="What are the benefits of using Hugging Face for sharing your datasets? Not sure really, but let&#39;s try it to see what all this hype is all about [5 min read]"><meta property="og:title" content="Sharing your own dataset on Hugging Face " />
+<meta property="og:description" content="What are the benefits of using Hugging Face for sharing your datasets? Not sure really, but let&#39;s try it to see what all this hype is all about [5 min read]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/creating-datasets-hf/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-07-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-07-30T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Sharing your own dataset on Hugging Face "/>
+<meta name="twitter:description" content="What are the benefits of using Hugging Face for sharing your datasets? Not sure really, but let&#39;s try it to see what all this hype is all about [5 min read]"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Sharing your own dataset on Hugging Face  | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">30</span>
+				<span class="rest">Jul 2023</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Sharing your own dataset on Hugging Face </h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://sigmoid.social/@harpomaxx">Harpo MAxx</a>
+		
+	
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		<p>For the last few months, I&rsquo;ve been working with the Hugging Face 🤗 ecosystem, mostly because of the LLM hype of course. In a <a href="https://harpomaxx.github.io/post/2023-04-08-first-interactions-with-hugginface/">previous post</a>, I used a simple DGA detector based on CNN and uploaded it to the Hugging Face (HF) hub. The <a href="https://huggingface.co/docs/hub/index">Hub</a> is a place where you can share your model. Actually not only your models, <strong>you can also share the datasets</strong> you used for training them and even you can create a simple app to let people try your model in production. I personally find that very useful not only for sharing but also for keeping records of your models, code, data, and so on.</p>
+<p>When I uploaded the <a href="https://huggingface.co/harpomaxx/dga-detector">DGA detector</a> model I wanted also to share my dataset there. So I used the <a href="https://huggingface.co/docs/datasets/upload_dataset#upload-with-the-hub-ui">git repository UI approach</a> from HF to upload the dataset. The approach is pretty simple: You create a repo in a GitHub way and using the UI you upload the dataset. And that&rsquo;s all. Simple.. and effective.</p>
+<p>So I picked my CSV file and compressed it using <code>gzip</code> , and uploaded it to the hug using the UI. Wow. That was fast! 🏃</p>
+<p>What are the benefits of doing this? Well, besides sharing your dataset with the community which is perhaps the most important thing. The other benefit of uploading the dataset to the HF hub is the <code>datasets</code> library. Once you have uploaded your dataset to the hub, the dataset can be accessed through the <code>datasets</code> library with just one line of code.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#080;font-weight:bold">import</span> <span style="color:#0e84b5;font-weight:bold">datasets</span>
+</span></span><span style="display:flex;"><span>dataset <span style="color:#333">=</span> datasets<span style="color:#333">.</span>load_dataset(<span style="background-color:#fff0f0">&#34;harpomaxx/dga-detection&#34;</span>)
+</span></span></code></pre></div><h2 id="basic-functionality">Basic functionality</h2>
+<p>By using the <code>datasets</code> the library you gain access to a lot of functionality, such as dataset splitting, versioning, streaming, and preprocessing among others.</p>
+<p>The <a href="https://huggingface.co/docs/datasets/stream">streaming</a> functionality is very useful if you don want or (can&rsquo;t) download the complete dataset.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#080;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">datasets</span> <span style="color:#080;font-weight:bold">import</span> load_dataset
+</span></span><span style="display:flex;"><span>dataset <span style="color:#333">=</span> load_dataset(<span style="background-color:#fff0f0">&#39;harpomaxx/dga-detection&#39;</span>, streaming<span style="color:#333">=</span><span style="color:#080;font-weight:bold">True</span>)
+</span></span><span style="display:flex;"><span><span style="color:#007020">print</span>(<span style="color:#007020">next</span>(<span style="color:#007020">iter</span>(dataset)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>{<span style="background-color:#fff0f0">&#39;domain&#39;</span>: <span style="background-color:#fff0f0">&#39;0-1.ru&#39;</span>, <span style="background-color:#fff0f0">&#39;label&#39;</span>: <span style="background-color:#fff0f0">&#39;normal.alexa&#39;</span>, <span style="background-color:#fff0f0">&#39;class&#39;</span>: <span style="color:#00d;font-weight:bold">0</span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#007020">print</span>(<span style="color:#007020">next</span>(<span style="color:#007020">iter</span>(dataset)))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>{<span style="background-color:#fff0f0">&#39;domain&#39;</span>: <span style="background-color:#fff0f0">&#39;0-60specs.com&#39;</span>, <span style="background-color:#fff0f0">&#39;label&#39;</span>: <span style="background-color:#fff0f0">&#39;normal.alexa&#39;</span>, <span style="background-color:#fff0f0">&#39;class&#39;</span>: <span style="color:#00d;font-weight:bold">0</span>}
+</span></span></code></pre></div><p>The <code>load_dataset()</code> function will return an iterator that will allow you to access to the dataset one element at the time. Notice that the access using <code>streaming=True</code> could be slower than reading the complete dataset. But something we don&rsquo;t have other option&hellip;🤷</p>
+<p>Preprocessing is fundamental in the machine learning pipeline and the HF datasets library fits perfectly with the well-known transformers library (also from HF). You can simply <a href="https://huggingface.co/learn/nlp-course/chapter2/4?fw=pt">tokenize</a> a particular feature from your dataset with a few lines of code. In the example below I tokenize using <code>bert-case-uncased</code> tokenizer</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#080;font-weight:bold">from</span> <span style="color:#0e84b5;font-weight:bold">transformers</span> <span style="color:#080;font-weight:bold">import</span> AutoTokenizer
+</span></span><span style="display:flex;"><span>tokenizer <span style="color:#333">=</span> AutoTokenizer<span style="color:#333">.</span>from_pretrained(<span style="background-color:#fff0f0">&#34;bert-base-uncased&#34;</span>)
+</span></span><span style="display:flex;"><span>tokenizer(dataset[<span style="background-color:#fff0f0">&#39;domain&#39;</span>])
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>{<span style="background-color:#fff0f0">&#39;input_ids&#39;</span>: [<span style="color:#00d;font-weight:bold">101</span>, <span style="color:#00d;font-weight:bold">1014</span>, <span style="color:#00d;font-weight:bold">1011</span>, <span style="color:#00d;font-weight:bold">1015</span>, <span style="color:#00d;font-weight:bold">1012</span>, <span style="color:#00d;font-weight:bold">21766</span>, <span style="color:#00d;font-weight:bold">102</span>], 
+</span></span><span style="display:flex;"><span><span style="background-color:#fff0f0">&#39;token_type_ids&#39;</span>: [<span style="color:#00d;font-weight:bold">0</span>, <span style="color:#00d;font-weight:bold">0</span>, <span style="color:#00d;font-weight:bold">0</span>, <span style="color:#00d;font-weight:bold">0</span>, <span style="color:#00d;font-weight:bold">0</span>, <span style="color:#00d;font-weight:bold">0</span>, <span style="color:#00d;font-weight:bold">0</span>], 
+</span></span><span style="display:flex;"><span><span style="background-color:#fff0f0">&#39;attention_mask&#39;</span>: [<span style="color:#00d;font-weight:bold">1</span>, <span style="color:#00d;font-weight:bold">1</span>, <span style="color:#00d;font-weight:bold">1</span>, <span style="color:#00d;font-weight:bold">1</span>, <span style="color:#00d;font-weight:bold">1</span>, <span style="color:#00d;font-weight:bold">1</span>, <span style="color:#00d;font-weight:bold">1</span>]}
+</span></span></code></pre></div><p>Keep in mind that tokenizers are just one of the possible <a href="https://huggingface.co/docs/datasets/use_dataset#preprocess">preprocessing</a> you can perform to your dataset using the Transformers library.</p>
+<p>Splitting your dataset is also simple by calling the method <code>train_test_split().</code> For instance, let&rsquo;s say that we want to split the dataset into the usual 80/20 ratio. We just need to execute the following code:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>dataset_split <span style="color:#333">=</span> dataset<span style="color:#333">.</span>train_test_split(test_size<span style="color:#333">=</span><span style="color:#60e;font-weight:bold">0.2</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>DatasetDict({
+</span></span><span style="display:flex;"><span>    train: Dataset({
+</span></span><span style="display:flex;"><span>        features: [<span style="background-color:#fff0f0">&#39;domain&#39;</span>, <span style="background-color:#fff0f0">&#39;label&#39;</span>, <span style="background-color:#fff0f0">&#39;class&#39;</span>],
+</span></span><span style="display:flex;"><span>        num_rows: <span style="color:#00d;font-weight:bold">1838652</span>
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    test: Dataset({
+</span></span><span style="display:flex;"><span>        features: [<span style="background-color:#fff0f0">&#39;domain&#39;</span>, <span style="background-color:#fff0f0">&#39;label&#39;</span>, <span style="background-color:#fff0f0">&#39;class&#39;</span>],
+</span></span><span style="display:flex;"><span>        num_rows: <span style="color:#00d;font-weight:bold">204295</span>
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>Now, we can access the <code>train</code> and <code>test</code> by simply using something like <code>dataset_split[&quot;train&quot;]</code> or <code>dataset_split[&quot;test&quot;]</code></p>
+<p>Sometimes you want to give your dataset a particular structure or configuration. For instance, you want to predefined sub-datasets for training, testing, or validation. For doing that you can use the <code>README.md</code> file <a href="https://huggingface.co/docs/datasets/repository_structure#define-your-splits-and-subsets-in-yaml">that contains a YAML portion</a> where you can set up a lot of information about your datasets. A common approach is to predefine your split with the following configuration:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#0e84b5;font-weight:bold">---</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#070">configs</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span>- <span style="color:#070">config_name</span>:<span style="color:#bbb"> </span>default<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span><span style="color:#070">data_files</span>:<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>- <span style="color:#070">split</span>:<span style="color:#bbb"> </span>train<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#070">path</span>:<span style="color:#bbb"> </span><span style="background-color:#fff0f0">&#34;domains_train.csv&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">  </span>- <span style="color:#070">split</span>:<span style="color:#bbb"> </span>test<span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb">    </span><span style="color:#070">path</span>:<span style="color:#bbb"> </span><span style="background-color:#fff0f0">&#34;domains_test.csv&#34;</span><span style="color:#bbb">
+</span></span></span><span style="display:flex;"><span><span style="color:#bbb"></span><span style="color:#0e84b5;font-weight:bold">---</span><span style="color:#bbb">
+</span></span></span></code></pre></div><h2 id="using-a-load-script">Using a load script</h2>
+<p>Finally, you can <a href="https://huggingface.co/docs/datasets/dataset_script">create your own load script</a>. As mentioned in the HF site, this is a more advanced way to define a dataset than using <a href="https://huggingface.co/docs/datasets/repository_structure#define-your-splits-in-yaml"><strong>YAML metadata in the dataset card</strong></a>. A dataset script is a Python file that defines the different configurations and splits of your dataset, <strong>as well as how to download and process the data.</strong> You can, for instance, download data files from any website, or from the same dataset repository. Then convert or transform the data the way you want.</p>
+<p>Just for testing, I decided to create a simple loader script for my DGA dataset just to learn how to do it. The loaded script should have the same name as the HF repository. So I created a script called <code>dga-detection.py</code> The script has basically a set of constants and a class. First, you create a class like <code>DGADataset</code> inheriting from <code>datasets.GeneratorBasedBuilder</code>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#080;font-weight:bold">class</span> <span style="color:#b06;font-weight:bold">MyDataset</span>(datasets<span style="color:#333">.</span>GeneratorBasedBuilder):
+</span></span></code></pre></div><p>In this class you will need to define three methods: <code>_info()</code>, <code>_split_datasets()</code> and <code>_generate_examples()</code>.</p>
+<p>The <code>_info()</code> method provides metadata about the dataset, such as its description, features, supervised keys, and the homepage. This metadata is essential for the Hugging Face Datasets library to know how to handle and represent the dataset.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#080;font-weight:bold">def</span> <span style="color:#06b;font-weight:bold">_info</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#888"># Provide metadata for the dataset</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-weight:bold">return</span> datasets<span style="color:#333">.</span>DatasetInfo(
+</span></span><span style="display:flex;"><span>            description<span style="color:#333">=</span>_DESCRIPTION,
+</span></span><span style="display:flex;"><span>            features<span style="color:#333">=</span>datasets<span style="color:#333">.</span>Features(
+</span></span><span style="display:flex;"><span>                {<span style="background-color:#fff0f0">&#34;domain&#34;</span>: datasets<span style="color:#333">.</span>Value(<span style="background-color:#fff0f0">&#34;string&#34;</span>), 
+</span></span><span style="display:flex;"><span>                 <span style="background-color:#fff0f0">&#34;label&#34;</span>: datasets<span style="color:#333">.</span>Value(<span style="background-color:#fff0f0">&#34;string&#34;</span>),
+</span></span><span style="display:flex;"><span>                 <span style="background-color:#fff0f0">&#34;class&#34;</span>: datasets<span style="color:#333">.</span>Value(<span style="background-color:#fff0f0">&#34;int32&#34;</span>)
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            ),
+</span></span><span style="display:flex;"><span>            supervised_keys<span style="color:#333">=</span>(<span style="background-color:#fff0f0">&#34;domain&#34;</span>, <span style="background-color:#fff0f0">&#34;class&#34;</span>),
+</span></span><span style="display:flex;"><span>            homepage<span style="color:#333">=</span>_HOMEPAGE,
+</span></span><span style="display:flex;"><span>        )
+</span></span></code></pre></div><p>The method provides information about the structure of the dataset such as the name of the features and their types. Notice that <code>_info()</code> references two constants: <strong><code>_HOMEPAGE</code></strong> and <strong><code>_DESCRIPTION.</code></strong> The latter contains the description of the dataset, while the former is just the homepage for the dataset. Here you can put other info such as the info for CITATIONS and so on.</p>
+<p>In this case, I have filled both constants with the following information:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>_DESCRIPTION <span style="color:#333">=</span> <span style="background-color:#fff0f0">&#34;&#34;&#34;</span><span style="color:#666;background-color:#fff0f0;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#666;background-color:#fff0f0;font-weight:bold"></span><span style="background-color:#fff0f0">A dataset containing both DGA and normal domain names. The normal domain names were taken from the Alexa&#39;s top one million domains. An additional 3,161 normal 
+</span></span></span><span style="display:flex;"><span><span style="background-color:#fff0f0">domains were included in the dataset, provided by the Bambenek Consulting feed. This later group is particularly interesting since it consists of suspicious domain 
+</span></span></span><span style="display:flex;"><span><span style="background-color:#fff0f0">names that were not generated by DGA. Therefore, the total amount of domains normal in the dataset is 1,003,161. DGA domains were obtained from the repositories 
+</span></span></span><span style="display:flex;"><span><span style="background-color:#fff0f0">of DGA domains of Andrey Abakumov and John Bambenek. The total amount of DGA domains is 1,915,335, and they correspond to 51 different malware families. DGA domains 
+</span></span></span><span style="display:flex;"><span><span style="background-color:#fff0f0">were generated by 51 different malware families. About the 55</span><span style="background-color:#eee">% o</span><span style="background-color:#fff0f0">f the DGA portion of the dataset is composed of samples from the Banjori, Post, Timba, Cryptolocker, 
+</span></span></span><span style="display:flex;"><span><span style="background-color:#fff0f0">Ramdo and Conficker malware.
+</span></span></span><span style="display:flex;"><span><span style="background-color:#fff0f0">&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>_HOMEPAGE <span style="color:#333">=</span> <span style="background-color:#fff0f0">&#34;https://https://huggingface.co/datasets/harpomaxx/dga-detection&#34;</span>
+</span></span></code></pre></div><p>Then we have the <strong><code>_split_generators()</code></strong> method that defines how the dataset should be split into different sets like <em>train</em>, <em>test</em>, and <em>validation</em>. Here, the path for the CSV file with domain names is specified. The method then returns <strong><code>SplitGenerator</code></strong> objects for each dataset split. These objects define how data should be fetched and processed for each split.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#080;font-weight:bold">def</span> <span style="color:#06b;font-weight:bold">_split_generators</span>(self, dl_manager: datasets<span style="color:#333">.</span>DownloadConfig):
+</span></span><span style="display:flex;"><span>        <span style="color:#888"># Load your dataset file</span>
+</span></span><span style="display:flex;"><span>        csv_path <span style="color:#333">=</span> <span style="background-color:#fff0f0">&#34;https://huggingface.co/datasets/harpomaxx/dga-detection/resolve/main/argencon.csv.gz&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#888"># Create SplitGenerators for each dataset split (train, test, validation)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-weight:bold">return</span> [
+</span></span><span style="display:flex;"><span>            datasets<span style="color:#333">.</span>SplitGenerator(
+</span></span><span style="display:flex;"><span>                name<span style="color:#333">=</span>split,
+</span></span><span style="display:flex;"><span>                gen_kwargs<span style="color:#333">=</span>{
+</span></span><span style="display:flex;"><span>                    <span style="background-color:#fff0f0">&#34;filepath&#34;</span>: csv_path,
+</span></span><span style="display:flex;"><span>                    <span style="background-color:#fff0f0">&#34;split&#34;</span>: split,
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            <span style="color:#080;font-weight:bold">for</span> split <span style="color:#000;font-weight:bold">in</span> [<span style="background-color:#fff0f0">&#34;train&#34;</span>, <span style="background-color:#fff0f0">&#34;test&#34;</span>, <span style="background-color:#fff0f0">&#34;validation&#34;</span>]
+</span></span><span style="display:flex;"><span>        ]
+</span></span></code></pre></div><p>The <code>datasets.SplitGenerator</code> in the <code>_split_generators()</code> method is responsible for creating the three different keys <code>('train', 'test', 'validation')</code>. When you load your dataset using <code>load_dataset()</code>, the Hugging Face <code>datasets</code> library will automatically call the <code>_split_generators()</code> method to create the three different dataset splits.</p>
+<p>In turn, the <code>_split_generators()</code> will call the <code>_generate_examples()</code> method for each split separately, passing the corresponding split name as the split argument. This is how the different keys are created.</p>
+<p>In this particular implementation of the <code>_generate_examples()</code> method, we load the dataset and shuffle it. Then a minor we create a new feature named <code>class</code> containing the numeric representation of the label. (i.e. 0 for normal and 1 for DGA).</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#080;font-weight:bold">def</span> <span style="color:#06b;font-weight:bold">_generate_examples</span>(
+</span></span><span style="display:flex;"><span>        self,
+</span></span><span style="display:flex;"><span>        filepath: <span style="color:#007020">str</span>,
+</span></span><span style="display:flex;"><span>        split: <span style="color:#007020">str</span>,
+</span></span><span style="display:flex;"><span>    ):
+</span></span><span style="display:flex;"><span>        <span style="color:#888"># Read your CSV dataset</span>
+</span></span><span style="display:flex;"><span>        dataset <span style="color:#333">=</span> pd<span style="color:#333">.</span>read_csv(filepath,compression<span style="color:#333">=</span><span style="background-color:#fff0f0">&#39;gzip&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#888"># 2. Shuffle the dataset using a particular seed (e.g., 42)</span>
+</span></span><span style="display:flex;"><span>        seed <span style="color:#333">=</span> <span style="color:#00d;font-weight:bold">42</span>
+</span></span><span style="display:flex;"><span>        dataset <span style="color:#333">=</span> dataset<span style="color:#333">.</span>sample(frac<span style="color:#333">=</span><span style="color:#00d;font-weight:bold">1</span>, random_state<span style="color:#333">=</span>seed)<span style="color:#333">.</span>reset_index(drop<span style="color:#333">=</span><span style="color:#080;font-weight:bold">True</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#888"># Create the &#39;class&#39; column based on the &#39;label&#39; column</span>
+</span></span><span style="display:flex;"><span>        dataset[<span style="background-color:#fff0f0">&#39;class&#39;</span>] <span style="color:#333">=</span> dataset[<span style="background-color:#fff0f0">&#39;label&#39;</span>]<span style="color:#333">.</span>apply(<span style="color:#080;font-weight:bold">lambda</span> x: <span style="color:#00d;font-weight:bold">0</span> <span style="color:#080;font-weight:bold">if</span> <span style="background-color:#fff0f0">&#39;normal&#39;</span> <span style="color:#000;font-weight:bold">in</span> x <span style="color:#080;font-weight:bold">else</span> <span style="color:#00d;font-weight:bold">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#888"># Get the total number of rows</span>
+</span></span><span style="display:flex;"><span>        total_rows <span style="color:#333">=</span> <span style="color:#007020">len</span>(dataset)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#888"># Define the ratio for train, test, and validation splits</span>
+</span></span><span style="display:flex;"><span>        train_ratio <span style="color:#333">=</span> <span style="color:#60e;font-weight:bold">0.7</span>
+</span></span><span style="display:flex;"><span>        test_ratio <span style="color:#333">=</span> <span style="color:#60e;font-weight:bold">0.2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#888"># Calculate the indices for each split</span>
+</span></span><span style="display:flex;"><span>        train_end <span style="color:#333">=</span> <span style="color:#007020">int</span>(train_ratio <span style="color:#333">*</span> total_rows)
+</span></span><span style="display:flex;"><span>        test_end <span style="color:#333">=</span> train_end <span style="color:#333">+</span> <span style="color:#007020">int</span>(test_ratio <span style="color:#333">*</span> total_rows)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#888"># Filter your dataset based on the &#39;split&#39; argument</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-weight:bold">if</span> split <span style="color:#333">==</span> <span style="background-color:#fff0f0">&#34;train&#34;</span>:
+</span></span><span style="display:flex;"><span>            dataset <span style="color:#333">=</span> dataset<span style="color:#333">.</span>iloc[:train_end]
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-weight:bold">elif</span> split <span style="color:#333">==</span> <span style="background-color:#fff0f0">&#34;test&#34;</span>:
+</span></span><span style="display:flex;"><span>            dataset <span style="color:#333">=</span> dataset<span style="color:#333">.</span>iloc[train_end:test_end]
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-weight:bold">elif</span> split <span style="color:#333">==</span> <span style="background-color:#fff0f0">&#34;validation&#34;</span>:
+</span></span><span style="display:flex;"><span>            dataset <span style="color:#333">=</span> dataset<span style="color:#333">.</span>iloc[test_end:]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#888"># Generate examples</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#080;font-weight:bold">for</span> index, row <span style="color:#000;font-weight:bold">in</span> dataset<span style="color:#333">.</span>iterrows():
+</span></span><span style="display:flex;"><span>            <span style="color:#080;font-weight:bold">yield</span> index, {
+</span></span><span style="display:flex;"><span>                <span style="background-color:#fff0f0">&#34;domain&#34;</span>: row[<span style="background-color:#fff0f0">&#34;domain&#34;</span>],
+</span></span><span style="display:flex;"><span>                <span style="background-color:#fff0f0">&#34;label&#34;</span>: row[<span style="background-color:#fff0f0">&#34;label&#34;</span>],
+</span></span><span style="display:flex;"><span>                <span style="background-color:#fff0f0">&#34;class&#34;</span>: row[<span style="background-color:#fff0f0">&#34;class&#34;</span>],
+</span></span><span style="display:flex;"><span>            }
+</span></span></code></pre></div><p>Then, we calculate the indices for the train, test, and validation splits based on the total number of rows and the specified ratios. In this case, we used 0.7 for training, 0.2 for testing, and 0.1 for validation. Finally, we filter the dataset based on the provided split (train, test, or validation).</p>
+<h2 id="just-a-final-words"><strong>Just a final words</strong></h2>
+<p>Submitting your own dataset to Hugging Face is a straightforward process. At least using the git UI interface and the dataset reference card. If you want something more complex you can create your own load scripts for dealing with different aspects of your dataset generation pipeline.</p>
+<p>Remember that when you upload your dataset to Hugging Face, you are getting the benefits provided by the <code>datasets</code> library. This library facilitates the way in which you can access and manipulate your datasets. Whether you are diving into data transformation or crafting a processing routine, the <code>datasets</code> library will ensure every operation is streamlined and efficient.</p>
+<p>Also with the datasets library, you can deal with huge datasets that normally would not fit in your computer memory. Part of the library&rsquo;s secret is the use of the Apache Arrow library for storing the data efficiently. You can go <a href="https://huggingface.co/learn/nlp-course/chapter5/4?fw=pt">here</a> for a better understanding of what is under the hood of the Datasets library.</p>
+<p>For sure is the first step for diving into the Hugging Face ecosystem.</p>
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/dga/"> dga </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/hugginface/"> hugginface </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/categories/transformers/"> transformers </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Tags</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<a href="https://harpomaxx.github.io/tags/datasets/"> datasets </a>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+
+<form style="float:center;" action="https://tinyletter.com/harpomaxx" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/harpomaxx', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+<label for="tlemail">Enter your email address</label>
+<input type="text" style="width:140px" name="email" id="tlemail" />
+<input type="hidden" value="1" name="embed"/>
+<input type="submit" value="Subscribe" />
+</form>
+
+
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+
+
+</footer>
+
+</body>
+</html>

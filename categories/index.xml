@@ -7,10 +7,46 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Sat, 08 Apr 2023 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sun, 30 Jul 2023 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>dga</title>
+			<link>https://harpomaxx.github.io/categories/dga/</link>
+			<pubDate>Sun, 30 Jul 2023 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/dga/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>hugginface</title>
+			<link>https://harpomaxx.github.io/categories/hugginface/</link>
+			<pubDate>Sun, 30 Jul 2023 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/hugginface/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
+		<item>
+			<title>transformers</title>
+			<link>https://harpomaxx.github.io/categories/transformers/</link>
+			<pubDate>Sun, 30 Jul 2023 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/categories/transformers/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>Deep Learning</title>
 			<link>https://harpomaxx.github.io/categories/deep-learning/</link>

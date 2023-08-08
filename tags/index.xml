@@ -7,10 +7,22 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Sun, 19 Mar 2023 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sun, 30 Jul 2023 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>datasets</title>
+			<link>https://harpomaxx.github.io/tags/datasets/</link>
+			<pubDate>Sun, 30 Jul 2023 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/tags/datasets/</guid>
+			<description>
+				
+				
+				
+			</description>
+		</item>
 		<item>
 			<title>DGA</title>
 			<link>https://harpomaxx.github.io/tags/dga/</link>

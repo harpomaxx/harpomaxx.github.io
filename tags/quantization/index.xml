@@ -12,7 +12,7 @@
 		<atom:link href="https://harpomaxx.github.io/tags/quantization/index.xml" rel="self" type="application/rss+xml" />
 		
 		<item>
-			<title>Converting your own Finetuned Language Model to GUFF</title>
+			<title>Converting your own finetuned language model to GUFF</title>
 			<link>https://harpomaxx.github.io/post/2024-04-01-converting-to-gguf/</link>
 			<pubDate>Mon, 01 Apr 2024 00:00:00 +0000</pubDate>
 			

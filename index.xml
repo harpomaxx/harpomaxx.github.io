@@ -7,10 +7,22 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Sun, 30 Jul 2023 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Mon, 01 Apr 2024 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Converting your own Finetuned Language Model to GUFF</title>
+			<link>https://harpomaxx.github.io/post/2024-04-01-converting-to-gguf/</link>
+			<pubDate>Mon, 01 Apr 2024 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/2024-04-01-converting-to-gguf/</guid>
+			<description>
+				
+				Sometimes your finetuned language Model work as expected but you need a faster inference time. Some other times you need to reduce memory footprint. By transformring your models to the GUFF format you can store quantized models and using them on top of the fast llama.cpp inference engine. [5 min read]
+				
+			</description>
+		</item>
 		<item>
 			<title>Sharing your own dataset on Hugging Face </title>
 			<link>https://harpomaxx.github.io/post/creating-datasets-hf/</link>
@@ -272,6 +284,18 @@
 			<description>
 				
 				Working with machine learning is not what it used to be. Let&#39;s face it. Now, there is much less time for hacking and much more time for deployment. The situation is not new and certainly not bad at all. That is why you should be prepared for the new roles and positions offered by the market. [5min read] (updated 04/09/2021)
+				
+			</description>
+		</item>
+		<item>
+			<title>Resources for a Gentle Introduction to Deep Learning</title>
+			<link>https://harpomaxx.github.io/post/resources-for-deep-learning/</link>
+			<pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/resources-for-deep-learning/</guid>
+			<description>
+				
+				The Deep Learning (DL) topic is huge! So huge that many people consider it is as a topic separated from the Machine Learning field. I partially agree with that. IMHO, I consider DL more like a very GE...
 				
 			</description>
 		</item>

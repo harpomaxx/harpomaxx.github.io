@@ -93,7 +93,7 @@
 
 	<div class="markdown">
 		<p>In the fast-paced world of artificial intelligence and machine learning, efficiency and performance are key. Let&rsquo;s say you have finetuned your own version of language model for a particular downstream task using 🤗 Hugging Face <a href="https://huggingface.co/docs/trl/en/index">TRL</a> framework . The finetuned version is working as expected, but the resulting model is still to big for your particular specifications. Moreover, the inference is somewhat slow.</p>
-<p>That&rsquo;s where tools like <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> and the GUFF format come into play. This post is just a pretty small guide for converting your AI models to the GUFF format using LLaMA-CPP and deploying them on OLLaMA for enhanced performance.</p>
+<p>That&rsquo;s where tools like <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> and the GUFF format come into play. This post is just a pretty small guide for converting your AI models to the GUFF format using llama.cpp.</p>
 <h3 id="what-is-llamacpp-and-guff-format"><strong>What is llama.cpp and GUFF Format?</strong></h3>
 <p><a href="https://github.com/ggerganov/llama.cpp">Llama.cpp</a> started as a C++ rewrite of the inference engine of the the original Llama model (released by <a href="https://ai.meta.com/blog/large-language-model-llama-meta-ai/">Meta in February 23</a>). The original goal was to to make possible to run llama on apple CPUs. Now, it has become a complete ecosystem to run and test your local Language Models. Llama.cpp focus on providing an efficient, high-performance foundation for running these models. Beyond the many performence improvement hacks implemented inside llama.cpp code, the most relevant is the its <a href="https://huggingface.co/docs/optimum/en/concept_guides/quantization">quantization</a> algorithm.</p>
 <blockquote>
@@ -143,10 +143,6 @@
 		</div>
 		<div class="termsfloating_right">
 			<p>
-			
-			
-			
-			
 			
 			
 			
@@ -390,8 +386,6 @@
 		</div>
 		<div class="termsfloating_right">
 			<p>
-			
-			
 			
 			
 			

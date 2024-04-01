@@ -7,22 +7,10 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Mon, 01 Apr 2024 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Sun, 30 Jul 2023 00:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
 		
-		<item>
-			<title>quantization</title>
-			<link>https://harpomaxx.github.io/tags/quantization/</link>
-			<pubDate>Mon, 01 Apr 2024 00:00:00 +0000</pubDate>
-			
-			<guid>https://harpomaxx.github.io/tags/quantization/</guid>
-			<description>
-				
-				
-				
-			</description>
-		</item>
 		<item>
 			<title>datasets</title>
 			<link>https://harpomaxx.github.io/tags/datasets/</link>
@@ -288,11 +276,11 @@
 			</description>
 		</item>
 		<item>
-			<title>books</title>
-			<link>https://harpomaxx.github.io/tags/books/</link>
-			<pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
+			<title>dimensional reduction</title>
+			<link>https://harpomaxx.github.io/tags/dimensional-reduction/</link>
+			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/tags/books/</guid>
+			<guid>https://harpomaxx.github.io/tags/dimensional-reduction/</guid>
 			<description>
 				
 				
@@ -300,11 +288,11 @@
 			</description>
 		</item>
 		<item>
-			<title>dimensional reduction</title>
-			<link>https://harpomaxx.github.io/tags/dimensional-reduction/</link>
-			<pubDate>Mon, 16 Nov 2020 00:00:00 +0000</pubDate>
+			<title>books</title>
+			<link>https://harpomaxx.github.io/tags/books/</link>
+			<pubDate>Sun, 11 Oct 2020 00:00:00 +0000</pubDate>
 			
-			<guid>https://harpomaxx.github.io/tags/dimensional-reduction/</guid>
+			<guid>https://harpomaxx.github.io/tags/books/</guid>
 			<description>
 				
 				

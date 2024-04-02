@@ -99,7 +99,10 @@
 <blockquote>
 <p><em>Quantization is a technique to reduce the computational and memory costs of running inference by representing the weights and activations with low-precision data types like 4-bit (int4) or 8-bit integer (<code>int8</code>) instead of the usual 32-bit floating point (<code>float32</code>).</em></p>
 </blockquote>
-<p>On the other hand, <strong>GGUF</strong> (Generic Universal File Format) is a compact, efficient format designed the the team behind llam.cpp for storing and transferring LLM , particularly suited for deployment in inference tasks.</p>
+<p>On the other hand, <strong>GGUF</strong> is a compact, efficient format designed the the team behind llama.cpp for storing and transferring LLM , particularly suited for deployment in inference tasks.</p>
+<blockquote>
+<p><em>GGUF is a file format for storing models for inference with GGML and executors based on GGML. GGUF is a binary format that is designed for fast loading and saving of models, and for ease of reading. Models are traditionally developed using PyTorch or another framework, and then converted to GGUF for use in GGML.</em></p>
+</blockquote>
 <h3 id="why-convert-models-to-gguf"><strong>Why Convert Models to GGUF?</strong></h3>
 <p>Converting models to GGUF can significantly reduce the model size while maintaining precision, making it ideal for deployment in environments where resources are limited. The GGUF format is also optimized for CPU speed (GPU is also supported), ensuring that your models run as efficiently as possible. See <a href="https://medium.com/@metechsolutions/llm-by-examples-use-gguf-quantization-3e2272b66343">here</a> for a more complete list of the benefits of using GGUF.</p>
 <h3 id="step-by-step-conversion-to-gguf-using-llamacpp"><strong>Step-by-Step Conversion to GGUF Using llama.cpp</strong></h3>

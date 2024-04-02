@@ -5,16 +5,16 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="quantization"><meta name="description" content="Sometimes your finetuned language Model work as expected but you need a faster inference time. Some other times you need to reduce memory footprint. By transformring your models to the GUFF format you can store quantized models and using them on top of the fast llama.cpp inference engine. [5 min read]"><meta property="og:title" content="Converting your own finetuned language model to GUFF" />
-<meta property="og:description" content="Sometimes your finetuned language Model work as expected but you need a faster inference time. Some other times you need to reduce memory footprint. By transformring your models to the GUFF format you can store quantized models and using them on top of the fast llama.cpp inference engine. [5 min read]" />
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="quantization"><meta name="description" content="Sometimes your finetuned language Model work as expected but you need a faster inference time. Some other times you need to reduce memory footprint. By transformring your models to the GGUF format you can store quantized models and using them on top of the fast llama.cpp inference engine. [5 min read]"><meta property="og:title" content="Converting your own finetuned language model to GGUF" />
+<meta property="og:description" content="Sometimes your finetuned language Model work as expected but you need a faster inference time. Some other times you need to reduce memory footprint. By transformring your models to the GGUF format you can store quantized models and using them on top of the fast llama.cpp inference engine. [5 min read]" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://harpomaxx.github.io/post/2024-04-01-converting-to-gguf/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2024-04-01T00:00:00+00:00" />
 <meta property="article:modified_time" content="2024-04-01T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Converting your own finetuned language model to GUFF"/>
-<meta name="twitter:description" content="Sometimes your finetuned language Model work as expected but you need a faster inference time. Some other times you need to reduce memory footprint. By transformring your models to the GUFF format you can store quantized models and using them on top of the fast llama.cpp inference engine. [5 min read]"/>
+<meta name="twitter:title" content="Converting your own finetuned language model to GGUF"/>
+<meta name="twitter:description" content="Sometimes your finetuned language Model work as expected but you need a faster inference time. Some other times you need to reduce memory footprint. By transformring your models to the GGUF format you can store quantized models and using them on top of the fast llama.cpp inference engine. [5 min read]"/>
 <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
 	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
 	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
@@ -22,7 +22,7 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
 	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
 	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Converting your own finetuned language model to GUFF | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Converting your own finetuned language model to GGUF | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
 </head>
@@ -75,7 +75,7 @@
 		</div>
 		
 		<div class="matter">
-			<h1 class="title">Converting your own finetuned language model to GUFF</h1>
+			<h1 class="title">Converting your own finetuned language model to GGUF</h1>
 		</div>
 	</div>
 	<div class="author">
@@ -93,25 +93,25 @@
 
 	<div class="markdown">
 		<p>In the fast-paced world of artificial intelligence and machine learning, efficiency and performance are key. Let&rsquo;s say you have finetuned your own version of language model for a particular downstream task using 🤗 Hugging Face <a href="https://huggingface.co/docs/trl/en/index">TRL</a> framework . The finetuned version is working as expected, but the resulting model is still to big for your particular specifications. Moreover, the inference is somewhat slow.</p>
-<p>That&rsquo;s where tools like <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> and the GUFF format come into play. This post is just a pretty small guide for converting your AI models to the GUFF format using llama.cpp.</p>
-<h3 id="what-is-llamacpp-and-guff-format"><strong>What is llama.cpp and GUFF Format?</strong></h3>
+<p>That&rsquo;s where tools like <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> and the GGUF format come into play. This post is just a pretty small guide for converting your AI models to the GGUF format using llama.cpp.</p>
+<h3 id="what-is-llamacpp-and-gguf-format"><strong>What is llama.cpp and GGUF Format?</strong></h3>
 <p><a href="https://github.com/ggerganov/llama.cpp">Llama.cpp</a> started as a C++ rewrite of the inference engine of the the original Llama model (released by <a href="https://ai.meta.com/blog/large-language-model-llama-meta-ai/">Meta in February 23</a>). The original goal was to to make possible to run llama on apple CPUs. Now, it has become a complete ecosystem to run and test your local Language Models. Llama.cpp focus on providing an efficient, high-performance foundation for running these models. Beyond the many performence improvement hacks implemented inside llama.cpp code, the most relevant is the its <a href="https://huggingface.co/docs/optimum/en/concept_guides/quantization">quantization</a> algorithm.</p>
 <blockquote>
 <p><em>Quantization is a technique to reduce the computational and memory costs of running inference by representing the weights and activations with low-precision data types like 4-bit (int4) or 8-bit integer (<code>int8</code>) instead of the usual 32-bit floating point (<code>float32</code>).</em></p>
 </blockquote>
-<p>On the other hand, <strong>GUFF</strong> (Generic Universal File Format) is a compact, efficient format designed the the team behind llam.cpp for storing and transferring LLM , particularly suited for deployment in inference tasks.</p>
-<h3 id="why-convert-models-to-guff"><strong>Why Convert Models to GUFF?</strong></h3>
-<p>Converting models to GUFF can significantly reduce the model size while maintaining precision, making it ideal for deployment in environments where resources are limited. The GUFF format is also optimized for CPU speed (GPU is also supported), ensuring that your models run as efficiently as possible. See <a href="https://medium.com/@metechsolutions/llm-by-examples-use-gguf-quantization-3e2272b66343">here</a> for a more complete list of the benefits of using GUFF.</p>
-<h3 id="step-by-step-conversion-to-guff-using-llamacpp"><strong>Step-by-Step Conversion to GUFF Using llama.cpp</strong></h3>
-<p>Converting your models to GUFF format involves a few steps but fret not; the process is straightforward. Here&rsquo;s how to do it:</p>
+<p>On the other hand, <strong>GGUF</strong> (Generic Universal File Format) is a compact, efficient format designed the the team behind llam.cpp for storing and transferring LLM , particularly suited for deployment in inference tasks.</p>
+<h3 id="why-convert-models-to-gguf"><strong>Why Convert Models to GGUF?</strong></h3>
+<p>Converting models to GGUF can significantly reduce the model size while maintaining precision, making it ideal for deployment in environments where resources are limited. The GGUF format is also optimized for CPU speed (GPU is also supported), ensuring that your models run as efficiently as possible. See <a href="https://medium.com/@metechsolutions/llm-by-examples-use-gguf-quantization-3e2272b66343">here</a> for a more complete list of the benefits of using GGUF.</p>
+<h3 id="step-by-step-conversion-to-gguf-using-llamacpp"><strong>Step-by-Step Conversion to GGUF Using llama.cpp</strong></h3>
+<p>Converting your models to GGUF format involves a few steps but fret not; the process is straightforward. Here&rsquo;s how to do it:</p>
 <h4 id="1-install-llama-cpp">1. Install llama-cpp</h4>
 <p>Before you begin, you&rsquo;ll need to have <strong>llama-cpp</strong> installed on your system. This setup ensures that you have all the necessary libraries and dependencies to convert and run your models.</p>
 <h4 id="2-convert-your-model">2. Convert Your Model</h4>
-<p>Next, you&rsquo;ll convert your existing model to a GUFF-compatible format. This is done via a Python script, <strong><code>convert.py</code></strong>, The <code>convert.py</code> tool is <em>mostly</em> just for converting models in other formats (like HuggingFace) to one that other llama.cpp tools can deal with.</p>
+<p>Next, you&rsquo;ll convert your existing model to a GGUF-compatible format. This is done via a Python script, <strong><code>convert.py</code></strong>, The <code>convert.py</code> tool is <em>mostly</em> just for converting models in other formats (like HuggingFace) to one that other llama.cpp tools can deal with.</p>
 <p>The command looks something like this:</p>
 <pre><code>python convert.py model_dir/ --outtype f32 --outfile &quot;model_dir/model.bin&quot;
 </code></pre>
-<p>This command specifies the input model directory, the output type (in this case, <strong><code>f32</code></strong> for 32-bit floating point), and the output file name and location. Possible values for <code>--outtype</code> are <code>f16</code> and <code>q8</code>. Notice that here you are not applying any quantization algorithm, you are just converting from the Hugging Face format to the GUFF format.</p>
+<p>This command specifies the input model directory, the output type (in this case, <strong><code>f32</code></strong> for 32-bit floating point), and the output file name and location. Possible values for <code>--outtype</code> are <code>f16</code> and <code>q8</code>. Notice that here you are not applying any quantization algorithm, you are just converting from the Hugging Face format to the GGUF format.</p>
 <p>If needed you can quantize up to <code>Q8</code> (i.e 8-bits) using the <code>convert.py</code> script. However if you want to use some lower quantization approaches, the you will need to process the <code>model.bin</code> file with other tool.</p>
 <h4 id="3-lower-quantization">3. Lower Quantization</h4>
 <p>To quantize to lower sizes, you will need to use the <code>quantize</code> command. For that you will need to compile llama.cpp from the sources. The <code>quantize</code> command allow you to quantize your model to different size. The list is large&hellip; but usually the best choices are: <code>q5_k_m</code> (5-bit quantization) and <code>q4_k_m</code> (4-bit quantization), but the final choice is yours of course.</p>
@@ -123,11 +123,11 @@
 </code></pre>
 <p>This step converts your <strong><code>.bin</code></strong> file into a <strong><code>.gguf</code></strong> file, which is ready for deployment.</p>
 <h3 id="some-final-comments"><strong>Some final comments</strong></h3>
-<p>Converting your models to the GUFF format dramatically improve inference performance, especially in resource-constrained environments. However, as expected the performance can be degraded. So the final trade off between inference speed and performance we will depend on you and the goal of of your downstream task.</p>
+<p>Converting your models to the GGUF format dramatically improve inference performance, especially in resource-constrained environments. However, as expected the performance can be degraded. So the final trade off between inference speed and performance we will depend on you and the goal of of your downstream task.</p>
 <p>On the other hand, it is clear the following recipe can change over the time. Llama.cpp ecosystem is very active and most of the tools are provided as-is without a clear documentation. The <code>convert.py</code> script is an example where not all the parameters are clearly explained. For instance the parameter <code>--vocab-type</code> support different strategies like <code>spm</code>, <code>bpe</code>, <code>hfft</code> but no example about how to use them is provided. I&rsquo;m personally interested in using <code>bpe</code> but not sure how to do it. I will investigate and improve this post in the future.</p>
 <h3 id="references">References</h3>
-<p><a href="https://github.com/ggerganov/llama.cpp/discussions/2948">[1]</a> A discussion about the quantization process from hugging face models to guff</p>
-<p><a href="https://github.com/ggerganov/llama.cpp/discussions/4068">[2]</a> Another comprehensive guide for quantizing LLM to GUFF.</p>
+<p><a href="https://github.com/ggerganov/llama.cpp/discussions/2948">[1]</a> A discussion about the quantization process from hugging face models to GGUF</p>
+<p><a href="https://github.com/ggerganov/llama.cpp/discussions/4068">[2]</a> Another comprehensive guide for quantizing LLM to GGUF.</p>
 
 	</div>
 	

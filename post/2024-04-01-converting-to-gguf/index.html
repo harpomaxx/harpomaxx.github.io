@@ -99,7 +99,7 @@
 <blockquote>
 <p><em>Quantization is a technique to reduce the computational and memory costs of running inference by representing the weights and activations with low-precision data types like 4-bit (int4) or 8-bit integer (<code>int8</code>) instead of the usual 32-bit floating point (<code>float32</code>).</em></p>
 </blockquote>
-<p>On the other hand, <strong>GGUF</strong> is a compact, efficient format designed the the team behind llama.cpp for storing and transferring LLM , particularly suited for deployment in inference tasks.</p>
+<p>On the other hand, <a href="https://github.com/ggerganov/ggml/blob/master/docs/gguf.md"><strong>GGUF</strong></a> is a compact, efficient format designed the the team behind llama.cpp for storing and transferring LLM , particularly suited for deployment in inference tasks.</p>
 <blockquote>
 <p><em>GGUF is a file format for storing models for inference with GGML and executors based on GGML. GGUF is a binary format that is designed for fast loading and saving of models, and for ease of reading. Models are traditionally developed using PyTorch or another framework, and then converted to GGUF for use in GGML.</em></p>
 </blockquote>
@@ -116,6 +116,7 @@
 </code></pre>
 <p>This command specifies the input model directory, the output type (in this case, <strong><code>f32</code></strong> for 32-bit floating point), and the output file name and location. Possible values for <code>--outtype</code> are <code>f16</code> and <code>q8</code>. Notice that here you are not applying any quantization algorithm, you are just converting from the Hugging Face format to the GGUF format.</p>
 <p>If needed you can quantize up to <code>Q8</code> (i.e 8-bits) using the <code>convert.py</code> script. However if you want to use some lower quantization approaches, the you will need to process the <code>model.bin</code> file with other tool.</p>
+<p>In my experience the better approach is to use the convert script with no quantization (i.e. using <code>--outtype f32</code> ) and the using the <code>quantize</code> command to do the actual quantization. Some people have reported a minor performance loos if you first apply some level of quantization like <code>Q8</code> in the <code>convert.py</code> script and then apply a new quantization again using the <code>quantize</code> command. In my case I observed that behavior even when you use <code>f16</code>, so I prefer to use always <code>--outtype f32</code>.</p>
 <h4 id="3-lower-quantization">3. Lower Quantization</h4>
 <p>To quantize to lower sizes, you will need to use the <code>quantize</code> command. For that you will need to compile llama.cpp from the sources. The <code>quantize</code> command allow you to quantize your model to different size. The list is large&hellip; but usually the best choices are: <code>q5_k_m</code> (5-bit quantization) and <code>q4_k_m</code> (4-bit quantization), but the final choice is yours of course.</p>
 <blockquote>

@@ -2,14 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://harpomaxx.github.io/post/2026-11-23-slips-summaries-rpi-part-1-inference/</loc>
+    <lastmod>2026-11-23T12:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://harpomaxx.github.io/post/2026-11-23-slips-summaries-rpi-part-2-fine-tuning-and-evaluation/</loc>
+    <lastmod>2026-11-23T11:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://harpomaxx.github.io/categories/</loc>
-    <lastmod>2025-03-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-23T12:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/</loc>
-    <lastmod>2025-03-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-23T12:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/categories/language-models/</loc>
-    <lastmod>2025-03-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-23T12:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/post/2025-03-29-stop-using-llms-from-big-tech-for-doing-research/</loc>
     <lastmod>2025-03-29T00:00:00+00:00</lastmod>
@@ -18,7 +24,7 @@
     <lastmod>2025-03-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/post/</loc>
-    <lastmod>2025-03-29T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-23T12:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/post/2024-04-01-converting-to-gguf/</loc>
     <lastmod>2024-04-01T00:00:00+00:00</lastmod>
@@ -69,7 +75,7 @@
     <lastmod>2023-03-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/categories/infosec/</loc>
-    <lastmod>2023-03-19T00:00:00+00:00</lastmod>
+    <lastmod>2026-11-23T12:00:00+00:00</lastmod>
   </url><url>
     <loc>https://harpomaxx.github.io/tags/keras/</loc>
     <lastmod>2023-03-19T00:00:00+00:00</lastmod>

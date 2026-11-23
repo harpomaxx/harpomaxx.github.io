@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.101.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="hugo,vitae,theme,static"><meta name="description" content="Can a small language model explain security alerts on a Raspberry Pi 5, with nothing sent to the cloud? It can, but the runtime matters more than the model, and long prompts hurt some models much more than others. [14 min read]"><meta property="og:title" content="Summarizing Security Alerts on a Raspberry Pi, Part 1: Inference" />
+<meta property="og:description" content="Can a small language model explain security alerts on a Raspberry Pi 5, with nothing sent to the cloud? It can, but the runtime matters more than the model, and long prompts hurt some models much more than others. [14 min read]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/2026-11-23-slips-summaries-rpi-part-1-inference/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2026-11-23T12:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-23T12:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Summarizing Security Alerts on a Raspberry Pi, Part 1: Inference"/>
+<meta name="twitter:description" content="Can a small language model explain security alerts on a Raspberry Pi 5, with nothing sent to the cloud? It can, but the runtime matters more than the model, and long prompts hurt some models much more than others. [14 min read]"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Summarizing Security Alerts on a Raspberry Pi, Part 1: Inference | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">23</span>
+				<span class="rest">Nov 2026</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Summarizing Security Alerts on a Raspberry Pi, Part 1: Inference</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://sigmoid.social/@harpomaxx">Harpo MAxx</a>
+		
+	
+	
+		(14 min read)
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		<blockquote>
+<p><strong>Part 1 of 2.</strong> This post covers inference on the Raspberry Pi. <a href="/post/2026-11-23-slips-summaries-rpi-part-2-fine-tuning-and-evaluation/">Part 2</a> covers fine-tuning and evaluation.</p>
+</blockquote>
+<h2>1. The Problem</h2>
+<p>Slips <a href="https://github.com/stratosphereips/StratosphereLinuxIPS">[1]</a>, our
+behavioral IDS, reports what it detects as incidents: one incident per
+monitored IP and time window, grouping all the correlated detections. The
+reports are detailed but not easy to read quickly, especially for someone who
+is not a security specialist. We want Slips to explain each incident in a few
+clear lines, and to do it <strong>on the device where Slips runs</strong>, often a really
+small device like a <strong>Raspberry Pi 5</strong>, without sending alert data to a cloud
+service.</p>
+<p>Running the language model next to Slips, following an <strong>edge AI</strong> approach,
+brings several practical advantages:</p>
+<ul>
+<li><strong>Privacy:</strong> alert data never leaves the monitored network.</li>
+<li><strong>Cost:</strong> no cloud API fees or per-query charges.</li>
+<li><strong>Offline operation:</strong> it works in air-gapped or low-connectivity networks.</li>
+<li><strong>Deployment:</strong> the model ships with Slips, which already runs on the Pi.</li>
+</ul>
+<p>The obvious alternative, sending the alerts to a cloud API, does not work for
+the networks Slips targets: there, sending raw incident data to an external
+service is a policy violation, a privacy risk, or simply impossible because
+there is no reliable outbound connection.</p>
+<p>However, this also means working with 8 GB of RAM, a 4-core ARM Cortex-A76 CPU
+and no GPU. Every decision below follows from that constraint.</p>
+<p>This is the first of two posts. We fine-tuned three small open models for the
+task, <strong>Qwen2.5-1.5B</strong>, <strong>Qwen3.5-0.8B</strong> and <strong>Qwen3-0.6B</strong>. This post is
+about running them on the Pi: how a Slips incident becomes a prompt small
+enough for the device, and what we measured there. The second post,
+<a href="/post/2026-11-23-slips-summaries-rpi-part-2-fine-tuning-and-evaluation/">Part 2: Fine-Tuning and Evaluation</a>, covers how the models were trained
+and how their quality was measured. The short version: <strong>on the Pi, Qwen3.5-0.8B summarizes as well as Qwen2.5-1.5B at half
+the size, and it is the fastest of the three.</strong> At full precision Qwen2.5-1.5B
+is better, but it loses that advantage when quantized to run on the Pi, while
+Qwen3.5-0.8B loses nothing. The Pi measurements also showed two things we did
+not expect: the serving runtime matters more than the model, and long prompts
+slow some models down much more than others.</p>
+<p><img alt="Summary quality, time per summary on the Pi 5, and writing speed after 2,048 tokens" src="images/blog_v3_summary_models.png" /></p>
+<h2>2. From Slips Alerts to Model Input</h2>
+<p>Slips <a href="https://github.com/stratosphereips/StratosphereLinuxIPS">[1]</a> is an
+open-source behavioral network IDS developed at the
+Stratosphere IPS Lab <a href="https://www.stratosphereips.org/">[2]</a> at the Czech
+Technical University in Prague. Unlike signature-based tools, Slips builds
+behavioral profiles of network flows and correlates detections across time
+windows. It produces its output in the IDEA format <a href="https://idea.cesnet.cz/en/index">[3]</a>,
+a JSON incident schema defined by CESNET.</p>
+<p>A Slips session produces a stream of <strong>Incident</strong> and <strong>Event</strong> objects. Each
+<strong>Incident</strong> aggregates correlated evidence about a source IP during a time
+window. Each <strong>Event</strong> is a specific detection: a port scan, a connection to an
+unusual port, a DNS query to a known C2 domain. Incidents contain from a
+handful to several thousand events.</p>
+<p>Before the model sees any data, a preprocessing step called the <strong>DAG
+generator</strong> converts the IDEA JSON into a compact text block (section 2.3).</p>
+<h3>2.1 An Example</h3>
+<p>Below is a real incident from our evaluation set, from the raw JSON to the
+summary written by the fine-tuned Qwen3.5-0.8B (q4_k_m).</p>
+<p><strong>Step 1 — Raw IDEA JSON</strong> (2 of 31 events, some fields omitted; the full
+incident is about 13,000 tokens):</p>
+<pre><code class="language-json">// Event 1 of 31
+{ &quot;Status&quot;: &quot;Event&quot;, &quot;Severity&quot;: &quot;Medium&quot;,
+  &quot;StartTime&quot;: &quot;1970-01-01T07:02:02.550547+00:00&quot;,
+  &quot;Description&quot;: &quot;Connection to unknown destination port 449/TCP destination IP 177.251.27.6. threat level: medium.&quot;,
+  &quot;Source&quot;: [{ &quot;IP&quot;: &quot;192.168.1.113&quot;, &quot;Port&quot;: [49818] }],
+  &quot;Target&quot;: [{ &quot;IP&quot;: &quot;177.251.27.6&quot;, &quot;Port&quot;: [449] }] }
+
+// Event 2 of 31
+{ &quot;Status&quot;: &quot;Event&quot;, &quot;Severity&quot;: &quot;Medium&quot;,
+  &quot;StartTime&quot;: &quot;1970-01-01T07:10:41.685141+00:00&quot;,
+  &quot;Description&quot;: &quot;Connection to unknown destination port 449/TCP destination IP 209.205.188.238. threat level: medium.&quot;,
+  &quot;Source&quot;: [{ &quot;IP&quot;: &quot;192.168.1.113&quot;, &quot;Port&quot;: [49833] }],
+  &quot;Target&quot;: [{ &quot;IP&quot;: &quot;209.205.188.238&quot;, &quot;Port&quot;: [449] }] }
+
+// ... 29 more events
+</code></pre>
+<p><strong>Step 2 — DAG generator output</strong> (31 events grouped into 10 bullets,
+about 1,000 tokens):</p>
+<pre><code>Incident: c29b1e6e-adb4-46bd-b4cc-f0b597813abc
+Source IP: 192.168.1.113 | Timewindow: 8
+Timeline: 1970-01-01 07:00:17 to 1970-01-01 08:00:17
+Threat Level: 15.1 | Events: 31
+
+• 07:00-07:03 - 2 events to Horizontal [HIGH]
+  - Horizontal port scan to port  443/TCP. From 192.168.1.113 to 5 unique destination IPs. ...
+  - Horizontal port scan to port  449/TCP. From 192.168.1.113 to 5 unique destination IPs. ...
+• 07:02 - 9 events to 177.251.27.6:449 [MEDIUM]
+  - Connection to unknown destination port 449/TCP destination IP 177.251.27.6. threat level: medium. (x9)
+• 07:10-07:11 - 9 events to 209.205.188.238:449 [MEDIUM]
+  - Connection to unknown destination port 449/TCP destination IP 209.205.188.238. threat level: medium. (x9)
+• 07:20 - Event to 92.53.91.20 [MEDIUM]
+  - Multiple reconnection attempts to Destination IP: 92.53.91.20 from IP: 192.168.1.113 reconnections: 5 ...
+... (more groups)
+</code></pre>
+<p><strong>Step 3 — Summary by the fine-tuned Qwen3.5-0.8B:</strong></p>
+<pre><code>• 07:00-07:22 - Multiple connections to unknown destination port 449/TCP
+  from IP 192.168.1.113 [MEDIUM]
+• 07:02-07:20 - Multiple reconnection attempts to Destination IP 177.251.27.6
+  from IP 192.168.1.113 [MEDIUM]
+• 07:00-07:03 - Horizontal port scan to port 443/TCP from IP 192.168.1.113
+  to 5 unique destination IPs [HIGH]
+
+Total Evidence: 31 events
+Severity breakdown: High: 1, Medium: 2, Info: 0
+</code></pre>
+<p>The model merges the repeated port-449 connections into one line, keeps the
+horizontal scan as the most important event, and assigns its own severities.
+31 JSON objects become three bullets.</p>
+<h3>2.2 The Token Budget Problem</h3>
+<p>Slips alerts are large: the raw IDEA JSON of even a small incident is over
+10,000 tokens. Giving this directly to a small model is not feasible, for two
+compounding reasons:</p>
+<ol>
+<li><strong>Speed:</strong> on the Pi, every token of input costs time. With llama.cpp the
+   fastest of our models reads about 100 tokens per second and writes about
+   10.</li>
+<li><strong>Memory:</strong> the Pi runs Slips alongside the model, and the available RAM
+   limits how large a context the model can use. We serve the models with an
+   8,192-token context.</li>
+</ol>
+<p>Keeping the input compact is not an optimisation, it is a requirement. The
+solution is a preprocessing pipeline that runs before the model call.</p>
+<h3>2.3 Step 1: The DAG Generator</h3>
+<p>The DAG generator is a simple parser that keeps as much of the original
+information as possible in as few tokens as possible. It parses the IDEA
+fields (severity, source, target IP and port, timestamps) and groups events
+that share the same severity and destination into a single bullet, with a
+time range and up to three unique raw descriptions.</p>
+<p>We call it a DAG (Directed Acyclic Graph) generator because the Slips incident
+structure is a graph: an Incident references multiple Events through
+correlation IDs, and Events share targets or severities with each other. The
+generator traverses this structure and flattens it into a readable, ordered
+text.<sup id="fnref:dag"><a class="footnote-ref" href="#fn:dag">1</a></sup></p>
+<p>The compression is large. Some incidents from our evaluation set (tokens
+counted with the Qwen2.5 tokenizer):</p>
+<div style="overflow-x:auto"><table>
+<thead>
+<tr>
+<th>Events</th>
+<th>Raw IDEA JSON (tokens)</th>
+<th>After DAG generation (tokens)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>29</td>
+<td>11,126</td>
+<td>304</td>
+</tr>
+<tr>
+<td>31</td>
+<td>13,028</td>
+<td>987</td>
+</tr>
+<tr>
+<td>516</td>
+<td>323,057</td>
+<td>1,573</td>
+</tr>
+<tr>
+<td>2,987</td>
+<td>1,236,201</td>
+<td>4,465</td>
+</tr>
+<tr>
+<td>6,267</td>
+<td>7,961,852</td>
+<td>11,002</td>
+</tr>
+</tbody>
+</table></div>
+<h3>2.4 Step 2: Truncation</h3>
+<p>Even after DAG generation, the long tail is significant. Across the 513
+incidents of our dataset:</p>
+<div style="overflow-x:auto"><table>
+<thead>
+<tr>
+<th>Percentile</th>
+<th>Tokens after DAG generation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Median (p50)</td>
+<td>1,468</td>
+</tr>
+<tr>
+<td>p90</td>
+<td>11,111</td>
+</tr>
+<tr>
+<td>p95</td>
+<td>13,011</td>
+</tr>
+<tr>
+<td>Maximum</td>
+<td>25,903</td>
+</tr>
+</tbody>
+</table></div>
+<p>A third of the incidents (168 of 513) are still longer than 4,096 tokens. For
+those, the Slips integration truncates the DAG at a clean line boundary and
+appends a marker, so the model knows that the input is incomplete:</p>
+<ol>
+<li>Split the DAG text on newlines.</li>
+<li>Accumulate lines until the next one would exceed the token budget.</li>
+<li>Append <code>[truncated: showing first ~N tokens of full DAG]</code>.</li>
+</ol>
+<p>Truncation is not an ideal solution, and the current models never saw the
+marker during training (<a href="/post/2026-11-23-slips-summaries-rpi-part-2-fine-tuning-and-evaluation/">Part 2</a>). A better alternative is to split large
+incidents into chunks, summarize each chunk and merge the partial summaries
+in a second pass, at the cost of several model calls per incident. This is the
+next thing we want to explore.</p>
+<p>The full inference pipeline:</p>
+<p><img src="images/inference_pipeline.svg" alt="The inference pipeline: Slips alerts, DAG generator, truncation when needed, model call on the Pi, summary" style="display:block;margin:0 auto"></p>
+<h2>3. Running on the Raspberry Pi 5</h2>
+<p>This is the most important part. Everything else (fine-tuning, quantization,
+dataset design) is in service of making this work on constrained hardware.
+How the models were trained and how their quality was measured is covered in
+<a href="/post/2026-11-23-slips-summaries-rpi-part-2-fine-tuning-and-evaluation/">Part 2</a>; here it is enough to know that, quantized for the Pi,
+Qwen3.5-0.8B and Qwen2.5-1.5B write summaries of the same quality, and
+Qwen3-0.6B is less reliable.</p>
+<h3>3.1 The Three Models</h3>
+<p>The Pi's memory and CPU rule out most models: beyond about 3B parameters,
+memory pressure and speed make the device impractical (see our earlier
+benchmark, How well do LLMs perform on a Raspberry Pi 5? <a href="https://www.stratosphereips.org/blog/2025/6/5/how-well-do-llms-perform-on-a-raspberry-pi-5">[4]</a>).
+We compared three small models from the
+Qwen <a href="https://huggingface.co/Qwen">[5]</a> family:</p>
+<div style="overflow-x:auto"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Parameters</th>
+<th>q4_k_m file</th>
+<th>Attention</th>
+<th>KV cache per token</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen2.5-1.5B</td>
+<td>1.5B</td>
+<td>986 MB</td>
+<td>28 full-attention layers</td>
+<td>~28 KB</td>
+</tr>
+<tr>
+<td>Qwen3.5-0.8B</td>
+<td>0.8B</td>
+<td>529 MB</td>
+<td>6 full-attention + 18 linear-attention layers</td>
+<td>~12 KB</td>
+</tr>
+<tr>
+<td>Qwen3-0.6B</td>
+<td>0.6B</td>
+<td>396 MB</td>
+<td>28 full-attention layers</td>
+<td>~115 KB</td>
+</tr>
+</tbody>
+</table></div>
+<p>The last column turned out to matter more than the parameter count (section
+3.3).</p>
+<p>The models are trained in the standard Hugging Face format, which is not
+practical on the Pi. We run them as GGUF <a href="https://github.com/ggml-org/llama.cpp">[6]</a>
+files, the native format of llama.cpp, which runs efficiently on CPUs and can
+be served by llama.cpp <a href="https://github.com/ggml-org/llama.cpp">[6]</a> itself or by
+tools built on it such as Ollama <a href="https://ollama.com">[7]</a>. Each model is exported
+at three quantization levels: q4_k_m, q5_k_m and q8_0.</p>
+<h3>3.2 The Runtime Matters More Than the Model</h3>
+<p>We measured the three fine-tuned models on a Raspberry Pi 5 (8 GB, 4 threads)
+with the five incidents closest to the median DAG length, using the exact
+prompts of the quality evaluation (the DAG plus the instructions, about 2,260
+tokens). We compared Ollama 0.19 with llama.cpp's <code>llama-server</code> on the same
+GGUF files, with the same prompt and greedy decoding.</p>
+<div style="overflow-x:auto"><table>
+<thead>
+<tr>
+<th>Model (q4_k_m)</th>
+<th>Runtime</th>
+<th>Time per summary</th>
+<th>Reading the prompt (tok/s)</th>
+<th>Writing (tok/s)</th>
+<th>Peak RAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Qwen3.5-0.8B</strong></td>
+<td>llama.cpp</td>
+<td><strong>52 s</strong></td>
+<td>96</td>
+<td>10.5</td>
+<td>1.7 GB</td>
+</tr>
+<tr>
+<td></td>
+<td>Ollama</td>
+<td>130 s</td>
+<td>30</td>
+<td>6.3</td>
+<td>1.6 GB</td>
+</tr>
+<tr>
+<td>Qwen3-0.6B</td>
+<td>llama.cpp</td>
+<td>67 s</td>
+<td>87</td>
+<td>6.5</td>
+<td>2.9 GB</td>
+</tr>
+<tr>
+<td></td>
+<td>Ollama</td>
+<td>222 s</td>
+<td>14</td>
+<td>5.9</td>
+<td>1.6 GB</td>
+</tr>
+<tr>
+<td>Qwen2.5-1.5B</td>
+<td>llama.cpp</td>
+<td>86 s</td>
+<td>49</td>
+<td>7.2</td>
+<td>2.5 GB</td>
+</tr>
+<tr>
+<td></td>
+<td>Ollama</td>
+<td>176 s</td>
+<td>16</td>
+<td>7.5</td>
+<td>1.3 GB</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Median of 5 incidents.</em></p>
+<p>With the same file and prompt, llama.cpp is 2–3× faster than Ollama. Almost
+all of the difference is in <em>reading</em> the prompt, which is 3–6× faster in
+llama.cpp. On the Pi this is the dominant cost: a summary reads ~2,260 tokens
+and writes only ~300–450. With Ollama, Qwen3.5-0.8B needs 78 seconds before
+writing the first word; with llama.cpp, 24 seconds. llama.cpp uses more
+memory, still well within 8 GB. The commands to run the model with llama.cpp
+are in section 3.6.</p>
+<h3>3.3 The Slowdown with Long Prompts</h3>
+<p>The writing speeds above are much lower than in a standard benchmark with an
+empty context (Qwen3-0.6B: 6.5 tokens/s with real prompts vs 23.6 in
+<code>llama-bench</code>). The reason is the context. Every new token has to look at all
+previous tokens, whose keys and values are kept in the attention cache (the
+KV cache). How big that cache is per token depends on the architecture:</p>
+<div style="overflow-x:auto"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>KV cache per token</th>
+<th>Writing speed, empty context</th>
+<th>After 2,048 tokens, flash attention off</th>
+<th>After 2,048 tokens, flash attention on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen3-0.6B</td>
+<td>~115 KB</td>
+<td>23.6</td>
+<td>13.3</td>
+<td>7.0</td>
+</tr>
+<tr>
+<td>Qwen2.5-1.5B</td>
+<td>~28 KB</td>
+<td>9.8</td>
+<td>9.1</td>
+<td>8.0</td>
+</tr>
+<tr>
+<td><strong>Qwen3.5-0.8B</strong></td>
+<td><strong>~12 KB</strong></td>
+<td>13.7</td>
+<td><strong>13.0</strong></td>
+<td>11.2</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Tokens/s, q4_k_m, llama.cpp <code>llama-bench</code>.</em></p>
+<ul>
+<li><strong>Qwen3-0.6B</strong> is the smallest model but has the largest cache per token (28
+  layers with 8 key-value heads each), so it loses almost half its speed after
+  2,048 tokens. This also explains its higher memory use.</li>
+<li><strong>Qwen3.5-0.8B</strong> uses full attention in only 6 of its 24 layers; the others
+  use linear attention with a fixed-size state. Its cache is the smallest, and
+  long prompts barely slow it down.</li>
+<li><strong>Flash attention makes it worse on the Pi's CPU.</strong> <code>llama-server</code> turns it
+  on by default (<code>-fa auto</code>). Turning it off (<code>-fa off</code>) is faster for every
+  model: +90% for Qwen3-0.6B, +16% for Qwen3.5-0.8B and +14% for Qwen2.5-1.5B.
+  Ollama already keeps it off, so that is not why Ollama is slower.</li>
+</ul>
+<h3>3.4 Other Things We Observed</h3>
+<ul>
+<li><strong>Repetition loop.</strong> On one incident with many near-identical reconnection
+  events, Qwen3.5-0.8B (q4_k_m and q5_k_m) repeats the same bullet until it
+  hits the output limit, in both runtimes; q8_0 does not. Always keep an
+  output limit (1,024 tokens for summaries).</li>
+<li><strong>Heat.</strong> Without active cooling the Pi sat at 75–78 °C and reached 83–84 °C
+  during the longest runs, where it started throttling. For continuous use the
+  Pi needs a heatsink or fan.</li>
+<li><strong>The runtimes do not give identical answers.</strong> Even with greedy decoding,
+  only 4 of 135 answers (all tasks) were identical between Ollama and
+  llama.cpp; small numeric differences make the texts diverge after a few
+  sentences. Our quality scores come from Ollama answers.</li>
+</ul>
+<h3>3.5 Recommendation</h3>
+<ul>
+<li><strong>Model:</strong> Qwen3.5-0.8B, q4_k_m (529 MB) where memory is tight, q8_0
+  (812 MB) otherwise. On the Pi both take about the same time per summary, and
+  q8_0 avoids the repetition loop we saw.</li>
+<li><strong>Runtime:</strong> llama.cpp (<code>llama-server</code>) rather than Ollama: 2–3× faster per
+  summary on the Pi (section 3.2), with flash attention turned off.</li>
+<li><strong>Hardware:</strong> a Raspberry Pi 5 with a heatsink or fan.</li>
+</ul>
+<p>On the Pi, Qwen2.5-1.5B works too, but once quantized it brings no quality
+gain over Qwen3.5-0.8B, is twice the size and is 1.6× slower with llama.cpp.
+Its advantage only shows at full precision (<a href="/post/2026-11-23-slips-summaries-rpi-part-2-fine-tuning-and-evaluation/">Part 2</a>), which needs a GPU. We
+do not recommend Qwen3-0.6B for summaries.</p>
+<h3>3.6 Running It with llama.cpp</h3>
+<p>Build llama.cpp <a href="https://github.com/ggml-org/llama.cpp">[6]</a> on the Pi with the
+standard CPU build (our measurements used commit <code>8fc0376</code>):</p>
+<pre><code class="language-bash">git clone https://github.com/ggml-org/llama.cpp
+cd llama.cpp
+cmake -B build
+cmake --build build --config Release -j 4
+</code></pre>
+<p>Download the model from Hugging Face (q4_k_m shown; the q8_0 file is in the
+same folder):</p>
+<pre><code class="language-bash">huggingface-cli download stratosphere/qwen3.5-0.8b-slips-immune-summarization \
+  gguf/qwen3.5-0.8b-slips-immune-summarization-Q4_K_M.gguf --local-dir .
+</code></pre>
+<p>Start the server with an 8,192-token context, the Pi's 4 cores and flash
+attention off:</p>
+<pre><code class="language-bash">./llama.cpp/build/bin/llama-server \
+  -m gguf/qwen3.5-0.8b-slips-immune-summarization-Q4_K_M.gguf \
+  -c 8192 -t 4 -np 1 -fa off --jinja \
+  --host 127.0.0.1 --port 8080
+</code></pre>
+<p>Then send the prompt (the summary instructions followed by the DAG) as a
+single user message. Use greedy decoding and keep the output limit:</p>
+<pre><code class="language-bash">curl http://127.0.0.1:8080/v1/chat/completions \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{
+    &quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;&lt;instructions + DAG&gt;&quot;}],
+    &quot;temperature&quot;: 0,
+    &quot;max_tokens&quot;: 1024
+  }'
+</code></pre>
+<p>The server builds the final prompt with the chat template stored in the GGUF
+file (<code>--jinja</code>). It is the same template we trained with: when the request
+has no system message, it adds Qwen's default system prompt, so do not add a
+system message of your own. The instructions are built by
+<code>build_merged_prompt()</code> in <code>unsloth-scripts/run_finetuned_inference.py</code> of
+slips-tools <a href="https://github.com/stratosphereips/slips-tools">[8]</a>.</p>
+<p>The times in section 3.2 were measured with the same settings except flash
+attention, which was left at llama.cpp's default (on). Based on the
+<code>llama-bench</code> results in section 3.3, turning it off should make each summary
+about 10–20% faster for Qwen3.5-0.8B; we have not yet measured that end to
+end.</p>
+<h2>4. Limitations and Next Steps</h2>
+<ul>
+<li><strong>Long incidents.</strong> A third of the incidents are longer than 4,096 tokens
+  even after DAG generation and have to be truncated, and the models never saw
+  the truncation marker during training (<a href="/post/2026-11-23-slips-summaries-rpi-part-2-fine-tuning-and-evaluation/">Part 2</a>). Summaries of the
+  longest incidents are the weakest.</li>
+<li><strong>Not yet measured:</strong> judge scores of the llama.cpp answers (our quality
+  scores come from Ollama answers), and end-to-end times with flash attention
+  off (we expect 10–20% less for Qwen3.5-0.8B).</li>
+<li><strong>One device.</strong> All measurements are on a single Raspberry Pi 5 (8 GB).</li>
+</ul>
+<p>The models run on a Raspberry Pi 5, produce useful summaries for most
+incidents, and do so without sending data anywhere. The next step on the
+inference side is to split long incidents into chunks, summarize each chunk
+and merge the partial summaries, instead of truncating them.</p>
+<p><em>This post is part of the ongoing research at the Stratosphere IPS Lab <a href="https://www.stratosphereips.org/">[2]</a>, Czech Technical University in Prague.</em></p>
+<h2>References</h2>
+<p><a href="https://github.com/stratosphereips/StratosphereLinuxIPS">[1]</a> Slips, the behavioral network IDS developed at the Stratosphere IPS Lab.</p>
+<p><a href="https://www.stratosphereips.org/">[2]</a> The Stratosphere IPS Lab, Czech Technical University in Prague.</p>
+<p><a href="https://idea.cesnet.cz/en/index">[3]</a> IDEA, the JSON incident exchange format defined by CESNET.</p>
+<p><a href="https://www.stratosphereips.org/blog/2025/6/5/how-well-do-llms-perform-on-a-raspberry-pi-5">[4]</a> Our earlier benchmark: How well do LLMs perform on a Raspberry Pi 5?</p>
+<p><a href="https://huggingface.co/Qwen">[5]</a> The Qwen model family on Hugging Face.</p>
+<p><a href="https://github.com/ggml-org/llama.cpp">[6]</a> llama.cpp, CPU inference for models in its GGUF format.</p>
+<p><a href="https://ollama.com">[7]</a> Ollama, a model runner built on llama.cpp.</p>
+<p><a href="https://github.com/stratosphereips/slips-tools">[8]</a> slips-tools: the scripts for dataset generation, training, evaluation and the Raspberry Pi benchmark.</p>
+<p><a href="https://huggingface.co/stratosphere/qwen3.5-0.8b-slips-immune-summarization">[9]</a> The Qwen3.5-0.8B summary model on Hugging Face: weights, GGUF files and LoRA adapter.</p>
+<p><a href="https://huggingface.co/stratosphere/qwen2.5-1.5b-slips-immune-summarization">[10]</a> The Qwen2.5-1.5B summary model on Hugging Face.</p>
+<p><a href="https://ollama.com/stratosphere/qwen2.5-1.5b-slips-immune-summarization">[11]</a> The Qwen2.5-1.5B summary model on Ollama.</p>
+<p><a href="https://huggingface.co/datasets/stratosphere/immune-summary-sft-dataset">[12]</a> The summarization dataset on Hugging Face.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:dag">
+<p>In practice the output is a structured text block rather than a formal graph data structure, but the traversal follows the incident-event graph that Slips builds.&#160;<a class="footnote-backref" href="#fnref:dag" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			<a href="https://harpomaxx.github.io/categories/infosec/"> infosec </a>
+			<a href="https://harpomaxx.github.io/categories/language-models/"> language-models </a>
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+
+<form style="float:center;" action="https://tinyletter.com/harpomaxx" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/harpomaxx', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+<label for="tlemail">Enter your email address</label>
+<input type="text" style="width:140px" name="email" id="tlemail" />
+<input type="hidden" value="1" name="embed"/>
+<input type="submit" value="Subscribe" />
+</form>
+
+
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+
+
+</footer>
+
+</body>
+</html>

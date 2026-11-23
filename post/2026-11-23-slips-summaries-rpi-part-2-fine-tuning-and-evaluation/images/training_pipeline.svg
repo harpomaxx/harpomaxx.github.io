@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1016 120" width="1016" height="120" role="img" aria-label="Training pipeline: dataset, QLoRA fine-tuning, merge, GGUF export, Raspberry Pi 5">
+<title>Training pipeline: dataset, QLoRA fine-tuning, merge, GGUF export, Raspberry Pi 5</title>
+<rect width="1016" height="120" fill="#ffffff"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#777777"/></marker></defs>
+<rect x="20.0" y="20.0" width="168" height="80" rx="40.0" fill="#e8f4f8" stroke="#4a90d9" stroke-width="2"/>
+<text x="104.0" y="42.5" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#222222">Dataset</text>
+<text x="104.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">461 incidents</text>
+<text x="104.0" y="77.6" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">DAG → summary</text>
+<rect x="222.0" y="20.0" width="168" height="80" rx="6" fill="#f5f5f3" stroke="#9a9a95" stroke-width="2"/>
+<text x="306.0" y="42.5" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#222222">QLoRA fine-tuning</text>
+<text x="306.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">4-bit base, LoRA r=64</text>
+<text x="306.0" y="77.6" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">Unsloth</text>
+<rect x="424.0" y="20.0" width="168" height="80" rx="6" fill="#fff8e1" stroke="#f0a500" stroke-width="2"/>
+<text x="508.0" y="42.5" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#222222">Merge</text>
+<text x="508.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">adapter + dequantized</text>
+<text x="508.0" y="77.6" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">4-bit base</text>
+<rect x="626.0" y="20.0" width="168" height="80" rx="6" fill="#f5f5f3" stroke="#9a9a95" stroke-width="2"/>
+<text x="710.0" y="42.5" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#222222">GGUF</text>
+<text x="710.0" y="60.0" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">q4_k_m · q5_k_m · q8_0</text>
+<text x="710.0" y="77.6" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">llama.cpp</text>
+<rect x="828.0" y="20.0" width="168" height="80" rx="40.0" fill="#e8f8e8" stroke="#4a9d4a" stroke-width="2"/>
+<text x="912.0" y="51.2" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#222222">Raspberry Pi 5</text>
+<text x="912.0" y="68.8" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">llama.cpp or Ollama</text>
+<path d="M 188.0,60 L 222.0,60" fill="none" stroke="#777777" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M 390.0,60 L 424.0,60" fill="none" stroke="#777777" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M 592.0,60 L 626.0,60" fill="none" stroke="#777777" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M 794.0,60 L 828.0,60" fill="none" stroke="#777777" stroke-width="1.8" marker-end="url(#arrow)"/>
+</svg>

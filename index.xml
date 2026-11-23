@@ -7,10 +7,34 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>© Copyright [Harpo MAxx] MIT LICENSE</copyright>
-		<lastBuildDate>Sat, 29 Mar 2025 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Mon, 23 Nov 2026 12:00:00 +0000</lastBuildDate>
 		
 		<atom:link href="https://harpomaxx.github.io/index.xml" rel="self" type="application/rss+xml" />
 		
+		<item>
+			<title>Summarizing Security Alerts on a Raspberry Pi, Part 1: Inference</title>
+			<link>https://harpomaxx.github.io/post/2026-11-23-slips-summaries-rpi-part-1-inference/</link>
+			<pubDate>Mon, 23 Nov 2026 12:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/2026-11-23-slips-summaries-rpi-part-1-inference/</guid>
+			<description>
+				
+				Can a small language model explain security alerts on a Raspberry Pi 5, with nothing sent to the cloud? It can, but the runtime matters more than the model, and long prompts hurt some models much more than others. [14 min read]
+				
+			</description>
+		</item>
+		<item>
+			<title>Summarizing Security Alerts on a Raspberry Pi, Part 2: Fine-Tuning and Evaluation</title>
+			<link>https://harpomaxx.github.io/post/2026-11-23-slips-summaries-rpi-part-2-fine-tuning-and-evaluation/</link>
+			<pubDate>Mon, 23 Nov 2026 11:00:00 +0000</pubDate>
+			
+			<guid>https://harpomaxx.github.io/post/2026-11-23-slips-summaries-rpi-part-2-fine-tuning-and-evaluation/</guid>
+			<description>
+				
+				Fine-tuning three small Qwen models to summarize Slips alerts. The 1.5B model is the best at full precision, but once quantized for the Pi, the 0.8B model is just as good at half the size. [9 min read]
+				
+			</description>
+		</item>
 		<item>
 			<title>Maybe it is time to focus on open LLMs for doing research?</title>
 			<link>https://harpomaxx.github.io/post/2025-03-29-stop-using-llms-from-big-tech-for-doing-research/</link>

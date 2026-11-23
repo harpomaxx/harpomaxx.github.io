@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	
+	<meta name="generator" content="Hugo 0.101.0" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Harpo MAxx"><meta name="keywords" content="hugo,vitae,theme,static"><meta name="description" content="Fine-tuning three small Qwen models to summarize Slips alerts. The 1.5B model is the best at full precision, but once quantized for the Pi, the 0.8B model is just as good at half the size. [9 min read]"><meta property="og:title" content="Summarizing Security Alerts on a Raspberry Pi, Part 2: Fine-Tuning and Evaluation" />
+<meta property="og:description" content="Fine-tuning three small Qwen models to summarize Slips alerts. The 1.5B model is the best at full precision, but once quantized for the Pi, the 0.8B model is just as good at half the size. [9 min read]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harpomaxx.github.io/post/2026-11-23-slips-summaries-rpi-part-2-fine-tuning-and-evaluation/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2026-11-23T11:00:00+00:00" />
+<meta property="article:modified_time" content="2026-11-23T11:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Summarizing Security Alerts on a Raspberry Pi, Part 2: Fine-Tuning and Evaluation"/>
+<meta name="twitter:description" content="Fine-tuning three small Qwen models to summarize Slips alerts. The 1.5B model is the best at full precision, but once quantized for the Pi, the 0.8B model is just as good at half the size. [9 min read]"/>
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/main.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://harpomaxx.github.io/css/all.css" />
+	<link rel="stylesheet" href="https://harpomaxx.github.io/css/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://harpomaxx.github.io/js/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+	<script defer src="https://harpomaxx.github.io/js/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><title>Summarizing Security Alerts on a Raspberry Pi, Part 2: Fine-Tuning and Evaluation | Computer Science Notes</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body><header>
+	
+	<div id="avatar">
+		<a href="https://harpomaxx.github.io/">
+			<img src="/img/harpo-2.jpg" alt="Computer Science Notes">
+		</a>
+	</div>
+	
+	<div id="titletext"><h2 id="title"><a href="https://harpomaxx.github.io/">Computer Science Notes</a></h2></div>
+	<div id="title-description"><p id="subtitle"><a href="https://harpomaxx.github.io">CS Notes</a> is a simple blog to keep track about CS-related stuff I consider useful.</p><div id=social>
+			<nav>
+				<ul><li><a href="https://github.com/harpomaxx/"><i title="Github" class="icons fab fa-github"></i></a></li><li><a href="https://www.twitter.com/harpolabs"><i title="Twitter" class="icons fab fa-twitter"></i></a></li><li><a href="https://www.researchgate.net/profile/Carlos_Catania"><i title="Research Gate" class="icons fab fa-researchgate"></i></a></li></ul>
+			</nav>
+		</div>
+	</div>
+	
+	<div id="mainmenu">
+		<nav>
+			<ul>
+				
+				<li><a href="/">Home</a></li>
+				
+				<li><a href="/post">All Posts</a></li>
+				
+				<li><a href="/about">About</a></li>
+				
+				<li><a href="/tags">Tags</a></li>
+				
+				<li><a href="/categories">Categories</a></li>
+				
+			</ul>
+		</nav>
+	</div>
+	
+</header>
+<main><div class="post">
+	
+	<div class="post-header">
+	
+		<div class="meta">
+			
+			<div class="date">
+				<span class="day">23</span>
+				<span class="rest">Nov 2026</span>
+			</div>
+			
+		</div>
+		
+		<div class="matter">
+			<h1 class="title">Summarizing Security Alerts on a Raspberry Pi, Part 2: Fine-Tuning and Evaluation</h1>
+		</div>
+	</div>
+	<div class="author">
+	
+	
+		<p>
+		
+		by <a href="https://sigmoid.social/@harpomaxx">Harpo MAxx</a>
+		
+	
+	
+		(9 min read)
+	
+		</p>
+	
+	</div>
+
+	<div class="markdown">
+		<blockquote>
+<p><strong>Part 2 of 2.</strong> This post covers fine-tuning and evaluation. <a href="/post/2026-11-23-slips-summaries-rpi-part-1-inference/">Part 1</a> covers inference on the Raspberry Pi.</p>
+</blockquote>
+<h2>1. Introduction</h2>
+<p>Slips <a href="https://github.com/stratosphereips/StratosphereLinuxIPS">[1]</a>, our
+behavioral IDS, groups its detections into incidents. We want a small
+language model, running next to Slips on a <strong>Raspberry Pi 5</strong>, to explain each
+incident in a few clear lines without sending data to a cloud service.
+<a href="/post/2026-11-23-slips-summaries-rpi-part-1-inference/">Part 1</a> describes the inference side: how an incident is turned into a
+compact text block (the <em>DAG</em>) that the model reads, and how the models run on
+the Pi.</p>
+<p>This post covers how we built the models. We fine-tuned three small open
+models, <strong>Qwen2.5-1.5B</strong>, <strong>Qwen3.5-0.8B</strong> and <strong>Qwen3-0.6B</strong>, with the same
+data and settings, exported them for the Pi, and measured their quality with
+an LLM judge. The short version:</p>
+<ul>
+<li>Fine-tuning works: it teaches the models to rewrite the alerts in plain
+  language instead of copying them.</li>
+<li>How the trained adapter is merged into the model matters, and it does not
+  matter in the same way for every model.</li>
+<li>At full precision Qwen2.5-1.5B is the best of the three, level with GPT-4o.
+  Quantized for the Pi it loses most of that advantage, while Qwen3.5-0.8B
+  loses nothing, which is why we run Qwen3.5-0.8B on the Pi.</li>
+</ul>
+<h2>2. Dataset and Training</h2>
+<p>The dataset has 513 DAG-preprocessed incidents from real Slips sessions, each
+paired with a reference summary, split 90/10 into 461 training and 52
+evaluation incidents. It is publicly available as
+stratosphere/immune-summary-sft-dataset <a href="https://huggingface.co/datasets/stratosphere/immune-summary-sft-dataset">[2]</a>
+on Hugging Face.</p>
+<p>Rather than writing the reference summaries by hand, three models (GPT-4o,
+GPT-4o-mini and Qwen2.5-3B) each wrote a candidate summary for every
+incident. An LLM judge scored all three, and the best one was kept. This
+best-of-N strategy means the training signal comes from the best output
+available, not from an average, which raises the quality ceiling compared to
+using a single annotator.</p>
+<p>The pipeline is the same for the three models; only the base model changes:</p>
+<p><img src="images/training_pipeline.svg" alt="The training pipeline: dataset, QLoRA fine-tuning, merge, GGUF export, Raspberry Pi 5" style="display:block;margin:0 auto"></p>
+<p><strong>Training.</strong> We use QLoRA with Unsloth <a href="https://github.com/unslothai/unsloth">[3]</a>:
+the base model is loaded in 4-bit and a LoRA adapter is trained on top (r=64,
+alpha 64, RSLoRA, learning rate 2e-5 with cosine schedule, 3 epochs, effective
+batch 16, loss on the answer only, maximum length 4,096 tokens). All three
+models use the same ChatML prompt format. For Qwen3.5-0.8B the adapter also
+covers the linear-attention projections, so all 24 layers are adapted. On an
+NVIDIA A40, training takes 7 minutes for Qwen3-0.6B and 13 minutes for
+Qwen3.5-0.8B.</p>
+<h3>2.1 From Training Weights to a Pi-Deployable Model</h3>
+<p><strong>Merging the adapter.</strong> To export a GGUF file, the adapter has to be merged
+into the base weights. The usual approach (the <em>standard</em> merge) adds it to the
+original 16-bit weights, but the adapter was trained against the <em>4-bit</em>
+version of the model. The alternative (the <em>dequantized</em> or <em>dq</em> merge) adds it
+to the 4-bit weights converted back to 16-bit, which are exactly the weights
+seen during training. We evaluated both merges at full precision (bf16):</p>
+<div style="overflow-x:auto"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Standard merge</th>
+<th>Dequantized merge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen2.5-1.5B</td>
+<td>16.13</td>
+<td><strong>21.94</strong></td>
+</tr>
+<tr>
+<td>Qwen3.5-0.8B</td>
+<td>18.19</td>
+<td>17.51</td>
+</tr>
+<tr>
+<td>Qwen3-0.6B</td>
+<td><strong>18.70</strong></td>
+<td>15.32</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Summary score out of 40 (section 3), 47 incidents.</em></p>
+<p>The choice matters, and not in the same direction for every model. For
+Qwen2.5-1.5B the dequantized merge is clearly better (+5.8 points; a second
+run reproduced the same answers and scores). For Qwen3.5-0.8B it makes no
+difference. For Qwen3-0.6B the dequantized merge leaves the severity breakdown
+unfilled in 35 of the 47 answers. The GGUF files evaluated in this post are
+built from the dequantized merge.</p>
+<p><strong>Export.</strong> The merged model is converted to GGUF with llama.cpp's tools and
+quantized at three levels:</p>
+<ul>
+<li><strong>q4_k_m:</strong> the smallest; the default for the Pi.</li>
+<li><strong>q5_k_m:</strong> a middle option.</li>
+<li><strong>q8_0:</strong> nearly lossless, for devices with more memory.</li>
+</ul>
+<p>A few details we had to get right:</p>
+<ul>
+<li>Qwen3.5 ships a multi-token-prediction head that Ollama (0.19) cannot load;
+  it is only used for speculative decoding, so we export without it.</li>
+<li>Ollama's OpenAI-compatible endpoint ignores <code>max_completion_tokens</code>, so an
+  unlucky request can generate tens of thousands of tokens. The output limit is
+  set in the Modelfile instead (<code>num_predict</code>).</li>
+<li>The training chat template inserts Qwen's default system prompt when a
+  request has none; the Modelfile must set it too (<code>SYSTEM</code>), together with the
+  context length.</li>
+</ul>
+<p>The weights, GGUF files and LoRA adapters are on Hugging Face (see Links);
+Qwen2.5-1.5B is also available on Ollama as
+stratosphere/qwen2.5-1.5b-slips-immune-summarization <a href="https://ollama.com/stratosphere/qwen2.5-1.5b-slips-immune-summarization">[4]</a>.</p>
+<h2>3. Evaluation</h2>
+<p>We evaluated on the held-out incidents whose DAG fits the evaluation limit:
+47 of the 52 (45 malware, 2 normal). An LLM judge (<code>gpt-oss-120b</code>) scores each
+summary on its own, without knowing which model wrote it, on four criteria
+from 1 to 10: evidence coverage, severity assessment, grouping and
+conciseness, and translation and clarity (total out of 40).</p>
+<p>Designing the rubric taught us something about the task. The DAG is already
+formatted like the expected output, and a judge that is not told this rewards
+summaries that copy it. It also tends to treat the severity labels in the DAG
+as the correct answer, although Slips assigns them automatically and the task
+asks the model to reassess them. Our rubric tells the judge both things, shows
+it how much of the summary is copied from the DAG, and gives copying no
+credit.</p>
+<p>The judge is noisy on single incidents (adding one line to its prompt moved
+some scores by up to 11 points), but the averages over 47 incidents are
+stable. We only treat differences above about 1 point (out of 40) as
+meaningful.</p>
+<h3>3.1 Overall Results</h3>
+<div style="overflow-x:auto"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Untuned</th>
+<th>Fine-tuned, 4-bit</th>
+<th>Fine-tuned, 16-bit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-4o-mini</td>
+<td>20.74</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>GPT-4o</td>
+<td>19.53</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Qwen2.5-1.5B</td>
+<td>11.19</td>
+<td>17.49</td>
+<td><strong>21.94</strong></td>
+</tr>
+<tr>
+<td><strong>Qwen3.5-0.8B</strong></td>
+<td>15.96</td>
+<td>17.38</td>
+<td>17.51</td>
+</tr>
+<tr>
+<td>Qwen3-0.6B</td>
+<td>16.64</td>
+<td>16.85</td>
+<td>15.32</td>
+</tr>
+<tr>
+<td>Qwen2.5-3B</td>
+<td>13.19</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Summary score out of 40. 4-bit: the merged model loaded in 4-bit
+(bitsandbytes), as in training. 16-bit: the dequantized merge in bf16.</em></p>
+<p>Fine-tuning lifts Qwen2.5-1.5B from 11.2 to 21.9 at full precision, level with
+GPT-4o, and both Qwen2.5-1.5B and Qwen3.5-0.8B end up well above the untuned
+Qwen2.5-3B. The quantization results below show how much of that survives
+on the Pi.</p>
+<h3>3.2 Copying vs Rewriting</h3>
+<p>The untuned Qwen3.5-0.8B and Qwen3-0.6B already score fairly well, because they
+reproduce the DAG's format. Measuring how much of each summary is found word
+for word in the DAG shows what they actually do:</p>
+<div style="overflow-x:auto"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Summary text copied from the DAG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-4o / GPT-4o-mini</td>
+<td>1.2% / 2.3%</td>
+</tr>
+<tr>
+<td>Qwen2.5-1.5B / Qwen2.5-3B (untuned)</td>
+<td>9.8% / 8.8%</td>
+</tr>
+<tr>
+<td>Fine-tuned models (all three)</td>
+<td>8–10%</td>
+</tr>
+<tr>
+<td>Qwen3-0.6B (untuned)</td>
+<td>49.3%</td>
+</tr>
+<tr>
+<td>Qwen3.5-0.8B (untuned)</td>
+<td>64.3%</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Share of the summary's event text (word 5-grams) found verbatim in the DAG.</em></p>
+<p>Fine-tuning teaches the models to rewrite rather than copy: the <em>translation
+and clarity</em> score of Qwen3.5-0.8B goes from 3.8 to 6.4 out of 10 (Qwen2.5-1.5B
+from 3.8 to 6.1). This is arguably the most relevant result for the operator
+who reads the summaries.</p>
+<h3>3.3 Impact of Quantization</h3>
+<div style="overflow-x:auto"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>16-bit (bf16)</th>
+<th>q8_0</th>
+<th>q5_k_m</th>
+<th>q4_k_m</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen2.5-1.5B</td>
+<td><strong>21.94</strong></td>
+<td>19.02</td>
+<td>17.45</td>
+<td>15.77</td>
+</tr>
+<tr>
+<td><strong>Qwen3.5-0.8B</strong></td>
+<td>17.51</td>
+<td><strong>17.91</strong></td>
+<td>16.79</td>
+<td><strong>17.81</strong></td>
+</tr>
+<tr>
+<td>Qwen3-0.6B</td>
+<td>15.32</td>
+<td>16.11</td>
+<td>14.68</td>
+<td>13.83</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Summary score out of 40. All four columns come from the same merged weights
+(dequantized merge): bf16 served with Hugging Face Transformers, the GGUF
+files running in Ollama. Differences below ~1 point are within the judge's
+noise.</em></p>
+<ul>
+<li><strong>Qwen3.5-0.8B loses nothing.</strong> It scores 17.5 at full precision and
+  16.8–17.9 at every quantization level, all within noise: its q4_k_m, the
+  file we would deploy on the Pi, is as good as the full model.</li>
+<li><strong>Qwen2.5-1.5B loses most of its advantage.</strong> At full precision it is the
+  best small model (21.9, level with GPT-4o), but it drops to 19.0 at q8_0 and
+  15.8 at q4_k_m. On the Pi it ends up where Qwen3.5-0.8B is, at twice the size.</li>
+<li><strong>Qwen3-0.6B is not reliable for summaries.</strong> It often leaves part of the
+  output template unfilled, typically the severity breakdown line
+  (<code>Severity breakdown: [Your calculated breakdown, ...]</code>): in 35 of the 47
+  answers at full precision and in 7 to 39 in the GGUF files. We penalize this
+  explicitly, which is why its scores fall below its untuned score.</li>
+</ul>
+<h3>3.4 Results by Incident Complexity</h3>
+<div style="overflow-x:auto"><table>
+<thead>
+<tr>
+<th>Complexity</th>
+<th>Incidents</th>
+<th>GPT-4o-mini</th>
+<th>GPT-4o</th>
+<th>Qwen2.5-1.5B</th>
+<th>Qwen3.5-0.8B</th>
+<th>Qwen3-0.6B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple (&lt; 500 events)</td>
+<td>31</td>
+<td>21.10</td>
+<td>19.58</td>
+<td>18.57</td>
+<td><strong>18.76</strong></td>
+<td>16.70</td>
+</tr>
+<tr>
+<td>Medium (500–1,999)</td>
+<td>7</td>
+<td>19.57</td>
+<td>19.00</td>
+<td>15.14</td>
+<td>15.90</td>
+<td>12.57</td>
+</tr>
+<tr>
+<td>Complex (≥ 2,000)</td>
+<td>9</td>
+<td>20.44</td>
+<td>19.78</td>
+<td>15.19</td>
+<td>14.41</td>
+<td>10.37</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>Fine-tuned models: mean over their q4_k_m, q5_k_m and q8_0 GGUF files.</em></p>
+<p>On simple incidents, which are two thirds of the evaluation set, the
+fine-tuned Qwen3.5-0.8B is within about 1 point of GPT-4o. All small models
+drop on medium and complex incidents, where the DAG is longest. This is mostly
+an input problem rather than a model problem: incidents this long were
+mostly dropped from training, and the longest come close to, or exceed, the
+context limit (section 4).</p>
+<h2>4. Limitations and Next Steps</h2>
+<ul>
+<li><strong>Long incidents.</strong> Training records whose answer starts after 4,096 tokens
+  contribute nothing to training; this removes 160 of the 461 training
+  records, the longest and most complex incidents. As a result, the models
+  never saw the truncation marker used at inference (<a href="/post/2026-11-23-slips-summaries-rpi-part-1-inference/">Part 1</a>): the few
+  records that carry it are all longer than that. On the evaluation side, 4 of
+  the 47 prompts are longer than the 8,192-token context.</li>
+<li><strong>Small, imbalanced evaluation set.</strong> 47 incidents, 45 of them malware;
+  performance on benign traffic is not well characterized, and differences
+  below ~1 point are within the judge's noise. The merge and full-precision
+  comparisons also use these 47 incidents only.</li>
+<li><strong>Prompt format.</strong> The models were trained with the instructions in the
+  system message and evaluated with a longer prompt that carries the
+  instructions in the user message. We have not yet measured whether the
+  training format scores differently.</li>
+<li><strong>English only.</strong></li>
+</ul>
+<p>The gap to the cloud models is real, and it is largest on the long incidents.
+The next steps on the training side are to train on the long incidents
+instead of dropping them, and to find a way to keep more of Qwen2.5-1.5B's
+full-precision quality after quantization.</p>
+<p><em>This post is part of the ongoing research at the Stratosphere IPS Lab <a href="https://www.stratosphereips.org/">[5]</a>, Czech Technical University in Prague.</em></p>
+<h2>References</h2>
+<p><a href="https://github.com/stratosphereips/StratosphereLinuxIPS">[1]</a> Slips, the behavioral network IDS developed at the Stratosphere IPS Lab.</p>
+<p><a href="https://huggingface.co/datasets/stratosphere/immune-summary-sft-dataset">[2]</a> The summarization dataset on Hugging Face.</p>
+<p><a href="https://github.com/unslothai/unsloth">[3]</a> Unsloth, used for the QLoRA fine-tuning.</p>
+<p><a href="https://ollama.com/stratosphere/qwen2.5-1.5b-slips-immune-summarization">[4]</a> The Qwen2.5-1.5B summary model on Ollama.</p>
+<p><a href="https://www.stratosphereips.org/">[5]</a> The Stratosphere IPS Lab, Czech Technical University in Prague.</p>
+<p><a href="https://huggingface.co/stratosphere/qwen3.5-0.8b-slips-immune-summarization">[6]</a> The Qwen3.5-0.8B summary model on Hugging Face: weights, GGUF files and LoRA adapter.</p>
+<p><a href="https://huggingface.co/stratosphere/qwen2.5-1.5b-slips-immune-summarization">[7]</a> The Qwen2.5-1.5B summary model on Hugging Face.</p>
+<p><a href="https://github.com/stratosphereips/slips-tools">[8]</a> slips-tools: the scripts for dataset generation, training, evaluation and the Raspberry Pi benchmark.</p>
+<p><a href="https://github.com/ggml-org/llama.cpp">[9]</a> llama.cpp, CPU inference for models in its GGUF format.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="tags">
+		<div class="taxosfloating_left">
+			<p>Categories</p>
+		</div>
+		<div class="termsfloating_right">
+			<p>
+			<a href="https://harpomaxx.github.io/categories/infosec/"> infosec </a>
+			<a href="https://harpomaxx.github.io/categories/language-models/"> language-models </a>
+			</p>
+		</div>
+		<div class="clearit"></div>
+		
+		
+		
+		
+	
+		
+	
+		
+		
+	</div></div>
+
+  </main>
+
+<footer>
+
+<a href="https://labsin.org">
+<img id="labsin-logo-white" class="labsin-logo" src="https://harpomaxx.github.io/img/labsin-logo.svg" alt="LABSIN - Intelligent Systems Laboratory" style="float:left;" />
+</a>
+
+<form style="float:center;" action="https://tinyletter.com/harpomaxx" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/harpomaxx', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
+<label for="tlemail">Enter your email address</label>
+<input type="text" style="width:140px" name="email" id="tlemail" />
+<input type="hidden" value="1" name="embed"/>
+<input type="submit" value="Subscribe" />
+</form>
+
+
+	 © Copyright [Harpo MAxx] MIT LICENSE 
+	
+	
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-175437292-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+	
+
+
+</footer>
+
+</body>
+</html>

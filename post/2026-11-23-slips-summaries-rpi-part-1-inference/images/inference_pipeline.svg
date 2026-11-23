@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 436" width="560" height="436" role="img" aria-label="Inference pipeline: Slips alerts, DAG generator, truncation if needed, model call, summary">
+<title>Inference pipeline: Slips alerts, DAG generator, truncation if needed, model call, summary</title>
+<rect width="560" height="436" fill="#ffffff"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#777777"/></marker></defs>
+<rect x="50.0" y="7.0" width="200" height="50" rx="25.0" fill="#e8f4f8" stroke="#4a90d9" stroke-width="2"/>
+<text x="150" y="23.2" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#222222">Slips IDS</text>
+<text x="150" y="40.8" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">IDEA alerts · JSONL</text>
+<rect x="25.0" y="75.0" width="250" height="74" rx="6" fill="#f5f5f3" stroke="#9a9a95" stroke-width="2"/>
+<text x="150" y="94.5" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#222222">Step 1 — DAG generator</text>
+<text x="150" y="112.0" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">group events by severity + target</text>
+<text x="150" y="129.6" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">format into structured text</text>
+<polygon points="150,170.0 255.0,218 150,266.0 45.0,218" fill="#fff8e1" stroke="#f0a500" stroke-width="2"/>
+<text x="150" y="208.9" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="700" fill="#222222">Tokens exceed</text>
+<text x="150" y="227.1" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="12.0" font-weight="400" fill="#555555">the budget?</text>
+<rect x="315.0" y="181.0" width="230" height="74" rx="6" fill="#fdecea" stroke="#e05a47" stroke-width="2"/>
+<text x="430" y="200.4" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#222222">Step 2 — Truncation</text>
+<text x="430" y="218.0" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">cut at a clean line boundary</text>
+<text x="430" y="235.5" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">append truncation marker</text>
+<rect x="25.0" y="287.0" width="250" height="74" rx="6" fill="#f5f5f3" stroke="#9a9a95" stroke-width="2"/>
+<text x="150" y="306.4" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#222222">Model call</text>
+<text x="150" y="324.0" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">Qwen3.5-0.8B · q4_k_m GGUF</text>
+<text x="150" y="341.6" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">llama.cpp on the Raspberry Pi 5</text>
+<rect x="40.0" y="379.0" width="220" height="50" rx="25.0" fill="#e8f8e8" stroke="#4a9d4a" stroke-width="2"/>
+<text x="150" y="395.2" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" fill="#222222">Human-readable</text>
+<text x="150" y="412.8" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="400" fill="#555555">incident summary</text>
+<path d="M 150,57 L 150,75" fill="none" stroke="#777777" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M 150,149 L 150,170" fill="none" stroke="#777777" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M 255,218 L 315,218" fill="none" stroke="#777777" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="268.0" y="208" width="34" height="20" rx="3" fill="#ffffff"/>
+<text x="285.0" y="218" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-style="italic" fill="#555555">Yes</text>
+<path d="M 150,266 L 150,287" fill="none" stroke="#777777" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="157" y="266.5" width="34" height="20" rx="3" fill="#ffffff"/>
+<text x="174" y="276.5" text-anchor="middle" dominant-baseline="middle" font-family="Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-style="italic" fill="#555555">No</text>
+<path d="M 430,255 L 430,324 L 275.0,324" fill="none" stroke="#777777" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M 150,361 L 150,379" fill="none" stroke="#777777" stroke-width="1.8" marker-end="url(#arrow)"/>
+</svg>
